@@ -1,0 +1,783 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h6><b>SELECCIONASTE EL PLAN</b></h6>
+      <h1 class="azul-crt">Hosting Plan Persona</h1>
+      <hr class="hr_title" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card card-border p-3">
+        <div class="row px-5">
+          <div class="col-md-12 mb-2">
+            <h5><b>1. Elije tu dominio</b></h5>
+          </div>
+          <span
+            class="badge"
+            style="
+              width: 100px;
+              background-color: #00cd34;
+              border-radius: unset;
+            "
+            >1 año gratis</span
+          >
+          <div
+            class="col-md-12 card card-border p-3"
+            data-opc="nuevodominio"
+            style="border: 1.3px solid #999999; cursor: pointer"
+          >
+            <div class="col-md-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="opcdominio"
+                  id="nuevodominio"
+                />
+                <label class="form-check-label" for="nuevodominio">
+                  Quiero registrar un nuevo dominio
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-12 d-none" data-opc="table-nuevodominio">
+              <form class="pt-3" id="" action="" method="POST">
+                <div class="row">
+                  <div
+                    class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+                  >
+                    <div class="form-group">
+                      <h5>www.&nbsp;</h5>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-6 px-0">
+                    <div class="form-group">
+                      <input
+                        class="input__field_dominio"
+                        type="text"
+                        placeholder=" "
+                        id="dominio"
+                        name="dominio"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 col-2 px-0">
+                    <div class="form-group contenedor-extension-dominio">
+                      <select
+                        class="input__field_exten"
+                        id="extension"
+                        name="extension"
+                      >
+                        <option value=".cl" selected>.cl</option>
+
+                        <option value=".com">.com</option>
+
+                        <option value=".net">.net</option>
+
+                        <option value=".info">.info</option>
+
+                        <option value=".org">.org</option>
+
+                        <option value="otro">otro</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 col-2 d-flex align-items-center">
+                    <button
+                      type="button"
+                      class="btn"
+                      id="busqueda"
+                      style="
+                        background-color: #005ad2;
+                        color: #f2f3f5;
+                        font-weight: bold;
+                        width: 100%;
+                        font-size: 14px;
+                      "
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      Buscar
+                    </button>
+                  </div>
+
+                  <div class="col-md-12 col-12 text-center">
+                    <small id="errordominio" style="color: #ff0000"></small>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-md-12 d-none" data-opc="table2-nuevodominio">
+              <div class="row">
+                <div class="col-md-7">
+                  <h6 class="px-3 pt-3">
+                    <b>Dominio agregado</b>
+                    <i class="far fa-check-circle" style="color: #32cb00"></i>
+                  </h6>
+
+                  <h6 class="px-3">
+                    arielcadenas.com
+                    <button
+                      type="button"
+                      class="btn btn-outline-dark btn-edit ms-2"
+                    >
+                      cambiar dominio <i class="ms-2 far fa-edit"></i>
+                    </button>
+                  </h6>
+                </div>
+
+                <div class="col-md-5">
+                  <h6 class="px-3 pt-3">
+                    <b>1er año: </b>
+                    <span style="text-decoration: line-through">9.600 CLP</span
+                    >Gratis
+                  </h6>
+
+                  <h6 class="px-3">
+                    <b>Renovación: 9.600 CLP </b>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row px-5 mt-3">
+          <div
+            class="col-md-12 card card-border p-3"
+            data-opc="dominioexistente"
+            style="border: 1.3px solid #999999; cursor: pointer"
+          >
+            <div class="col-md-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="opcdominio"
+                  id="dominioexistente"
+                />
+                <label class="form-check-label" for="dominioexistente">
+                  Quiero usar un dominio que ya tengo registrado
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-12 d-none" data-opc="table-dominioexistente">
+              <form class="pt-3" id="" action="" method="POST">
+                <div class="row">
+                  <div
+                    class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+                  >
+                    <div class="form-group">
+                      <h5>www.&nbsp;</h5>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-6 px-0">
+                    <div class="form-group">
+                      <input
+                        class="input__field_dominio"
+                        type="text"
+                        placeholder=" "
+                        id="dominio"
+                        name="dominio"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 col-2 px-0">
+                    <div class="form-group contenedor-extension-dominio">
+                      <select
+                        class="input__field_exten"
+                        id="extension"
+                        name="extension"
+                      >
+                        <option value=".cl" selected>.cl</option>
+
+                        <option value=".com">.com</option>
+
+                        <option value=".net">.net</option>
+
+                        <option value=".info">.info</option>
+
+                        <option value=".org">.org</option>
+
+                        <option value="otro">otro</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 col-2 d-flex align-items-center">
+                    <button
+                      type="button"
+                      class="btn"
+                      id="guardardominio"
+                      style="
+                        background-color: #005ad2;
+                        color: #f2f3f5;
+                        font-weight: bold;
+                        width: 100%;
+                        font-size: 14px;
+                      "
+                    >
+                      Guardar
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-border p-3 mt-4">
+        <div class="row px-5">
+          <div class="col-md-12 mb-2">
+            <h5><b>2. Selecciona el Sistema Operativo</b></h5>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="centos"
+                  name="so"
+                  value="centos"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border text-center"
+                  for="centos"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  <h2 class="px-3">Centos</h2>
+
+                  <i class="fab fa-centos" style="font-size: 80px"></i>
+
+                  <br />
+                  <br />
+                </label>
+
+                <form class="mt-2 d-none" id="select-centos">
+                  <div class="row">
+                    <div class="col">
+                      <select class="form-select">
+                        <option selected>Seleccione versión</option>
+                        <option>CentosOS 6</option>
+                        <option>CentosOS 7</option>
+                        <option>CentosOS 6 + Cpanel</option>
+                        <option>CentosOS 7 + Cpanel</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="so"
+                  id="debian"
+                  value="debian"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border text-center"
+                  for="debian"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  <h2 class="px-3">Debian</h2>
+
+                  <i class="fab fa-deviantart" style="font-size: 80px"></i>
+
+                  <br />
+                  <br />
+                </label>
+
+                <form class="mt-2 d-none" id="select-debian">
+                  <div class="row">
+                    <div class="col">
+                      <select class="form-select">
+                        <option selected>Seleccione versión</option>
+                        <option>Debian 6</option>
+                        <option>Debian 7</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="so"
+                  value="ubuntu"
+                  id="ubuntu"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border text-center"
+                  for="ubuntu"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  <h2 class="px-3">Ubuntu</h2>
+
+                  <i class="fab fa-ubuntu" style="font-size: 80px"></i>
+
+                  <br />
+                  <br />
+                </label>
+
+                <form class="mt-2 d-none" id="select-ubuntu">
+                  <div class="row">
+                    <div class="col">
+                      <select class="form-select">
+                        <option selected>Seleccione versión</option>
+                        <option>Ubuntu 12</option>
+                        <option>Ubuntu 10</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 mb-2 mt-3 d-none licenciacpanel">
+            <h5><b>2.1. Selecciona la Licencia Cpanel</b></h5>
+
+            <form class="mt-2 d-nones" id="opc-select-cpanel">
+              <div class="row">
+                <div class="col">
+                  <select class="form-select">
+                    <option selected>Seleccione licencia</option>
+                    <option>Cpanel Admin 5</option>
+                    <option>Cpanel Admin 30</option>
+                    <option>Cpanel Premiere 100</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-border p-3 mt-4">
+        <div class="row px-5">
+          <div class="col-md-12 mb-2">
+            <h5><b>3. Administración para su servidor</b></h5>
+          </div>
+
+          <div
+            class="col-md-12 card card-border p-3"
+            data-opc="conadmin"
+            style="border: 1.3px solid #999999; cursor: pointer"
+          >
+            <div class="col-md-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="opcadmin"
+                  id="conadmin"
+                />
+                <label class="form-check-label" for="conadmin">
+                  Quiero Administración para mi VPS
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row px-5 mt-3">
+          <div
+            class="col-md-12 card card-border p-3"
+            data-opc="sinadmin"
+            style="border: 1.3px solid #999999; cursor: pointer"
+          >
+            <div class="col-md-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="opcadmin"
+                  id="sinadmin"
+                />
+                <label class="form-check-label" for="sinadmin">
+                  No quiero Administración
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-border p-3 mt-4">
+        <div class="row px-5">
+          <div class="col-md-12">
+            <h5><b>4. Selecciona período de facturación</b></h5>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <button
+                  type="button"
+                  class="btn bg-azul-crt text-white p-0"
+                  style="
+                    font-size: 16px;
+                    width: 100%;
+                    border-radius: 0px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  Más económico
+                </button>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo1"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                  checked
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo1"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                  "
+                >
+                  <strong class="px-3" style="font-size: 17px">
+                    Cada 3 años
+                  </strong>
+
+                  <br />
+
+                  <strong class="px-3">
+                    $5.181
+
+                    <small style="font-size: 14px">CLP/mes</small>
+                  </strong>
+
+                  <p class="px-3" style="line-height: 1.2">
+                    <small style="font-size: 14px; color: #1f2044">
+                      De:
+                      <span style="text-decoration: line-through"
+                        >$248.700 CLP</span
+                      >
+                    </small>
+
+                    <br />
+
+                    <small style="font-size: 14px; color: #1f2044">
+                      A: <b>$124.350 CLP</b> <br />
+                      por 3 años
+                    </small>
+                  </p>
+
+                  <div class="mb-0 pt-1 pb-1 text-center card-footer">
+                    <small><b>Ahorra: $124.350 CLP</b></small>
+                  </div>
+                </label>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <button
+                  type="button"
+                  class="btn bg-white text-white p-0"
+                  style="
+                    font-size: 16px;
+                    width: 100%;
+                    border-radius: 0px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  Más económico
+                </button>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo2"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo2"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  <strong class="px-3" style="font-size: 17px">
+                    Cada 2 años
+                  </strong>
+
+                  <br />
+
+                  <strong class="px-3">
+                    $5.181
+
+                    <small style="font-size: 14px">CLP/mes</small>
+                  </strong>
+
+                  <p class="px-3" style="line-height: 1.2">
+                    <small style="font-size: 14px; color: #1f2044">
+                      De:
+                      <span style="text-decoration: line-through"
+                        >$248.700 CLP</span
+                      >
+                    </small>
+
+                    <br />
+
+                    <small style="font-size: 14px; color: #1f2044">
+                      A: <b>$124.350 CLP</b> <br />
+                      por 2 años
+                    </small>
+                  </p>
+
+                  <div class="mb-0 pt-1 pb-1 text-center card-footer">
+                    <small><b>Ahorra: $124.350 CLP</b></small>
+                  </div>
+                </label>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <button
+                  type="button"
+                  class="btn bg-white text-white p-0"
+                  style="
+                    font-size: 16px;
+                    width: 100%;
+                    border-radius: 0px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  Más económico
+                </button>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo3"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo3"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    text-align: left;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                  "
+                >
+                  <strong class="px-3" style="font-size: 17px">
+                    Cada 1 año
+                  </strong>
+
+                  <br />
+
+                  <strong class="px-3">
+                    $5.181
+
+                    <small style="font-size: 14px">CLP/mes</small>
+                  </strong>
+
+                  <p class="px-3" style="line-height: 1.2">
+                    <small style="font-size: 14px; color: #1f2044">
+                      De:
+                      <span style="text-decoration: line-through"
+                        >$248.700 CLP</span
+                      >
+                    </small>
+
+                    <br />
+
+                    <small style="font-size: 14px; color: #1f2044">
+                      A: <b>$124.350 CLP</b> <br />
+                      por 1 años
+                    </small>
+                  </p>
+
+                  <div class="mb-0 pt-1 pb-1 text-center card-footer">
+                    <small><b>Ahorra: $124.350 CLP</b></small>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center mt-4">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #005ad2;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 45%;
+            "
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-border">
+        <div class="card-header">
+          <h5><b>Detalles del pedido</b></h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-3"><b>Web Hosting</b></h6>
+
+              <h6 class="px-3">Plan Persona</h6>
+            </div>
+
+            <div class="col-md-6">
+              <h6 class="px-3 pt-3">$61.131 CLP</h6>
+
+              <small class="px-3" style="text-decoration: line-through"
+                >$101.885 CLP</small
+              >
+            </div>
+          </div>
+
+          <hr class="hr_detallescompra" />
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d-flex justify-content-center">
+                <form>
+                  <div class="form-group">
+                    <label class="input">
+                      <input
+                        class="input__field"
+                        type="text"
+                        placeholder=" "
+                        id="cupon"
+                        name="cupon"
+                        required
+                      />
+
+                      <span class="input__label">Cupón de descuento</span>
+                      <small id="errorcupon" style="color: #ff0000"></small>
+                    </label>
+
+                    <button
+                      type="button"
+                      class="btn"
+                      style="
+                        background-color: #005ad2;
+                        color: #f2f3f5;
+                        font-weight: bold;
+                        border-radius: unset;
+                      "
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <hr class="hr_detallescompra" />
+
+          <div class="row pb-3">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-3"><b>Total pedido</b></h6>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="px-3 pt-3 azul-crt"><b>$61.131 CLP</b></h5>
+
+              <h6 class="px-3" style="text-decoration: line-through">
+                $101.885 CLP
+              </h6>
+
+              <small class="px-3">Ahorra $101.885 CLP</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br />

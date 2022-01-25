@@ -1,0 +1,32 @@
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-2 mt-3" *ngFor="let subcategoria of subcategorias; let i=index "  >
+  <div class="card planes-icon"  [ngClass]="{'plan-active':subcategoria.active}" (click)="seleccionarcategoria(i, subcategoria.id_subcategoria )">
+
+    <i [class]="subcategoria.icono"></i>
+    <h5>{{subcategoria.nombre}}</h5>
+
+  </div>
+
+</div>
+
+</div>
+
+    <!-- <div class="card planes-icon"  routerLink="{{subcategoria.categoria.slug}}/{{subcategoria.slug}}" routerLinkActive="plan-active" (click)="seleccionarcategoria(subcategoria.id_subcategoria)">
+
+      <i [class]="subcategoria.icono"></i>
+      <h5>{{subcategoria.nombre}}</h5>
+
+    </div> -->
+
+    <!-- <div
+    class="card planes-icon"
+      [id]="subcategoria.id_subcategoria"
+      (click)="seleccionarcategoria(subcategoria.id_subcategoria)"
+    appActivecard
+      [seleccionado]="seleccionado"
+    >
+      <i [class]="subcategoria.icono"></i>
+
+      <h5>{{ subcategoria.nombre }}</h5>
+    </div> -->

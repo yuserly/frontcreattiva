@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Productos } from '../../interfaces/ecommerce.interface';
+import { Productos, Carrito } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 
 @Component({
@@ -26,9 +26,64 @@ export class PlanesComponent implements OnInit {
 
   contratar(producto:Productos){
 
-      localStorage.setItem('producto',JSON.stringify(producto));
+
+    if(localStorage.getItem('carrito')){
+
+      let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+      this.categoriasServices.getperiodo(producto.id_producto,4).subscribe( resp => {
+
+      carro.push({
+        producto: producto,
+        periodo: resp,
+        compradominio: [],
+        dominiocliente: '',
+        sistemaoperativo: 0,
+        versionsistema:0,
+        ip: ''
+      })
+
+      const cantidadcarro = carro.length;
+      const index = cantidadcarro - 1;
+
+      localStorage.setItem('index',JSON.stringify(index));
+      localStorage.setItem('carrito',JSON.stringify(carro));
 
       this.router.navigate(['/configuraciones']);
+
+    })
+
+  }else{
+
+    let carro: Carrito[] = [];
+
+
+    this.categoriasServices.getperiodo(producto.id_producto,4).subscribe( resp => {
+
+      carro.push({
+        producto: producto,
+        periodo: resp,
+        compradominio: [],
+        dominiocliente: '',
+        sistemaoperativo: 0,
+        versionsistema:0,
+        ip: ''
+      })
+
+      const cantidadcarro = carro.length;
+      const index = cantidadcarro - 1;
+
+      localStorage.setItem('index',JSON.stringify(index));
+      localStorage.setItem('carrito',JSON.stringify(carro));
+
+      this.router.navigate(['/configuraciones']);
+
+    })
+
+
+  }
+
+
   }
 
 }

@@ -4,18 +4,18 @@
       <h5><b>Detalles del pedido</b></h5>
     </div>
     <div class="card-body p-0">
-      <div class="row">
+      <div class="row" *ngFor="let item of totalcarroarray.productos;">
         <div class="col-md-6">
-          <h6 class="px-3 pt-3"><b>Web Hosting</b></h6>
+          <h6 class="px-3 pt-3"><b></b></h6>
 
-          <h6 class="px-3">Plan Persona</h6>
+          <h6 class="px-3">{{item.nombre}}</h6>
         </div>
 
         <div class="col-md-6">
-          <h6 class="px-3 pt-3">$61.131 CLP</h6>
+          <h6 class="px-3 pt-3">{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
 
           <small class="px-3" style="text-decoration: line-through"
-            >$101.885 CLP</small
+            >{{item.precioold | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small
           >
         </div>
       </div>
@@ -63,17 +63,32 @@
 
       <div class="row pb-3">
         <div class="col-md-6">
+          <h6 class="px-3 pt-3"><b>Neto pedido</b></h6>
+        </div>
+
+        <div class="col-md-6">
+          <h5 class="px-3 pt-3 azul-crt"><b>{{totalcarroarray.neto | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h5>
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col-md-6">
+          <h6 class="px-3 pt-3"><b>IVA pedido</b></h6>
+        </div>
+
+        <div class="col-md-6">
+          <h5 class="px-3 pt-3 azul-crt"><b>{{totalcarroarray.iva | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h5>
+        </div>
+      </div>
+
+      <div class="row pb-3">
+        <div class="col-md-6">
           <h6 class="px-3 pt-3"><b>Total pedido</b></h6>
         </div>
 
         <div class="col-md-6">
-          <h5 class="px-3 pt-3 azul-crt"><b>$61.131 CLP</b></h5>
+          <h5 class="px-3 pt-3 azul-crt"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h5>
 
-          <h6 class="px-3" style="text-decoration: line-through">
-            $101.885 CLP
-          </h6>
-
-          <small class="px-3">Ahorra $101.885 CLP</small>
+          <small class="px-3">Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Productos } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { Productos, Carrito, Periodo } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 
 @Component({
   selector: 'app-main2',
@@ -10,14 +11,32 @@ import { Productos } from '../../../ecommerce/interfaces/ecommerce.interface';
 export class Main2Component implements OnInit {
 
   producto!:Productos;
+  periodos:Periodo[] = [];
 
-  constructor() { }
+  constructor(private categoriasServices: CategoriasService) { }
 
   ngOnInit(): void {
 
-    this.producto = JSON.parse(localStorage.getItem('producto')!);
+    // let index = JSON.parse(localStorage.getItem('index')!);
 
-    console.log(this.producto)
+    // let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    // this.producto = carrito[index].producto;
+
+    // this.getperiodos(this.producto.id_producto)
+  }
+
+  getperiodos(id:number){
+
+    this.categoriasServices.getperiodos(id).subscribe( resp => {
+
+      this.periodos = resp;
+
+      console.log(resp)
+
+    })
+
+
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TotalCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetallePedidoComponent implements OnInit {
 
+  @Input() totalcarroarray!:TotalCarro;
+
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
 }

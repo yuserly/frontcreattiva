@@ -28,7 +28,10 @@ export interface Productos {
   tipo_producto: number;
   caracteristicas:  Caracteristicas[];
   subcategoria: Subcategorias;
-  active:   boolean
+  precio_trienal: number;
+  ahorro: number,
+  descuento: number;
+  active:   boolean;
 }
 
 export interface Caracteristicas{
@@ -37,6 +40,74 @@ export interface Caracteristicas{
   nombre: string;
   capacidad: string;
   producto_id: number
+}
+
+export interface CompraDominio{
+  dominio: string,
+  periodo: number,
+  precio: number
+}
+export interface Cliente{
+
+  nombre:string,
+  apellido:string,
+  rut:string,
+  tipo:string,
+  giro:string,
+  razonsocial:string,
+  email:string,
+  emailcontacto:string,
+  telefono:string,
+  telefonocontacto:string,
+  direccion:string,
+  region:number,
+  comuna:number
+
+}
+
+export interface Carrito{
+
+  producto: Productos,
+  periodo: any,
+  compradominio?: CompraDominio[],
+  dominiocliente?: string,
+  sistemaoperativo?: number,
+  versionsistema?:number,
+  ip?: string
+
+}
+
+export interface Periodo {
+  id_periodo:       number;
+  periodo:          string;
+  meses:            number;
+  descuento:        number;
+  created_at:       Date;
+  updated_at:       Date;
+  deleted_at:       null;
+  precio_descuento: number;
+  precio:           number;
+  precio_mensual:   number;
+  ahorro:           number;
+}
+
+export interface TotalCarro {
+
+  productos: ProductoCarro[];
+  neto: number;
+  iva: number;
+  total: number;
+  ahorro: number
+
+}
+
+export interface ProductoCarro {
+
+  nombre: string;
+  precio: number,
+  precioold: number,
+  ahorro: number
+
 }
 
 

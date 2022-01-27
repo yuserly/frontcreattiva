@@ -5,8 +5,10 @@
     </div>
 
     <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-4 text-center">
+      <div class="row" [formGroup]="form">
+
+        <div class="col-md-4 text-center" *ngFor="let item of periodos; let i=index">
+
           <button
             type="button"
             class="btn bg-azul-crt text-white p-0"
@@ -17,68 +19,14 @@
               border-top-left-radius: 5px;
               border-top-right-radius: 5px;
             "
+            *ngIf="item.id_periodo == 4; else caro"
           >
             Más económico
           </button>
 
-          <input
-            type="radio"
-            class="btn-check"
-            name="periodo"
-            id="periodo1"
-            precio="124350"
-            value="6"
-            autocomplete="off"
-            checked
-          />
+          <ng-template #caro>
 
-          <label
-            class="btn btn-periodos px-0 pb-0 card-border"
-            for="periodo1"
-            style="
-              width: 100%;
-              border-radius: 0px;
-              text-align: left;
-              border-bottom-left-radius: 5px;
-              border-bottom-right-radius: 5px;
-            "
-          >
-            <strong class="px-3" style="font-size: 17px">
-              Cada 3 años
-            </strong>
-
-            <br />
-
-            <strong class="px-3">
-              $5.181
-
-              <small style="font-size: 14px">CLP/mes</small>
-            </strong>
-
-            <p class="px-3" style="line-height: 1.2">
-              <small style="font-size: 14px; color: #1f2044">
-                De:
-                <span style="text-decoration: line-through"
-                  >$248.700 CLP</span
-                >
-              </small>
-
-              <br />
-
-              <small style="font-size: 14px; color: #1f2044">
-                A: <b>$124.350 CLP</b> <br />
-                por 3 años
-              </small>
-            </p>
-
-            <div class="mb-0 pt-1 pb-1 text-center card-footer">
-              <small><b>Ahorra: $124.350 CLP</b></small>
-            </div>
-          </label>
-        </div>
-
-        <div class="col-md-4 text-center">
-          <button
+            <button
             type="button"
             class="btn bg-white text-white p-0"
             style="
@@ -92,19 +40,19 @@
             Más económico
           </button>
 
+          </ng-template>
           <input
             type="radio"
             class="btn-check"
-            name="periodo"
-            id="periodo2"
-            precio="124350"
-            value="6"
+            [id]="i"
+            [value]="item |json"
+            formControlName="periodo"
             autocomplete="off"
+            (change)="modificarcarro()"
           />
-
           <label
             class="btn btn-periodos px-0 pb-0 card-border"
-            for="periodo2"
+            [for]="i"
             style="
               width: 100%;
               border-radius: 0px;
@@ -116,13 +64,13 @@
             "
           >
             <strong class="px-3" style="font-size: 17px">
-              Cada 2 años
+              Cada {{item.periodo}}
             </strong>
 
             <br />
 
             <strong class="px-3">
-              $5.181
+              {{item.precio_mensual | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}
 
               <small style="font-size: 14px">CLP/mes</small>
             </strong>
@@ -131,92 +79,20 @@
               <small style="font-size: 14px; color: #1f2044">
                 De:
                 <span style="text-decoration: line-through"
-                  >$248.700 CLP</span
+                  >{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL' }} </span
                 >
               </small>
 
               <br />
 
               <small style="font-size: 14px; color: #1f2044">
-                A: <b>$124.350 CLP</b> <br />
-                por 2 años
+                A: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b> <br />
+                por {{item.periodo}}
               </small>
             </p>
 
             <div class="mb-0 pt-1 pb-1 text-center card-footer">
-              <small><b>Ahorra: $124.350 CLP</b></small>
-            </div>
-          </label>
-        </div>
-
-        <div class="col-md-4 text-center">
-          <button
-            type="button"
-            class="btn bg-white text-white p-0"
-            style="
-              font-size: 16px;
-              width: 100%;
-              border-radius: 0px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-          >
-            Más económico
-          </button>
-
-          <input
-            type="radio"
-            class="btn-check"
-            name="periodo"
-            id="periodo3"
-            precio="124350"
-            value="6"
-            autocomplete="off"
-          />
-
-          <label
-            class="btn btn-periodos px-0 pb-0 card-border"
-            for="periodo3"
-            style="
-              width: 100%;
-              border-radius: 0px;
-              text-align: left;
-              border-bottom-left-radius: 5px;
-              border-bottom-right-radius: 5px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-          >
-            <strong class="px-3" style="font-size: 17px">
-              Cada 1 año
-            </strong>
-
-            <br />
-
-            <strong class="px-3">
-              $5.181
-
-              <small style="font-size: 14px">CLP/mes</small>
-            </strong>
-
-            <p class="px-3" style="line-height: 1.2">
-              <small style="font-size: 14px; color: #1f2044">
-                De:
-                <span style="text-decoration: line-through"
-                  >$248.700 CLP</span
-                >
-              </small>
-
-              <br />
-
-              <small style="font-size: 14px; color: #1f2044">
-                A: <b>$124.350 CLP</b> <br />
-                por 1 años
-              </small>
-            </p>
-
-            <div class="mb-0 pt-1 pb-1 text-center card-footer">
-              <small><b>Ahorra: $124.350 CLP</b></small>
+              <small><b>Ahorra: {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
             </div>
           </label>
         </div>

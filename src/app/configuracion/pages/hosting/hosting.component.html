@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-md-12">
       <h6><b>SELECCIONASTE EL PLAN</b></h6>
-      <h1 class="azul-crt">Hosting Plan Persona</h1>
+      <h1 class="azul-crt">{{producto.nombre}}</h1>
       <hr class="hr_title" />
     </div>
   </div>
@@ -12,7 +12,7 @@
 
       <app-dominio></app-dominio>
 
-      <app-periodo></app-periodo>
+      <app-periodo [periodos] = "periodos" (totalcarro)="totalcarro($event)"></app-periodo>
 
       <div class="row">
         <div class="col-md-12 text-center mt-4">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <app-detalle-pedido></app-detalle-pedido>
+      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
     </div>
 
   </div>

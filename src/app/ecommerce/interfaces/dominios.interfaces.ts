@@ -12,6 +12,7 @@ export interface Result {
   domain: string;
   status: string;
   price:  Price;
+  precio_bd: Price;
 }
 
 export interface Price {

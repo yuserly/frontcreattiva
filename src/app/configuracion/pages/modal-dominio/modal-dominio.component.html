@@ -28,7 +28,7 @@
 
               <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600">
                 <i class="far fa-times-circle" style="color: #c70d00"></i>
-                {{dominiobuscado}} no está disponible
+                {{dominiobuscado}} no está disponibledd
               </h4>
 
             </ng-template>
@@ -72,11 +72,11 @@
           >
             &nbsp;
           </div>
-
-          <div class="col-md-6 col-xs-12">
+          
+          <div class="col-md-6 col-xs-12" *ngFor="let dominio of dominios">
             <div class="row d-flex align-items-center card-newd">
               <div class="col-md-6 col-5">
-                <h6>jesusparra2022.net</h6>
+                <h6>{{dominio.domain}}</h6>
               </div>
 
               <div class="col-md-6 col-7">
@@ -84,7 +84,7 @@
                   <div class="col-8 p-0">
                     <div class="precio-dominio-recomendacion float-right">
                       <p style="margin: 5px; text-align: right">
-                        <b style="color: #005ad2">14.000 CLP</b><br /><small
+                        <b style="color: #005ad2">{{dominio.precio_bd}} CLP</b><br /><small
                           style="color: #afb0b2"
                           >Por el primer año</small
                         >
@@ -134,192 +134,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-6 col-xs-12">
-            <div class="row d-flex align-items-center card-newd">
-              <div class="col-md-6 col-5">
-                <h6>jesusparra2022.store</h6>
-              </div>
-
-              <div class="col-md-6 col-7">
-                <div class="row d-flex align-items-center">
-                  <div class="col-8 p-0">
-                    <div class="precio-dominio-recomendacion float-right">
-                      <p style="margin: 5px; text-align: right">
-                        <b style="color: #005ad2">10.000 CLP</b><br /><small
-                          style="color: #afb0b2"
-                          >Por el primer año</small
-                        >
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-0">
-                    <div
-                      class="btn_hover1 opc_hover d-flex justify-content-center"
-                    >
-                      <div class="item" style="cursor: pointer">
-                        <a
-                          class="btn-add1 btn-add"
-                          preciodomain="10000"
-                          data-domain="jesusparra2022.store"
-                          itemn="1"
-                        >
-                          <span>
-                            <i
-                              style="font-size: 28px"
-                              class="fas fa-cart-plus"
-                            ></i>
-                            <p
-                              style="
-                                font-size: 11px;
-                                line-height: 1;
-                                visibility: hidden;
-                              "
-                            >
-                              &nbsp;
-                            </p>
-                          </span>
-
-                          <span class="px-1">
-                            <i class="far fa-check-circle"></i>
-
-                            <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito
-                            </p>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xs-12">
-            <div class="row d-flex align-items-center card-newd">
-              <div class="col-md-6 col-5">
-                <h6>jesusparra2022.digital</h6>
-              </div>
-
-              <div class="col-md-6 col-7">
-                <div class="row d-flex align-items-center">
-                  <div class="col-8 p-0">
-                    <div class="precio-dominio-recomendacion float-right">
-                      <p style="margin: 5px; text-align: right">
-                        <b style="color: #005ad2">8.900 CLP</b><br /><small
-                          style="color: #afb0b2"
-                          >Por el primer año</small
-                        >
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-0">
-                    <div
-                      class="btn_hover2 opc_hover d-flex justify-content-center"
-                    >
-                      <div class="item" style="cursor: pointer">
-                        <a
-                          class="btn-add2 btn-add"
-                          preciodomain="8900"
-                          data-domain="jesusparra2022.digital"
-                          itemn="2"
-                        >
-                          <span>
-                            <i
-                              style="font-size: 28px"
-                              class="fas fa-cart-plus"
-                            ></i>
-                            <p
-                              style="
-                                font-size: 11px;
-                                line-height: 1;
-                                visibility: hidden;
-                              "
-                            >
-                              &nbsp;
-                            </p>
-                          </span>
-
-                          <span class="px-1">
-                            <i class="far fa-check-circle"></i>
-
-                            <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito
-                            </p>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xs-12">
-            <div class="row d-flex align-items-center card-newd">
-              <div class="col-md-6 col-5">
-                <h6>jesusparra2022.org</h6>
-              </div>
-
-              <div class="col-md-6 col-7">
-                <div class="row d-flex align-items-center">
-                  <div class="col-8 p-0">
-                    <div class="precio-dominio-recomendacion float-right">
-                      <p style="margin: 5px; text-align: right">
-                        <b style="color: #005ad2">8.900 CLP</b><br /><small
-                          style="color: #afb0b2"
-                          >Por el primer año</small
-                        >
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-0">
-                    <div
-                      class="btn_hover3 opc_hover d-flex justify-content-center"
-                    >
-                      <div class="item" style="cursor: pointer">
-                        <a
-                          class="btn-add3 btn-add"
-                          preciodomain="8900"
-                          data-domain="jesusparra2022.org"
-                          itemn="3"
-                        >
-                          <span>
-                            <i
-                              style="font-size: 28px"
-                              class="fas fa-cart-plus"
-                            ></i>
-                            <p
-                              style="
-                                font-size: 11px;
-                                line-height: 1;
-                                visibility: hidden;
-                              "
-                            >
-                              &nbsp;
-                            </p>
-                          </span>
-
-                          <span class="px-1">
-                            <i class="far fa-check-circle"></i>
-
-                            <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito
-                            </p>
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
         <div class="row">

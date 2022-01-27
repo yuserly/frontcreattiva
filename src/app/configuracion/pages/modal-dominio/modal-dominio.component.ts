@@ -15,7 +15,7 @@ export class ModalDominioComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    console.log(this.dominios);
     this.dominios.forEach(element => {
       if(element.domain == this.dominiobuscado){
         this.disponiblebuscado = 1;

@@ -33,7 +33,7 @@ export class DominioComponent implements OnInit {
       return;
     }
 
-
+    
     const dominio = this.form.value.dominio;
     const extension = this.form.value.extension;
 

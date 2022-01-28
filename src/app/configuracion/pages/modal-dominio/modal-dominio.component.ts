@@ -24,4 +24,12 @@ export class ModalDominioComponent implements OnInit {
 
   }
 
+  agregarcarro(item: Result){
+
+    item.agregado = true;
+
+    console.log(item.agregado);
+
+  }
+
 }

@@ -55,7 +55,11 @@ export class MainComponent implements OnInit {
       });
 
       this.subcategorias = subcategorias;
-      this.buscarproducto(this.subcategorias[0].id_subcategoria)
+      if(this.subcategorias[0].id_subcategoria != 26){
+        this.buscarproducto(this.subcategorias[0].id_subcategoria)
+      }else{
+        this.productos = [];
+      }
     });
   }
 

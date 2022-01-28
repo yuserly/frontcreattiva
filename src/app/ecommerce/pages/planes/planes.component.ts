@@ -36,8 +36,7 @@ export class PlanesComponent implements OnInit {
       carro.push({
         producto: producto,
         periodo: resp,
-        compradominio: [],
-        dominiocliente: '',
+        dominio: '',
         sistemaoperativo: 0,
         versionsistema:0,
         ip: ''
@@ -63,8 +62,7 @@ export class PlanesComponent implements OnInit {
       carro.push({
         producto: producto,
         periodo: resp,
-        compradominio: [],
-        dominiocliente: '',
+        dominio: '',
         sistemaoperativo: 0,
         versionsistema:0,
         ip: ''

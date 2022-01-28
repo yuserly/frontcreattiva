@@ -1,3 +1,4 @@
+import { Productos, Periodo } from './ecommerce.interface';
 export interface Dominios {
   code: number;
   desc: string;
@@ -12,7 +13,10 @@ export interface Result {
   domain: string;
   status: string;
   price:  Price;
-  precio_bd: Price;
+  precio_bd: number;
+  producto:Productos,
+  periodos: Periodo[],
+  agregado: boolean,
 }
 
 export interface Price {

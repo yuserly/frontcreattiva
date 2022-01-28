@@ -10,13 +10,16 @@ export class ModalDominioComponent implements OnInit {
   @Input() dominios!:Result[];
   @Input() dominiobuscado!:string;
 
+
   disponiblebuscado:number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.dominios);
+    console.log("dominios: "+this.dominios);
+
     this.dominios.forEach(element => {
+      console.log(element.domain);
       if(element.domain == this.dominiobuscado){
         this.disponiblebuscado = 1;
       }

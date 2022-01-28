@@ -489,6 +489,8 @@ display: block;
 
 overflow: hidden;
 
+text-decoration: none;
+
 }
 
 .opc_hover a span {
@@ -506,7 +508,7 @@ height: 80px;
 
 }
 
-.opc_hover a span:last-child {
+.opc_hover a span.span-addcard {
 
 position: absolute;
 
@@ -532,9 +534,10 @@ background-color: #005AD2;
 
 color:#FFF;
 
+
 }
 
-.opc_hover a span:last-child i{
+.opc_hover a span.span-addcard i{
 
 color: #FFF;
 
@@ -552,12 +555,13 @@ transform: translateY(200%);
 
 }
 
-.opc_hover a:hover span:last-child,
-.opc_hover[data-animation] a:hover span:last-child {
+.opc_hover a:hover span.span-addcard,
+.opc_hover[data-animation] a:hover span.span-addcard {
 
 transform: none;
 
 }
+
 
 
 
@@ -576,6 +580,8 @@ position: relative;
 display: block;
 
 overflow: hidden;
+
+text-decoration: none;
 
 }
 

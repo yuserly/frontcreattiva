@@ -39,11 +39,15 @@ export class DominioComponent implements OnInit {
 
     this.dominiobuscado = `${dominio}.${extension}`;
 
+    //console.log(this.dominiobuscado);
+
     this.DominiosService.getdominios(dominio, extension).subscribe( resp => {
 
       this.dominios = resp.data.results;
 
-      console.log(this.dominios)
+
+
+      //console.log(this.dominios)
      })
 
   }

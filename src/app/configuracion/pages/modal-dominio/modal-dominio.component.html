@@ -72,7 +72,7 @@
           >
             &nbsp;
           </div>
-          
+
           <div class="col-md-6 col-xs-12" *ngFor="let dominio of dominios">
             <div class="row d-flex align-items-center card-newd">
               <div class="col-md-6 col-5">
@@ -94,11 +94,13 @@
 
                   <div class="col-4 p-0">
                     <div
-                      class="btn_hover0 opc_hover d-flex justify-content-center"
+                      class="btn_hover0 d-flex justify-content-center"
+                      [ngClass]="{'opc_hover2': dominio.agregado == true, 'opc_hover' : dominio.agregado == false }"
                     >
-                      <div class="item" style="cursor: pointer">
+                      <div class="item" style="cursor: pointer" (click)="agregarcarro(dominio)">
                         <a
-                          class="btn-add0 btn-add"
+                          class="btn-add0 "
+                          [ngClass]="{'btn-delete': dominio.agregado == true, 'btn-add' : dominio.agregado == false }"
                           preciodomain="14000"
                           data-domain="jesusparra2022.net"
                           itemn="0"
@@ -134,7 +136,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
 
         <div class="row">

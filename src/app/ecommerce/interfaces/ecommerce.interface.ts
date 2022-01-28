@@ -69,8 +69,7 @@ export interface Carrito{
 
   producto: Productos,
   periodo: any,
-  compradominio?: CompraDominio[],
-  dominiocliente?: string,
+  dominio?: string,
   sistemaoperativo?: number,
   versionsistema?:number,
   ip?: string

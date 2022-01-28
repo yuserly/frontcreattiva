@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Periodo, Carrito, TotalCarro, ProductoCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 
 @Component({
   selector: 'app-periodo',
@@ -19,7 +20,7 @@ export class PeriodoComponent implements OnInit {
     periodo: ''
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private CategoriasService:CategoriasService) { }
 
   ngOnInit(): void {
 
@@ -59,82 +60,7 @@ export class PeriodoComponent implements OnInit {
 
   calculototal(){
 
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-    let productos: ProductoCarro[] = [];
-
-      let precio = 0;
-      let  precioold = 0;
-      let ahorroa = 0;
-
-    carrito.forEach((element,i) => {
-
-      console.log(element.periodo)
-
-      if(element.periodo.precio_descuento){
-        precio = element.periodo.precio_descuento;
-         precioold= element.periodo.precio;
-        ahorroa =element.periodo.ahorro;
-      }else{
-
-        precio = JSON.parse(element.periodo).precio_descuento;
-         precioold= JSON.parse(element.periodo).precio;
-        ahorroa =JSON.parse(element.periodo).ahorro;
-
-      }
-
-      productos.push({
-        nombre: element.producto.nombre,
-        precio: precio,
-        precioold: precioold,
-        ahorro: ahorroa
-      })
-
-      console.log(productos)
-
-
-      if(element.compradominio){
-
-        element.compradominio.forEach(element1 => {
-
-          productos.push({
-            nombre: element1.dominio,
-            precio: element1.precio,
-            precioold: 0,
-            ahorro:0
-          })
-
-        });
-
-      }
-
-    });
-
-    let productoscarro: TotalCarro;
-
-    let neto: number = 0;
-    let iva: number = 0;
-    let total: number = 0;
-    let ahorro: number = 0;
-
-    productos.forEach(element => {
-
-      neto += element.precio;
-      ahorro += element.ahorro
-
-    });
-
-    iva = Math.round(neto * 0.19) ;
-    total = neto + iva;
-
-    productoscarro = {
-      productos: productos,
-      neto: neto,
-      iva: iva,
-      total: total,
-      ahorro:ahorro
-    }
-
-    console.log(productoscarro)
+   let productoscarro = this.CategoriasService.calculototalcarro();
 
     this.totalcarro.emit(productoscarro)
 

@@ -109,4 +109,24 @@ export interface ProductoCarro {
 
 }
 
+export interface SistemaOperativo {
+  id_os:      number;
+  nombre:     string;
+  icono:      string;
+  tipo:       string;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: null;
+  versiones:  Versiones[];
+  active: number
+}
+
+export interface Versiones {
+  id_version: number;
+  version:    string;
+  os_id:      number;
+  created_at: Date;
+  updated_at: Date;
+}
+
 

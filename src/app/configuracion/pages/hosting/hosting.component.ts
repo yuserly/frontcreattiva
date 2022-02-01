@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DominiosService } from '../../../ecommerce/services/dominios.service';
-import { Productos, Periodo, Carrito, TotalCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { Productos, Periodo, Carrito, TotalCarro, SistemaOperativo } from '../../../ecommerce/interfaces/ecommerce.interface';
 import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class HostingComponent implements OnInit {
   periodos:Periodo[] = [];
   carrito:Carrito[] = [];
   totalcarroarray!: TotalCarro;
+  sistemaOperativo: SistemaOperativo[] = [];
 
 
   constructor(private categoriasServices: CategoriasService) { }
@@ -30,6 +31,14 @@ export class HostingComponent implements OnInit {
     this.producto = carrito[index].producto;
 
     this.getperiodos(this.producto.id_producto)
+
+    if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
+
+      this.getos();
+
+    }
+
+
   }
 
   getperiodos(id:number){
@@ -43,6 +52,15 @@ export class HostingComponent implements OnInit {
     })
 
 
+  }
+
+  getos(){
+
+    this.categoriasServices.getsistemasoperativo().subscribe( resp => {
+
+      this.sistemaOperativo = resp;
+
+    })
   }
 
   totalcarro(carrito:TotalCarro){

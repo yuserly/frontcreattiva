@@ -2,17 +2,30 @@
   <div class="row mt-5">
     <div class="col-md-12">
       <h6><b>SELECCIONASTE EL PLAN</b></h6>
-      <h1 class="azul-crt">{{producto.nombre}}</h1>
+      <h1 class="azul-crt">{{ producto.nombre }}</h1>
       <hr class="hr_title" />
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-8">
+      <app-dominio (totalcarrod)="totalcarro($event)"></app-dominio>
 
-      <app-dominio></app-dominio>
+      <app-vps
+        *ngIf="
+          producto.subcategoria_id == 6 ||
+          producto.subcategoria_id == 7 ||
+          producto.subcategoria_id == 8 ||
+          producto.subcategoria_id == 9 ||
+          producto.subcategoria_id == 10
+        "
+        [sistemaOperativo] = "sistemaOperativo"
+      ></app-vps>
 
-      <app-periodo [periodos] = "periodos" (totalcarro)="totalcarro($event)"></app-periodo>
+      <app-periodo
+        [periodos]="periodos"
+        (totalcarro)="totalcarro($event)"
+      ></app-periodo>
 
       <div class="row">
         <div class="col-md-12 text-center mt-4">
@@ -32,10 +45,9 @@
       </div>
     </div>
     <div class="col-md-4">
-      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
+      <app-detalle-pedido
+        [totalcarroarray]="totalcarroarray"
+      ></app-detalle-pedido>
     </div>
-
   </div>
 </div>
-
-

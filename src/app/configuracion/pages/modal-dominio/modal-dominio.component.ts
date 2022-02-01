@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Result } from '../../../ecommerce/interfaces/dominios.interfaces';
+import { Carrito, TotalCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 
 @Component({
   selector: 'app-modal-dominio',
@@ -9,11 +11,12 @@ export class ModalDominioComponent implements OnInit {
 
   @Input() dominios!:Result[];
   @Input() dominiobuscado!:string;
+  @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
 
 
   disponiblebuscado:number = 0;
 
-  constructor() { }
+  constructor(private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
     console.log("dominios: "+this.dominios);
@@ -29,9 +32,25 @@ export class ModalDominioComponent implements OnInit {
 
   agregarcarro(item: Result){
 
+    let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    carro.push({
+      producto: item.producto,
+      periodo: item.periodos[2],
+      dominio: item.domain,
+      sistemaoperativo: 0,
+      versionsistema:0,
+      ip: ''
+    })
+
+    localStorage.setItem('carrito',JSON.stringify(carro));
+
+    let productoscarro = this.CategoriasService.calculototalcarro();
+
+    this.totalcarro.emit(productoscarro)
+
     item.agregado = true;
 
-    console.log(item.agregado);
 
   }
 

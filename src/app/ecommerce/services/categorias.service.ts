@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Categorias, Productos, Subcategorias, Periodo, TotalCarro, ProductoCarro, Carrito } from '../interfaces/ecommerce.interface';
+import { Categorias, Productos, Subcategorias, Periodo, TotalCarro, ProductoCarro, Carrito, SistemaOperativo } from '../interfaces/ecommerce.interface';
 
 @Injectable({
   providedIn:'root'
@@ -33,6 +33,10 @@ export class CategoriasService{
 
   getperiodo(id:number,id_periodo:number):Observable<Periodo>{
     return this.http.get<Periodo>(`${this.urlBase}/getperiodo/${id}/${id_periodo}`);
+  }
+
+  getsistemasoperativo():Observable<SistemaOperativo[]>{
+    return this.http.get<SistemaOperativo[]>(`${this.urlBase}/getos`);
   }
 
   calculototalcarro(){

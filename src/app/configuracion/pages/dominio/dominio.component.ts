@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DominiosService } from '../../../ecommerce/services/dominios.service';
 import { Result, PrecioDominios } from '../../../ecommerce/interfaces/dominios.interfaces';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TotalCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
 
 @Component({
   selector: 'app-dominio',
@@ -20,6 +21,8 @@ export class DominioComponent implements OnInit {
     extension:['',Validators.required]
   })
 
+  @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
+
   constructor(private DominiosService:DominiosService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class DominioComponent implements OnInit {
       return;
     }
 
-    
+
     const dominio = this.form.value.dominio;
     const extension = this.form.value.extension;
 
@@ -47,7 +50,7 @@ export class DominioComponent implements OnInit {
 
 
 
-      //console.log(this.dominios)
+      console.log(this.dominios)
      })
 
   }
@@ -77,6 +80,12 @@ export class DominioComponent implements OnInit {
       this.mostrar = 0;
       this.mostrarold = 0;
     }
+
+  }
+
+  totalcarrodomain(carrito:TotalCarro){
+
+    this.totalcarrod.emit(carrito)
 
   }
 

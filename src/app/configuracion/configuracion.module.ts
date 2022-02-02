@@ -9,7 +9,6 @@ import { VpsComponent } from './pages/vps/vps.component';
 import { DominioComponent } from './pages/dominio/dominio.component';
 import { PeriodoComponent } from './pages/periodo/periodo.component';
 import { DetallePedidoComponent } from './pages/detalle-pedido/detalle-pedido.component';
-import { SistemaOperativoComponent } from './pages/sistema-operativo/sistema-operativo.component';
 import { ModalDominioComponent } from './pages/modal-dominio/modal-dominio.component';
 
 
@@ -21,7 +20,6 @@ import { ModalDominioComponent } from './pages/modal-dominio/modal-dominio.compo
     DominioComponent,
     PeriodoComponent,
     DetallePedidoComponent,
-    SistemaOperativoComponent,
     ModalDominioComponent
   ],
   imports: [

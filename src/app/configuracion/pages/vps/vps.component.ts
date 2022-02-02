@@ -14,7 +14,8 @@ export class VpsComponent implements OnInit {
 
   form:FormGroup = this.fb.group({
     os:['',Validators.required],
-    version:['',Validators.required]
+    version:['',Validators.required],
+    administrar: ['',Validators.required]
   })
 
   @Input() sistemaOperativo!:SistemaOperativo[];

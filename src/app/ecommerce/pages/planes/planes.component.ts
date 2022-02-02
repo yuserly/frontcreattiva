@@ -65,6 +65,8 @@ export class PlanesComponent implements OnInit {
         dominio: '',
         sistemaoperativo: 0,
         versionsistema:0,
+        licencia: 0,
+        administrar: 0,
         ip: ''
       })
 

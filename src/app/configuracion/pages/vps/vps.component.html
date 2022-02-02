@@ -55,13 +55,17 @@
       </div>
     </div>
 
-    <div class="col-md-12 mb-2 mt-3 d-none licenciacpanel">
+    <div class="col-md-12 mb-2 mt-3 licenciacpanel" [ngClass]="{
+      'd-none': select != 1
+    }">
       <h5><b>2.1. Selecciona la Licencia Cpanel</b></h5>
 
-      <form class="mt-2 d-nones" id="opc-select-cpanel">
+      <form class="mt-2" [ngClass]="{
+        'd-none': select != 1
+      }"id="opc-select-cpanel">
         <div class="row">
           <div class="col">
-            <select class="form-select" >
+            <select class="form-select" (change)="guardar()">
               <option selected>Seleccione licencia</option>
               <option>Cpanel Admin 5</option>
               <option>Cpanel Admin 30</option>
@@ -74,7 +78,7 @@
   </div>
 </div>
 
-<div class="card card-border p-3 mt-4">
+<div class="card card-border p-3 mt-4" [formGroup]="form">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
       <h5><b>3. Administración para su servidor</b></h5>
@@ -90,7 +94,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="opcadmin"
+            value="1"
+            (change)="guardar()"
+            formControlName="administrar"
             id="conadmin"
           />
           <label class="form-check-label" for="conadmin">
@@ -112,7 +118,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="opcadmin"
+            value="0"
+            (change)="guardar()"
+            formControlName="administrar"
             id="sinadmin"
           />
           <label class="form-check-label" for="sinadmin">

@@ -2,7 +2,7 @@ export interface Categorias {
   id_categoria: number;
   nombre: string;
   slug: string;
-  subcategoria: Subcategorias[],
+  subcategoria: Subcategorias[];
   active:   boolean
 }
 
@@ -23,55 +23,57 @@ export interface Productos {
   slug: string;
   meta_title: string;
   meta_description : string;
-  precio:number,
+  precio:number;
   subcategoria_id: number;
   tipo_producto: number;
   caracteristicas:  Caracteristicas[];
   subcategoria: Subcategorias;
   precio_trienal: number;
-  ahorro: number,
+  ahorro: number;
   descuento: number;
   active:   boolean;
 }
 
 export interface Caracteristicas{
 
-  id_carateristica_producto: number,
+  id_carateristica_producto: number;
   nombre: string;
   capacidad: string;
   producto_id: number
 }
 
 export interface CompraDominio{
-  dominio: string,
-  periodo: number,
+  dominio: string;
+  periodo: number;
   precio: number
 }
 export interface Cliente{
 
-  nombre:string,
-  apellido:string,
-  rut:string,
-  tipo:string,
-  giro:string,
-  razonsocial:string,
-  email:string,
-  emailcontacto:string,
-  telefono:string,
-  telefonocontacto:string,
-  direccion:string,
-  region:number,
+  nombre:string;
+  apellido:string;
+  rut:string;
+  tipo:string;
+  giro:string;
+  razonsocial:string;
+  email:string;
+  emailcontacto:string;
+  telefono:string;
+  telefonocontacto:string;
+  direccion:string;
+  region:number;
   comuna:number
 
 }
 
 export interface Carrito{
 
-  producto: Productos,
-  periodo: any,
-  dominio?: string,
-  sistemaoperativo?: number,
-  versionsistema?:number,
+  producto: Productos;
+  periodo: any;
+  dominio?: string;
+  sistemaoperativo?: number;
+  versionsistema?:number;
+  licencia?: number;
+  administrar?: number;
   ip?: string
 
 }
@@ -103,8 +105,8 @@ export interface TotalCarro {
 export interface ProductoCarro {
 
   nombre: string;
-  precio: number,
-  precioold: number,
+  precio: number;
+  precioold: number;
   ahorro: number
 
 }

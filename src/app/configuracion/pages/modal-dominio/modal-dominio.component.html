@@ -19,11 +19,56 @@
       </div>
       <div class="modal-body" *ngIf="dominios.length > 0; else preload">
         <div class="row resultados">
-          <div class="col-md-12">
+          <div class="col-md-12 d-flex justify-content-center align-items-center">
             <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600" *ngIf="disponiblebuscado == 1; else nodisponible" >
               <i class="far fa-check-circle" style="color: #32cb00"></i>
               {{dominiobuscado}} está disponible
             </h4>
+            
+            <div class="btn_hover0 d-flex justify-content-center opc_hover" style="width: auto;">
+                      <div class="item" style="cursor: pointer">
+                        <a
+                          class="btn-add btn-add"
+                          itemn="0"
+                        >
+                          <span class="d-block">
+                            <i
+                              style="font-size: 28px"
+                              class="fas fa-cart-plus"
+                            ></i>
+                            <p
+                              style="
+                                font-size: 11px;
+                                line-height: 1;
+                                visibility: hidden;
+                              "
+                            >
+                              &nbsp;
+                            </p>
+                          </span>
+                          
+                          <span class="span-addcard px-1" 
+                          >
+                            <i class="far fa-check-circle"></i>
+
+                            <p style="font-size: 11px; line-height: 1">
+                              Añadir al carrito
+                            </p>
+                          </span>
+                          
+                          
+                          <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
+                            <i style="font-size:28px;" class="far fa-check-circle"></i>
+                            <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
+                          </span>
+                        
+                        
+                        
+
+                        </a>
+                      </div>
+                    </div>
+
             <ng-template #nodisponible>
 
               <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600">
@@ -37,7 +82,7 @@
 
           <div class="col-md-12">
             <h5 class="mt-1 text-center titulo-bold">
-              Otros dominios que te pueden interesar {{disponiblebuscado}}
+              Otros dominios que te pueden interesar
             </h5>
 
             <div class="form-check">

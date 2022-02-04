@@ -54,22 +54,26 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-12 mb-2 mt-3 licenciacpanel" [ngClass]="{
-      'd-none': select != 1
-    }">
-      <h5><b>2.1. Selecciona la Licencia Cpanel</b></h5>
+    <div class="col-md-12 mb-2 mt-3 licenciacpanel" [formGroup]="form" [ngClass]="{
+       'd-none': form.value.version !=3
+    }"
+    [ngClass]="{
+       'd-none': form.value.version != 4
+    }"
+    >
+      <h5><b>2.1. Selecciona la Licencia Cpanel</b>  </h5>
 
       <form class="mt-2" [ngClass]="{
-        'd-none': select != 1
-      }"id="opc-select-cpanel">
+        'd-none': form.value.version != 3
+     }"
+     [ngClass]="{
+        'd-none': form.value.version != 4
+     }"id="opc-select-cpanel">
         <div class="row">
           <div class="col">
-            <select class="form-select" (change)="guardar()">
+            <select class="form-select" formControlName="licencia"  (change)="guardar()">
               <option selected>Seleccione licencia</option>
-              <option>Cpanel Admin 5</option>
-              <option>Cpanel Admin 30</option>
-              <option>Cpanel Premiere 100</option>
+              <option *ngFor="let licencia of licencias" [value]="licencia.id_producto">{{licencia.nombre}}</option>
             </select>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DominiosService } from '../../../ecommerce/services/dominios.service';
 import { Result, PrecioDominios } from '../../../ecommerce/interfaces/dominios.interfaces';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,7 +21,13 @@ export class DominioComponent implements OnInit {
     extension:['',Validators.required]
   })
 
+  seleccion = {
+    dominio: '',
+    extension:''
+  }
+
   @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
+  @Input() dominionum!:number;
 
   constructor(private DominiosService:DominiosService, private fb: FormBuilder) { }
 
@@ -81,6 +87,27 @@ export class DominioComponent implements OnInit {
       this.mostrarold = 0;
     }
 
+  }
+
+  limpiarinput(){
+
+    let dominio = this.form.value.dominio?.trim();
+    let arrays = dominio.split(".")
+    let reemplazar = arrays[1];
+    dominio = dominio.replace(".", "");
+    dominio = dominio.replace(reemplazar, "")
+
+    if(this.form.value.extension != ''){
+      this.seleccion.dominio = dominio;
+      this.seleccion.extension = this.form.value.extension
+    }else{
+
+      this.seleccion.dominio = dominio;
+      this.seleccion.extension = '';
+
+    }
+
+    this.form.reset(this.seleccion);
   }
 
   totalcarrodomain(carrito:TotalCarro){

@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-md-8">
-      <app-dominio (totalcarrod)="totalcarro($event)"></app-dominio>
+      <app-dominio (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"></app-dominio>
 
       <app-vps
         *ngIf="
@@ -20,10 +20,12 @@
           producto.subcategoria_id == 10
         "
         [sistemaOperativo] = "sistemaOperativo"
+        (totalcarrovps)="totalcarro($event)"
       ></app-vps>
 
       <app-periodo
         [periodos]="periodos"
+        [periodonum]="periodonum"
         (totalcarro)="totalcarro($event)"
       ></app-periodo>
 

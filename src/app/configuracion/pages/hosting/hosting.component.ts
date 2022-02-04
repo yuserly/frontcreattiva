@@ -17,6 +17,12 @@ export class HostingComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   sistemaOperativo: SistemaOperativo[] = [];
 
+  // lo usamos para colocarle el numero a los pasos de la configuracion
+
+  dominionum:number = 0;
+  periodonum:number = 0;
+
+
 
   constructor(private categoriasServices: CategoriasService) { }
 
@@ -32,9 +38,23 @@ export class HostingComponent implements OnInit {
 
     this.getperiodos(this.producto.id_producto)
 
+    if(this.producto.subcategoria.categoria_id == 1){
+
+      this.dominionum = 1;
+      this.periodonum = 2;
+
+    }
+
+    if(this.producto.subcategoria.categoria_id == 2){
+
+      this.dominionum = 1;
+      this.periodonum = 4;
+
+    }
+
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
 
-      this.getos();
+      this.getos('linux');
 
     }
 
@@ -54,9 +74,9 @@ export class HostingComponent implements OnInit {
 
   }
 
-  getos(){
+  getos(tipo:string){
 
-    this.categoriasServices.getsistemasoperativo().subscribe( resp => {
+    this.categoriasServices.getsistemasoperativo(tipo).subscribe( resp => {
 
       this.sistemaOperativo = resp;
 

@@ -40,7 +40,6 @@ export class ModalDominioComponent implements OnInit {
       dominio: item.domain,
       sistemaoperativo: 0,
       versionsistema:0,
-      licencia: 0,
       administrar: 0,
       ip: ''
     })

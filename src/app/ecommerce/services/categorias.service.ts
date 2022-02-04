@@ -35,8 +35,8 @@ export class CategoriasService{
     return this.http.get<Periodo>(`${this.urlBase}/getperiodo/${id}/${id_periodo}`);
   }
 
-  getsistemasoperativo():Observable<SistemaOperativo[]>{
-    return this.http.get<SistemaOperativo[]>(`${this.urlBase}/getos`);
+  getsistemasoperativo(tipo:string):Observable<SistemaOperativo[]>{
+    return this.http.get<SistemaOperativo[]>(`${this.urlBase}/getos/${tipo}`);
   }
 
   calculototalcarro(){

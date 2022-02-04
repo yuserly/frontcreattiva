@@ -11,6 +11,7 @@ export class PeriodoComponent implements OnInit {
 
   @Input() periodos!:Periodo[];
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
+  @Input() periodonum!:number;
 
   form:FormGroup = this.fb.group({
     periodo:['',Validators.required],

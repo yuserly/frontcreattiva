@@ -72,7 +72,6 @@ export interface Carrito{
   dominio?: string;
   sistemaoperativo?: number;
   versionsistema?:number;
-  licencia?: number;
   administrar?: number;
   ip?: string
 

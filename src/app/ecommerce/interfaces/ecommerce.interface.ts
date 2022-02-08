@@ -104,6 +104,7 @@ export interface TotalCarro {
 export interface ProductoCarro {
 
   nombre: string;
+  nombreproducto?: string;
   precio: number;
   precioold: number;
   ahorro: number

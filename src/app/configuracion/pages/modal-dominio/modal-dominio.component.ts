@@ -12,18 +12,18 @@ export class ModalDominioComponent implements OnInit {
   @Input() dominios!:Result[];
   @Input() dominiobuscado!:string;
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
-
+  data_dominiobuscado!:[];
 
   disponiblebuscado:number = 0;
 
   constructor(private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
-    console.log("dominios: "+this.dominios);
 
+    //console.log(this.dominios);
     this.dominios.forEach(element => {
       console.log(element.domain);
-      if(element.domain == this.dominiobuscado){
+      if(element.domain === this.dominiobuscado){
         this.disponiblebuscado = 1;
       }
     });
@@ -33,7 +33,7 @@ export class ModalDominioComponent implements OnInit {
   agregarcarro(item: Result){
 
     let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
-
+  
     carro.push({
       producto: item.producto,
       periodo: item.periodos[2],
@@ -51,6 +51,9 @@ export class ModalDominioComponent implements OnInit {
     this.totalcarro.emit(productoscarro)
 
     item.agregado = true;
+
+    //console.log(JSON.parse(localStorage.getItem('carrito')!))
+    
 
 
   }

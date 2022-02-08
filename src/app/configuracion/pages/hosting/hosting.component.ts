@@ -62,6 +62,8 @@ export class HostingComponent implements OnInit {
 
       this.getos('linux');
 
+    }else if(this.producto.subcategoria_id == 7 || this.producto.subcategoria_id == 10){
+      this.getos('windows');
     }
 
 

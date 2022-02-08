@@ -25,7 +25,7 @@ export interface Productos {
   meta_description : string;
   precio:number;
   subcategoria_id: number;
-  tipo_producto: number;
+  tipo_producto_id: number;
   caracteristicas:  Caracteristicas[];
   subcategoria: Subcategorias;
   precio_trienal: number;

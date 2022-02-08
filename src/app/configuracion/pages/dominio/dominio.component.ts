@@ -11,7 +11,7 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 })
 export class DominioComponent implements OnInit {
 
-  
+
   mostrar:number = 0;
   mostrarold: number = 0;
   dominios: Result[] = [];
@@ -64,8 +64,11 @@ export class DominioComponent implements OnInit {
     carrito[index].dominio = this.dominioguardado;
     localStorage.setItem('carrito',JSON.stringify(carrito));
 
+
+
+
     //console.log(JSON.parse(localStorage.getItem('carrito')!));
-    
+
   }
 
   buscardominio(){
@@ -113,6 +116,12 @@ export class DominioComponent implements OnInit {
     localStorage.setItem('carrito', JSON.stringify(carrito));
     let productoscarro = this.CategoriasService.calculototalcarro();
     this.totalcarrod.emit(productoscarro);
+
+    carrito =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.Dominioscarrito = carrito;
+
+
 
   }
 
@@ -168,6 +177,10 @@ export class DominioComponent implements OnInit {
 
     this.totalcarrod.emit(carrito)
 
+  }
+
+  uptlistdominios(carrito:Carrito[]){
+    this.Dominioscarrito = carrito;
   }
 
 }

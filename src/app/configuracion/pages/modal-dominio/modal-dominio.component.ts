@@ -12,6 +12,7 @@ export class ModalDominioComponent implements OnInit {
   @Input() dominios!:Result[];
   @Input() dominiobuscado!:string;
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
+  @Output() dominioscarrito: EventEmitter<Carrito[]> = new EventEmitter();
   data_dominiobuscado!:[];
 
   disponiblebuscado:number = 0;
@@ -33,7 +34,7 @@ export class ModalDominioComponent implements OnInit {
   agregarcarro(item: Result){
 
     let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
-  
+
     carro.push({
       producto: item.producto,
       periodo: item.periodos[2],
@@ -52,8 +53,12 @@ export class ModalDominioComponent implements OnInit {
 
     item.agregado = true;
 
+    carro =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.dominioscarrito.emit(carro)
+
     //console.log(JSON.parse(localStorage.getItem('carrito')!))
-    
+
 
 
   }

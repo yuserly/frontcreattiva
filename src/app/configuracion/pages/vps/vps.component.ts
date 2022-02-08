@@ -21,6 +21,7 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 export class VpsComponent implements OnInit {
   select: number = 1;
   licencias: Productos[] = [];
+  producto!:Productos;
 
   form: FormGroup = this.fb.group({
     os: ['', Validators.required],
@@ -50,6 +51,8 @@ export class VpsComponent implements OnInit {
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
+    this.producto = carrito[index].producto;
+
     let os: any = carrito[index].sistemaoperativo;
     let version: any = carrito[index].versionsistema;
     let administrar: any = carrito[index].administrar;
@@ -71,11 +74,26 @@ export class VpsComponent implements OnInit {
     this.form.reset(this.seleccion);
 
 
-    // el 24 es el id de las subcategoria a las que pertenece las licencias cpanel
+    if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
+       // el 24 es el id de las subcategoria a las que pertenece las licencias cpanel
+      this.CategoriasService.getproductos(24).subscribe((resp) => {
+        this.licencias = resp;
+      });
 
-    this.CategoriasService.getproductos(24).subscribe((resp) => {
-      this.licencias = resp;
-    });
+    }else if(this.producto.subcategoria_id == 7 || this.producto.subcategoria_id == 10){
+      // subcategoria 19 tipo de producto 8 licencias sql
+      this.CategoriasService.getproductosxtipo(19,8).subscribe((resp) => {
+        console.log(resp)
+        this.licencias = resp;
+      });
+    }
+
+
+
+
+
+
+
   }
   sistemaopactive(item: SistemaOperativo) {
     this.select = this.form.value.os;
@@ -110,13 +128,14 @@ export class VpsComponent implements OnInit {
     }
 
     if (
-      this.form.value.licencia != '' &&
-      (this.form.value.version == 3 || this.form.value.version == 4)
+      this.form.value.licencia != ''
     ) {
       let producto!: Productos;
 
       carrito.map((p, i) => {
         if (p.producto.subcategoria_id == 24) {
+          carrito.splice(i, 1);
+        }else if(p.producto.tipo_producto_id == 8){
           carrito.splice(i, 1);
         }
       });
@@ -153,7 +172,8 @@ export class VpsComponent implements OnInit {
   eliminarproducto(carrito: Carrito[]) {
     carrito.map((p, i) => {
       if (p.producto.subcategoria_id == 24) {
-        console.log(i);
+        carrito.splice(i, 1);
+      }else if(p.producto.tipo_producto_id == 8){
         carrito.splice(i, 1);
       }
 

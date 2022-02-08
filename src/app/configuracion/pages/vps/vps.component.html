@@ -82,7 +82,7 @@
   </div>
 </div>
 
-<div class="card card-border p-3 mt-4" [formGroup]="form">
+<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 6 || producto.subcategoria_id == 8 || producto.subcategoria_id == 9; else vpswindows ">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
       <h5><b>3. Administración para su servidor</b></h5>
@@ -135,5 +135,39 @@
     </div>
   </div>
 </div>
+
+<ng-template #vpswindows>
+  <div class="card card-border p-3 mt-4" [formGroup]="form">
+
+    <div class="row px-5">
+
+      <div class="col-md-12 mb-2">
+
+        <h5><b>3. Agrega SQL Server</b></h5>
+
+        <form class="mt-2  d-nones" id="opc-select-cpanel">
+
+            <div class="row">
+
+              <div class="col">
+
+                <select class="form-select" formControlName="licencia"  (change)="guardar()">
+                  <option selected>Seleccione licencia</option>
+                  <option *ngFor="let licencia of licencias" [value]="licencia.id_producto">{{licencia.nombre}}</option>
+                </select>
+
+              </div>
+
+            </div>
+
+          </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>
+
 
 

@@ -1,15 +1,13 @@
 <div class="card card-border p-3">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5><b>{{dominionum}}. Elije tu dominio</b></h5>
+      <h5>
+        <b>{{ dominionum }}. Elije tu dominio</b>
+      </h5>
     </div>
     <span
       class="badge"
-      style="
-        width: 100px;
-        background-color: #00cd34;
-        border-radius: unset;
-      "
+      style="width: 100px; background-color: #00cd34; border-radius: unset"
       >1 año gratis</span
     >
     <div
@@ -32,7 +30,11 @@
         </div>
       </div>
 
-      <div class="col-md-12" [ngClass]="{'d-none':mostrar == 0}" data-opc="table-nuevodominio">
+      <div
+        class="col-md-12"
+        [ngClass]="{ 'd-none': mostrar == 0 }"
+        data-opc="table-nuevodominio"
+      >
         <form class="pt-3" id="" [formGroup]="form">
           <div class="row">
             <div
@@ -107,41 +109,52 @@
       </div>
 
       <div class="col-md-12" data-opc="table2-nuevodominio">
-          <div class="row" *ngFor="let dominio of Dominioscarrito;">
+        <div class="row" *ngFor="let dominio of Dominioscarrito">
+          <div class="d-flex" *ngIf="dominio.producto.id_producto == 17">
+            <div class="col-md-7">
+              <h6 class="px-3 pt-3">
+                <b>Dominio agregado</b>
+                <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
+              </h6>
 
-            <div class="d-flex" *ngIf="dominio.producto.id_producto==17">
-              <div class="col-md-7">
-                <h6 class="px-3 pt-3">
-                  <b>Dominio agregado</b>
-                  <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
-                </h6>
-              
-                <h6 class="px-3">
-                  {{dominio.dominio}}
-                  <button
-                    type="button"
-                    (click)="eliminardominio(dominio.dominio)"
-                    class="btn btn-outline-dark btn-edit ms-2"
-                  >
-                    eliminar dominio <i class="ms-2 far fa-trash-alt"></i>
-                  </button>
-                </h6>
-              </div>
-              
-              <div class="col-md-5">
-                <h6 class="px-3 pt-3">
-                  <b>1er año: </b>
-                  <span style="text-decoration: line-through">{{dominio.periodo.precio_mensual*dominio.periodo.meses | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</span
-                  > Gratis
-                </h6>
-              
-                <h6 class="px-3">
-                  <b>Renovación: {{dominio.periodo.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP  </b>
-                </h6>
-              </div>
+              <h6 class="px-3">
+                {{ dominio.dominio }}
+                <button
+                  type="button"
+                  (click)="eliminardominio(dominio.dominio)"
+                  class="btn btn-outline-dark btn-edit ms-2"
+                >
+                  eliminar dominio <i class="ms-2 far fa-trash-alt"></i>
+                </button>
+              </h6>
             </div>
 
+            <div class="col-md-5">
+              <h6 class="px-3 pt-3">
+                <b>1er año: </b>
+                <span style="text-decoration: line-through"
+                  >{{
+                    dominio.periodo.precio_mensual * dominio.periodo.meses
+                      | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                  }}
+                  CLP</span
+                >
+                Gratis
+              </h6>
+
+              <h6 class="px-3">
+                <b
+                  >Renovación:
+                  {{
+                    dominio.periodo.precio
+                      | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                  }}
+                  CLP
+                </b>
+              </h6>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -167,7 +180,11 @@
         </div>
       </div>
 
-      <div class="col-md-12 " [ngClass]="{'d-none':mostrarold == 0}" data-opc="table-dominioexistente">
+      <div
+        class="col-md-12"
+        [ngClass]="{ 'd-none': mostrarold == 0 }"
+        data-opc="table-dominioexistente"
+      >
         <form class="pt-3" id="" [formGroup]="form2">
           <div class="row" *ngIf="!dominioguardado">
             <div
@@ -236,13 +253,15 @@
             <div class="col-md-7">
               <h6 class="px-3 pt-3">
                 <b>Dominio agregado</b>
-                <i class="ms-2 far fa-check-circle" style="color:#32cb00;"></i>
+                <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
               </h6>
-              <h6 class="px-3">{{dominioguardado}}
-                <button 
-                  type="button" 
+              <h6 class="px-3">
+                {{ dominioguardado }}
+                <button
+                  type="button"
                   (click)="limpiarDomGuardado()"
-                  class="btn btn-outline-dark btn-edit ms-2">
+                  class="btn btn-outline-dark btn-edit ms-2"
+                >
                   cambiar dominio
                   <i class="ms-2 far fa-edit"></i>
                 </button>
@@ -256,5 +275,10 @@
 </div>
 
 <!-- Modal -->
-<app-modal-dominio [dominios]="dominios" [dominiobuscado]="dominiobuscado" (totalcarro)="totalcarrodomain($event)"></app-modal-dominio>
+<app-modal-dominio
+  [dominios]="dominios"
+  [dominiobuscado]="dominiobuscado"
+  (totalcarro)="totalcarrodomain($event)"
+  (dominioscarrito)="uptlistdominios($event)"
+></app-modal-dominio>
 <!-- Modal -->

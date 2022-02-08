@@ -27,6 +27,11 @@ export class CategoriasService{
     return this.http.get<Productos[]>(`${this.urlBase}/getproductos/${id}`);
   }
 
+  getproductosxtipo(id:number, tipo:number):Observable<Productos[]>{
+
+    return this.http.get<Productos[]>(`${this.urlBase}/getproductosxtipo/${id}/${tipo}`);
+  }
+
   getperiodos(id:number):Observable<Periodo[]>{
     return this.http.get<Periodo[]>(`${this.urlBase}/getperiodo/${id}`);
   }

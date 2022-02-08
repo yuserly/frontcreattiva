@@ -4,7 +4,7 @@ import { DominiosService } from '../../../ecommerce/services/dominios.service';
 import { Result, PrecioDominios } from '../../../ecommerce/interfaces/dominios.interfaces';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TotalCarro, Carrito } from '../../../ecommerce/interfaces/ecommerce.interface';
-
+import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 @Component({
   selector: 'app-dominio',
   templateUrl: './dominio.component.html',
@@ -39,10 +39,10 @@ export class DominioComponent implements OnInit {
   @Input() Dominioscarrito:Carrito[] = [];
 
 
-  constructor(private DominiosService:DominiosService, private fb: FormBuilder) { }
+  constructor(private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
-    
+    console.log(this.Dominioscarrito)
   }
 
   limpiarDomGuardado(){
@@ -91,6 +91,28 @@ export class DominioComponent implements OnInit {
 
       console.log(this.dominios)
      })
+
+  }
+
+  eliminardominio(dominio:any){
+
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    carrito.map((p, i) => {
+      if (p.producto.id_producto == 17) {
+        if(p.dominio===dominio){
+          console.log(i);
+          carrito.splice(i, 1);
+        }
+      }
+      return p;
+    });
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    let productoscarro = this.CategoriasService.calculototalcarro();
+    this.totalcarrod.emit(productoscarro);
 
   }
 

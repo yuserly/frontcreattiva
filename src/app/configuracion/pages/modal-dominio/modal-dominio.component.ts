@@ -20,7 +20,7 @@ export class ModalDominioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.dominios);
+    //console.log(this.dominios);
     this.dominios.forEach(element => {
       console.log(element.domain);
       if(element.domain === this.dominiobuscado){

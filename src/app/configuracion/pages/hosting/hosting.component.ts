@@ -52,6 +52,12 @@ export class HostingComponent implements OnInit {
 
     }
 
+    if(this.producto.subcategoria.categoria_id == 3){
+
+      this.periodonum = 1;
+
+    }
+
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
 
       this.getos('linux');

@@ -9,7 +9,14 @@
 
   <div class="row">
     <div class="col-md-8">
-      <app-dominio (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"></app-dominio>
+      <app-dominio *ngIf="
+      producto.subcategoria_id == 1 ||
+      producto.subcategoria_id == 6 ||
+      producto.subcategoria_id == 7 ||
+      producto.subcategoria_id == 8 ||
+      producto.subcategoria_id == 9 ||
+      producto.subcategoria_id == 10
+    " (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"></app-dominio>
 
       <app-vps
         *ngIf="

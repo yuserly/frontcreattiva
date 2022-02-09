@@ -6,17 +6,17 @@ import { CategoriasService } from '../../services/categorias.service';
 @Component({
   selector: 'app-planes',
   templateUrl: './planes.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class PlanesComponent implements OnInit {
+  @Input() productos!: Productos[];
 
-  @Input() productos!:Productos[];
+  constructor(
+    private router: Router,
+    private categoriasServices: CategoriasService
+  ) {}
 
-  constructor(private router: Router, private categoriasServices: CategoriasService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   buscarproducto(id: number) {
     this.categoriasServices.getproductos(id).subscribe((productos) => {
@@ -24,65 +24,48 @@ export class PlanesComponent implements OnInit {
     });
   }
 
-  contratar(producto:Productos){
-
-
-    if(localStorage.getItem('carrito')){
-
+  contratar(producto: Productos) {
+    if (localStorage.getItem('carrito')) {
       let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-      this.categoriasServices.getperiodo(producto.id_producto,4).subscribe( resp => {
-
-      carro.push({
-        producto: producto,
-        periodo: resp,
-        dominio: '',
-        sistemaoperativo: 0,
-        versionsistema:0,
-        ip: ''
-      })
-
-      const cantidadcarro = carro.length;
-      const index = cantidadcarro - 1;
-
-      localStorage.setItem('index',JSON.stringify(index));
-      localStorage.setItem('carrito',JSON.stringify(carro));
-
-      this.router.navigate(['/configuraciones']);
-
-    })
-
-  }else{
-
-    let carro: Carrito[] = [];
+      this.aggcart(producto, carro);
 
 
-    this.categoriasServices.getperiodo(producto.id_producto,4).subscribe( resp => {
+    } else {
+      let carro: Carrito[] = [];
 
-      carro.push({
-        producto: producto,
-        periodo: resp,
-        dominio: '',
-        sistemaoperativo: 0,
-        versionsistema:0,
-        administrar: 0,
-        ip: ''
-      })
+      this.aggcart(producto, carro);
+    }
+  }
 
-      const cantidadcarro = carro.length;
-      const index = cantidadcarro - 1;
+  aggcart(producto: Productos,  carro: Carrito[]){
 
-      localStorage.setItem('index',JSON.stringify(index));
-      localStorage.setItem('carrito',JSON.stringify(carro));
+    this.categoriasServices
+        .getperiodo(producto.id_producto, 4)
+        .subscribe((resp) => {
+          this.categoriasServices
+            .getperiodos(producto.id_producto)
+            .subscribe((resp2) => {
+              carro.push({
+                producto: producto,
+                periodo: resp,
+                dominio: '',
+                sistemaoperativo: 0,
+                versionsistema: 0,
+                ip: '',
+                periodos: resp2,
+              });
 
-      this.router.navigate(['/configuraciones']);
+              const cantidadcarro = carro.length;
+              const index = cantidadcarro - 1;
 
-    })
+              localStorage.setItem('index', JSON.stringify(index));
+              localStorage.setItem('carrito', JSON.stringify(carro));
+
+              this.router.navigate(['/configuraciones']);
+            });
+        });
 
 
   }
-
-
-  }
-
 }

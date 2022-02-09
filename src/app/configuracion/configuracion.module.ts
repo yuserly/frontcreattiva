@@ -10,6 +10,7 @@ import { DominioComponent } from './pages/dominio/dominio.component';
 import { PeriodoComponent } from './pages/periodo/periodo.component';
 import { DetallePedidoComponent } from './pages/detalle-pedido/detalle-pedido.component';
 import { ModalDominioComponent } from './pages/modal-dominio/modal-dominio.component';
+import { CarroComponent } from './pages/carro/carro.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ModalDominioComponent } from './pages/modal-dominio/modal-dominio.compo
     DominioComponent,
     PeriodoComponent,
     DetallePedidoComponent,
-    ModalDominioComponent
+    ModalDominioComponent,
+    CarroComponent
   ],
   imports: [
     CommonModule,

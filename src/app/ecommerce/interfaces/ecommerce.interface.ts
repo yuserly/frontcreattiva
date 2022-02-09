@@ -73,7 +73,8 @@ export interface Carrito{
   sistemaoperativo?: number;
   versionsistema?:number;
   administrar?: number;
-  ip?: string
+  ip?: string;
+  periodos?:Periodo[];
 
 }
 

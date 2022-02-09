@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="card card-border p-5">
+        <div class="row">
+          <div class="col-md-12 mb-2 d-flex justify-content-between">
+            <h5><b>Productos en el Carro</b></h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12"></div>
+          <br />
+          <div class="col-12 div0" *ngFor="let item of carrito; let i=index">
+            <div class="d-none d-md-block d-lg-block">
+              <div
+                class="card-articulo d-flex justify-content-center align-items-center"
+              >
+                <div class="row" style="width: 100%">
+                  <div class="col-5">
+                    <h6>
+                      <!-- <h6 class="px-3 pt-3"><b>Web Hosting</b></h6> -->
+
+                      <h6 class="px-3">{{item.producto.nombre}}</h6>
+                    </h6>
+                  </div>
+
+                  <div
+                    class="col-6 d-flex justify-content-center align-items-center"
+                  >
+                    <select
+                      class="form-control selectperiododominio"
+                      id="0"
+                      keyarray="0"
+                      name="periododominio"
+                      style="width: 50%; margin-right: 20px"
+                    >
+                      <option value="1" precio="14000" *ngFor="let periodo of item.periodos; let j=index">{{periodo.periodo}} {{periodo.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</option>
+                    </select>
+                  </div>
+
+                  <div
+                    class="col-1 d-flex justify-content-center align-items-center"
+                    (click)="eliminarcarro(i)"
+                  >
+                    <i
+                      class="fas fa-trash-alt deletecard"
+                      index="0"
+                      data-domain="jesusparra2022.net"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center mt-4">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #009900;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 45%;
+            "
+          >
+            FINALIZAR COMPRA
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
+    </div>
+
+  </div>
+</div>

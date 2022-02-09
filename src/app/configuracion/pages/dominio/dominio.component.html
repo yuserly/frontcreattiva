@@ -62,10 +62,9 @@
               <div class="form-group contenedor-extension-dominio">
                 <select
                   class="input__field_exten"
-                  id="extension"
                   formControlName="extension"
                 >
-                  <option value="cl" selected>.cl</option>
+                  <option value="cl">.cl</option>
 
                   <option value="com">.com</option>
 
@@ -107,26 +106,36 @@
           </div>
         </form>
       </div>
-
       <div class="col-md-12" data-opc="table2-nuevodominio">
-        <div class="row" *ngFor="let dominio of Dominioscarrito">
+        <hr class="hr_detallescompra">
+        <div class="row" *ngFor="let dominio of dominioscarrito">
           <div class="d-flex" *ngIf="dominio.producto.id_producto == 17">
             <div class="col-md-7">
+              
               <h6 class="px-3 pt-3">
                 <b>Dominio agregado</b>
                 <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
               </h6>
 
-              <h6 class="px-3">
-                {{ dominio.dominio }}
-                <button
-                  type="button"
-                  (click)="eliminardominio(dominio.dominio)"
-                  class="btn btn-outline-dark btn-edit ms-2"
-                >
-                  eliminar dominio <i class="ms-2 far fa-trash-alt"></i>
-                </button>
+              <h6 class="row px-3">
+                <div class="col-md-6">
+                  {{ dominio.dominio }}
+                </div>
+                <div class="col-md-6">
+                  <button
+                      type="button"
+                      (click)="eliminardominio(dominio.dominio)"
+                      class="btn btn-outline-dark btn-edit ms-2"
+                  >
+                    eliminar <i class="ms-2 far fa-trash-alt"></i>
+                  </button>
+                </div>
+                
+                
+                
+                
               </h6>
+
             </div>
 
             <div class="col-md-5">
@@ -212,18 +221,17 @@
               <div class="form-group contenedor-extension-dominio">
                 <select
                   class="input__field_exten"
-                  id="extension"
                   formControlName="extension"
                 >
-                  <option value=".cl" selected>.cl</option>
+                  <option value="cl">.cl</option>
 
-                  <option value=".com">.com</option>
+                  <option value="com">.com</option>
 
-                  <option value=".net">.net</option>
+                  <option value="net">.net</option>
 
-                  <option value=".info">.info</option>
+                  <option value="info">.info</option>
 
-                  <option value=".org">.org</option>
+                  <option value="org">.org</option>
 
                   <option value="otro">otro</option>
                 </select>
@@ -280,5 +288,6 @@
   [dominiobuscado]="dominiobuscado"
   (totalcarro)="totalcarrodomain($event)"
   (dominioscarrito)="uptlistdominios($event)"
+  [dominiosencarrito]="dominioscarrito"
 ></app-modal-dominio>
 <!-- Modal -->

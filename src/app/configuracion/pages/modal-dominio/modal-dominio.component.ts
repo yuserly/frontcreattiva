@@ -12,6 +12,7 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 })
 export class ModalDominioComponent implements OnInit {
   @Input() dominios!: Result[];
+  @Input() dominiosencarrito:Carrito[] = [];
   @Input() dominiobuscado!: string;
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
   @Output() dominioscarrito: EventEmitter<Carrito[]> = new EventEmitter();
@@ -22,7 +23,7 @@ export class ModalDominioComponent implements OnInit {
   constructor(private CategoriasService: CategoriasService) {}
 
   ngOnInit(): void {
-    //console.log(this.dominios);
+    
     this.dominios.forEach((element) => {
       console.log(element.domain);
       if (element.domain === this.dominiobuscado) {

@@ -21,12 +21,12 @@ export class DominioComponent implements OnInit {
 
   form:FormGroup = this.fb.group({
     dominio:['',Validators.required],
-    extension:['',Validators.required]
+    extension:['cl',Validators.required]
   })
 
   form2:FormGroup = this.fb.group({
     dominio:['',Validators.required],
-    extension:['',Validators.required]
+    extension:['cl',Validators.required]
   })
 
   seleccion = {
@@ -36,13 +36,15 @@ export class DominioComponent implements OnInit {
 
   @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
   @Input() dominionum!:number;
-  @Input() Dominioscarrito:Carrito[] = [];
+  @Input() dominioscarrito:Carrito[] = [];
 
 
   constructor(private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
-    console.log(this.Dominioscarrito)
+
+    console.log(this.dominioscarrito);
+
   }
 
   limpiarDomGuardado(){
@@ -73,6 +75,8 @@ export class DominioComponent implements OnInit {
 
   buscardominio(){
 
+    this.dominios = [];
+
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return;
@@ -88,11 +92,22 @@ export class DominioComponent implements OnInit {
 
     this.DominiosService.getdominios(dominio, extension).subscribe( resp => {
 
-      this.dominios = resp.data.results;
 
+      resp.data.results.forEach((element) => {
+        
+        this.dominioscarrito.forEach((element2) => {
+          
+          if(element.domain===element2.dominio){
+            element.agregado = true;
+          }
+          
+        });
+        
+      });
 
+        this.dominios = resp.data.results;
 
-      console.log(this.dominios)
+        //console.log(this.dominios)
      })
 
   }
@@ -119,7 +134,7 @@ export class DominioComponent implements OnInit {
 
     carrito =  JSON.parse(localStorage.getItem('carrito')!);
 
-    this.Dominioscarrito = carrito;
+    this.dominioscarrito = carrito;
 
 
 
@@ -180,7 +195,7 @@ export class DominioComponent implements OnInit {
   }
 
   uptlistdominios(carrito:Carrito[]){
-    this.Dominioscarrito = carrito;
+    this.dominioscarrito = carrito;
   }
 
 }

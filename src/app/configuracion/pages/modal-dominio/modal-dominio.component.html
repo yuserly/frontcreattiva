@@ -22,7 +22,7 @@
           <div class="col-md-12 d-flex justify-content-center align-items-center">
             <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600" *ngIf="disponiblebuscado == 1; else nodisponible" >
               <i class="far fa-check-circle" style="color: #32cb00"></i>
-              {{dominiobuscado}} está disponible
+              {{dominiobuscado}} está disponible 
             </h4>
             
             <div class="btn_hover0 d-flex justify-content-center opc_hover" style="width: auto;">
@@ -174,7 +174,7 @@
                           
                           <span class="px-1" style="padding: 20px 20px;height: 80px;"  [ngClass]="[ dominio.agregado ? 'd-block' : 'd-none']">
                             <i style="font-size:28px;" class="far fa-check-circle"></i>
-                            <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
+                            <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
                           </span>
                         
                         
@@ -195,6 +195,8 @@
           <div class="col-md-12 text-center mt-4">
             <button
               type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
               class="btn btn-add-dominio"
               style="
                 background-color: #005ad2;

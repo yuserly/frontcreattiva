@@ -149,12 +149,13 @@ export class VpsComponent implements OnInit {
         (resp) => {
           carrito.push({
             producto: producto,
-            periodo: resp[2],
+            periodo: 4,
             dominio: '',
             sistemaoperativo: 0,
             versionsistema: 0,
             administrar: 0,
             ip: '',
+            periodos: resp
           });
 
           localStorage.setItem('carrito', JSON.stringify(carrito));

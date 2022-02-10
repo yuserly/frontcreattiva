@@ -40,15 +40,12 @@ export class PlanesComponent implements OnInit {
 
   aggcart(producto: Productos,  carro: Carrito[]){
 
-    this.categoriasServices
-        .getperiodo(producto.id_producto, 4)
-        .subscribe((resp) => {
           this.categoriasServices
             .getperiodos(producto.id_producto)
             .subscribe((resp2) => {
               carro.push({
                 producto: producto,
-                periodo: resp,
+                periodo: 4,
                 dominio: '',
                 sistemaoperativo: 0,
                 versionsistema: 0,
@@ -64,7 +61,7 @@ export class PlanesComponent implements OnInit {
 
               this.router.navigate(['/configuraciones']);
             });
-        });
+
 
 
   }

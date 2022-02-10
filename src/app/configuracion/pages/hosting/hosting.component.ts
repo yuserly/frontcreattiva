@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DominiosService } from '../../../ecommerce/services/dominios.service';
 import { Productos, Periodo, Carrito, TotalCarro, SistemaOperativo } from '../../../ecommerce/interfaces/ecommerce.interface';
 import { CategoriasService } from '../../../ecommerce/services/categorias.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hosting',
@@ -24,7 +25,7 @@ export class HostingComponent implements OnInit {
 
 
 
-  constructor(private categoriasServices: CategoriasService) { }
+  constructor(private categoriasServices: CategoriasService, private router: Router,) { }
 
   ngOnInit(): void {
 
@@ -95,6 +96,10 @@ export class HostingComponent implements OnInit {
 
     this.totalcarroarray = carrito;
 
+  }
+
+  validarcarro(){
+    this.router.navigate(['/configuraciones/validar-cart']);
   }
 
 

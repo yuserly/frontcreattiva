@@ -23,7 +23,7 @@ export class ModalDominioComponent implements OnInit {
   constructor(private CategoriasService: CategoriasService) {}
 
   ngOnInit(): void {
-    
+
     this.dominios.forEach((element) => {
       console.log(element.domain);
       if (element.domain === this.dominiobuscado) {
@@ -39,7 +39,7 @@ export class ModalDominioComponent implements OnInit {
       (resp) => {
         carro.push({
           producto: item.producto,
-          periodo: item.periodos[2],
+          periodo: 4,
           dominio: item.domain,
           sistemaoperativo: 0,
           versionsistema: 0,

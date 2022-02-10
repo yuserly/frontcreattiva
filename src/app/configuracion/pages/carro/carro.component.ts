@@ -17,7 +17,17 @@ export class CarroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.carrito = JSON.parse(localStorage.getItem('carrito')!);
+    let carrito = JSON.parse(localStorage.getItem('carrito')!);
+
+    this.carrito = carrito;
+
+    if(!carrito || carrito.length == 0){
+
+      this.router.navigate(['/']);
+
+      return;
+    }
+
 
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
   }
@@ -42,6 +52,13 @@ export class CarroComponent implements OnInit {
     }
 
 
+  }
+
+  vaciarcarro(){
+
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('index');
+    this.router.navigate(['/']);
   }
 
 }

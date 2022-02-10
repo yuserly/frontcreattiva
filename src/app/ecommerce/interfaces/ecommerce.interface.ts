@@ -68,13 +68,13 @@ export interface Cliente{
 export interface Carrito{
 
   producto: Productos;
-  periodo: any;
+  periodo: number;
   dominio?: string;
   sistemaoperativo?: number;
   versionsistema?:number;
   administrar?: number;
   ip?: string;
-  periodos?:Periodo[];
+  periodos:Periodo[];
 
 }
 

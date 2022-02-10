@@ -9,7 +9,9 @@
         </div>
 
         <div class="row">
-          <div class="col-12"></div>
+          <div class="col-12">
+            <h6 class="px-3 float-end" style="cursor: pointer;" (click)="vaciarcarro()">Vaciar Carro</h6>
+          </div>
           <br />
           <div class="col-12 div0" *ngFor="let item of carrito; let i=index">
             <div class="d-none d-md-block d-lg-block">

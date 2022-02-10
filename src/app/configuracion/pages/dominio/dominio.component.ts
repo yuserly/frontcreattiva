@@ -119,7 +119,13 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     carrito.map((p, i) => {
-      if (p.producto.id_producto == 17) {
+      if (p.producto.id_producto == 17||
+          p.producto.id_producto == 18||
+          p.producto.id_producto == 19||
+          p.producto.id_producto == 20||
+          p.producto.id_producto == 21||
+          p.producto.id_producto == 22
+          ) {
         if(p.dominio===dominio){
           console.log(i);
           carrito.splice(i, 1);

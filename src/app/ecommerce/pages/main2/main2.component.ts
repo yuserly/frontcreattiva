@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Productos, Carrito, Periodo } from '../../interfaces/ecommerce.interface';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Productos, Carrito, Periodo, TotalCarro } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
-
 @Component({
   selector: 'app-main2',
   templateUrl: './main2.component.html',
@@ -12,6 +11,7 @@ export class Main2Component implements OnInit {
 
   producto!:Productos;
   periodos:Periodo[] = [];
+  @Output() totalcarronav: EventEmitter<TotalCarro> = new EventEmitter();
 
   constructor(private categoriasServices: CategoriasService) { }
 
@@ -38,5 +38,6 @@ export class Main2Component implements OnInit {
 
 
   }
+
 
 }

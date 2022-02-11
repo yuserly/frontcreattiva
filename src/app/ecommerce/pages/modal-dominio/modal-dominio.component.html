@@ -135,7 +135,7 @@
                       class="btn_hover0 d-flex justify-content-center"
                       [ngClass]="{'opc_hover2': dominio.agregado == true, 'opc_hover' : dominio.agregado == false }"
                     >
-                      <div class="item" style="cursor: pointer" (click)="agregarcarro(dominio)">
+                      <div class="item" style="cursor: pointer">
                         <a
                           class="btn-add"
                           [ngClass]="{'btn-delete': dominio.agregado == true, 'btn-add' : dominio.agregado == false }"
@@ -163,7 +163,7 @@
                           <span class="span-addcard px-1"
                           [ngClass]="{
                             'd-none': dominio.agregado == true
-                          }">
+                          }"(click)="agregarcarro(dominio)">
                             <i class="far fa-check-circle"></i>
 
                             <p style="font-size: 11px; line-height: 1">

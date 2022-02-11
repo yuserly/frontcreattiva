@@ -12,7 +12,8 @@ export class DetallePedidoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    //console.log("total carrito detalles");
+    //console.log(this.totalcarroarray);
 
   }
 

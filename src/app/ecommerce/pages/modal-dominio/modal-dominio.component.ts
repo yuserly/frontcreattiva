@@ -33,10 +33,12 @@ export class ModalDominioComponent implements OnInit {
   }
 
   agregarcarro(item: Result) {
+    //console.log(item);
     let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     this.CategoriasService.getperiodos(item.producto.id_producto).subscribe(
       (resp) => {
+        
         carro.push({
           producto: item.producto,
           periodo: 4,
@@ -49,18 +51,21 @@ export class ModalDominioComponent implements OnInit {
         });
 
         localStorage.setItem('carrito', JSON.stringify(carro));
+
+        let productoscarro = this.CategoriasService.calculototalcarro();
+
+        this.totalcarro.emit(productoscarro);
+
+        item.agregado = true;
+
+        carro = JSON.parse(localStorage.getItem('carrito')!);
+
+        this.dominioscarrito.emit(carro);
+
       }
     );
 
-    let productoscarro = this.CategoriasService.calculototalcarro();
-
-    this.totalcarro.emit(productoscarro);
-
-    item.agregado = true;
-
-    carro = JSON.parse(localStorage.getItem('carrito')!);
-
-    this.dominioscarrito.emit(carro);
+    
 
     //console.log(JSON.parse(localStorage.getItem('carrito')!))
   }

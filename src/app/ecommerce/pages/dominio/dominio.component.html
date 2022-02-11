@@ -107,9 +107,16 @@
         </form>
       </div>
       <div class="col-md-12" data-opc="table2-nuevodominio">
-        <hr class="hr_detallescompra">
+        
         <div class="row" *ngFor="let dominio of dominioscarrito">
-          <div class="d-flex" *ngIf="dominio.producto.id_producto == 17">
+          <div class="d-flex" *ngIf="
+                                      dominio.producto.id_producto == 17 ||
+                                      dominio.producto.id_producto == 18 ||
+                                      dominio.producto.id_producto == 19 ||
+                                      dominio.producto.id_producto == 20 ||
+                                      dominio.producto.id_producto == 21 ||
+                                      dominio.producto.id_producto == 22
+                                  ">
             <div class="col-md-7">
 
               <h6 class="px-3 pt-3">

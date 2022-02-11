@@ -12,6 +12,7 @@ import {
   Carrito,
   SistemaOperativo,
 } from '../interfaces/ecommerce.interface';
+import { Paises } from '../interfaces/paises.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +55,12 @@ export class CategoriasService {
 
   getsistemasoperativo(tipo: string): Observable<SistemaOperativo[]> {
     return this.http.get<SistemaOperativo[]>(`${this.urlBase}/getos/${tipo}`);
+  }
+
+  // lista de paises
+
+  getpaises () : Observable<Paises[]>{
+    return this.http.get<Paises[]>('https://restcountries.com/v3.1/all');
   }
 
   calculototalcarro() {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TotalCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { TotalCarro } from '../../interfaces/ecommerce.interface';
 
 @Component({
   selector: 'app-detalle-pedido',

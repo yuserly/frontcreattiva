@@ -1,1 +1,74 @@
-<p>login works!</p>
+<app-nav></app-nav>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-6 col-xs-12">
+      <div class="card card-border p-3">
+        <div class="row px-5 pb-4 pt-3">
+          <div class="col-md-12 mb-2">
+            <h5><b>3. Compra más rápido y fácil</b></h5>
+            <small
+              >Para continuar tu compra ingresa tu nombre y correo
+              electrónico</small
+            >
+          </div>
+
+          <div class="col-md-12">
+            <form [formGroup]="form">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="email"
+                  class="form-control " [ngClass]="{'is-invalid':validarcampo('nombre')}"
+                  placeholder="Ingresa tu nombre"
+                  id="nombre"
+                  aria-describedby="nombreUsuario"
+                  formControlName="nombre"
+                />
+                <div class="invalid-feedback" *ngIf="validarcampo('nombre')">
+                  {{mensajeerrornombre}}
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  [ngClass]="{'is-invalid':validarcampo('email')}"
+                  placeholder="Ingresa tu correo electrónico"
+                  id="email"
+                  aria-describedby="emailUsuario"
+                  formControlName="email"
+
+                />
+                <div class="invalid-feedback" *ngIf="validarcampo('email')">
+                  {{mensajeerroremail}}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center mt-4">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #005ad2;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 60%;
+            "
+            [disabled]="form.invalid"
+            (click)="continuar()"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br /><br />
+<app-footer></app-footer>

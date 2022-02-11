@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './ecommerce/pages/login/login.component';
 
 const routes: Routes = [
 
@@ -12,14 +13,14 @@ const routes: Routes = [
     loadChildren: () => import('./sucursal/sucursal.module').then(m => m.SucursalModule)
   },
   {
-    path:'configuraciones',
-    loadChildren: () => import('./configuracion/configuracion.module').then(m => m.ConfiguracionModule)
+    path:'login-rapido',
+    component: LoginComponent
   },
+
   {
     path:'**',
     redirectTo:''
   }
-
 ];
 
 @NgModule({

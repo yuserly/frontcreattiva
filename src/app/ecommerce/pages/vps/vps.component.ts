@@ -10,8 +10,8 @@ import {
   Productos,
   Carrito,
   TotalCarro,
-} from '../../../ecommerce/interfaces/ecommerce.interface';
-import { CategoriasService } from '../../../ecommerce/services/categorias.service';
+} from '../../interfaces/ecommerce.interface';
+import { CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-vps',

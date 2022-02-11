@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Productos, Carrito, Periodo } from '../../../ecommerce/interfaces/ecommerce.interface';
-import { CategoriasService } from '../../../ecommerce/services/categorias.service';
+import { Productos, Carrito, Periodo } from '../../interfaces/ecommerce.interface';
+import { CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-main2',

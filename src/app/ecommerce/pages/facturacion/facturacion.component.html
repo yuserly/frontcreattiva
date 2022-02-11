@@ -1,0 +1,437 @@
+<app-nav></app-nav>
+
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center" [formGroup]="form">
+    <div class="col-md-6">
+      <div class="card card-border p-5">
+        <div class="row" >
+          <div class="col-md-12 mb-2 d-flex justify-content-between">
+            <h5><b>Detalles de la compra</b></h5>
+
+            <div class="row">
+              <div class="col-md-4 px-0">
+                <label class="form-check-label" for="flexSwitchCheckChecked"
+                  >Persona</label
+                >
+              </div>
+              <div class="col-md-4">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckChecked"
+                    formControlName="isempresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4 px-0">
+                <label class="form-check-label" for="flexSwitchCheckChecked"
+                  >Empresa</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" >
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item mt-2">
+              <p><b>1.- Datos del comprador / Contacto técnico:</b></p>
+
+              <h2
+                class="accordion-header d-flex justify-content-between"
+                id="flush-headingOne"
+              >
+                <button
+                  class="btn-acordeon accordion-button pt-0 pb-0"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseOne"
+                >
+                  {{form.value.email}}
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark color-gris border-gris btn-editar"
+                  *ngIf="datoscompradorsave"
+                  (click)="modificardatoscomprador()"
+                >
+                  Modificar <i class="far fa-edit"></i>
+                </button>
+              </h2>
+
+              <div
+                id="flush-collapseOne"
+                class="accordion-collapse collapse show"
+                [ngClass]="{'show': datoscompradorsave == false}"
+                aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <form class="mt-4">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <div class="input-group-prepend d-flex">
+                              <div class="input-group-text input__field_tele">
+                                +569
+                              </div>
+                            </div>
+
+                            <input
+                              class="form-control input__field_telefono"
+                              [ngClass]="{ 'is-invalid': validarcampo('telefono') }"
+                              type="number"
+                              placeholder="Móvil"
+                              id="telefono"
+                              required
+                              formControlName="telefono"
+                            />
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('telefono')"
+                            >
+                              {{ mensajeerrortelefono }}
+                            </div>
+                          </div>
+
+                          <small id="errormovil" style="color: #ff0000"></small>
+                        </div>
+                      </div>
+
+                      <div class="col">
+                        <select
+                          id="inputState"
+                          class="form-select"
+                          formControlName="pais"
+                        >
+                          <option selected>Pais</option>
+                          <option
+                            *ngFor="let pais of paises; let i = index"
+                            [value]="pais.name.common"
+                          >
+                            {{ pais.name.common }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-12 mt-4 text-center">
+                        <button
+                          type="button"
+                          class="btn"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 60%;
+                          "
+                          (click)="guardarcomprador()"
+                        >
+                          Guardar
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- modificacion o campos guardados -->
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mt-2">
+              <p><b>2.- Datos facturación:</b></p>
+
+              <h2
+                class="accordion-header d-flex justify-content-between"
+                id="flush-headingTwo"
+              >
+                <button
+                  class="btn-acordeon accordion-button pt-0 pb-0"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseTwo"
+                >
+                  {{nombrefacturacion}}
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark color-gris border-gris btn-editar"
+                  *ngIf="datosfacturacion"
+                  (click)="modificarfacturacion()"
+                >
+                  Modificar <i class="far fa-edit"></i>
+                </button>
+              </h2>
+
+              <div
+                id="flush-collapseTwo"
+                class="accordion-collapse collapse"
+                [ngClass]="{'show': datosfacturacion == false}"
+                aria-labelledby="flush-headingTwo"
+                data-bs-parent="#accordionFlushExample"
+              >
+                <div class="accordion-body">
+                  <form class="row g-3">
+                    <div class="col-md-5">
+                      <input
+                        type="text"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('rut') }"
+                        id="inputEmail4"
+                        placeholder="Rut Empresa"
+                        formControlName="rut"
+                      />
+                      <div class="invalid-feedback" *ngIf="validarcampo('rut')">
+                        {{ mensajeerrorrut }}
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputPassword4"
+                        placeholder="Razón Social"
+                        formControlName="razonsocial"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputAddress"
+                        placeholder="Giro"
+                        formControlName="giro"
+                      />
+                    </div>
+                    <div class="col-md-5">
+                      <input
+                        type="number"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('telefonoempresa') }"
+                        id="inputEmail4"
+                        placeholder="Tel. Empresa"
+                        formControlName="telefonoempresa"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('telefonoempresa')"
+                      >
+                        {{ mensajeerrortelefonoempresa }}
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <input
+                        type="email"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('emailempresa') }"
+                        id="inputPassword4"
+                        placeholder="Email Empresa"
+                        formControlName="emailempresa"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('emailempresa')"
+                      >
+                        {{ mensajeerroremailempresa }}
+                      </div>
+                    </div>
+                    <div class="col-md-12 mt-4 text-center">
+                      <button
+                        type="button"
+                        class="btn"
+                        style="
+                          background-color: #005ad2;
+                          color: #f2f3f5;
+                          font-weight: bold;
+                          width: 60%;
+                        "
+                        (click)="guardarfacturacion()"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mt-2">
+              <p><b>3.- Dirección:</b></p>
+
+              <h2
+                class="accordion-header d-flex justify-content-between"
+                id="flush-headingThree"
+              >
+                <button
+                  class="btn-acordeon accordion-button pt-0 pb-0"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseThree"
+                >
+                  Premio Nobel 2931
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark color-gris border-gris btn-editar"
+                >
+                  Modificar <i class="far fa-edit"></i>
+                </button>
+              </h2>
+              <div
+                id="flush-collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingThree"
+                data-bs-parent="#accordionFlushExample"
+                style="width: 80%"
+              >
+                <div class="accordion-body">
+                  Placeholder content for this accordion, which is intended to
+                  demonstrate the <code>.accordion-flush</code> class. This is
+                  the third item's accordion body. Nothing more exciting
+                  happening here in terms of content, but just filling up the
+                  space to make it look, at least at first glance, a bit more
+                  representative of how this would look in a real-world
+                  application.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2 mediospago">
+            <p><b>4.- Medio de pago:</b></p>
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo1"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                  checked
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo1"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    height: 20vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <img src="img/icon-webpay.png" />
+                </label>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo2"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo2"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    height: 20vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <img src="img/paypal.png" width="100px" />
+                </label>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="periodo"
+                  id="periodo3"
+                  precio="124350"
+                  value="6"
+                  autocomplete="off"
+                />
+
+                <label
+                  class="btn btn-periodos px-0 pb-0 card-border"
+                  for="periodo3"
+                  style="
+                    width: 100%;
+                    border-radius: 0px;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    height: 20vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <img src="img/icon-transfer.png" width="100px" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center mt-4">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #009900;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 45%;
+            "
+          >
+            FINALIZAR COMPRA
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
+    </div>
+  </div>
+</div>
+
+
+<br /><br /><br /><br /><br />
+<app-footer></app-footer>

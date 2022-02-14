@@ -12,6 +12,8 @@ export class DominiosService{
 
   private urlBase: string = environment.urlBase;
 
+  totalCarro: number = 0;
+
   constructor(private http:HttpClient){}
 
   getdominios(dominio:string, extension:string):Observable<Dominios>{

@@ -1,8 +1,10 @@
+import { DominiosService } from './../../services/dominios.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Categorias,
   Subcategorias,
+  Carrito
 } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { Productos } from '../../interfaces/ecommerce.interface';
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private categoriasServices: CategoriasService,
+    public DominiosService: DominiosService,
     private router: Router
   ) {
     // this.router.navigate(['/hosting/hosting-ssd']);
@@ -43,6 +46,8 @@ export class HomeComponent implements OnInit {
     });
 
     this.buscarsubcategoria(1);
+
+    this.itemsCarrito();
   }
 
   buscarsubcategoria(id: number) {
@@ -86,6 +91,14 @@ export class HomeComponent implements OnInit {
 
   obtenerproductos(productos: Productos[]){
     this.productos = productos;
+  }
+
+  itemsCarrito(){
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.DominiosService.totalCarro = carrito.length;
   }
 
 }

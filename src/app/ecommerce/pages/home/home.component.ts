@@ -98,7 +98,11 @@ export class HomeComponent implements OnInit {
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
-    this.DominiosService.totalCarro = carrito.length;
+    if(carrito){
+      this.DominiosService.totalCarro = carrito.length;
+    }else{
+      this.DominiosService.totalCarro = 0;
+    }
   }
 
 }

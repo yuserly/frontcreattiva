@@ -4,6 +4,9 @@
       <h5>
         <b>{{ dominionum }}. Elije tu dominio</b>
       </h5>
+      <small class="text-danger"
+      *ngIf="form2.errors?.['dominio']"
+      ><b>Debe ingresar algún dominio</b></small>
     </div>
     <span
       class="badge"

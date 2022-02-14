@@ -76,4 +76,11 @@ export class CarroComponent implements OnInit {
 
   }
 
+  finalizarcompra(){
+
+    this.router.navigate(['/facturacion']);
+
+
+  }
+
 }

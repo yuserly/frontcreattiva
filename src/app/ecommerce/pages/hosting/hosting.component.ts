@@ -1,5 +1,5 @@
+import { DominiosService } from './../../services/dominios.service';
 import { Component, OnInit } from '@angular/core';
-import { DominiosService } from '../../services/dominios.service';
 import { Productos, Periodo, Carrito, TotalCarro, SistemaOperativo } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class HostingComponent implements OnInit {
 
 
 
-  constructor(private categoriasServices: CategoriasService, private router: Router) { }
+  constructor(private categoriasServices: CategoriasService, private router: Router, private DominiosService: DominiosService) { }
 
   ngOnInit(): void {
 
@@ -67,6 +67,8 @@ export class HostingComponent implements OnInit {
       this.getos('windows');
     }
 
+    this.itemsCarrito();
+
 
   }
 
@@ -100,6 +102,14 @@ export class HostingComponent implements OnInit {
 
   validarcarro(){
     this.router.navigate(['/carrito']);
+  }
+
+  itemsCarrito(){
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.DominiosService.totalCarro = carrito.length;
   }
 
 

@@ -142,6 +142,8 @@ export class DominioComponent implements OnInit {
 
     this.dominioscarrito = carrito;
 
+    this.itemsCarrito();
+
   }
 
   nuevodominio(){
@@ -200,6 +202,14 @@ export class DominioComponent implements OnInit {
 
   uptlistdominios(carrito:Carrito[]){
     this.dominioscarrito = carrito;
+  }
+
+  itemsCarrito(){
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.DominiosService.totalCarro = carrito.length;
   }
 
 }

@@ -1,3 +1,4 @@
+import { DominiosService } from './../../services/dominios.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(public DominiosService: DominiosService) { }
 
   ngOnInit(): void {
   }

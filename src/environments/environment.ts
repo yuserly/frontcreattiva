@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //urlBase: 'http://backendcreattiva.cp/api',
-    urlBase: 'https://creattiva-api.cl/api',
+    urlBase: 'http://creattiva-api.cl/api',
 
 };
 

@@ -67,8 +67,8 @@ style="
 
     <div class="d-flex align-items-center">
       <h6 style="color: #fff" class="me-4">FINALIZAR COMPRA</h6>
-
-      <svg
+      <a routerLink="/carrito">
+        <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
         width="40px"
@@ -96,6 +96,9 @@ style="
           />
         </g>
       </svg>
+      <span class="badge bg-white" style="position: relative;top: -12px;left: -8px;color:black;">{{DominiosService.totalCarro}}</span>
+      </a>
+      
     </div>
   </div>
 </div>

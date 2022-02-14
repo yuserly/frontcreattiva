@@ -1,3 +1,4 @@
+import { DominiosService } from './../../services/dominios.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Result } from '../../interfaces/dominios.interfaces';
 import {
@@ -20,7 +21,7 @@ export class ModalDominioComponent implements OnInit {
 
   disponiblebuscado: number = 0;
 
-  constructor(private CategoriasService: CategoriasService) {}
+  constructor(private CategoriasService: CategoriasService, private DominiosService: DominiosService) {}
 
   ngOnInit(): void {
 
@@ -62,11 +63,21 @@ export class ModalDominioComponent implements OnInit {
 
         this.dominioscarrito.emit(carro);
 
+        this.itemsCarrito();
+
       }
     );
 
     
 
     //console.log(JSON.parse(localStorage.getItem('carrito')!))
+  }
+
+  itemsCarrito(){
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.DominiosService.totalCarro = carrito.length;
   }
 }

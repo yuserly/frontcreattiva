@@ -6,10 +6,20 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 })
 export class ValidatorService {
  public nombrePattern : string = '([a-zA-Z]+) ([a-zA-Z]+)';
+
  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
  public telefonoPattern: string = '([0-9]{8})';
  public rutPattern: string = '^[0-9]+-[0-9kK]{1}$'
   constructor() { }
+
+  validarRegionComuna(control: FormControl): ValidationErrors | null{
+    if(control.value == 0){
+      return{
+        escero: true
+      }
+    }
+    return null
+  }
 
   validarRut(control: FormControl): ValidationErrors | null{
 

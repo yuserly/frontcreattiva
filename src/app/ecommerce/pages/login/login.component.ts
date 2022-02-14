@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
 
   form:FormGroup = this.fb.group({
-    nombre:['',[Validators.required, Validators.pattern(this.validacion.nombrePattern)]],
+    nombre:['',[Validators.required]],
     email:['',[Validators.required, Validators.pattern(this.validacion.emailPattern)]]
   })
 

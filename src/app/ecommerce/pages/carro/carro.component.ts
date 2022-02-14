@@ -13,7 +13,10 @@ export class CarroComponent implements OnInit {
   carrito:Carrito[] = [];
   totalcarroarray!: TotalCarro;
 
-  constructor(private router: Router, private CategoriasService: CategoriasService) { }
+
+
+
+  constructor( private router: Router, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
 
@@ -27,6 +30,8 @@ export class CarroComponent implements OnInit {
 
       return;
     }
+
+
 
 
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
@@ -59,6 +64,16 @@ export class CarroComponent implements OnInit {
     localStorage.removeItem('carrito');
     localStorage.removeItem('index');
     this.router.navigate(['/']);
+  }
+
+  cambiarperiodo(i:number, periodo:any){
+
+    this.carrito[i].periodo = parseInt(periodo.value);
+
+    localStorage.setItem('carrito',JSON.stringify(this.carrito));
+
+    this.totalcarroarray = this.CategoriasService.calculototalcarro();
+
   }
 
 }

@@ -3,143 +3,365 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { Paises } from '../../interfaces/paises.interfaces';
-import { TotalCarro } from '../../interfaces/ecommerce.interface';
+import {
+  TotalCarro,
+  Regiones,
+  Comunas,
+} from '../../interfaces/ecommerce.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-facturacion',
   templateUrl: './facturacion.component.html',
-  styleUrls: ['./facturacion.component.css']
+  styleUrls: ['./facturacion.component.css'],
 })
 export class FacturacionComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   paises: Paises[] = [];
+  regiones: Regiones[] = [];
+  comunas: Comunas[] = [];
   datoscompradorsave: boolean = false;
   datosfacturacion: boolean = false;
   datosdireccion: boolean = false;
-  nombrefacturacion:string = 'Creattiva Datacenter'
+  nombrefacturacion: string = 'Creattiva Datacenter';
 
-  form:FormGroup = this.fb.group({
-    nombre:['',[Validators.required, Validators.pattern(this.validacion.nombrePattern)]],
-    email:['',[Validators.required, Validators.pattern(this.validacion.emailPattern)]],
-    telefono:['', [Validators.required, Validators.pattern(this.validacion.telefonoPattern)]],
-    pais:['',[Validators.required]],
-    rut:['', [Validators.required, this.validacion.validarRut]],
+  form: FormGroup = this.fb.group({
+    nombre: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.nombrePattern)],
+    ],
+    email: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.emailPattern)],
+    ],
+    telefono: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(this.validacion.telefonoPattern),
+      ],
+    ],
+    pais: ['', [Validators.required]],
+    rut: ['', [Validators.required, this.validacion.validarRut]],
     razonsocial: [''],
-    giro:[''],
-    telefonoempresa:['', [Validators.required, Validators.pattern(this.validacion.telefonoPattern)]],
-    emailempresa:['',[Validators.required, Validators.pattern(this.validacion.emailPattern)]],
-    isempresa:[true,Validators.required]
-  })
+    giro: [''],
+    telefonoempresa: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(this.validacion.telefonoPattern),
+      ],
+    ],
+    emailempresa: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.emailPattern)],
+    ],
+    isempresa: [true, Validators.required],
+    direccion: ['', [Validators.required]],
+    region: [0, [Validators.required, this.validacion.validarRegionComuna]],
+    comuna: [0, [Validators.required, this.validacion.validarRegionComuna]],
+    mediopago: [1, [Validators.required]],
+  });
 
   seleccion = {
-    nombre:'',
-    email:'',
-    telefono:'',
-    pais:'',
+    nombre: '',
+    email: '',
+    telefono: '',
+    pais: '',
     rut: '',
     razonsocial: '',
-    giro:'',
-    telefonoempresa:'',
+    giro: '',
+    telefonoempresa: '',
     emailempresa: '',
-    isempresa:true
+    isempresa: true,
+    direccion: '',
+    region: 0,
+    comuna: 0,
+    mediopago: 1,
+  };
 
+  get mensajeerrortelefono(): string {
+    const error = this.form.get('telefono')?.errors;
+
+    if (error?.required) {
+      return 'El telefono es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un telefono valido';
+    }
+
+    return '';
   }
 
-  get mensajeerrortelefono(): string
- {
-   const error = this.form.get('telefono')?.errors;
+  get mensajeerroremail(): string {
+    const error = this.form.get('email')?.errors;
 
-   if(error?.required){
-    return 'El telefono es requerido';
-   }else if(error?.pattern){
-    return 'Debe ingresar un telefono valido';
-   }
+    if (error?.required) {
+      return 'El email es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un email valido';
+    }
 
-   return '';
- }
- get mensajeerrortelefonoempresa(): string
- {
-   const error = this.form.get('telefonoempresa')?.errors;
+    return '';
+  }
+  get mensajeerrortelefonoempresa(): string {
+    const error = this.form.get('telefonoempresa')?.errors;
 
-   if(error?.required){
-    return 'El telefono de empresa es requerido';
-   }else if(error?.pattern){
-    return 'Debe ingresar un telefono de empresa valido';
-   }
+    if (error?.required) {
+      return 'El telefono de empresa es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un telefono de empresa valido';
+    }
 
-   return '';
- }
- get mensajeerroremailempresa(): string
- {
-   const error = this.form.get('emailempresa')?.errors;
+    return '';
+  }
+  get mensajeerroremailempresa(): string {
+    const error = this.form.get('emailempresa')?.errors;
 
-   if(error?.required){
-    return 'El email de empresa es requerido';
-   }else if(error?.pattern){
-    return 'Debe ingresar un email de empresa valido';
-   }
+    if (error?.required) {
+      return 'El email de empresa es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un email de empresa valido';
+    }
 
-   return '';
- }
+    return '';
+  }
 
- get mensajeerrorrut(): string
- {
-   const error = this.form.get('rut')?.errors;
+  get mensajeerrordireccion(): string {
+    const error = this.form.get('direccion')?.errors;
 
-   if(error?.required){
-    return 'El rut es requerido';
-   }else if(error?.errorrut){
-    return 'Debe ingresar un rut valido';
-   }
+    if (error?.required) {
+      return 'La dirección es requerida';
+    } else if (error?.pattern) {
+      return 'Debe ingresar una direccion valida';
+    }
 
-   return '';
- }
+    return '';
+  }
 
-  constructor(private fb: FormBuilder, private validacion: ValidatorService, private CategoriasService: CategoriasService) { }
+  get mensajeerrorrut(): string {
+    const error = this.form.get('rut')?.errors;
+
+    if (error?.required) {
+      return 'El rut es requerido';
+    } else if (error?.errorrut) {
+      return 'Debe ingresar un rut valido';
+    }
+
+    return '';
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private validacion: ValidatorService,
+    private CategoriasService: CategoriasService, private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
 
-    this.CategoriasService.getpaises().subscribe(resp => {
-      console.log(resp[0].name)
+    this.CategoriasService.getpaises().subscribe((resp) => {
       this.paises = resp;
-    })
+    });
+
+    this.CategoriasService.getRegiones().subscribe((resp) => {
+      console.log(resp);
+      this.regiones = resp;
+    });
+
     let usuario = JSON.parse(localStorage.getItem('usuario')!);
-    this.seleccion.nombre = usuario.nombre;
-    this.seleccion.email = usuario.email;
-    this.seleccion.pais = 'Chile',
-    this.seleccion.isempresa = true;
 
-    this.form.reset(this.seleccion);
+    this.CategoriasService.getempresa(usuario.email).subscribe((resp) => {
+      console.log(resp);
+
+      if (resp.data) {
+        this.seleccion.nombre = resp.data.nombre;
+        this.seleccion.email = resp.data.email;
+        this.seleccion.telefono = resp.data.telefono;
+        this.seleccion.pais = resp.data.pais;
+        this.seleccion.rut = resp.data.rut;
+        this.seleccion.razonsocial = resp.data.razonsocial;
+        this.seleccion.giro = resp.data.giro;
+        this.seleccion.telefonoempresa = resp.data.telefono_empresa;
+        this.seleccion.emailempresa = resp.data.email_empresa;
+        this.seleccion.mediopago = 1;
+
+        if(resp.data.razonsocial){
+          this.nombrefacturacion = resp.data.razonsocial;
+        }
+
+        if (resp.data.tipo == 1) {
+          this.seleccion.isempresa = true;
+        } else {
+          this.seleccion.isempresa = false;
+        }
+        this.seleccion.direccion = resp.data.direccion;
+        this.seleccion.region = parseInt(resp.data.region);
+        this.seleccion.comuna = parseInt(resp.data.comuna);
+
+        if (
+          resp.data.nombre  &&
+          resp.data.email  &&
+          resp.data.telefono
+        ) {
+          this.datoscompradorsave = true;
+        }
+
+        if (resp.data.tipo == 1) {
+          if (
+            resp.data.rut  &&
+            resp.data.razonsocial  &&
+            resp.data.giro  &&
+            resp.data.telefono_empresa  &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
+          }
+        } else {
+          if (
+            resp.data.rut &&
+            resp.data.telefono_empresa &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
+          }
+        }
+
+        if (
+          resp.data.direccion &&
+          resp.data.region &&
+          resp.data.comuna
+        ) {
+          this.datosdireccion = true;
+        }
+
+      } else {
+        this.seleccion.nombre = usuario.nombre;
+        this.seleccion.email = usuario.email;
+        this.seleccion.pais = 'Chile';
+        this.seleccion.isempresa = true;
+      }
+
+      this.form.reset(this.seleccion);
 
 
+
+      if (this.form.value.comuna != 0) {
+        this.buscarcomuna();
+      }
+    });
   }
 
-  validarcampo(campo:string){
+  validarcampo(campo: string) {
     return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
   }
 
-  guardarcomprador(){
-    this.datoscompradorsave = true;
-    console.log(this.form.value)
-  }
-
-  guardarfacturacion(){
-    this.datosfacturacion = true;
-    if(this.form.value.razonsocial != ''){
-    this.nombrefacturacion = this.form.value.razonsocial;
-    }else{
-      this.nombrefacturacion = this.form.value.nombre;
+  buscarcomuna() {
+    if (this.form.value.region != 0) {
+      this.CategoriasService.getComunas(this.form.value.region).subscribe(
+        (resp) => {
+          this.comunas = resp;
+        }
+      );
     }
   }
 
-  modificardatoscomprador(){
+  guardarcomprador() {
+    if (
+      !this.form.get('email')?.errors &&
+      !this.form.get('telefono')?.errors &&
+      !this.form.get('pais')?.errors
+    ) {
+      this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
+        console.log(resp);
+        this.datoscompradorsave = true;
+      });
+    }
+  }
+
+  guardarfacturacion() {
+    if (this.form.value.razonsocial != '') {
+      this.nombrefacturacion = this.form.value.razonsocial;
+    } else {
+      this.nombrefacturacion = this.form.value.nombre;
+    }
+
+    if (this.form.value.isempresa) {
+      if (
+        !this.form.get('rut')?.errors &&
+        this.form.value.razonsocial != '' &&
+        this.form.value.giro != '' &&
+        !this.form.get('telefonoempresa')?.errors &&
+        !this.form.get('emailempresa')?.errors
+      ) {
+        this.CategoriasService.crearempresa(this.form.value).subscribe(
+          (resp) => {
+            console.log(resp);
+            this.datosfacturacion = true;
+          }
+        );
+      } else {
+        // this.form.markAllAsTouched()
+      }
+    } else {
+      if (
+        !this.form.get('rut')?.errors &&
+        !this.form.get('telefonoempresa')?.errors &&
+        !this.form.get('emailempresa')?.errors
+      ) {
+        this.CategoriasService.crearempresa(this.form.value).subscribe(
+          (resp) => {
+            console.log(resp);
+            this.datosfacturacion = true;
+          }
+        );
+      } else {
+        // this.form.markAllAsTouched()
+      }
+    }
+  }
+  guardardireccion() {
+    if (
+      !this.form.get('direccion')?.errors &&
+      !this.form.get('region')?.errors &&
+      !this.form.get('comuna')?.errors
+    ) {
+      this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
+        console.log(resp);
+        this.datosdireccion = true;
+      });
+    }
+  }
+
+  modificardatoscomprador() {
     this.datoscompradorsave = false;
   }
 
-  modificarfacturacion(){
+  modificarfacturacion() {
     this.datosfacturacion = false;
   }
 
+  modificardireccion() {
+    this.datosdireccion = false;
+  }
+
+  finalizarcompra(){
+
+    if(this.form.value.isempresa == 1){
+
+      if(!this.form.invalid && this.form.value.razonsocial != '' && this.form.value.giro != ''){
+        this.router.navigate(['/formulario-pago']);
+      }
+
+    }else{
+
+      if(!this.form.invalid){
+        this.router.navigate(['/formulario-pago']);
+
+      }
+
+
+    }
+
+
+  }
 }

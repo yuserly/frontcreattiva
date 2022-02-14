@@ -13,6 +13,7 @@ import {
   SistemaOperativo,
 } from '../interfaces/ecommerce.interface';
 import { Paises } from '../interfaces/paises.interfaces';
+import { Regiones, Comunas } from '../interfaces/ecommerce.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,18 @@ export class CategoriasService {
 
   getCategorias(): Observable<Categorias[]> {
     return this.http.get<Categorias[]>(`${this.urlBase}/getcategorias`);
+  }
+
+  // regiones
+
+  getRegiones(): Observable<Regiones[]> {
+    return this.http.get<Regiones[]>(`${this.urlBase}/getregiones`);
+  }
+
+  // comunas
+
+  getComunas(id:number): Observable<Comunas[]> {
+    return this.http.get<Comunas[]>(`${this.urlBase}/getcomunas/${id}`);
   }
 
   getsubcategoria(id: number): Observable<Subcategorias[]> {
@@ -61,6 +74,19 @@ export class CategoriasService {
 
   getpaises () : Observable<Paises[]>{
     return this.http.get<Paises[]>('https://restcountries.com/v3.1/all');
+  }
+
+  // empresa
+
+  crearempresa(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/crearempresa`, data)
+
+  }
+
+  getempresa(email:string):Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/empresa/${email}`);
   }
 
   calculototalcarro() {

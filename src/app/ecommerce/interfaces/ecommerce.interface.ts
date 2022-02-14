@@ -133,3 +133,23 @@ export interface Versiones {
 }
 
 
+export interface Regiones {
+  REG_ID:         number;
+  REG_NOMBRE:     string;
+  REG_CARDINAL:   string;
+  remember_token: string;
+  created_at:     null;
+  updated_at:     null;
+}
+
+export interface Comunas {
+  COM_ID:         number;
+  COM_NOMBRE:     string;
+  COM_REGION_ID:  number;
+  remember_token: string;
+  created_at:     null;
+  updated_at:     null;
+}
+
+
+

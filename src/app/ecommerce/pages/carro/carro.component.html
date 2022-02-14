@@ -10,10 +10,16 @@
 
         <div class="row">
           <div class="col-12">
-            <h6 class="px-3 float-end" style="cursor: pointer;" (click)="vaciarcarro()">Vaciar Carro</h6>
+            <h6
+              class="px-3 float-end"
+              style="cursor: pointer"
+              (click)="vaciarcarro()"
+            >
+              Vaciar Carro
+            </h6>
           </div>
           <br />
-          <div class="col-12 div0" *ngFor="let item of carrito; let i=index">
+          <div class="col-12 div0" *ngFor="let item of carrito; let i = index">
             <div class="d-none d-md-block d-lg-block">
               <div
                 class="card-articulo d-flex justify-content-center align-items-center"
@@ -23,7 +29,7 @@
                     <h6>
                       <!-- <h6 class="px-3 pt-3"><b>Web Hosting</b></h6> -->
 
-                      <h6 class="px-3">{{item.producto.nombre}}</h6>
+                      <h6 class="px-3">{{ item.producto.nombre }}</h6>
                     </h6>
                   </div>
 
@@ -34,10 +40,44 @@
                       class="form-control selectperiododominio"
                       id="0"
                       keyarray="0"
-                      name="periododominio"
+                      [value]="item.periodo"
                       style="width: 50%; margin-right: 20px"
+                      (change)="cambiarperiodo(i,$event.target)"
                     >
-                      <option value="1" precio="14000" *ngFor="let periodo of item.periodos; let j=index">{{periodo.periodo}} {{periodo.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</option>
+
+
+                    <ng-container *ngFor="let periodo of item.periodos; let j = index">
+
+                      <option
+
+                        [value]="periodo.id_periodo"
+                        *ngIf="periodo.id_periodo == item.periodo; else noselect"
+                        selected
+                      >
+                        {{ periodo.periodo }}
+                        {{
+                          periodo.precio_descuento
+                            | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                        }}
+                      </option>
+
+                      <ng-template #noselect>
+                        <option
+
+                        [value]="periodo.id_periodo"
+                      >
+                        {{ periodo.periodo }}
+                        {{
+                          periodo.precio_descuento
+                            | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                        }}
+                      </option>
+                      </ng-template>
+
+
+                    </ng-container>
+
+
                     </select>
                   </div>
 
@@ -55,7 +95,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -78,8 +117,9 @@
     </div>
 
     <div class="col-md-4">
-      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
+      <app-detalle-pedido
+        [totalcarroarray]="totalcarroarray"
+      ></app-detalle-pedido>
     </div>
-
   </div>
 </div>

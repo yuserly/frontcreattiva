@@ -73,7 +73,20 @@
               >
                 <div class="accordion-body">
                   <form class="mt-4">
-                    <div class="row">
+                    <div class="row g-3">
+                      <div class="col-md-12">
+                        <input
+                          type="text"
+                          class="form-control"
+                          [ngClass]="{ 'is-invalid': validarcampo('email') }"
+                          id="inputEmail4"
+                          placeholder="email"
+                          formControlName="email"
+                        />
+                        <div class="invalid-feedback" *ngIf="validarcampo('email')">
+                          {{ mensajeerroremail }}
+                        </div>
+                      </div>
                       <div class="col">
                         <div class="form-group">
                           <div class="input-group">
@@ -130,6 +143,7 @@
                             font-weight: bold;
                             width: 60%;
                           "
+                          *ngIf="!datoscompradorsave"
                           (click)="guardarcomprador()"
                         >
                           Guardar
@@ -252,6 +266,7 @@
                           font-weight: bold;
                           width: 60%;
                         "
+                        *ngIf="!datosfacturacion"
                         (click)="guardarfacturacion()"
                       >
                         Guardar
@@ -276,12 +291,14 @@
                   aria-expanded="false"
                   aria-controls="flush-collapseThree"
                 >
-                  Premio Nobel 2931
+                  {{form.value.direccion}}
                 </button>
 
                 <button
                   type="button"
                   class="btn btn-outline-dark color-gris border-gris btn-editar"
+                  *ngIf="datosdireccion"
+                  (click)="modificardireccion()"
                 >
                   Modificar <i class="far fa-edit"></i>
                 </button>
@@ -289,18 +306,85 @@
               <div
                 id="flush-collapseThree"
                 class="accordion-collapse collapse"
+                [ngClass]="{'show': datosdireccion == false}"
                 aria-labelledby="flush-headingThree"
                 data-bs-parent="#accordionFlushExample"
-                style="width: 80%"
+
               >
                 <div class="accordion-body">
-                  Placeholder content for this accordion, which is intended to
-                  demonstrate the <code>.accordion-flush</code> class. This is
-                  the third item's accordion body. Nothing more exciting
-                  happening here in terms of content, but just filling up the
-                  space to make it look, at least at first glance, a bit more
-                  representative of how this would look in a real-world
-                  application.
+                  <form class="row g-3">
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
+                        id="inputAddress"
+                        placeholder="Direccion"
+                        formControlName="direccion"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('direccion')"
+                      >
+                        {{ mensajeerrordireccion }}
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <select
+                        type="text"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('region') }"
+                        formControlName="region"
+                        (change)="buscarcomuna()"
+                      >
+                      <option value="0">Seleccionar region</option>
+                      <option *ngFor="let region of regiones; let i=index" [value]="region.REG_ID" >{{region.REG_NOMBRE}}</option>
+
+                      </select>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('region')"
+                      >
+                        La region es requerida
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <select
+                        type="text"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
+                        formControlName="comuna"
+                      >
+                      <option value="0">Seleccionar comuna</option>
+                      <option *ngFor="let comuna of comunas; let i=index" [value]="comuna.COM_ID" >{{comuna.COM_NOMBRE}}</option>
+                      </select>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('comuna')"
+                      >
+                        La comuna es requerida
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 mt-4 text-center">
+                      <button
+                        type="button"
+                        class="btn"
+                        style="
+                          background-color: #005ad2;
+                          color: #f2f3f5;
+                          font-weight: bold;
+                          width: 60%;
+                        "
+                        *ngIf="!datosdireccion"
+                        (click)="guardardireccion()"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+
+
+                  </form>
                 </div>
               </div>
             </div>
@@ -314,12 +398,11 @@
                 <input
                   type="radio"
                   class="btn-check"
-                  name="periodo"
+                  formControlName="mediopago"
                   id="periodo1"
-                  precio="124350"
-                  value="6"
-                  autocomplete="off"
+                  [value]="1"
                   checked
+                  autocomplete="off"
                 />
 
                 <label
@@ -338,7 +421,7 @@
                     align-items: center;
                   "
                 >
-                  <img src="img/icon-webpay.png" />
+                  <img src="../../../../assets/img/icon-webpay.png" />
                 </label>
               </div>
 
@@ -346,10 +429,9 @@
                 <input
                   type="radio"
                   class="btn-check"
-                  name="periodo"
+                  formControlName="mediopago"
                   id="periodo2"
-                  precio="124350"
-                  value="6"
+                  [value]="2"
                   autocomplete="off"
                 />
 
@@ -369,7 +451,7 @@
                     align-items: center;
                   "
                 >
-                  <img src="img/paypal.png" width="100px" />
+                  <img src="../../../../assets/img/paypal.png" width="100px" />
                 </label>
               </div>
 
@@ -377,10 +459,9 @@
                 <input
                   type="radio"
                   class="btn-check"
-                  name="periodo"
+                  formControlName="mediopago"
                   id="periodo3"
-                  precio="124350"
-                  value="6"
+                  [value]="3"
                   autocomplete="off"
                 />
 
@@ -400,7 +481,7 @@
                     align-items: center;
                   "
                 >
-                  <img src="img/icon-transfer.png" width="100px" />
+                  <img src="../../../../assets/img/icon-transfer.png" width="100px" />
                 </label>
               </div>
             </div>
@@ -413,12 +494,14 @@
           <button
             type="button"
             class="btn"
+            [disabled]="form.invalid"
             style="
               background-color: #009900;
               color: #f2f3f5;
               font-weight: bold;
               width: 45%;
             "
+            (click)="finalizarcompra()"
           >
             FINALIZAR COMPRA
           </button>

@@ -21,6 +21,7 @@ import { FooterComponent } from './pages/footer/footer.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { FacturacionComponent } from './pages/facturacion/facturacion.component';
+import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FacturacionComponent } from './pages/facturacion/facturacion.component'
     CarroComponent,
     NavComponent,
     FooterComponent,
-    FacturacionComponent
+    FacturacionComponent,
+    FormularioPagoComponent
   ],
   imports: [
     CommonModule,

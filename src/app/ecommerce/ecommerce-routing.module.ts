@@ -5,6 +5,7 @@ import { Main2Component } from './pages/main2/main2.component';
 import { CarroComponent } from './pages/carro/carro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FacturacionComponent } from './pages/facturacion/facturacion.component';
+import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path:'facturacion',
         component:FacturacionComponent
+      },
+      {
+        path:'formulario-pago',
+        component:FormularioPagoComponent
       }
     ]
   }

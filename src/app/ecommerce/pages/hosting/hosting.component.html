@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-md-12">
       <h6><b>SELECCIONASTE EL PLAN</b></h6>
-      <h1 class="azul-crt">{{ producto.nombre }}</h1>
+      <h1 class="azul-crt">{{ producto.nombre }} {{producto.subcategoria_id}}</h1>
       <hr class="hr_title" />
     </div>
   </div>
@@ -10,6 +10,7 @@
   <div class="row">
     <div class="col-md-8">
       <app-dominio *ngIf="
+      producto.tipo_producto_id == 1 ||
       producto.subcategoria_id == 1 ||
       producto.subcategoria_id == 6 ||
       producto.subcategoria_id == 7 ||

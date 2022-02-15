@@ -1,8 +1,10 @@
 import { DominiosService } from './../../services/dominios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Productos, Periodo, Carrito, TotalCarro, SistemaOperativo } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { Router } from '@angular/router';
+import { DominioComponent } from './../dominio/dominio.component';
+import { VpsComponent } from '../vps/vps.component';
 
 @Component({
   selector: 'app-hosting',
@@ -11,6 +13,11 @@ import { Router } from '@angular/router';
   ]
 })
 export class HostingComponent implements OnInit {
+
+//cosas para probar
+@ViewChild(DominioComponent) DominioView!: DominioComponent;
+@ViewChild(VpsComponent) VpsView!: VpsComponent;
+//*************** */
 
   producto!:Productos;
   periodos:Periodo[] = [];
@@ -101,7 +108,48 @@ export class HostingComponent implements OnInit {
   }
 
   validarcarro(){
-    this.router.navigate(['/carrito']);
+
+
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.carrito = JSON.parse(localStorage.getItem('carrito')!);
+
+    this.producto = carrito[index].producto;
+    console.log("datos");
+    console.log(this.producto);
+    if( this.producto.subcategoria_id == 1 || this.producto.tipo_producto_id == 1){
+        console.log("validar dominios");
+        if(this.validarFormDominiosComponent()){
+          this.router.navigate(['/carrito']);
+        }
+        
+    }
+
+    if( this.producto.subcategoria_id == 1 ||
+        this.producto.tipo_producto_id == 1 ||
+        this.producto.subcategoria_id == 6 ||
+        this.producto.subcategoria_id == 7 ||
+        this.producto.subcategoria_id == 8 ||
+        this.producto.subcategoria_id == 9 ||
+        this.producto.subcategoria_id == 10 ){
+
+        console.log("validar vps");
+        console.log("respuesta de validación: "+this.validarFormDominiosComponent());
+        if(this.validarFormDominiosComponent()){
+          
+          if(this.validarFormVpsComponent()){
+            this.router.navigate(['/carrito']);
+          }
+          
+        }
+
+        //this.router.navigate(['/carrito']);
+    }
+
+   
+
   }
 
   itemsCarrito(){
@@ -110,6 +158,18 @@ export class HostingComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
     this.DominiosService.totalCarro = carrito.length;
+  }
+
+  validarFormDominiosComponent():boolean {
+
+    return this.DominioView.validarFormularios();
+
+  }
+
+  validarFormVpsComponent(): boolean {
+
+    return this.VpsView.validarFormularios();
+
   }
 
 

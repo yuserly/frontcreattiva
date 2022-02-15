@@ -1,11 +1,11 @@
 <div class="card card-border p-3">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5>
+      <h5 id="invalidDominio">
         <b>{{ dominionum }}. Elije tu dominio</b>
       </h5>
       <small class="text-danger"
-      *ngIf="form2.errors?.['dominio']"
+      [ngClass]="errorDominio == 2 ? 'd-block' : 'd-none'"
       ><b>Debe ingresar algún dominio</b></small>
     </div>
     <span

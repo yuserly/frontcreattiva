@@ -23,16 +23,9 @@ export class CarroComponent implements OnInit {
 
     this.carrito = carrito;
 
-    console.log("ho");
-    console.log(carrito);
-
     if(!carrito || carrito.length == 0){
       this.statusCarrito = 0;
       this.itemsCarrito();
-      
-      //this.router.navigate(['/']);
-
-      //return;
     }else{
       this.statusCarrito = 1;
       this.itemsCarrito();

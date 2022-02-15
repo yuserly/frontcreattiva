@@ -11,13 +11,13 @@ import { CategoriasService } from '../../services/categorias.service';
 })
 export class DominioComponent implements OnInit {
 
-
   mostrar:number = 0;
   mostrarold: number = 0;
   dominios: Result[] = [];
   preciodominio: PrecioDominios[] = [];
   dominiobuscado:string = '';
   dominioguardado:string = '';
+  errorDominio:number = 0;
 
   form:FormGroup = this.fb.group({
     dominio:['',Validators.required],
@@ -44,11 +44,23 @@ export class DominioComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(this.dominioscarrito);
+    //validar si existe un dominio guardado y guardar
+    let index = JSON.parse(localStorage.getItem('index')!);
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    console.log(carrito[index].dominio);
+    if(carrito[index].dominio){
+      console.log("Dominio:" +carrito[index].dominio);
+      this.dominioguardado = <string>carrito[index].dominio;
+    }
 
   }
 
   limpiarDomGuardado(){
     this.dominioguardado = '';
+    let index = JSON.parse(localStorage.getItem('index')!);
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    carrito[index].dominio = this.dominioguardado;
+    localStorage.setItem('carrito',JSON.stringify(carrito));
   }
   guardardominio(){
     if(this.form2.invalid){
@@ -210,6 +222,55 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
     this.DominiosService.totalCarro = carrito.length;
+  }
+
+  validarFormularios():boolean {
+
+    
+    let index = JSON.parse(localStorage.getItem('index')!);
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    let cont = 0;
+    console.log("producto buscado: ");
+    
+    console.log(carrito[index]);
+    if(carrito[index].dominio){
+      this.errorDominio = 1;
+      return true;
+    }else if(carrito.length>1){
+      carrito.map((p, i) => {
+        if (p.producto.id_producto == 17||
+            p.producto.id_producto == 18||
+            p.producto.id_producto == 19||
+            p.producto.id_producto == 20||
+            p.producto.id_producto == 21||
+            p.producto.id_producto == 22
+            ) {
+              cont++;
+        }
+        return p;
+      });
+      if(cont>0){
+        this.errorDominio = 1;
+        return true;
+      }else{
+        this.errorDominio = 2;
+        let el = document.getElementById("invalidDominio");
+      if(el){el.scrollIntoView({ behavior: 'smooth' });}
+        return false;
+      }
+
+    }else{
+      
+      this.errorDominio = 2;
+      let el = document.getElementById("invalidDominio");
+      if(el){el.scrollIntoView({ behavior: 'smooth' });}
+      return false;
+    }
+    
+  }
+
+  scrollToTop(){
+    window.scroll(0,0);
   }
 
 }

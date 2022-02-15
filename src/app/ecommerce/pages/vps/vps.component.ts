@@ -22,6 +22,9 @@ export class VpsComponent implements OnInit {
   select: number = 1;
   licencias: Productos[] = [];
   producto!:Productos;
+  errorSO:number = 0;
+  invalidAdmin:number = 0;
+  invalidLicencia:number = 0;
 
   form: FormGroup = this.fb.group({
     os: ['', Validators.required],
@@ -145,6 +148,7 @@ export class VpsComponent implements OnInit {
           producto = p;
         }
       });
+
       this.CategoriasService.getperiodos(this.form.value.licencia).subscribe(
         (resp) => {
           carrito.push({
@@ -185,4 +189,71 @@ export class VpsComponent implements OnInit {
     let productoscarro = this.CategoriasService.calculototalcarro();
     this.totalcarrovps.emit(productoscarro);
   }
+
+  validarFormularios():boolean {
+
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    console.log(carrito);
+
+    if(carrito[index].sistemaoperativo!= 0){
+      this.errorSO = 1;
+
+      if(carrito[index].versionsistema!= 0){
+
+        if(carrito[index].versionsistema==3 || carrito[index].versionsistema==4){
+          //validar si tiene licencia 
+          let licencia: any= '';
+
+          carrito.map((p, i) => {
+            if (p.producto.subcategoria_id == 24) {
+              licencia = p.producto.id_producto;
+            }
+          });
+
+          if(licencia!= ''){
+            this.invalidLicencia = 1;
+
+            if(carrito[index].administrar!= null){
+              this.invalidAdmin = 1;
+              return true;
+            }else{
+              this.invalidAdmin = 2;
+              let el = document.getElementById("invalidAdmin");
+              if(el){el.scrollIntoView({ behavior: 'smooth' });}
+              return false;
+            }
+
+          }else{
+            this.invalidLicencia = 2;
+            let el = document.getElementById("invalidSO");
+            if(el){el.scrollIntoView({ behavior: 'smooth' });}
+            return false;
+          }
+
+        }else{
+          //no hace falta que tenga licencia
+          this.invalidLicencia = 1;
+          this.invalidAdmin = 1;
+          return true;
+        }
+
+      }else{
+        this.errorSO = 2;
+        let el = document.getElementById("invalidSO");
+        if(el){el.scrollIntoView({ behavior: 'smooth' });}
+        return false;
+      }
+
+    }else{
+      this.errorSO = 2;
+      let el = document.getElementById("invalidDominio");
+      if(el){el.scrollIntoView({ behavior: 'smooth' });}
+      return false;
+    }
+
+  }
+
 }

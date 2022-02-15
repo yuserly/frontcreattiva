@@ -3,7 +3,13 @@
 <div class="card card-border p-3 mt-4">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5><b>2. Selecciona el Sistema Operativo</b></h5>
+      <h5 id="invalidSO"><b>2. Selecciona el Sistema Operativo</b></h5>
+      <small class="text-danger" *ngIf="errorSO == 2">
+        <b>Debe seleccionar el Sistema Operativo y versión correspondiente</b>
+      </small>
+      <small class="text-danger" *ngIf="invalidLicencia == 2">
+        <b>Debe seleccionar una licencia de Cpanel</b>
+      </small>
     </div>
 
     <div class="col-md-12">
@@ -85,7 +91,10 @@
 <div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 6 || producto.subcategoria_id == 8 || producto.subcategoria_id == 9; else vpswindows ">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5><b>3. Administración para su servidor</b></h5>
+      <h5 id="invalidAdmin"><b>3. Administración para su servidor</b></h5>
+      <small class="text-danger" *ngIf="invalidAdmin == 2">
+        <b>Debe seleccionar si desea administración o no en su VPS</b>
+      </small>
     </div>
 
     <div

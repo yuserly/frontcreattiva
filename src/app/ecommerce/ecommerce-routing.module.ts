@@ -6,6 +6,10 @@ import { CarroComponent } from './pages/carro/carro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FacturacionComponent } from './pages/facturacion/facturacion.component';
 import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago.component';
+import { PagoExitosoComponent } from './pages/pago-exitoso/pago-exitoso.component';
+import { PagoRechazadoComponent } from './pages/pago-rechazado/pago-rechazado.component';
+import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-transferencia.component';
+
 
 const routes: Routes = [
   {
@@ -34,6 +38,18 @@ const routes: Routes = [
       {
         path:'formulario-pago',
         component:FormularioPagoComponent
+      },
+      {
+        path:'pago-exitoso',
+        component:PagoExitosoComponent
+      },
+      {
+        path:'pago-rechazado',
+        component:PagoRechazadoComponent
+      },
+      {
+        path:'pago-transferencia',
+        component:PagoTransferenciaComponent
       }
     ]
   }

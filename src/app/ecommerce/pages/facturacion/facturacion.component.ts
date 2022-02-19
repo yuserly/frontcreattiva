@@ -157,6 +157,21 @@ export class FacturacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    let infopago = JSON.parse(localStorage.getItem('infopago')!)
+
+    if(infopago){
+
+      localStorage.removeItem('carrito')
+      localStorage.removeItem('index')
+      localStorage.removeItem('infopago')
+
+      // debe llevar a la sucursal, si existe infopago quiere decir que hubo un intento de finalizar compra y se crearon los servicios
+      this.router.navigate(['/']);
+
+      return;
+    }
+
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
 
     this.CategoriasService.getpaises().subscribe((resp) => {
@@ -349,13 +364,38 @@ export class FacturacionComponent implements OnInit {
     if(this.form.value.isempresa == 1){
 
       if(!this.form.invalid && this.form.value.razonsocial != '' && this.form.value.giro != ''){
-        this.router.navigate(['/formulario-pago']);
+
+        let data = {
+          datos: this.form.value,
+          carro: JSON.parse(localStorage.getItem('carrito')!)
+        }
+
+        this.CategoriasService.generarordencompra(data).subscribe(resp =>{
+          console.log(resp)
+          localStorage.setItem('infopago', JSON.stringify(resp));
+          this.router.navigate(['/formulario-pago']);
+        })
+
       }
 
     }else{
 
       if(!this.form.invalid){
-        this.router.navigate(['/formulario-pago']);
+
+        let data = {
+          datos: this.form.value,
+          carro: JSON.parse(localStorage.getItem('carrito')!)
+        }
+
+        this.CategoriasService.generarordencompra(data).subscribe(resp =>{
+          console.log(resp)
+          localStorage.setItem('infopago', JSON.stringify(resp));
+          this.router.navigate(['/formulario-pago']);
+
+
+        })
+
+
 
       }
 

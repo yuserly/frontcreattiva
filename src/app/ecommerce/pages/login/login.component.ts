@@ -47,6 +47,12 @@ export class LoginComponent implements OnInit {
   constructor( private fb: FormBuilder, private validacion: ValidatorService, private router: Router) { }
 
   ngOnInit(): void {
+
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    if(usuario || usuario.length > 0){
+      this.router.navigate(['/facturacion']);
+    }
   }
 
   continuar(){

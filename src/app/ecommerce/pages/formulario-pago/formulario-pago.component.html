@@ -1,1 +1,153 @@
-<p>!!! TRABAJANDO EN LOS MEDIOS DE PAGOOOS  !!! </p>
+<!-- <app-nav></app-nav> -->
+
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="col-6">
+      <div class="card card-border">
+        <div class="card-header">
+          <h5><b>Detalles del pedido</b></h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="row" *ngFor="let item of totalcarroarray.productos">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-3"><b></b></h6>
+
+              <h6 class="px-3">{{ item.nombre }}</h6>
+            </div>
+
+            <div class="col-md-6">
+              <h6 class="px-3 pt-3">
+                {{
+                  item.precio | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                }}
+                CLP
+              </h6>
+
+              <small class="px-3" style="text-decoration: line-through"
+                >{{
+                  item.precioold
+                    | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                }}
+                CLP</small
+              >
+            </div>
+          </div>
+
+          <hr class="hr_detallescompra" />
+
+          <div class="row pb-1">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-1"><b>Neto pedido</b></h6>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="px-3 pt-1 azul-crt">
+                <b
+                  >{{
+                    totalcarroarray.neto
+                      | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                  }}
+                  CLP</b
+                >
+              </h5>
+            </div>
+          </div>
+          <div class="row pb-1">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-1"><b>IVA pedido</b></h6>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="px-3 pt-1 azul-crt">
+                <b
+                  >{{
+                    totalcarroarray.iva
+                      | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                  }}
+                  CLP</b
+                >
+              </h5>
+            </div>
+          </div>
+
+          <div class="row pb-1">
+            <div class="col-md-6">
+              <h6 class="px-3 pt-1"><b>Total pedido</b></h6>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="px-3 pt-1 azul-crt">
+                <b
+                  >{{
+                    totalcarroarray.total
+                      | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                  }}
+                  CLP</b
+                >
+              </h5>
+
+              <small class="px-3"
+                >Ahorra
+                {{
+                  totalcarroarray.ahorro
+                    | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                }}
+                CLP</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-12 mt-5 d-flex justify-content-center"
+      *ngIf="metodopago == 1; else pagopaypal"
+    >
+      <form [action]="urlpago" method="POST">
+        <input type="hidden" name="token_ws" [value]="token" />
+
+        <div class="row">
+          <div class="text-center mt-4">
+            <button
+              type="submit"
+              class="btn"
+              style="
+                background-color: #005ad2;
+                color: #f2f3f5;
+                font-weight: bold;
+                width: 80%;
+              "
+            >
+              Pagar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <ng-template #pagopaypal>
+      <div class="col-12 mt-5 d-flex justify-content-center">
+        <div class="row">
+          <div class="text-center mt-4">
+            <a
+              class="btn"
+              style="
+                background-color: #005ad2;
+                color: #f2f3f5;
+                font-weight: bold;
+                width: 80%;
+              "
+              [href]="urlpago"
+            >
+              Pagar
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- <br><br><br><br><br> <br><br>
+
+<app-footer></app-footer> -->

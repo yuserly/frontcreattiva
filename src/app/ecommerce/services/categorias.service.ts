@@ -138,4 +138,9 @@ export class CategoriasService {
 
     return productoscarro;
   }
+
+  generarordencompra(data:any){
+    return this.http.post<any>(`${this.urlBase}/generarorder`, data)
+
+  }
 }

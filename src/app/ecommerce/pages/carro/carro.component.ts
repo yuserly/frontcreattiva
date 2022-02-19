@@ -85,7 +85,7 @@ export class CarroComponent implements OnInit {
 
   finalizarcompra(){
 
-    this.router.navigate(['/facturacion']);
+    this.router.navigate(['/login-rapido']);
 
 
   }
@@ -103,7 +103,7 @@ export class CarroComponent implements OnInit {
       this.DominiosService.totalCarro = 0;
     }
 
-    
+
   }
 
 }

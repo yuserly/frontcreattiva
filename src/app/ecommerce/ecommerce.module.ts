@@ -22,6 +22,9 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { FacturacionComponent } from './pages/facturacion/facturacion.component';
 import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago.component';
+import { PagoExitosoComponent } from './pages/pago-exitoso/pago-exitoso.component';
+import { PagoRechazadoComponent } from './pages/pago-rechazado/pago-rechazado.component';
+import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-transferencia.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago
     NavComponent,
     FooterComponent,
     FacturacionComponent,
-    FormularioPagoComponent
+    FormularioPagoComponent,
+    PagoExitosoComponent,
+    PagoRechazadoComponent,
+    PagoTransferenciaComponent
   ],
   imports: [
     CommonModule,

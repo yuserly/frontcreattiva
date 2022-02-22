@@ -45,7 +45,7 @@ export class PlanesComponent implements OnInit {
             .subscribe((resp2) => {
               carro.push({
                 producto: producto,
-                periodo: 4,
+                periodo: 0,
                 dominio: '',
                 sistemaoperativo: 0,
                 versionsistema: 0,

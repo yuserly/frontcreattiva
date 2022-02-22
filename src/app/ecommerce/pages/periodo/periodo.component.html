@@ -1,7 +1,10 @@
 <div class="card card-border p-3 mt-4">
   <div class="row px-5">
     <div class="col-md-12">
-      <h5><b>{{periodonum}}. Selecciona período de facturación</b></h5>
+      <h5 id="invalidPeriodo"><b>{{periodonum}}. Selecciona período de facturación</b></h5>
+      <small class="text-danger" *ngIf="invalidPeriodo == 2">
+        <b>Debes seleccionar un Periodo de Contratación</b>
+      </small>
     </div>
 
     <div class="col-md-12">

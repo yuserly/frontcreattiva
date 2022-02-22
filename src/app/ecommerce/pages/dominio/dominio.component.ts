@@ -13,6 +13,7 @@ export class DominioComponent implements OnInit {
 
   mostrar:number = 0;
   mostrarold: number = 0;
+  haydominios:boolean = false;
   dominios: Result[] = [];
   preciodominio: PrecioDominios[] = [];
   dominiobuscado:string = '';
@@ -42,8 +43,8 @@ export class DominioComponent implements OnInit {
   constructor(private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
-
-    console.log(this.dominioscarrito);
+    //validar si existen dominios buscados en el carrito
+    this.haydominios = this.consultarDominiosBuscados();
     //validar si existe un dominio guardado y guardar
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
@@ -71,7 +72,7 @@ export class DominioComponent implements OnInit {
     const dominio = this.form2.value.dominio;
     const extension = this.form2.value.extension;
 
-    this.dominioguardado = `${dominio}${extension}`;
+    this.dominioguardado = dominio+'.'+extension;
 
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
@@ -170,6 +171,7 @@ export class DominioComponent implements OnInit {
     }
 
     this.dominioguardado = '';
+    this.limpiarDomGuardado();
 
   }
 
@@ -182,6 +184,39 @@ export class DominioComponent implements OnInit {
       this.mostrar = 0;
       this.mostrarold = 0;
     }
+
+    console.log(this.dominioscarrito);
+    
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    carrito.map((p, i) => {
+      if (p.producto.id_producto == 17||
+          p.producto.id_producto == 18||
+          p.producto.id_producto == 19||
+          p.producto.id_producto == 20||
+          p.producto.id_producto == 21||
+          p.producto.id_producto == 22
+          ) {
+
+          carrito.splice(i);
+      }
+      return p;
+    });
+
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    let productoscarro = this.CategoriasService.calculototalcarro();
+    this.totalcarrod.emit(productoscarro);
+
+    carrito =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.dominioscarrito = carrito;
+
+    this.itemsCarrito();
+    
+
 
   }
 
@@ -222,6 +257,33 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
     this.DominiosService.totalCarro = carrito.length;
+  }
+
+  consultarDominiosBuscados():boolean{
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    let cont = 0;
+
+    carrito.map((p, i) => {
+      if (p.producto.id_producto == 17||
+          p.producto.id_producto == 18||
+          p.producto.id_producto == 19||
+          p.producto.id_producto == 20||
+          p.producto.id_producto == 21||
+          p.producto.id_producto == 22
+          ) {
+        cont++;
+      }
+      return p;
+    });
+
+    if(cont>0){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   validarFormularios():boolean {

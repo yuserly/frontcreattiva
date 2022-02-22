@@ -9,6 +9,8 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 })
 export class PeriodoComponent implements OnInit {
 
+  invalidPeriodo:number = 0;
+
   @Input() periodos!:Periodo[];
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
   @Input() periodonum!:number;
@@ -31,6 +33,9 @@ export class PeriodoComponent implements OnInit {
 
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    console.log("periodos");
+    console.log(carrito[index]);
 
     let selectperiodo: any = carrito[index].periodo;
 
@@ -66,6 +71,24 @@ export class PeriodoComponent implements OnInit {
     this.totalcarro.emit(productoscarro)
 
 
+  }
+
+  validarFormularios():boolean {
+
+    
+    let index = JSON.parse(localStorage.getItem('index')!);
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    if(carrito[index].periodo!=0){
+      this.invalidPeriodo = 1;
+      return true;
+    }else{
+      this.invalidPeriodo = 2;
+      let el = document.getElementById("invalidPeriodo");
+      if(el){el.scrollIntoView({ behavior: 'smooth' });}
+      return false;
+    }
+    
+    
   }
 
 

@@ -6,7 +6,7 @@
       </h5>
       <small class="text-danger"
       [ngClass]="errorDominio == 2 ? 'd-block' : 'd-none'"
-      ><b>Debe ingresar algún dominio</b></small>
+      ><b>Debes ingresar algún dominio</b></small>
     </div>
     <span
       class="badge"
@@ -26,6 +26,7 @@
             name="opcdominio"
             id="nuevodominio"
             (change)="nuevodominio()"
+            [checked]="haydominios"
           />
           <label class="form-check-label" for="nuevodominio">
             Quiero registrar un nuevo dominio
@@ -35,7 +36,7 @@
 
       <div
         class="col-md-12"
-        [ngClass]="{ 'd-none': mostrar == 0 }"
+        [ngClass]="{ 'd-none': mostrar == 0 && !haydominios}"
         data-opc="table-nuevodominio"
       >
         <form class="pt-3" id="" [formGroup]="form">
@@ -77,7 +78,6 @@
 
                   <option value="org">.org</option>
 
-                  <option value="otro">otro</option>
                 </select>
               </div>
             </div>
@@ -186,6 +186,7 @@
             name="opcdominio"
             id="dominioexistente"
             (change)="dominioold()"
+            [checked]="dominioguardado"
           />
           <label class="form-check-label" for="dominioexistente">
             Quiero usar un dominio que ya tengo registrado
@@ -195,7 +196,8 @@
 
       <div
         class="col-md-12"
-        [ngClass]="{ 'd-none': mostrarold == 0 }"
+        
+        [ngClass]="mostrarold == 0 && !dominioguardado ? 'd-none' : ''"
         data-opc="table-dominioexistente"
       >
         <form class="pt-3" id="" [formGroup]="form2">
@@ -236,8 +238,6 @@
                   <option value="info">.info</option>
 
                   <option value="org">.org</option>
-
-                  <option value="otro">otro</option>
                 </select>
               </div>
             </div>

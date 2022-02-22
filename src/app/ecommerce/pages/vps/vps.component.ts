@@ -56,6 +56,10 @@ export class VpsComponent implements OnInit {
 
     this.producto = carrito[index].producto;
 
+    console.log("producto");
+    console.log(this.producto);
+    console.log("...");
+
     let os: any = carrito[index].sistemaoperativo;
     let version: any = carrito[index].versionsistema;
     let administrar: any = carrito[index].administrar;
@@ -196,48 +200,86 @@ export class VpsComponent implements OnInit {
 
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
+    console.log("datos del plan");
     console.log(carrito);
+
 
     if(carrito[index].sistemaoperativo!= 0){
       this.errorSO = 1;
 
       if(carrito[index].versionsistema!= 0){
 
-        if(carrito[index].versionsistema==3 || carrito[index].versionsistema==4){
-          //validar si tiene licencia 
+        //Si son VPS Windows
+        if(carrito[index].producto.subcategoria.id_subcategoria==7){
+
+          //validar si tiene SQL Server
           let licencia: any= '';
 
           carrito.map((p, i) => {
-            if (p.producto.subcategoria_id == 24) {
+            if (p.producto.subcategoria_id == 19) {
               licencia = p.producto.id_producto;
             }
           });
 
           if(licencia!= ''){
-            this.invalidLicencia = 1;
-
-            if(carrito[index].administrar!= null){
-              this.invalidAdmin = 1;
+              this.invalidLicencia = 1;
               return true;
             }else{
-              this.invalidAdmin = 2;
-              let el = document.getElementById("invalidAdmin");
+              this.invalidLicencia = 2;
+              let el = document.getElementById("invalidSqlSrv");
+              if(el){el.scrollIntoView({ behavior: 'smooth' });}
+              return false;
+            }
+
+        //Si son VPS Linux
+        }else{
+
+          if(carrito[index].versionsistema==3 || carrito[index].versionsistema==4){
+            //validar si tiene licencia 
+            let licencia: any= '';
+
+            carrito.map((p, i) => {
+              if (p.producto.subcategoria_id == 24) {
+                licencia = p.producto.id_producto;
+              }
+            });
+
+            if(licencia!= ''){
+              this.invalidLicencia = 1;
+
+              if(carrito[index].administrar!= 0){
+                this.invalidAdmin = 1;
+                return true;
+              }else{
+                this.invalidAdmin = 2;
+                let el = document.getElementById("invalidAdmin");
+                if(el){el.scrollIntoView({ behavior: 'smooth' });}
+                return false;
+              }
+
+            }else{
+              this.invalidLicencia = 2;
+              let el = document.getElementById("invalidSO");
               if(el){el.scrollIntoView({ behavior: 'smooth' });}
               return false;
             }
 
           }else{
-            this.invalidLicencia = 2;
-            let el = document.getElementById("invalidSO");
-            if(el){el.scrollIntoView({ behavior: 'smooth' });}
-            return false;
+            //no hace falta que tenga licencia cpanel
+            this.invalidLicencia = 1;
+
+            if(carrito[index].administrar!= 0){
+                this.invalidAdmin = 1;
+                return true;
+              }else{
+                this.invalidAdmin = 2;
+                let el = document.getElementById("invalidAdmin");
+                if(el){el.scrollIntoView({ behavior: 'smooth' });}
+                return false;
+              }
+
           }
 
-        }else{
-          //no hace falta que tenga licencia
-          this.invalidLicencia = 1;
-          this.invalidAdmin = 1;
-          return true;
         }
 
       }else{
@@ -249,7 +291,7 @@ export class VpsComponent implements OnInit {
 
     }else{
       this.errorSO = 2;
-      let el = document.getElementById("invalidDominio");
+      let el = document.getElementById("invalidSO");
       if(el){el.scrollIntoView({ behavior: 'smooth' });}
       return false;
     }

@@ -5,6 +5,7 @@ import { CategoriasService } from '../../services/categorias.service';
 import { Router } from '@angular/router';
 import { DominioComponent } from './../dominio/dominio.component';
 import { VpsComponent } from '../vps/vps.component';
+import { PeriodoComponent } from '../periodo/periodo.component';
 
 @Component({
   selector: 'app-hosting',
@@ -14,9 +15,10 @@ import { VpsComponent } from '../vps/vps.component';
 })
 export class HostingComponent implements OnInit {
 
-//cosas para probar
+//validación de boton continuar
 @ViewChild(DominioComponent) DominioView!: DominioComponent;
 @ViewChild(VpsComponent) VpsView!: VpsComponent;
+@ViewChild(PeriodoComponent) PeriodoView!: PeriodoComponent;
 //*************** */
 
   producto!:Productos;
@@ -119,16 +121,23 @@ export class HostingComponent implements OnInit {
     this.producto = carrito[index].producto;
     console.log("datos");
     console.log(this.producto);
-    if( this.producto.subcategoria_id == 1 || this.producto.tipo_producto_id == 1){
+
+    //validación de hosting
+    if( this.producto.subcategoria.categoria.id_categoria == 1){
+
         console.log("validar dominios");
         if(this.validarFormDominiosComponent()){
-          this.router.navigate(['/carrito']);
+          if(this.validarFormPeriodoComponent()){
+            this.router.navigate(['/carrito']);
+          }
+          
         }
         
     }
 
-    if( this.producto.subcategoria_id == 1 ||
-        this.producto.tipo_producto_id == 1 ||
+    //validación de VPS
+    else if( /*this.producto.subcategoria_id == 1 ||
+        this.producto.tipo_producto_id == 1 ||*/
         this.producto.subcategoria_id == 6 ||
         this.producto.subcategoria_id == 7 ||
         this.producto.subcategoria_id == 8 ||
@@ -140,12 +149,24 @@ export class HostingComponent implements OnInit {
         if(this.validarFormDominiosComponent()){
           
           if(this.validarFormVpsComponent()){
-            this.router.navigate(['/carrito']);
+
+            if(this.validarFormPeriodoComponent()){
+              this.router.navigate(['/carrito']);
+            }
+
           }
           
         }
 
-        //this.router.navigate(['/carrito']);
+    }
+
+    //Validación de resto de planes (solo periodo)
+    else{
+
+      if(this.validarFormPeriodoComponent()){
+        this.router.navigate(['/carrito']);
+      }
+
     }
 
    
@@ -169,6 +190,12 @@ export class HostingComponent implements OnInit {
   validarFormVpsComponent(): boolean {
 
     return this.VpsView.validarFormularios();
+
+  }
+
+  validarFormPeriodoComponent(): boolean {
+
+    return this.PeriodoView.validarFormularios();
 
   }
 

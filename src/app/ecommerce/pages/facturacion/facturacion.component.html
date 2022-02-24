@@ -21,6 +21,7 @@
                     type="checkbox"
                     role="switch"
                     id="flexSwitchCheckChecked"
+                    (change)="mostrardatosempresa()"
                     formControlName="isempresa"
                   />
                 </div>
@@ -79,6 +80,7 @@
                           type="text"
                           class="form-control"
                           [ngClass]="{ 'is-invalid': validarcampo('email') }"
+                          [readonly]="datoscompradorsave"
                           id="inputEmail4"
                           placeholder="email"
                           formControlName="email"
@@ -100,6 +102,7 @@
                               class="form-control input__field_telefono"
                               [ngClass]="{ 'is-invalid': validarcampo('telefono') }"
                               type="number"
+                              [readonly]="datoscompradorsave"
                               placeholder="Móvil"
                               id="telefono"
                               required
@@ -122,6 +125,7 @@
                           id="inputState"
                           class="form-select"
                           formControlName="pais"
+                          [attr.disabled]="datoscompradorsave"
                         >
                           <option selected>Pais</option>
                           <option
@@ -199,27 +203,31 @@
                         class="form-control"
                         [ngClass]="{ 'is-invalid': validarcampo('rut') }"
                         id="inputEmail4"
+                        [readonly]="datosfacturacion"
                         placeholder="Rut Empresa"
+                        (change)="validarrut()"
                         formControlName="rut"
                       />
                       <div class="invalid-feedback" *ngIf="validarcampo('rut')">
                         {{ mensajeerrorrut }}
                       </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7" *ngIf="empresadatos">
                       <input
                         type="text"
                         class="form-control"
                         id="inputPassword4"
+                        [readonly]="datosfacturacion"
                         placeholder="Razón Social"
                         formControlName="razonsocial"
                       />
                     </div>
-                    <div class="col-12">
+                    <div class="col-12" *ngIf="empresadatos">
                       <input
                         type="text"
                         class="form-control"
                         id="inputAddress"
+                        [readonly]="datosfacturacion"
                         placeholder="Giro"
                         formControlName="giro"
                       />
@@ -230,6 +238,7 @@
                         class="form-control"
                         [ngClass]="{ 'is-invalid': validarcampo('telefonoempresa') }"
                         id="inputEmail4"
+                        [readonly]="datosfacturacion"
                         placeholder="Tel. Empresa"
                         formControlName="telefonoempresa"
                       />
@@ -246,6 +255,7 @@
                         class="form-control"
                         [ngClass]="{ 'is-invalid': validarcampo('emailempresa') }"
                         id="inputPassword4"
+                        [readonly]="datosfacturacion"
                         placeholder="Email Empresa"
                         formControlName="emailempresa"
                       />
@@ -317,6 +327,7 @@
                       <input
                         type="text"
                         class="form-control"
+                        [readonly]="datosdireccion"
                         [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
                         id="inputAddress"
                         placeholder="Direccion"
@@ -333,6 +344,7 @@
                       <select
                         type="text"
                         class="form-control"
+                        [attr.disabled]="datosdireccion ? '' : null"
                         [ngClass]="{ 'is-invalid': validarcampo('region') }"
                         formControlName="region"
                         (change)="buscarcomuna()"
@@ -352,6 +364,7 @@
                       <select
                         type="text"
                         class="form-control"
+                        [attr.disabled]="datosdireccion ? '' : null"
                         [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
                         formControlName="comuna"
                       >

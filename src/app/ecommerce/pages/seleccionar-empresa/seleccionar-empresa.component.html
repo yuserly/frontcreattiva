@@ -1,0 +1,32 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5 p-5">
+    <div class="col-md-6 col-xs-12">
+      <div class="card card-border p-3">
+        <div class="row px-3 pb-1 pt-3">
+          <div class="col-12 text-center">
+            <h5 style="color: #004fc8;">Seleccionar Empresa</h5>
+          </div>
+
+          <div class="col-12 mb-2" *ngFor="let item of empresas; let i = index">
+            <div
+              class="card shadow-sm"
+              style="cursor: pointer"
+              (click)="seleccionar(item.id_empresa)"
+            >
+              <div class="card-body">
+                <h6>{{ item.razonsocial }}</h6>
+                <h6 class="float-end text-muted">Iniciar</h6>
+                <h6>{{ item.rut }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br />
+
+<app-footer></app-footer>

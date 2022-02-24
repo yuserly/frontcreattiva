@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { Paises } from '../../interfaces/paises.interfaces';
+import Swal from 'sweetalert2';
 import {
   TotalCarro,
   Regiones,
@@ -24,6 +25,7 @@ export class FacturacionComponent implements OnInit {
   datosfacturacion: boolean = false;
   datosdireccion: boolean = false;
   nombrefacturacion: string = 'Creattiva Datacenter';
+  empresadatos:boolean = true;
 
   form: FormGroup = this.fb.group({
     nombre: [
@@ -153,18 +155,23 @@ export class FacturacionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validacion: ValidatorService,
-    private CategoriasService: CategoriasService, private router: Router
+    private CategoriasService: CategoriasService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    let infopago = JSON.parse(localStorage.getItem('infopago')!);
 
-    let infopago = JSON.parse(localStorage.getItem('infopago')!)
+    let carrito = JSON.parse(localStorage.getItem('carrito')!);
 
-    if(infopago){
+    if (!carrito || carrito.length == 0) {
+      this.router.navigate(['/']);
+    }
 
-      localStorage.removeItem('carrito')
-      localStorage.removeItem('index')
-      localStorage.removeItem('infopago')
+    if (infopago) {
+      localStorage.removeItem('carrito');
+      localStorage.removeItem('index');
+      localStorage.removeItem('infopago');
 
       // debe llevar a la sucursal, si existe infopago quiere decir que hubo un intento de finalizar compra y se crearon los servicios
       this.router.navigate(['/']);
@@ -184,71 +191,74 @@ export class FacturacionComponent implements OnInit {
     });
 
     let usuario = JSON.parse(localStorage.getItem('usuario')!);
+    let token = localStorage.getItem('token')!;
+    let empresaselect = parseInt(localStorage.getItem('empresaselect')!);
 
-    this.CategoriasService.getempresa(usuario.email).subscribe((resp) => {
+    this.CategoriasService.getempresaxid(empresaselect).subscribe((resp) => {
       console.log(resp);
 
       if (resp.data) {
-        this.seleccion.nombre = resp.data.nombre;
-        this.seleccion.email = resp.data.email;
-        this.seleccion.telefono = resp.data.telefono;
-        this.seleccion.pais = resp.data.pais;
-        this.seleccion.rut = resp.data.rut;
-        this.seleccion.razonsocial = resp.data.razonsocial;
-        this.seleccion.giro = resp.data.giro;
-        this.seleccion.telefonoempresa = resp.data.telefono_empresa;
-        this.seleccion.emailempresa = resp.data.email_empresa;
-        this.seleccion.mediopago = 1;
+        if (token && empresaselect) {
+          this.seleccion.nombre = resp.data.nombre;
+          this.seleccion.email = resp.data.email;
+          this.seleccion.telefono = resp.data.telefono;
+          this.seleccion.pais = resp.data.pais;
+          this.seleccion.rut = resp.data.rut;
+          this.seleccion.razonsocial = resp.data.razonsocial;
+          this.seleccion.giro = resp.data.giro;
+          this.seleccion.telefonoempresa = resp.data.telefono_empresa;
+          this.seleccion.emailempresa = resp.data.email_empresa;
+          this.seleccion.mediopago = 1;
 
-        if(resp.data.razonsocial){
-          this.nombrefacturacion = resp.data.razonsocial;
-        }
+          if (resp.data.razonsocial) {
+            this.nombrefacturacion = resp.data.razonsocial;
+          }
 
-        if (resp.data.tipo == 1) {
-          this.seleccion.isempresa = true;
-        } else {
-          this.seleccion.isempresa = false;
-        }
-        this.seleccion.direccion = resp.data.direccion;
-        this.seleccion.region = parseInt(resp.data.region);
-        this.seleccion.comuna = parseInt(resp.data.comuna);
+          if (resp.data.tipo == 1) {
+            this.seleccion.isempresa = true;
+            this.empresadatos = true;
+          } else {
+            this.seleccion.isempresa = false;
+            this.empresadatos = false;
 
-        if (
-          resp.data.nombre  &&
-          resp.data.email  &&
-          resp.data.telefono
-        ) {
-          this.datoscompradorsave = true;
-        }
+          }
+          this.seleccion.direccion = resp.data.direccion;
+          this.seleccion.region = parseInt(resp.data.region);
+          this.seleccion.comuna = parseInt(resp.data.comuna);
 
-        if (resp.data.tipo == 1) {
-          if (
-            resp.data.rut  &&
-            resp.data.razonsocial  &&
-            resp.data.giro  &&
-            resp.data.telefono_empresa  &&
-            resp.data.email_empresa
-          ) {
-            this.datosfacturacion = true;
+          if (resp.data.nombre && resp.data.email && resp.data.telefono) {
+            this.datoscompradorsave = true;
+          }
+
+          if (resp.data.tipo == 1) {
+            if (
+              resp.data.rut &&
+              resp.data.razonsocial &&
+              resp.data.giro &&
+              resp.data.telefono_empresa &&
+              resp.data.email_empresa
+            ) {
+              this.datosfacturacion = true;
+            }
+          } else {
+            if (
+              resp.data.rut &&
+              resp.data.telefono_empresa &&
+              resp.data.email_empresa
+            ) {
+              this.datosfacturacion = true;
+            }
+          }
+
+          if (resp.data.direccion && resp.data.region && resp.data.comuna) {
+            this.datosdireccion = true;
           }
         } else {
-          if (
-            resp.data.rut &&
-            resp.data.telefono_empresa &&
-            resp.data.email_empresa
-          ) {
-            this.datosfacturacion = true;
-          }
-        }
+          localStorage.removeItem('token');
+          localStorage.removeItem('empresaselect');
 
-        if (
-          resp.data.direccion &&
-          resp.data.region &&
-          resp.data.comuna
-        ) {
-          this.datosdireccion = true;
+          this.router.navigate(['/login']);
         }
-
       } else {
         this.seleccion.nombre = usuario.nombre;
         this.seleccion.email = usuario.email;
@@ -257,8 +267,6 @@ export class FacturacionComponent implements OnInit {
       }
 
       this.form.reset(this.seleccion);
-
-
 
       if (this.form.value.comuna != 0) {
         this.buscarcomuna();
@@ -290,6 +298,43 @@ export class FacturacionComponent implements OnInit {
         console.log(resp);
         this.datoscompradorsave = true;
       });
+    }
+  }
+
+  validarrut(){
+
+    if(!this.form.get('rut')?.errors){
+
+        let data = {
+          rut: this.form.value.rut
+        }
+
+        this.CategoriasService.validarrut(data).subscribe(resp =>{
+          console.log(resp)
+
+          if(resp.data){
+
+            Swal.fire({
+              title: 'RUT en uso',
+              text: "Este RUT ya se encuentra en uso ¿Quieres iniciar sesión?",
+              icon: 'info',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Login',
+              cancelButtonText: 'Cancelar',
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['/login']);
+              }else{
+                this.ngOnInit();
+              }
+            })
+
+          }
+
+        })
     }
   }
 
@@ -359,49 +404,41 @@ export class FacturacionComponent implements OnInit {
     this.datosdireccion = false;
   }
 
-  finalizarcompra(){
+  mostrardatosempresa(){
+    this.empresadatos = this.form.value.isempresa;
+  }
 
-    if(this.form.value.isempresa == 1){
-
-      if(!this.form.invalid && this.form.value.razonsocial != '' && this.form.value.giro != ''){
-
+  finalizarcompra() {
+    if (this.form.value.isempresa == 1) {
+      if (
+        !this.form.invalid &&
+        this.form.value.razonsocial != '' &&
+        this.form.value.giro != ''
+      ) {
         let data = {
           datos: this.form.value,
-          carro: JSON.parse(localStorage.getItem('carrito')!)
-        }
+          carro: JSON.parse(localStorage.getItem('carrito')!),
+        };
 
-        this.CategoriasService.generarordencompra(data).subscribe(resp =>{
-          console.log(resp)
+        this.CategoriasService.generarordencompra(data).subscribe((resp) => {
+          console.log(resp);
           localStorage.setItem('infopago', JSON.stringify(resp));
           this.router.navigate(['/formulario-pago']);
-        })
-
+        });
       }
-
-    }else{
-
-      if(!this.form.invalid){
-
+    } else {
+      if (!this.form.invalid) {
         let data = {
           datos: this.form.value,
-          carro: JSON.parse(localStorage.getItem('carrito')!)
-        }
+          carro: JSON.parse(localStorage.getItem('carrito')!),
+        };
 
-        this.CategoriasService.generarordencompra(data).subscribe(resp =>{
-          console.log(resp)
+        this.CategoriasService.generarordencompra(data).subscribe((resp) => {
+          console.log(resp);
           localStorage.setItem('infopago', JSON.stringify(resp));
           this.router.navigate(['/formulario-pago']);
-
-
-        })
-
-
-
+        });
       }
-
-
     }
-
-
   }
 }

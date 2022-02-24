@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { catchError, map } from 'rxjs/operators';
+
 import {
   Categorias,
   Productos,
@@ -76,6 +78,14 @@ export class CategoriasService {
     return this.http.get<Paises[]>('https://restcountries.com/v3.1/all');
   }
 
+  // login
+
+  login(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/login`, data)
+
+  }
+
   // empresa
 
   crearempresa(data:any):Observable<any>{
@@ -84,9 +94,57 @@ export class CategoriasService {
 
   }
 
+  validarrut(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/validarrut`, data)
+
+  }
+
+  // solicitud codigo accesso
+
+  solicitudcode(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/solicitudcodigo`, data)
+
+  }
+
+  // login por codigo
+
+  logincode(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/logincode`, data)
+
+  }
+
   getempresa(email:string):Observable<any>{
 
     return this.http.get<any>(`${this.urlBase}/empresa/${email}`);
+  }
+
+  getempresascliente(email:string):Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/empresascliente/${email}`);
+  }
+
+  getempresaxid(id:number):Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/empresa/xid/${id}`);
+  }
+
+  // validar token
+
+  validartoken(){
+
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<any>(`${this.urlBase}/validartoken`, {headers}).pipe(
+      map(resp =>{
+        return resp.data.ok;
+      }),
+      catchError(err => of(false))
+    )
   }
 
   calculototalcarro() {

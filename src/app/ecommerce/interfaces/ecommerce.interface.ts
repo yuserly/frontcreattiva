@@ -151,5 +151,24 @@ export interface Comunas {
   updated_at:     null;
 }
 
-
+export interface Empresas {
+  id_empresa:       number;
+  nombre:           string;
+  tipo:             number;
+  rut:              string;
+  email:            string;
+  telefono:         string;
+  email_empresa:    string;
+  telefono_empresa: string;
+  razonsocial:      string;
+  giro:             string;
+  direccion:        string;
+  pais:             string;
+  region:           number;
+  comuna:           number;
+  user_id:          number;
+  created_at:       Date;
+  updated_at:       Date;
+  deleted_at:       null;
+}
 

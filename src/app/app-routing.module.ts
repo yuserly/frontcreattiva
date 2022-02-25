@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './ecommerce/pages/login/login.component';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
 
@@ -10,7 +11,9 @@ const routes: Routes = [
   },
   {
     path:'sucursal',
-    loadChildren: () => import('./sucursal/sucursal.module').then(m => m.SucursalModule)
+    loadChildren: () => import('./sucursal/sucursal.module').then(m => m.SucursalModule),
+    canActivate:[ValidarTokenGuard],
+    canLoad:[ValidarTokenGuard]
   },
   {
     path:'login-rapido',

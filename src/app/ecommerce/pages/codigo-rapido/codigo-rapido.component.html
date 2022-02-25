@@ -1,0 +1,63 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-6 col-xs-12">
+      <div class="card card-border p-3">
+        <div class="row px-5 pb-1 pt-3">
+          <div class="col-md-12 mb-2">
+            <h5><b>Acceso con código rápido</b></h5>
+
+            <small
+              >Ingresa el código que enviamos al correo {{correo}}</small
+            >
+          </div>
+
+          <div class="col-md-12">
+            <form [formGroup]="form">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="code"
+                  id="codigo"
+                  aria-describedby="codigo"
+                />
+              </div>
+
+              <!-- <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1"
+                  >Mostrar código</label
+                >
+              </div> -->
+
+              <div class="text-center mt-4">
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #005ad2;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    width: 60%;
+                  "
+                  [disabled]="form.invalid"
+                  (click)="continuar()"
+                >
+                  Ingresar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br /><br />
+
+<app-footer></app-footer>

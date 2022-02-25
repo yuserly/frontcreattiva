@@ -8,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  countcarro:number = 0;
+
   constructor(public DominiosService: DominiosService) { }
 
   ngOnInit(): void {
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')!);
+
+    if (!carrito || carrito.length == 0) {
+      this.countcarro = 0;
+    }else{
+      this.countcarro = carrito.length;
+    }
+
   }
 
 }

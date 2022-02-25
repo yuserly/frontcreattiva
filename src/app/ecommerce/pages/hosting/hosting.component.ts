@@ -62,11 +62,21 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria.categoria_id == 3){
+    if(this.producto.subcategoria.categoria_id == 3
+     ){
 
       this.periodonum = 1;
 
     }
+
+    if(this.producto.subcategoria_id == 17 //Google Workspace
+     ){
+
+      this.dominionum = 1;
+      this.periodonum = 3;
+
+    }
+     
 
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
 

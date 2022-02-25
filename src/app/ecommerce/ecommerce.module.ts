@@ -25,6 +25,7 @@ import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago
 import { PagoExitosoComponent } from './pages/pago-exitoso/pago-exitoso.component';
 import { PagoRechazadoComponent } from './pages/pago-rechazado/pago-rechazado.component';
 import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-transferencia.component';
+import { CantidadlicenciasComponent } from './pages/cantidadlicencias/cantidadlicencias.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-tran
     FormularioPagoComponent,
     PagoExitosoComponent,
     PagoRechazadoComponent,
-    PagoTransferenciaComponent
+    PagoTransferenciaComponent,
+    CantidadlicenciasComponent
   ],
   imports: [
     CommonModule,

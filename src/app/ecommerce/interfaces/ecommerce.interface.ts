@@ -75,6 +75,7 @@ export interface Carrito{
   administrar?: number;
   ip?: string;
   periodos:Periodo[];
+  cantidad?: number;
 
 }
 

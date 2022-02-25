@@ -1,0 +1,49 @@
+<div class="card card-border p-3 mt-4">
+  <div class="row px-5">
+    <div class="col-md-12 mb-2">
+      <h5 id="invalidCantLicencias">
+        <b>2. Agrega la cantidad de licencias</b>
+      </h5>
+    </div>
+    <div class="col-md-12">
+    	<div class="row">
+    		<div class="col-md-5 d-flex align-items-center">
+    			<p class="m-0" style="font-size: 1.4rem">Indique la Cantidad</p>
+    		</div>
+    		<div class="col-md-6 d-flex align-items-center">
+    			<form class="d-flex align-items-center" [formGroup]="form">
+
+    				<input id="cantidadlicencias"
+	    				 type="number" 
+	    				 (change)="uptcantidadlicencias()"
+	    				 formControlName="cantidadlicencias"
+	    				 style="width: 60px; height: 30px; margin-left:10px; text-align: center; font-size: 20px;border-top: unset;border-left: unset;border-right: unset;outline: unset;"
+	    				 />
+					<div style="display: inline-block; position: relative;">
+						<div id="arrup" 
+							class="disable-select p-1" 
+							style="cursor:pointer;background:#ffffff;color:#1874D0;border:1px solid #1874D0"
+							(click)="addlicencia()">
+
+							<i class="fas fa-chevron-up" style="position: relative;"></i>
+						</div>
+						<div id="arrdown" 
+							class="disable-select p-1" 
+							style="cursor:pointer;background:#ffffff;color:#1874D0;border:1px solid #1874D0"
+							(click)="removelicencia()">
+
+							<i class="fas fa-chevron-down" style="position: relative;"></i>
+						</div>
+					</div>
+
+    			</form>
+    			
+    		</div>
+    	</div>
+
+
+    </div>
+  </div>
+
+</div>
+

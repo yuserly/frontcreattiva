@@ -98,28 +98,41 @@ export class CategoriasService {
     let precioold = 0;
     let ahorroa = 0;
 
+    let tlicencias:number = 10;
+
     let neto: number = 0;
     let iva: number = 0;
     let total: number = 0;
     let ahorro: number = 0;
 
-    carrito.forEach((element, i) => {
-      element.periodos.forEach((element2) => {
-        if (element.periodo == element2.id_periodo) {
-          precio = element2.precio_descuento;
-          precioold = element2.precio;
-          ahorroa = element2.ahorro;
+      //totalLicencias = element.cantidadlicencias;
+      //console.log("Total licencias: "+element.cantidadlicencias);
 
-          productos.push({
-            nombre: element.producto.nombre,
-            precio: precio,
-            precioold: precioold,
-            ahorro: ahorroa,
-          });
-        }
-      });
+
+    carrito.forEach((element, i) => {
+    
+        element.periodos.forEach((element2) => {
+
+          if (element.periodo == element2.id_periodo) {
+
+            precio = element2.precio_descuento*<number>element.cantidad;
+            precioold = element2.precio*<number>element.cantidad;
+            ahorroa = element2.ahorro*<number>element.cantidad;
+
+            productos.push({
+              nombre: element.producto.nombre,
+              precio: precio,
+              precioold: precioold,
+              ahorro: ahorroa,
+            });
+          }
+        });
+
+
+      
     });
 
+    console.log()
     productos.forEach((element) => {
       neto += element.precio;
       ahorro += element.ahorro;

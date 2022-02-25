@@ -649,3 +649,12 @@ border: 1px solid #005AD2!important;
 .row-footer{
 border-bottom: 0.3px solid #FFF;
 }
+input#cantidadlicencias::-webkit-outer-spin-button,
+input#cantidadlicencias::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input#cantidadlicencias {
+  -moz-appearance: textfield;
+}

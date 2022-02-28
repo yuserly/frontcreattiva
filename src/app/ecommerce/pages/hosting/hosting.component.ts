@@ -62,7 +62,8 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria.categoria_id == 3
+    if(this.producto.subcategoria.categoria_id == 3 ||
+      this.producto.subcategoria.categoria_id == 4
      ){
 
       this.periodonum = 1;
@@ -87,6 +88,8 @@ export class HostingComponent implements OnInit {
     }
 
     this.itemsCarrito();
+
+    window.scroll(0,0);
 
 
   }
@@ -170,6 +173,20 @@ export class HostingComponent implements OnInit {
 
     }
 
+    //validación de licencias
+    else if(this.producto.subcategoria_id == 17){
+
+      if(this.validarFormDominiosComponent()){
+
+        if(this.validarFormPeriodoComponent()){
+
+          this.router.navigate(['/carrito']);
+
+        }
+        
+      }
+
+    }
     //Validación de resto de planes (solo periodo)
     else{
 

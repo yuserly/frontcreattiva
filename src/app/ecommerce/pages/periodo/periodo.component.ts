@@ -23,6 +23,8 @@ export class PeriodoComponent implements OnInit {
     periodo: ''
   }
 
+  mostrarPeriodoMes:number = 0; 
+
   constructor(private fb: FormBuilder, private CategoriasService:CategoriasService) { }
 
   ngOnInit(): void {

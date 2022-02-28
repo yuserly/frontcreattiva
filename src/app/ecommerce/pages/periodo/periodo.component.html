@@ -12,92 +12,99 @@
 
         <div class="col-md-4 text-center" *ngFor="let item of periodos; let i=index">
 
-          <button
-            type="button"
-            class="btn bg-azul-crt text-white p-0"
-            style="
-              font-size: 16px;
-              width: 100%;
-              border-radius: 0px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-            *ngIf="item.id_periodo == 4; else caro"
-          >
-            Más económico
-          </button>
 
-          <ng-template #caro>
+          <div>
 
             <button
-            type="button"
-            class="btn bg-white text-white p-0"
-            style="
-              font-size: 16px;
-              width: 100%;
-              border-radius: 0px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-          >
-            Más económico
-          </button>
-
-          </ng-template>
-          <input
-            type="radio"
-            class="btn-check"
-            [id]="i"
-            [value]="item.id_periodo"
-            formControlName="periodo"
-            autocomplete="off"
-            (change)="modificarcarro()"
-          />
-          <label
-            class="btn btn-periodos px-0 pb-0 card-border"
-            [for]="i"
-            style="
-              width: 100%;
-              border-radius: 0px;
-              text-align: left;
-              border-bottom-left-radius: 5px;
-              border-bottom-right-radius: 5px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-          >
-            <strong class="px-3" style="font-size: 17px">
-              Cada {{item.periodo}}
-            </strong>
-
-            <br />
-
-            <strong class="px-3">
-              {{item.precio_mensual | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}
-
-              <small style="font-size: 14px">CLP/mes</small>
-            </strong>
-
-            <p class="px-3" style="line-height: 1.2">
-              <small style="font-size: 14px; color: #1f2044">
-                De:
-                <span style="text-decoration: line-through"
-                  >{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL' }} </span
-                >
-              </small>
-
+              type="button"
+              class="btn bg-azul-crt text-white p-0"
+              style="
+                font-size: 16px;
+                width: 100%;
+                border-radius: 0px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+              "
+              *ngIf="item.id_periodo == 4; else caro"
+            >
+              Más económico
+            </button>
+            
+            <ng-template #caro>
+            
+              <button
+              type="button"
+              class="btn bg-white text-white p-0"
+              style="
+                font-size: 16px;
+                width: 100%;
+                border-radius: 0px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+              "
+            >
+              Más económico
+            </button>
+            
+            </ng-template>
+            <input
+              type="radio"
+              class="btn-check"
+              [id]="i"
+              [value]="item.id_periodo"
+              formControlName="periodo"
+              autocomplete="off"
+              (change)="modificarcarro()"
+            />
+            <label
+              class="btn btn-periodos px-0 pb-0 card-border"
+              [for]="i"
+              style="
+                width: 100%;
+                border-radius: 0px;
+                text-align: left;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+              "
+            >
+              <strong class="px-3" style="font-size: 17px">
+                Cada {{item.periodo}}
+              </strong>
+            
               <br />
+            
+              <strong class="px-3">
+                {{item.precio_mensual | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}
+            
+                <small style="font-size: 14px">CLP/mes</small>
+              </strong>
+            
+              <p class="px-3" style="line-height: 1.2">
+                <small style="font-size: 14px; color: #1f2044">
+                  De:
+                  <span style="text-decoration: line-through"
+                    >{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL' }} </span
+                  >
+                </small>
+            
+                <br />
+            
+                <small style="font-size: 14px; color: #1f2044">
+                  A: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b> <br />
+                  por {{item.periodo}}
+                </small>
+              </p>
+            
+              <div class="mb-0 pt-1 pb-1 text-center card-footer">
+                <small><b>Ahorra: {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
+              </div>
+            </label>
+            
+          </div>
 
-              <small style="font-size: 14px; color: #1f2044">
-                A: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b> <br />
-                por {{item.periodo}}
-              </small>
-            </p>
 
-            <div class="mb-0 pt-1 pb-1 text-center card-footer">
-              <small><b>Ahorra: {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
-            </div>
-          </label>
         </div>
       </div>
     </div>

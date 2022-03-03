@@ -70,13 +70,23 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria_id == 17 //Google Workspace
+    if(this.producto.subcategoria_id == 17 || //Google Workspace
+      this.producto.subcategoria_id == 20
      ){
 
       this.dominionum = 1;
       this.periodonum = 3;
 
     }
+
+    if(this.producto.subcategoria_id == 11 || //Pago unico
+      this.producto.subcategoria_id == 14  ||
+      this.producto.subcategoria_id == 16
+      ){
+ 
+       this.periodonum = 1;
+ 
+     }
      
 
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){

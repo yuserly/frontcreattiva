@@ -173,7 +173,8 @@ export class CategoriasService {
 
           if (element.periodo == element2.id_periodo) {
 
-            if(element.producto.subcategoria_id==17){
+            if(element.producto.subcategoria_id==17 ||
+              element.producto.subcategoria_id==20){
               precio = element2.precio_descuento*<number>element.cantidad;
               precioold = element2.precio*<number>element.cantidad;
               ahorroa = element2.ahorro*<number>element.cantidad;

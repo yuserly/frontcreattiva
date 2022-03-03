@@ -80,10 +80,14 @@ export class VpsComponent implements OnInit {
 
     this.form.reset(this.seleccion);
 
+    console.log("productos licencias");
+    console.log(this.producto);
+    console.log("---------------------");
 
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
-       // el 24 es el id de las subcategoria a las que pertenece las licencias cpanel
-      this.CategoriasService.getproductos(24).subscribe((resp) => {
+    
+      // el 24 es el id de las subcategoria a las que pertenece las licencias cpanel
+      this.CategoriasService.getproductos(25).subscribe((resp) => {
         this.licencias = resp;
       });
 
@@ -134,13 +138,14 @@ export class VpsComponent implements OnInit {
       carrito[index].administrar = this.form.value.administrar;
     }
 
-    if (
-      this.form.value.licencia != ''
-    ) {
+    console.log("licencia: ");
+    console.log(this.form.value.licencia);
+
+    if (this.form.value.licencia != '') {
       let producto!: Productos;
 
       carrito.map((p, i) => {
-        if (p.producto.subcategoria_id == 24) {
+        if (p.producto.subcategoria_id == 25) {
           carrito.splice(i, 1);
         }else if(p.producto.tipo_producto_id == 8){
           carrito.splice(i, 1);
@@ -201,7 +206,7 @@ export class VpsComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     console.log("datos del plan");
-    console.log(carrito);
+    console.log(carrito[index].administrar);
 
 
     if(carrito[index].sistemaoperativo!= 0){
@@ -232,23 +237,24 @@ export class VpsComponent implements OnInit {
             }
 
         //Si son VPS Linux
-        }else{
+        }else{ //VPS Linux
 
           if(carrito[index].versionsistema==3 || carrito[index].versionsistema==4){
             //validar si tiene licencia 
             let licencia: any= '';
 
             carrito.map((p, i) => {
-              if (p.producto.subcategoria_id == 24) {
+              if (p.producto.subcategoria_id == 25) {
                 licencia = p.producto.id_producto;
               }
             });
 
             if(licencia!= ''){
               this.invalidLicencia = 1;
-
-              if(carrito[index].administrar!= 0){
+              //1 quiere licencia, 2 no quiere licencia
+              if(carrito[index].administrar== 1 || carrito[index].administrar== 2){
                 this.invalidAdmin = 1;
+                if(carrito[index].administrar== 2){ carrito[index].administrar=0; }
                 return true;
               }else{
                 this.invalidAdmin = 2;

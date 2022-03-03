@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Carrito, TotalCarro } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { DominiosService } from '../../services/dominios.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-carro',
   templateUrl: './carro.component.html',
@@ -35,42 +35,72 @@ export class CarroComponent implements OnInit {
   }
 
   eliminarcarro(i:number){
-    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-    carrito.splice(i, 1);
+    Swal.fire({
+      position: 'center',
+      title: '¿Estás seguro de querer eliminar el producto?',
+      showConfirmButton: true,
+      confirmButtonColor: '#005AD2',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      width: '350px',
+      customClass: {
+          popup: 'alerta'
+        }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+        carrito.splice(i, 1);
 
-    carrito = JSON.parse(localStorage.getItem('carrito')!);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
 
-    if(carrito.length > 0){
+        carrito = JSON.parse(localStorage.getItem('carrito')!);
 
-      this.carrito = carrito;
+        if(carrito.length > 0){
 
-      this.totalcarroarray = this.CategoriasService.calculototalcarro();
+          this.carrito = carrito;
 
-      this.statusCarrito = 1;
+          this.totalcarroarray = this.CategoriasService.calculototalcarro();
 
-      this.itemsCarrito();
-    }else{
+          this.statusCarrito = 1;
 
-      this.statusCarrito = 0;
+        }else{
 
-      this.itemsCarrito();
+          this.statusCarrito = 0;
 
-      //this.router.navigate(['/']);
-
-    }
-
+        }
+      }
+    })
 
   }
 
   vaciarcarro(){
 
-    localStorage.removeItem('carrito');
-    localStorage.removeItem('index');
-    this.itemsCarrito();
-    this.statusCarrito = 0;
+    Swal.fire({
+      position: 'center',
+      title: '¿Estás seguro de querer vaciar el carro?',
+      showConfirmButton: true,
+      confirmButtonColor: '#005AD2',
+      showCancelButton: true,
+      confirmButtonText: 'Vaciar',
+      cancelButtonText: 'Cancelar',
+      width: '350px',
+      customClass: {
+          popup: 'alerta'
+        }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('carrito');
+        localStorage.removeItem('index');
+        this.itemsCarrito();
+        this.statusCarrito = 0;
+      }else{
+        this.ngOnInit();
+      }
+    })
+
   }
 
   cambiarperiodo(i:number, periodo:any){

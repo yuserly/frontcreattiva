@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col">
             <select class="form-select" formControlName="licencia"  (change)="guardar()">
-              <option selected>Seleccione licencia</option>
+              <option value="" selected>Seleccione licencia</option>
               <option *ngFor="let licencia of licencias" [value]="licencia.id_producto">{{licencia.nombre}}</option>
             </select>
           </div>
@@ -131,7 +131,7 @@
           <input
             class="form-check-input"
             type="radio"
-            value="0"
+            value="2"
             (change)="guardar()"
             formControlName="administrar"
             id="sinadmin"
@@ -164,7 +164,7 @@
               <div class="col">
 
                 <select class="form-select" formControlName="licencia"  (change)="guardar()">
-                  <option selected>Seleccione licencia</option>
+                  <option value="" selected>Seleccione licencia</option>
                   <option *ngFor="let licencia of licencias" [value]="licencia.id_producto">{{licencia.nombre}}</option>
                 </select>
 

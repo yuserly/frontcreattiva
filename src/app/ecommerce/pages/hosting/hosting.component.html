@@ -16,9 +16,17 @@
       producto.subcategoria_id == 7 ||
       producto.subcategoria_id == 8 ||
       producto.subcategoria_id == 9 ||
-      producto.subcategoria_id == 10
+      producto.subcategoria_id == 10 ||
+      producto.subcategoria_id == 17 ||
+      producto.subcategoria_id == 20
     " (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"
     [dominioscarrito]="carrito"></app-dominio>
+
+    <app-cantidadlicencias 
+    *ngIf="producto.subcategoria_id == 17 ||
+            producto.subcategoria_id == 20
+    " (totalcarrod)="totalcarro($event)"
+    ></app-cantidadlicencias>
 
       <app-vps
         *ngIf="

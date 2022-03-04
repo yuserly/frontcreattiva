@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Periodo, Carrito, TotalCarro, ProductoCarro } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { Periodo, Carrito, TotalCarro, ProductoCarro, Productos } from '../../../ecommerce/interfaces/ecommerce.interface';
 import { CategoriasService } from '../../../ecommerce/services/categorias.service';
 
 @Component({
@@ -23,6 +23,13 @@ export class PeriodoComponent implements OnInit {
     periodo: ''
   }
 
+  producto!:Productos;
+  mostrarPeriodoMes:number = 0; 
+  mostrarPeriodo1Year:number = 0;
+  mostrarPeriodo2Year:number = 0;
+  mostrarPeriodo3Year:number = 0;
+  mostrarPagoUnico:number = 0;
+
   constructor(private fb: FormBuilder, private CategoriasService:CategoriasService) { }
 
   ngOnInit(): void {
@@ -30,9 +37,63 @@ export class PeriodoComponent implements OnInit {
 
 
     let index = JSON.parse(localStorage.getItem('index')!);
-
-
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    this.producto = carrito[index].producto;
+
+    if(this.producto.subcategoria_id == 23){
+      this.mostrarPeriodoMes = 1;
+    }
+
+    //Hosting
+    if(this.producto.subcategoria_id == 1 ||
+      this.producto.subcategoria_id == 2 ||
+      this.producto.subcategoria_id == 3 ||
+      this.producto.subcategoria_id == 4 ||
+      this.producto.subcategoria_id == 5
+      ){
+
+      this.mostrarPeriodo1Year = 1;
+      this.mostrarPeriodo2Year = 1;
+      this.mostrarPeriodo3Year = 1;
+
+    }
+    //vps
+    if(this.producto.subcategoria_id == 6 ||
+      this.producto.subcategoria_id == 7 ||
+      this.producto.subcategoria_id == 8 ||
+      this.producto.subcategoria_id == 9 ||
+      this.producto.subcategoria_id == 10
+      ){
+
+      this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo1Year = 1;
+      this.mostrarPeriodo2Year = 1;
+      this.mostrarPeriodo3Year = 1;
+
+    }
+
+
+
+    if(this.producto.subcategoria_id == 14  ||
+      this.producto.subcategoria_id == 16 ||
+      this.producto.subcategoria_id == 22){
+
+      this.mostrarPagoUnico = 1;
+
+    }
+
+    if(this.producto.subcategoria_id == 11){
+
+      this.mostrarPeriodoMes = 1;
+
+    }
+
+    if(this.producto.subcategoria_id == 17 || this.producto.subcategoria_id == 20){
+      //Licencias Google Workspace y Microsoft 365
+      this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo1Year = 1;
+
+    }
 
     console.log("periodos");
     console.log(carrito[index]);

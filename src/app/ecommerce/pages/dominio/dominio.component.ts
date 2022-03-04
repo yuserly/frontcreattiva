@@ -48,6 +48,7 @@ export class DominioComponent implements OnInit {
     //validar si existe un dominio guardado y guardar
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    console.log(carrito);
     console.log(carrito[index].dominio);
     if(carrito[index].dominio){
       console.log("Dominio:" +carrito[index].dominio);
@@ -132,13 +133,7 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     carrito.map((p, i) => {
-      if (p.producto.id_producto == 17||
-          p.producto.id_producto == 18||
-          p.producto.id_producto == 19||
-          p.producto.id_producto == 20||
-          p.producto.id_producto == 21||
-          p.producto.id_producto == 22
-          ) {
+      if (p.producto.subcategoria_id == 26) {
         if(p.dominio===dominio){
           console.log(i);
           carrito.splice(i, 1);
@@ -192,13 +187,7 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     carrito.map((p, i) => {
-      if (p.producto.id_producto == 17||
-          p.producto.id_producto == 18||
-          p.producto.id_producto == 19||
-          p.producto.id_producto == 20||
-          p.producto.id_producto == 21||
-          p.producto.id_producto == 22
-          ) {
+      if (p.producto.subcategoria_id == 26) {
 
           carrito.splice(i);
       }
@@ -267,13 +256,7 @@ export class DominioComponent implements OnInit {
     let cont = 0;
 
     carrito.map((p, i) => {
-      if (p.producto.id_producto == 17||
-          p.producto.id_producto == 18||
-          p.producto.id_producto == 19||
-          p.producto.id_producto == 20||
-          p.producto.id_producto == 21||
-          p.producto.id_producto == 22
-          ) {
+      if (p.producto.subcategoria_id == 26) {
         cont++;
       }
       return p;
@@ -293,20 +276,16 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     let cont = 0;
     console.log("producto buscado: ");
-    
-    console.log(carrito[index]);
+    console.log(carrito);
+    //console.log(carrito[index]);
+
+
     if(carrito[index].dominio){
       this.errorDominio = 1;
       return true;
     }else if(carrito.length>1){
       carrito.map((p, i) => {
-        if (p.producto.id_producto == 17||
-            p.producto.id_producto == 18||
-            p.producto.id_producto == 19||
-            p.producto.id_producto == 20||
-            p.producto.id_producto == 21||
-            p.producto.id_producto == 22
-            ) {
+        if (p.producto.subcategoria_id == 26) {
               cont++;
         }
         return p;

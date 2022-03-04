@@ -52,6 +52,7 @@ export class PlanesComponent implements OnInit {
                 administrar: 0,
                 ip: '',
                 periodos: resp2,
+                cantidad: 1
               });
 
               const cantidadcarro = carro.length;

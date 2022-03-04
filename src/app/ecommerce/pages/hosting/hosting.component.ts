@@ -62,11 +62,32 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria.categoria_id == 3){
+    if(this.producto.subcategoria.categoria_id == 3 ||
+      this.producto.subcategoria.categoria_id == 4
+     ){
 
       this.periodonum = 1;
 
     }
+
+    if(this.producto.subcategoria_id == 17 || //Google Workspace
+      this.producto.subcategoria_id == 20
+     ){
+
+      this.dominionum = 1;
+      this.periodonum = 3;
+
+    }
+
+    if(this.producto.subcategoria_id == 11 || //Pago unico
+      this.producto.subcategoria_id == 14  ||
+      this.producto.subcategoria_id == 16
+      ){
+ 
+       this.periodonum = 1;
+ 
+     }
+     
 
     if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
 
@@ -77,6 +98,8 @@ export class HostingComponent implements OnInit {
     }
 
     this.itemsCarrito();
+
+    window.scroll(0,0);
 
 
   }
@@ -160,6 +183,20 @@ export class HostingComponent implements OnInit {
 
     }
 
+    //validación de licencias
+    else if(this.producto.subcategoria_id == 17){
+
+      if(this.validarFormDominiosComponent()){
+
+        if(this.validarFormPeriodoComponent()){
+
+          this.router.navigate(['/carrito']);
+
+        }
+        
+      }
+
+    }
     //Validación de resto de planes (solo periodo)
     else{
 

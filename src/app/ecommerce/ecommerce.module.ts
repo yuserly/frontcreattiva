@@ -25,6 +25,7 @@ import { FormularioPagoComponent } from './pages/formulario-pago/formulario-pago
 import { PagoExitosoComponent } from './pages/pago-exitoso/pago-exitoso.component';
 import { PagoRechazadoComponent } from './pages/pago-rechazado/pago-rechazado.component';
 import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-transferencia.component';
+import { CantidadlicenciasComponent } from './pages/cantidadlicencias/cantidadlicencias.component';
 import { LoginPasswordComponent } from './pages/login-password/login-password.component';
 import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/seleccionar-empresa.component';
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
@@ -52,6 +53,7 @@ import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.compo
     PagoExitosoComponent,
     PagoRechazadoComponent,
     PagoTransferenciaComponent,
+    CantidadlicenciasComponent,
     LoginPasswordComponent,
     SeleccionarEmpresaComponent,
     CodigoRapidoComponent

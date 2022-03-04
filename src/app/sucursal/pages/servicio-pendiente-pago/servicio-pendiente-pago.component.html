@@ -1,0 +1,48 @@
+<div class="section-servicios pt-5 pb-5">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <h2 class="text-left" style="color:black;">Servicios Pendiente de Pago <i class="fas fa-chevron-down ms-2"></i></h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Descripción del Servicio</th>
+              <th scope="col">Fecha de Contratación</th>
+              <th scope="col">Fecha de Vencimiento</th>
+              <th scope="col">Valor del Servicio</th>
+              <th scope="col">Periodo</th>
+              <th scope="col">Pagar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of servicios">
+              <th scope="row">{{item.codigo_venta}}</th>
+              <td>{{item.glosa}}</td>
+              <td>{{item.fecha_inscripcion | date:'dd/MM/YYYY' }}</td>
+              <td>{{item.fecha_renovacion | date:'dd/MM/YYYY' }}</td>
+              <td>{{item.detalleventa[0].venta.neto | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} + IVA</td>
+              <td>{{item.periodo.periodo}}</td>
+              <td>
+                <div class="d-flex">
+                  <button class="btn" title="Pagar con Webpay"><img src="../../../../assets/img/icon-webpay.png" width="30px" /></button>
+                  <button class="btn" title="Pagar con Paypal"><img src="../../../../assets/img/paypal.png" width="30px" /></button>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,7 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ServicioPendientePagoComponent } from './pages/servicio-pendiente-pago/servicio-pendiente-pago.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    children:[
+      {
+        path:'',
+        component: ServicioPendientePagoComponent
+      },
+      {
+        path:'servicios/:slug',
+        component: ServiciosComponent
+      },
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,0 +1,130 @@
+<main>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 px-0">
+        <div
+          class="flex-shrink-0 p-3 sidebar"
+          style="width: 100%; height: 100%; background-color: #022092"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
+          >
+            <img alt="" class="img-fluid" src="img/logoWeb.webp" width="100%" />
+          </a>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1" *ngFor="let item of categorias">
+              <button
+                class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#'+item.slug"
+                aria-expanded="false"
+              >
+                {{item.nombre}}
+              </button>
+              <div class="collapse" [id]="item.slug">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li *ngFor="let item2 of item.subcategoria"><a class="link-dark rounded" [routerLink]="['/sucursal/servicios', item2.slug]">{{item2.nombre}}</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="border-top my-3"></li>
+            <li class="mb-1">
+              <button
+                class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#account-collapse"
+                aria-expanded="false"
+              >
+                Account
+              </button>
+              <div class="collapse" id="account-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="#" class="link-dark rounded">New...</a></li>
+                  <li><a href="#" class="link-dark rounded">Profile</a></li>
+                  <li><a href="#" class="link-dark rounded">Settings</a></li>
+                  <li><a href="#" class="link-dark rounded">Sign out</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <nav
+                class="navbar navbar-expand-lg navbar-light border-bottom"
+                style="background-color: #ffffff"
+              >
+                <div class="container p-0">
+                  <a class="navbar-brand" href="/" style="visibility: hidden">
+                    <img
+                      alt=""
+                      class="img-fluid"
+                      src="img/logoWeb.webp"
+                      width="100%"
+                    />
+                  </a>
+
+                  <div
+                    class="collapse navbar-collapse d-flex justify-content-between"
+                    id="navbarSupportedContent"
+                  >
+                    <div
+                      class="d-flex justify-content-center"
+                      style="
+                        width: 70%;
+                        max-width: 550px;
+                        border: 0.3px solid #cccccc;
+                        border-radius: 10px;
+                      "
+                    >
+                      <div class="input-group" style="width: 98%">
+                        <input
+                          class="form-control"
+                          type="search"
+                          placeholder="¿Qué Buscas?"
+                          aria-label="¿Qué Buscas?"
+                          style="
+                            border: unset;
+                            border-top-right-radius: 0px;
+                            border-bottom-right-radius: 0px;
+                          "
+                        />
+
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="btn-search">
+                            <i
+                              class="fas fa-search"
+                              style="
+                                font-size: 1.5rem;
+                                color: #000;
+                                cursor: pointer;
+                              "
+                            ></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                      <h6 class="me-4">
+                        <i class="far fa-user" style="font-size: 22px"></i>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+
+              <router-outlet></router-outlet>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

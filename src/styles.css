@@ -131,6 +131,12 @@ font-weight:bold;
 font-size: 1.5rem;
 width: 60%;
 }
+.btn-crearproducto{
+background-color: #022092;
+color:#FFF;
+font-weight:bold;
+font-size: 1rem;
+}
 .porcentaje{
 background-color:#004fc8;
 border-radius: 20px;
@@ -489,8 +495,6 @@ display: block;
 
 overflow: hidden;
 
-text-decoration: none;
-
 }
 
 .opc_hover a span {
@@ -508,7 +512,7 @@ height: 80px;
 
 }
 
-.opc_hover a span.span-addcard {
+.opc_hover a span:last-child {
 
 position: absolute;
 
@@ -534,10 +538,9 @@ background-color: #005AD2;
 
 color:#FFF;
 
-
 }
 
-.opc_hover a span.span-addcard i{
+.opc_hover a span:last-child i{
 
 color: #FFF;
 
@@ -555,13 +558,12 @@ transform: translateY(200%);
 
 }
 
-.opc_hover a:hover span.span-addcard,
-.opc_hover[data-animation] a:hover span.span-addcard {
+.opc_hover a:hover span:last-child,
+.opc_hover[data-animation] a:hover span:last-child {
 
 transform: none;
 
 }
-
 
 
 
@@ -580,8 +582,6 @@ position: relative;
 display: block;
 
 overflow: hidden;
-
-text-decoration: none;
 
 }
 
@@ -648,4 +648,33 @@ border: 1px solid #005AD2!important;
 }
 .row-footer{
 border-bottom: 0.3px solid #FFF;
+}
+.card-articulo{
+
+border-bottom: 1px solid rgb(27 31 35 / 15%);
+
+padding-bottom: 35px;
+
+padding-top: 20px;
+
+}
+.btn-periodos{
+color: #D3CFCD!important;
+border-color: #D3CFCD!important;
+font-size: 20px;
+}
+.btn-check{
+color: #0d6efd!important;
+border-color: #0d6efd!important;
+}
+
+.btn-check:active+.btn-periodos, .btn-check:checked+.btn-periodos, .btn-periodos.active, .btn-periodos.dropdown-toggle.show, .btn-periodos:active {
+color: #0d6efd!important;
+border-color: #0d6efd!important;
+}
+
+
+/*Sidebard*/
+.sidebar .btn-toggle-nav a {
+color: #FFF;
 }

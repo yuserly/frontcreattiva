@@ -1,0 +1,59 @@
+<div class="section-servicios pt-5 pb-5">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12" *ngIf="servicios.length > 0">
+
+        <h2 class="text-left" style="color:black;">Servicios Contratados <i class="fas fa-chevron-down ms-2"></i></h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Descripción del Servicio</th>
+              <th scope="col">Fecha de Contratación</th>
+              <th scope="col">Fecha de Vencimiento</th>
+              <th scope="col">Valor del Servicio</th>
+              <th scope="col">Periodo</th>
+              <th scope="col">Cambiar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of servicios">
+              <th scope="row">{{item.codigo_venta}}</th>
+              <td>{{item.glosa}}</td>
+              <td>{{item.fecha_inscripcion | date:'dd/MM/YYYY' }}</td>
+              <td>{{item.fecha_renovacion | date:'dd/MM/YYYY' }}</td>
+              <td>{{item.detalleventa[0].venta.neto | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} + IVA</td>
+              <td>{{item.periodo.periodo}}</td>
+              <td>----------</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-3">
+            <h5 class="text-left" style="color:black;">Crean un nuevo servicio</h5>
+          </div>
+          <div class="col-md-12">
+            <button type="button" class="btn p-1 px-4 mt-5 mb-5 btn-crearproducto float-start" (click)="buscarproductos()">Crear</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-12">
+        <app-planes [productos]="productos"></app-planes>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

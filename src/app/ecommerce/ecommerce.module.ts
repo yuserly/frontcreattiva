@@ -67,6 +67,8 @@ import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.compo
   exports:[
     CaracteristicasComponent,
     PlanesComponent,
+    NavComponent,
+    FooterComponent
   ]
 })
 export class EcommerceModule { }

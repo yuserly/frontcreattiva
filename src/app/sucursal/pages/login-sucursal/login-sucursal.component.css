@@ -1,0 +1,43 @@
+@font-face {
+  font-family: fuente1;
+/* cambiar la fuente por fonts/Gotham-Bold.otf no esta el recurso */
+  src: url("../../../../assets/fonts/AmazonEmber.ttf");
+}
+
+@font-face {
+  font-family: fuente2;
+
+  src: url("../../../../assets/fonts/AmazonEmber_Rg.ttf");
+}
+input{
+  font-family: fuente2!important;
+  font-size: 17px!important;
+}
+label, p, h1, h2, h3, h4, h5, h6, a, button{
+  font-family:fuente1 !important;
+}
+.color-primario{
+  color:#0d4ec3 !important;
+}
+.bg-primario{
+  background-color:#0d4ec3 !important;
+  border-color: #0d4ec3 !important;
+  outline:none !important;
+}
+.bg-primario:hover{
+  background-color:#0d4ec3 !important;
+  border-color: #0d4ec3 !important;
+  outline:none !important;
+}
+.bg-primario:focus{
+outline: none !important;
+box-shadow: none !important;
+}
+.logoWeb {
+  position: absolute;
+  top: -80px;
+  right: 0;
+}
+.invalid-feedback{
+  color:red!important;
+}

@@ -4,6 +4,7 @@ import { LoginComponent } from './ecommerce/pages/login/login.component';
 
 import { MainComponent } from './sucursal/pages/main/main.component';
 import { ValidarTokenGuard } from './guards/validar-token.guard';
+import { LoginSucursalComponent } from './sucursal/pages/login-sucursal/login-sucursal.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'login-rapido',
     component: LoginComponent
+  },
+  {
+    path:'login-sucursal',
+    component: LoginSucursalComponent
   },
 
   {

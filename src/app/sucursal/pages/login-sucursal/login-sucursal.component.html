@@ -1,0 +1,107 @@
+<app-nav></app-nav>
+
+<main>
+  <div class="container">
+    <div class="account-pages my-4">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+            <div class="card">
+              <div class="card-body p-4">
+                <a href="/" class="mb-3 d-block auth-logo">
+                  <img
+                    class="img-fluid logoWeb"
+                    src="../../../../assets/img/logoWeb.png"
+                    alt=""
+                    width="120"
+                  />
+                </a>
+
+                <div class="text-center mt-2">
+                  <h1 class="color-primario">Bienvenido !</h1>
+
+                  <p class="text-muted">CREATTIVA.CL</p>
+                </div>
+
+                <div class="p-2 mt-4">
+                  <form class="needs-validation" [formGroup]="form">
+                    <div class="mb-3">
+                      <label for="email">Correo</label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        placeholder="tuemail@creattiva.cl"
+                        formControlName="email"
+                        [ngClass]="{ 'is-invalid': validarcampo('email') }"
+                      />
+
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('email')"
+                      >
+                        {{ mensajeerroremail }}
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="password">Contraseña</label>
+
+                      <div class="input-group">
+                        <input
+                          [type]="hide ? 'password' : 'text'"
+                          class="form-control"
+                          id="password"
+                          placeholder="**********"
+                          formControlName="password"
+                        />
+
+                        <div
+                          class="input-group-prepend d-flex"
+
+                        >
+                          <div class="input-group-text" (click)="hide = !hide">
+                            <i class="icono-pass far fa-eye-slash"></i>
+                          </div>
+                        </div>
+
+                        <div class="invalid-feedback">
+                          <span>Contraseña requerida.</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 text-end">
+                      <button
+                        class="btn btn-primary w-sm waves-effect waves-light bg-primario"
+                        type="button"
+                        [disabled]="form.invalid"
+                        (click)="continuar()"
+                      >
+                        <i class="mdi mdi-login-variant"></i>
+
+                        Ingresar
+                      </button>
+                    </div>
+
+                    <div class="float-left">
+                      <a href="/validar-email" class="text-muted">
+                        Olvidó su contraseña</a
+                      >
+                    </div>
+
+                    <br /><br /><br />
+                    <hr />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

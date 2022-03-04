@@ -37,7 +37,13 @@ export class SeleccionarEmpresaComponent implements OnInit {
       localStorage.setItem(
         'empresaselect',id_empresa.toString()
       );
-      this.router.navigate(['/facturacion']);
+      let carrito = JSON.parse(localStorage.getItem('carrito')!);
+
+      if(!carrito || carrito.length == 0){
+        this.router.navigate(['/sucursal']);
+      }else{
+        this.router.navigate(['/facturacion']);
+      }
     }
   }
 

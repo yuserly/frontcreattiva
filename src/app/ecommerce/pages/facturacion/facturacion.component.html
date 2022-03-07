@@ -4,7 +4,7 @@
   <div class="row mt-5 d-flex justify-content-center" [formGroup]="form">
     <div class="col-md-6">
       <div class="card card-border p-5">
-        <div class="row" >
+        <div class="row">
           <div class="col-md-12 mb-2 d-flex justify-content-between">
             <h5><b>Detalles de la compra</b></h5>
 
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="row" >
+        <div class="row">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item mt-2">
               <p><b>1.- Datos del comprador / Contacto técnico:</b></p>
@@ -52,7 +52,7 @@
                   aria-expanded="false"
                   aria-controls="flush-collapseOne"
                 >
-                  {{form.value.email}}
+                  {{ form.value.email }}
                 </button>
 
                 <button
@@ -68,7 +68,7 @@
               <div
                 id="flush-collapseOne"
                 class="accordion-collapse collapse show"
-                [ngClass]="{'show': datoscompradorsave == false}"
+                [ngClass]="{ show: datoscompradorsave == false }"
                 aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample"
               >
@@ -85,7 +85,10 @@
                           placeholder="email"
                           formControlName="email"
                         />
-                        <div class="invalid-feedback" *ngIf="validarcampo('email')">
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('email')"
+                        >
                           {{ mensajeerroremail }}
                         </div>
                       </div>
@@ -100,7 +103,9 @@
 
                             <input
                               class="form-control input__field_telefono"
-                              [ngClass]="{ 'is-invalid': validarcampo('telefono') }"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('telefono')
+                              }"
                               type="number"
                               [readonly]="datoscompradorsave"
                               placeholder="Móvil"
@@ -125,7 +130,6 @@
                           id="inputState"
                           class="form-select"
                           formControlName="pais"
-                          [attr.disabled]="datoscompradorsave"
                         >
                           <option selected>Pais</option>
                           <option
@@ -175,7 +179,7 @@
                   aria-expanded="false"
                   aria-controls="flush-collapseTwo"
                 >
-                  {{nombrefacturacion}}
+                  {{ nombrefacturacion }}
                 </button>
 
                 <button
@@ -191,7 +195,7 @@
               <div
                 id="flush-collapseTwo"
                 class="accordion-collapse collapse"
-                [ngClass]="{'show': datosfacturacion == false}"
+                [ngClass]="{ show: datosfacturacion == false }"
                 aria-labelledby="flush-headingTwo"
                 data-bs-parent="#accordionFlushExample"
               >
@@ -236,7 +240,9 @@
                       <input
                         type="number"
                         class="form-control"
-                        [ngClass]="{ 'is-invalid': validarcampo('telefonoempresa') }"
+                        [ngClass]="{
+                          'is-invalid': validarcampo('telefonoempresa')
+                        }"
                         id="inputEmail4"
                         [readonly]="datosfacturacion"
                         placeholder="Tel. Empresa"
@@ -253,7 +259,9 @@
                       <input
                         type="email"
                         class="form-control"
-                        [ngClass]="{ 'is-invalid': validarcampo('emailempresa') }"
+                        [ngClass]="{
+                          'is-invalid': validarcampo('emailempresa')
+                        }"
                         id="inputPassword4"
                         [readonly]="datosfacturacion"
                         placeholder="Email Empresa"
@@ -301,7 +309,7 @@
                   aria-expanded="false"
                   aria-controls="flush-collapseThree"
                 >
-                  {{form.value.direccion}}
+                  {{ form.value.direccion }}
                 </button>
 
                 <button
@@ -316,69 +324,12 @@
               <div
                 id="flush-collapseThree"
                 class="accordion-collapse collapse"
-                [ngClass]="{'show': datosdireccion == false}"
+                [ngClass]="{ show: datosdireccion == false }"
                 aria-labelledby="flush-headingThree"
                 data-bs-parent="#accordionFlushExample"
-
               >
                 <div class="accordion-body">
-                  <form class="row g-3">
-                    <div class="col-12">
-                      <input
-                        type="text"
-                        class="form-control"
-                        [readonly]="datosdireccion"
-                        [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
-                        id="inputAddress"
-                        placeholder="Direccion"
-                        formControlName="direccion"
-                      />
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="validarcampo('direccion')"
-                      >
-                        {{ mensajeerrordireccion }}
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <select
-                        type="text"
-                        class="form-control"
-                        [attr.disabled]="datosdireccion ? '' : null"
-                        [ngClass]="{ 'is-invalid': validarcampo('region') }"
-                        formControlName="region"
-                        (change)="buscarcomuna()"
-                      >
-                      <option value="0">Seleccionar region</option>
-                      <option *ngFor="let region of regiones; let i=index" [value]="region.REG_ID" >{{region.REG_NOMBRE}}</option>
-
-                      </select>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="validarcampo('region')"
-                      >
-                        La region es requerida
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <select
-                        type="text"
-                        class="form-control"
-                        [attr.disabled]="datosdireccion ? '' : null"
-                        [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
-                        formControlName="comuna"
-                      >
-                      <option value="0">Seleccionar comuna</option>
-                      <option *ngFor="let comuna of comunas; let i=index" [value]="comuna.COM_ID" >{{comuna.COM_NOMBRE}}</option>
-                      </select>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="validarcampo('comuna')"
-                      >
-                        La comuna es requerida
-                      </div>
-                    </div>
-
+                  <div class="row g-3">
                     <div class="col-md-12 mt-4 text-center">
                       <button
                         type="button"
@@ -389,15 +340,13 @@
                           font-weight: bold;
                           width: 60%;
                         "
-                        *ngIf="!datosdireccion"
-                        (click)="guardardireccion()"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modaldirecciones"
                       >
-                        Guardar
+                        Agregar nueva dirección
                       </button>
                     </div>
-
-
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -494,7 +443,10 @@
                     align-items: center;
                   "
                 >
-                  <img src="../../../../assets/img/icon-transfer.png" width="100px" />
+                  <img
+                    src="../../../../assets/img/icon-transfer.png"
+                    width="100px"
+                  />
                 </label>
               </div>
             </div>
@@ -523,12 +475,153 @@
     </div>
 
     <div class="col-md-4">
-      <app-detalle-pedido [totalcarroarray]="totalcarroarray"></app-detalle-pedido>
+      <app-detalle-pedido
+        [totalcarroarray]="totalcarroarray"
+      ></app-detalle-pedido>
     </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modaldirecciones"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="border-bottom: 0px; padding-bottom: 0px"
+          >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h6 style="color: #fff" class="me-4">Agregar dirección</h6>
+
+            <div class="row">
+              <div class="col-md-12">
+                <form class="row g-3">
+                  <div class="col-12">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
+                      id="inputAddress"
+                      placeholder="Direccion"
+                      formControlName="direccion"
+                      ngx-google-places-autocomplete
+                      (onAddressChange)="AddressChange($event)"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="validarcampo('direccion')"
+                    >
+                      {{ mensajeerrordireccion }}
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <select
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': validarcampo('region') }"
+                      formControlName="region"
+                      (change)="buscarcomuna()"
+                    >
+                      <option value="0">Seleccionar region</option>
+                      <option
+                        *ngFor="let region of regiones; let i = index"
+                        [value]="region.REG_ID"
+                      >
+                        {{ region.REG_NOMBRE }}
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="validarcampo('region')"
+                    >
+                      La region es requerida
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <select
+                      type="text"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
+                      formControlName="comuna"
+                    >
+                      <option value="0">Seleccionar comuna</option>
+                      <option
+                        *ngFor="let comuna of comunas; let i = index"
+                        [value]="comuna.COM_ID"
+                      >
+                        {{ comuna.COM_NOMBRE }}
+                      </option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="validarcampo('comuna')"
+                    >
+                      La comuna es requerida
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 text-center mt-4">
+                <button
+                *ngIf="!datosdireccion; else cerrarmodal"
+
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #005ad2;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    width: 60%;
+                  "
+                  (click)="guardardireccion()"
+                >
+                  Confirmar
+                </button>
+
+                <ng-template #cerrarmodal>
+
+                  <button
+                  *ngIf="datosdireccion"
+                  data-bs-dismiss="modal"
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #005ad2;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    width: 60%;
+                  "
+                  (click)="guardardireccion()"
+                >
+                  Confirmar
+                </button>
+
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
   </div>
 </div>
-
-
 
 <br /><br /><br /><br /><br />
 <app-footer></app-footer>

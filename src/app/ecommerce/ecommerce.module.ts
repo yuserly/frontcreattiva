@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 import { EcommerceRoutingModule } from './ecommerce-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -29,6 +30,7 @@ import { CantidadlicenciasComponent } from './pages/cantidadlicencias/cantidadli
 import { LoginPasswordComponent } from './pages/login-password/login-password.component';
 import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/seleccionar-empresa.component';
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 
 @NgModule({
@@ -63,6 +65,7 @@ import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.compo
     EcommerceRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    GooglePlaceModule
   ],
   exports:[
     CaracteristicasComponent,

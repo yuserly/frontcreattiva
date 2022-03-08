@@ -330,22 +330,85 @@
               >
                 <div class="accordion-body">
                   <div class="row g-3">
-                    <div class="col-md-12 mt-4 text-center">
-                      <button
-                        type="button"
-                        class="btn"
-                        style="
-                          background-color: #005ad2;
-                          color: #f2f3f5;
-                          font-weight: bold;
-                          width: 60%;
-                        "
-                        data-bs-toggle="modal"
-                        data-bs-target="#modaldirecciones"
-                      >
-                        Agregar nueva dirección
-                      </button>
+
+
+                    <div class="col-md-12" *ngIf="!datosdireccion; else botondireccion">
+                      <form class="row g-3">
+                        <div class="col-12">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
+                            id="inputAddress"
+                            placeholder="Direccion"
+                            formControlName="direccion"
+                            ngx-google-places-autocomplete
+                            (onAddressChange)="AddressChange($event)"
+                          />
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="validarcampo('direccion')"
+                          >
+                            {{ mensajeerrordireccion }}
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': validarcampo('region') }"
+                            formControlName="region"
+                            placeholder="Region"
+                          />
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="validarcampo('region')"
+                          >
+                            La region es requerida
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
+                            formControlName="comuna"
+                            placeholder="comuna"
+                          />
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="validarcampo('comuna')"
+                          >
+                            La comuna es requerida
+                          </div>
+                        </div>
+                      </form>
                     </div>
+
+                    <!-- boton direccion -->
+
+                    <ng-template #botondireccion>
+
+                      <div class="col-md-12 mt-4 text-center">
+                        <button
+                          type="button"
+                          class="btn"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 60%;
+                          "
+                          data-bs-toggle="modal"
+                          data-bs-target="#modaldirecciones"
+                        >
+                          Agregar nueva dirección
+                        </button>
+                      </div>
+
+                    </ng-template>
+
                   </div>
                 </div>
               </div>
@@ -528,21 +591,13 @@
                     </div>
                   </div>
                   <div class="col-6">
-                    <select
+                    <input
                       type="text"
                       class="form-control"
                       [ngClass]="{ 'is-invalid': validarcampo('region') }"
                       formControlName="region"
-                      (change)="buscarcomuna()"
-                    >
-                      <option value="0">Seleccionar region</option>
-                      <option
-                        *ngFor="let region of regiones; let i = index"
-                        [value]="region.REG_ID"
-                      >
-                        {{ region.REG_NOMBRE }}
-                      </option>
-                    </select>
+                      placeholder="Region"
+                    />
                     <div
                       class="invalid-feedback"
                       *ngIf="validarcampo('region')"
@@ -550,21 +605,15 @@
                       La region es requerida
                     </div>
                   </div>
+
                   <div class="col-6">
-                    <select
+                    <input
                       type="text"
                       class="form-control"
                       [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
                       formControlName="comuna"
-                    >
-                      <option value="0">Seleccionar comuna</option>
-                      <option
-                        *ngFor="let comuna of comunas; let i = index"
-                        [value]="comuna.COM_ID"
-                      >
-                        {{ comuna.COM_NOMBRE }}
-                      </option>
-                    </select>
+                      placeholder="comuna"
+                    />
                     <div
                       class="invalid-feedback"
                       *ngIf="validarcampo('comuna')"
@@ -579,8 +628,7 @@
             <div class="row">
               <div class="col-md-12 text-center mt-4">
                 <button
-                *ngIf="!datosdireccion; else cerrarmodal"
-
+                  *ngIf="!datosdireccion; else cerrarmodal"
                   type="button"
                   class="btn"
                   style="
@@ -595,23 +643,21 @@
                 </button>
 
                 <ng-template #cerrarmodal>
-
                   <button
-                  *ngIf="datosdireccion"
-                  data-bs-dismiss="modal"
-                  type="button"
-                  class="btn"
-                  style="
-                    background-color: #005ad2;
-                    color: #f2f3f5;
-                    font-weight: bold;
-                    width: 60%;
-                  "
-                  (click)="guardardireccion()"
-                >
-                  Confirmar
-                </button>
-
+                    *ngIf="datosdireccion"
+                    data-bs-dismiss="modal"
+                    type="button"
+                    class="btn"
+                    style="
+                      background-color: #005ad2;
+                      color: #f2f3f5;
+                      font-weight: bold;
+                      width: 60%;
+                    "
+                    (click)="guardardireccion()"
+                  >
+                    Confirmar
+                  </button>
                 </ng-template>
               </div>
             </div>

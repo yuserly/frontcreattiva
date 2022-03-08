@@ -26,7 +26,7 @@ export class FacturacionComponent implements OnInit {
   datoscompradorsave: boolean = false;
   datosfacturacion: boolean = false;
   datosdireccion: boolean = false;
-  nombrefacturacion: string = 'Creattiva Datacenter';
+  nombrefacturacion: string = '';
   empresadatos:boolean = true;
 
 
@@ -63,8 +63,8 @@ export class FacturacionComponent implements OnInit {
     ],
     isempresa: [true, Validators.required],
     direccion: ['', [Validators.required]],
-    region: [0, [Validators.required, this.validacion.validarRegionComuna]],
-    comuna: [0, [Validators.required, this.validacion.validarRegionComuna]],
+    region: ['', [Validators.required, this.validacion.validarRegionComuna]],
+    comuna: ['', [Validators.required, this.validacion.validarRegionComuna]],
     mediopago: [1, [Validators.required]],
   });
 
@@ -80,8 +80,8 @@ export class FacturacionComponent implements OnInit {
     emailempresa: '',
     isempresa: true,
     direccion: '',
-    region: 0,
-    comuna: 0,
+    region: '',
+    comuna: '',
     mediopago: 1,
   };
 
@@ -237,8 +237,8 @@ export class FacturacionComponent implements OnInit {
 
             }
             this.seleccion.direccion = resp.data.direccion;
-            this.seleccion.region = parseInt(resp.data.region);
-            this.seleccion.comuna = parseInt(resp.data.comuna);
+            this.seleccion.region = resp.data.region;
+            this.seleccion.comuna = resp.data.comuna;
 
             if (resp.data.nombre && resp.data.email && resp.data.telefono) {
               this.datoscompradorsave = true;
@@ -282,9 +282,9 @@ export class FacturacionComponent implements OnInit {
 
         this.form.reset(this.seleccion);
 
-        if (this.form.value.comuna != 0) {
-          this.buscarcomuna();
-        }
+        // if (this.form.value.comuna != 0) {
+        //   this.buscarcomuna();
+        // }
       });
 
     }else{
@@ -470,7 +470,10 @@ export class FacturacionComponent implements OnInit {
     //setting address from API to local variable
     //  this.form.value.direccion=address.formatted_address
 
-    this.form.get('direccion')!.setValue(`${address.address_components[1].long_name} ${address.address_components[0].long_name}`);
+    console.log(address);
 
+    this.form.get('direccion')!.setValue(`${address.address_components[1].long_name} ${address.address_components[0].long_name}`);
+    this.form.get('region')!.setValue(address.address_components[5].long_name)
+    this.form.get('comuna')!.setValue(address.address_components[3].long_name)
   }
 }

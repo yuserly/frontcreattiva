@@ -293,6 +293,7 @@ export class FacturacionComponent implements OnInit {
           this.seleccion.email = usuario.email;
           this.seleccion.pais = 'Chile';
           this.seleccion.isempresa = true;
+          this.form.reset(this.seleccion);
     }
 
   }

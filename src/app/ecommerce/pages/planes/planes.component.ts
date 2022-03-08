@@ -52,7 +52,8 @@ export class PlanesComponent implements OnInit {
                 administrar: 0,
                 ip: '',
                 periodos: resp2,
-                cantidad: 1
+                cantidad: 1,
+                cupon_descuento: 0
               });
 
               const cantidadcarro = carro.length;

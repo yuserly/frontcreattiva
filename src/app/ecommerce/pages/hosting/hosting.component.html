@@ -67,6 +67,8 @@
     <div class="col-md-4">
       <app-detalle-pedido
         [totalcarroarray]="totalcarroarray"
+        (totalcarrod)="totalcarro($event)"
+        [aplicarCupon]="aplicarCupon"
       ></app-detalle-pedido>
     </div>
   </div>

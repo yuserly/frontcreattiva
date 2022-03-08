@@ -31,6 +31,7 @@ export class HostingComponent implements OnInit {
 
   dominionum:number = 0;
   periodonum:number = 0;
+  aplicarCupon:number = 1;
 
 
 

@@ -76,6 +76,7 @@ export interface Carrito{
   ip?: string;
   periodos:Periodo[];
   cantidad?: number;
+  cupon_descuento?: number;
 
 }
 
@@ -109,7 +110,7 @@ export interface ProductoCarro {
   nombreproducto?: string;
   precio: number;
   precioold: number;
-  ahorro: number
+  ahorro: number;
 
 }
 

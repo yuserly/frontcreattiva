@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 
     this.buscarsubcategoria(1);
 
-    this.itemsCarrito();
+
   }
 
   buscarsubcategoria(id: number) {
@@ -93,16 +93,5 @@ export class HomeComponent implements OnInit {
     this.productos = productos;
   }
 
-  itemsCarrito(){
-    let index = JSON.parse(localStorage.getItem('index')!);
-
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-
-    if(carrito){
-      this.DominiosService.totalCarro = carrito.length;
-    }else{
-      this.DominiosService.totalCarro = 0;
-    }
-  }
 
 }

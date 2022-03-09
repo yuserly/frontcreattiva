@@ -88,7 +88,8 @@ export class PeriodoComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria_id == 17 || this.producto.subcategoria_id == 20){
+    if(this.producto.subcategoria_id == 17 || 
+      this.producto.subcategoria_id == 19){
       //Licencias Google Workspace y Microsoft 365
       this.mostrarPeriodoMes = 1;
       this.mostrarPeriodo1Year = 1;

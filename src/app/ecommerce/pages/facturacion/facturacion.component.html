@@ -72,7 +72,7 @@
                 aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample"
               >
-                <div class="accordion-body">
+                <div class="accordion-body px-0">
                   <form class="mt-4">
                     <div class="row g-3">
                       <div class="col-md-12">
@@ -94,36 +94,38 @@
                       </div>
                       <div class="col">
                         <div class="form-group">
-                          <div class="input-group">
-                            <div class="input-group-prepend d-flex">
-                              <div class="input-group-text input__field_tele">
-                                +569
-                              </div>
-                            </div>
 
-                            <input
-                              class="form-control input__field_telefono"
-                              [ngClass]="{
-                                'is-invalid': validarcampo('telefono')
-                              }"
-                              type="number"
-                              [readonly]="datoscompradorsave"
-                              placeholder="Móvil"
-                              id="telefono"
-                              required
-                              formControlName="telefono"
-                            />
-                            <div
-                              class="invalid-feedback"
-                              *ngIf="validarcampo('telefono')"
-                            >
-                              {{ mensajeerrortelefono }}
-                            </div>
+                          <div class="input-group">
+                              <div class="input-group-prepend d-flex">
+                                  <div class="input-group-text">
+                                      +569
+                                  </div>
+                              </div>
+
+                              <input
+                                class="form-control input__field_telefono"
+                                [ngClass]="{
+                                  'is-invalid': validarcampo('telefono')
+                                }"
+                                type="number"
+                                [readonly]="datoscompradorsave"
+                                placeholder="Móvil"
+                                id="telefono"
+                                required
+                                formControlName="telefono"
+                              />
+
+                              <div
+                                class="invalid-feedback"
+                                *ngIf="validarcampo('telefono')"
+                              >
+                                {{ mensajeerrortelefono }}
+                              </div>
+
                           </div>
 
-                          <small id="errormovil" style="color: #ff0000"></small>
-                        </div>
                       </div>
+                    </div>
 
                       <div class="col">
                         <select
@@ -199,7 +201,7 @@
                 aria-labelledby="flush-headingTwo"
                 data-bs-parent="#accordionFlushExample"
               >
-                <div class="accordion-body">
+                <div class="accordion-body px-0">
                   <form class="row g-3">
                     <div class="col-md-5">
                       <input
@@ -236,26 +238,39 @@
                         formControlName="giro"
                       />
                     </div>
-                    <div class="col-md-5">
-                      <input
-                        type="number"
-                        class="form-control"
-                        [ngClass]="{
-                          'is-invalid': validarcampo('telefonoempresa')
-                        }"
-                        id="inputEmail4"
-                        [readonly]="datosfacturacion"
-                        placeholder="Tel. Empresa"
-                        formControlName="telefonoempresa"
-                      />
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="validarcampo('telefonoempresa')"
-                      >
-                        {{ mensajeerrortelefonoempresa }}
+                    <div class="col-md-6">
+
+
+                      <div class="input-group">
+                          <div class="input-group-prepend d-flex">
+                              <div class="input-group-text">
+                                  +569
+                              </div>
+                          </div>
+
+                          <input
+                            type="number"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid': validarcampo('telefonoempresa')
+                            }"
+                            id="inputEmail4"
+                            [readonly]="datosfacturacion"
+                            placeholder="Tel. Empresa"
+                            formControlName="telefonoempresa"
+                          />
+
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="validarcampo('telefonoempresa')"
+                          >
+                            {{ mensajeerrortelefonoempresa }}
+                          </div>
+
                       </div>
+
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                       <input
                         type="email"
                         class="form-control"
@@ -328,7 +343,7 @@
                 aria-labelledby="flush-headingThree"
                 data-bs-parent="#accordionFlushExample"
               >
-                <div class="accordion-body">
+                <div class="accordion-body px-0">
                   <div class="row g-3">
 
 

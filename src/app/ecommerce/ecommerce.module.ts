@@ -72,6 +72,7 @@ import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios
   exports:[
     CaracteristicasComponent,
     PlanesComponent,
+    HostingComponent,
     NavComponent,
     FooterComponent
   ]

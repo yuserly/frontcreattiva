@@ -9,6 +9,7 @@ import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { ServicioPendientePagoComponent } from './pages/servicio-pendiente-pago/servicio-pendiente-pago.component';
 import { EcommerceModule } from '../ecommerce/ecommerce.module';
 import { LoginSucursalComponent } from './pages/login-sucursal/login-sucursal.component';
+import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LoginSucursalComponent } from './pages/login-sucursal/login-sucursal.co
     MainComponent,
     ServiciosComponent,
     ServicioPendientePagoComponent,
-    LoginSucursalComponent
+    LoginSucursalComponent,
+    ConfiguracionComponent
   ],
   imports: [
     CommonModule,

@@ -14,6 +14,8 @@ export class PagoRechazadoComponent implements OnInit {
       localStorage.removeItem('carrito')
       localStorage.removeItem('index')
       localStorage.removeItem('infopago')
+      localStorage.removeItem('comprasucursal')
+
   }
 
 }

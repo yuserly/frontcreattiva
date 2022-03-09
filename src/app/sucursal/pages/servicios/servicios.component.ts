@@ -34,6 +34,8 @@ export class ServiciosComponent implements OnInit {
 
   buscarproductos(){
 
+    localStorage.setItem('comprasucursal','1');
+
     this.routeparams.params
       .pipe(
         switchMap(({ slug }) => this.sucursal.getsubcategoriaslug( slug))

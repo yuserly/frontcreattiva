@@ -70,6 +70,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
   exports:[
     CaracteristicasComponent,
     PlanesComponent,
+    HostingComponent,
     NavComponent,
     FooterComponent
   ]

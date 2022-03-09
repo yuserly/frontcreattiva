@@ -62,10 +62,17 @@ export class PlanesComponent implements OnInit {
               localStorage.setItem('index', JSON.stringify(index));
               localStorage.setItem('carrito', JSON.stringify(carro));
 
-              this.router.navigate(['/configuracion']);
+              let comprasucursal = localStorage.getItem('comprasucursal');
+
+              if(comprasucursal){
+
+                this.router.navigate(['sucursal/configuracion']);
+              }else{
+                this.router.navigate(['/configuracion']);
+
+              }
+
             });
-
-
 
   }
 }

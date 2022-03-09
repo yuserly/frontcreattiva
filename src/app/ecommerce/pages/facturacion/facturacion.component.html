@@ -347,7 +347,7 @@
                   <div class="row g-3">
 
 
-                    <div class="col-md-12" *ngIf="!datosdireccion; else botondireccion">
+                    <div class="col-md-12" *ngIf="existedireccion; else botondireccion">
                       <form class="row g-3">
                         <div class="col-12">
                           <input
@@ -398,6 +398,24 @@
                             La comuna es requerida
                           </div>
                         </div>
+                        <div class="col-12 d-flex justify-content-center">
+                        <button
+                        *ngIf="!datosdireccion"
+                          type="button"
+                          class="btn"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 60%;
+                          "
+                          (click)="guardardireccion()"
+                        >
+                          Confirmar
+                        </button>
+                      </div>
+
+
                       </form>
                     </div>
 

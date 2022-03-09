@@ -28,6 +28,7 @@ export class FacturacionComponent implements OnInit {
   datosdireccion: boolean = false;
   nombrefacturacion: string = '';
   empresadatos:boolean = true;
+  existedireccion:boolean = false;
 
 
   form: FormGroup = this.fb.group({
@@ -266,6 +267,7 @@ export class FacturacionComponent implements OnInit {
 
             if (resp.data.direccion && resp.data.region && resp.data.comuna) {
               this.datosdireccion = true;
+              this.existedireccion = true;
             }
           } else {
             localStorage.removeItem('token');
@@ -412,6 +414,7 @@ export class FacturacionComponent implements OnInit {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
         console.log(resp);
         this.datosdireccion = true;
+        this.existedireccion = true;
       });
     }
   }

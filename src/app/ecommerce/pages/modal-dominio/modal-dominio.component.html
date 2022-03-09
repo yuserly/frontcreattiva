@@ -47,6 +47,7 @@
                             </p>
                           </span>
 
+                          
                           <span class="span-addcard px-1"
                           >
                             <i class="far fa-check-circle"></i>
@@ -56,11 +57,13 @@
                             </p>
                           </span>
 
-
+                          <!--
                           <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
                             <i style="font-size:28px;" class="far fa-check-circle"></i>
                             <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
                           </span>
+                        -->
+                        
 
 
 
@@ -161,22 +164,29 @@
                           </span>
 
                           <span class="span-addcard px-1"
+
                           [ngClass]="{
                             'd-none': dominio.agregado == true
-                          }"(click)="agregarcarro(dominio)">
+                          }"
+                          (click)="agregarcarro(dominio)"
+
+                          >
                             <i class="far fa-check-circle"></i>
 
                             <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito
+                              Añadir al carrito {{dominio.agregado}}
                             </p>
                           </span>
 
 
-                          <span class="px-1" style="padding: 20px 20px;height: 80px;"  [ngClass]="[ dominio.agregado ? 'd-block' : 'd-none']">
+                          
+                          <span class="px-1 d-block" style="padding: 20px 20px;height: 80px;"  
+                            *ngIf="dominio.agregado"
+                          >
                             <i style="font-size:28px;" class="far fa-check-circle"></i>
                             <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
                           </span>
-
+                          
 
 
 

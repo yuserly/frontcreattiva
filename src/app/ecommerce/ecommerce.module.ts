@@ -31,6 +31,7 @@ import { LoginPasswordComponent } from './pages/login-password/login-password.co
 import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/seleccionar-empresa.component';
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     CantidadlicenciasComponent,
     LoginPasswordComponent,
     SeleccionarEmpresaComponent,
-    CodigoRapidoComponent
+    CodigoRapidoComponent,
+    CompraDominiosComponent
   ],
   imports: [
     CommonModule,

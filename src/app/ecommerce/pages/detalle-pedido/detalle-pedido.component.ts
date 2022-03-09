@@ -24,18 +24,18 @@ export class DetallePedidoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*
-    console.log("total carrito detalles");
-    console.log(this.totalcarroarray);*/
+    if (localStorage.getItem('carrito')) {
 
-    let index = JSON.parse(localStorage.getItem('index')!);
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-    var cdescuento = <number>carrito[index]['cupon_descuento'];
-    
-    if(cdescuento>0){
-      this.validezcupon = 1;
-    }else{
-      this.validezcupon = 0;
+      let index = JSON.parse(localStorage.getItem('index')!);
+      let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+      var cdescuento = <number>carrito[index]['cupon_descuento'];
+      
+      if(cdescuento>0){
+        this.validezcupon = 1;
+      }else{
+        this.validezcupon = 0;
+      }
+
     }
 
 

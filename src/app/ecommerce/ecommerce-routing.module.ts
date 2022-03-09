@@ -12,6 +12,7 @@ import { PagoTransferenciaComponent } from './pages/pago-transferencia/pago-tran
 import { LoginPasswordComponent } from './pages/login-password/login-password.component';
 import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/seleccionar-empresa.component';
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
+import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path:'carrito',
         component:CarroComponent
+      },
+      {
+        path:'compra-dominios',
+        component:CompraDominiosComponent
       },
       {
         path:'login-rapido',

@@ -184,8 +184,9 @@ export class CategoriasService {
 
           if (element.periodo == element2.id_periodo) {
 
-            if(element.producto.subcategoria_id==17 ||
-              element.producto.subcategoria_id==20){
+            //Licencias Google Workspace y Microsoft 365
+            if(element.producto.subcategoria_id==20 ||
+              element.producto.subcategoria_id==24){
 
               precio = element2.precio_descuento*<number>element.cantidad;
               precioold = element2.precio*<number>element.cantidad;

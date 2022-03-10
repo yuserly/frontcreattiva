@@ -18,7 +18,11 @@ export class CompraDominiosComponent implements OnInit {
   aplicarCupon:number = 1;
   mostrarPreload:boolean = false;
   haydominios:boolean = false;
+  hayproductos:boolean = false;
+  disponiblebuscado:boolean = false;
   totalcarroarray!: TotalCarro;
+  statusDominioBuscado:boolean = false;
+  mostrarContinuar:boolean = false;
 
   form:FormGroup = this.fb.group({
     dominio:['',Validators.required],
@@ -38,13 +42,14 @@ export class CompraDominiosComponent implements OnInit {
 
     if (localStorage.getItem('carrito')) {
 
+      this.hayproductos = true;
 
       let index = JSON.parse(localStorage.getItem('index')!);
 
 
       let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
       carrito.map((p, i) => {
-        if (p.producto.subcategoria_id == 26) {
+        if (p.producto.subcategoria_id == 31) {
 
             carrito.splice(i);
         }
@@ -62,6 +67,8 @@ export class CompraDominiosComponent implements OnInit {
       this.totalcarrod.emit(productoscarro);
 
 
+    }else{
+      this.hayproductos = false;
     }
 
 
@@ -82,33 +89,56 @@ export class CompraDominiosComponent implements OnInit {
       return;
     }
 
+    this.statusDominioBuscado = false;
+
+    this.mostrarContinuar = false;
+
     this.mostrarPreload = true;
+
     const dominio = this.form.value.dominio;
+
     const extension = this.form.value.extension;
 
     this.dominiobuscado = `${dominio}.${extension}`;
 
-    //console.log(this.dominiobuscado);
-
     this.DominiosService.getdominios(dominio, extension).subscribe( resp => {
 
+      console.log(resp.data.results);
 
       resp.data.results.forEach((element) => {
 
         this.dominioscarrito.forEach((element2) => {
 
           if(element.domain===element2.dominio){
+
             element.agregado = true;
+
           }
 
         });
+
+        if(element.domain==this.dominiobuscado){
+
+          if(element.status=='free'){
+
+             this.statusDominioBuscado = true;
+
+          }else{
+
+             this.statusDominioBuscado = false;
+
+          }
+         
+        }
 
 
       });
 
         this.dominios = resp.data.results;
 
-        console.log(this.dominios)
+        this.mostrarContinuar = true;
+
+        //console.log(this.dominios)
      })
 
   }
@@ -123,6 +153,7 @@ export class CompraDominiosComponent implements OnInit {
         (resp) => {
           
           carro.push({
+
             producto: item.producto,
             periodo: 4,
             dominio: item.domain,
@@ -131,6 +162,9 @@ export class CompraDominiosComponent implements OnInit {
             administrar: 0,
             ip: '',
             periodos: resp,
+            cantidad: 1,
+            cupon_descuento: 0
+
           });
 
           localStorage.setItem('carrito', JSON.stringify(carro));
@@ -144,6 +178,8 @@ export class CompraDominiosComponent implements OnInit {
           item.agregado = true;
 
           carro = JSON.parse(localStorage.getItem('carrito')!);
+
+          this.hayproductos = true;
 
           //this.dominioscarrito.emit(carro);
 
@@ -159,6 +195,7 @@ export class CompraDominiosComponent implements OnInit {
         (resp) => {
           
           carro.push({
+
             producto: item.producto,
             periodo: 4,
             dominio: item.domain,
@@ -167,6 +204,9 @@ export class CompraDominiosComponent implements OnInit {
             administrar: 0,
             ip: '',
             periodos: resp,
+            cantidad: 1,
+            cupon_descuento: 0
+
           });
 
           localStorage.setItem('carrito', JSON.stringify(carro));
@@ -181,6 +221,8 @@ export class CompraDominiosComponent implements OnInit {
 
           carro = JSON.parse(localStorage.getItem('carrito')!);
 
+          this.hayproductos = true;
+
           //this.dominioscarrito.emit(carro);
 
 
@@ -193,26 +235,126 @@ export class CompraDominiosComponent implements OnInit {
     
   }
 
-  consultarDominiosBuscados():boolean{
-    let index = JSON.parse(localStorage.getItem('index')!);
+  addAllDomains(){
 
-    let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-    let cont = 0;
 
-    carrito.map((p, i) => {
-      if (p.producto.subcategoria_id == 26) {
-        cont++;
+    if (localStorage.getItem('carrito')) {
+      let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+      this.dominios.forEach((element) => {
+
+      if(element.status=='free'){
+
+        this.CategoriasService.getperiodos(element.producto.id_producto).subscribe(
+          (resp) => {
+            
+            carro.push({
+
+              producto: element.producto,
+              periodo: 4,
+              dominio: element.domain,
+              sistemaoperativo: 0,
+              versionsistema: 0,
+              administrar: 0,
+              ip: '',
+              periodos: resp,
+              cantidad: 1,
+              cupon_descuento: 0
+
+            });
+
+            localStorage.setItem('carrito', JSON.stringify(carro));
+
+            let productoscarro = this.CategoriasService.calculototalcarro();
+
+            //this.totalcarro.emit(productoscarro);
+
+            element.agregado = true;
+
+            carro = JSON.parse(localStorage.getItem('carrito')!);
+
+            //this.dominioscarrito.emit(carro);
+
+            this.totalcarrod.emit(productoscarro);
+
+            this.totalcarroarray = productoscarro;
+
+
+          }
+        );
+
+        this.hayproductos = true;
+
       }
-      return p;
+
     });
 
-    if(cont>0){
-      return true;
-    }else{
-      return false;
+    } else {
+      let carro: Carrito[] = [];
+      this.dominios.forEach((element) => {
+
+      if(element.status=='free'){
+
+        this.CategoriasService.getperiodos(element.producto.id_producto).subscribe(
+          (resp) => {
+            
+            carro.push({
+
+              producto: element.producto,
+              periodo: 4,
+              dominio: element.domain,
+              sistemaoperativo: 0,
+              versionsistema: 0,
+              administrar: 0,
+              ip: '',
+              periodos: resp,
+              cantidad: 1,
+              cupon_descuento: 0
+
+            });
+
+            localStorage.setItem('carrito', JSON.stringify(carro));
+
+            let productoscarro = this.CategoriasService.calculototalcarro();
+
+            //this.totalcarro.emit(productoscarro);
+
+            element.agregado = true;
+
+            carro = JSON.parse(localStorage.getItem('carrito')!);
+
+            //this.dominioscarrito.emit(carro);
+
+            this.totalcarrod.emit(productoscarro);
+
+            this.totalcarroarray = productoscarro;
+
+
+          }
+        );
+
+      }
+
+    });
+
+      this.hayproductos = true;
     }
+
+
+
+
+    
+
   }
+
+  agregardominiobuscado(){
+
+    this.dominios.forEach((element) => {
+      console.log(element);
+    })
+
+  }
+
 
   validarcarro(){
 

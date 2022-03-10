@@ -17,6 +17,7 @@ export class DominioComponent implements OnInit {
   dominios: Result[] = [];
   preciodominio: PrecioDominios[] = [];
   dominiobuscado:string = '';
+  statusDominioBuscado:boolean = false;
   dominioguardado:string = '';
   errorDominio:number = 0;
 
@@ -96,7 +97,7 @@ export class DominioComponent implements OnInit {
       return;
     }
 
-
+    this.statusDominioBuscado = false;
     const dominio = this.form.value.dominio;
     const extension = this.form.value.extension;
 
@@ -109,10 +110,28 @@ export class DominioComponent implements OnInit {
 
       resp.data.results.forEach((element) => {
 
+        //console.log("dominio: "+element.domain+" ,estatus: "+element.status);
+
+        if(element.domain==this.dominiobuscado){
+
+          if(element.status=='free'){
+
+             this.statusDominioBuscado = true;
+
+          }else{
+
+             this.statusDominioBuscado = false;
+
+          }
+         
+        }
+
         this.dominioscarrito.forEach((element2) => {
 
           if(element.domain===element2.dominio){
+
             element.agregado = true;
+
           }
 
         });
@@ -121,7 +140,7 @@ export class DominioComponent implements OnInit {
 
         this.dominios = resp.data.results;
 
-        //console.log(this.dominios)
+        console.log(this.dominios)
      })
 
   }

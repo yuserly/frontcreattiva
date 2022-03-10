@@ -1,12 +1,33 @@
 
 <div class="row d-flex justify-content-center">
   <div class="col-md-2 mt-3" *ngFor="let subcategoria of subcategorias; let i=index "  >
-  <div class="card planes-icon"  [ngClass]="{'plan-active':subcategoria.active}" (click)="seleccionarcategoria(i, subcategoria.id_subcategoria )">
+  
+
+  <div 
+    class="card planes-icon"  
+    [ngClass]="{'plan-active':subcategoria.active}" 
+    routerLink="/compra-dominios"
+    *ngIf="subcategoria.id_subcategoria == 31; else otrasSubcategorias"
+  >
+    <i [class]="subcategoria.icono"></i>
+    <h5>{{subcategoria.nombre}}</h5>
+
+  </div>
+
+  <ng-template #otrasSubcategorias>
+
+  <div 
+    class="card planes-icon"  
+    [ngClass]="{'plan-active':subcategoria.active}" 
+    (click)="seleccionarcategoria(i, subcategoria.id_subcategoria )"
+  >
 
     <i [class]="subcategoria.icono"></i>
     <h5>{{subcategoria.nombre}}</h5>
 
   </div>
+
+  </ng-template>
 
 </div>
 

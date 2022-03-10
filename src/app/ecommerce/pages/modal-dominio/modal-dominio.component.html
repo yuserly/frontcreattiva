@@ -20,57 +20,60 @@
       <div class="modal-body" *ngIf="dominios.length > 0; else preload">
         <div class="row resultados">
           <div class="col-md-12 d-flex justify-content-center align-items-center">
-            <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600" *ngIf="disponiblebuscado == 1; else nodisponible" >
-              <i class="far fa-check-circle" style="color: #32cb00"></i>
-              {{dominiobuscado}} está disponible
-            </h4>
+            
+            <div *ngIf="statusDominioBuscado; else nodisponible">
+              <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600"  >
+                <i class="far fa-check-circle" style="color: #32cb00"></i>
+                {{dominiobuscado}} está disponible
+              </h4>
 
-            <div class="btn_hover0 d-flex justify-content-center opc_hover" style="width: auto;">
-                      <div class="item" style="cursor: pointer">
-                        <a
-                          class="btn-add btn-add"
-                          itemn="0"
-                        >
-                          <span class="d-block">
-                            <i
-                              style="font-size: 28px"
-                              class="fas fa-cart-plus"
-                            ></i>
-                            <p
-                              style="
-                                font-size: 11px;
-                                line-height: 1;
-                                visibility: hidden;
-                              "
-                            >
-                              &nbsp;
-                            </p>
-                          </span>
-
-                          
-                          <span class="span-addcard px-1"
+              <div class="btn_hover0 d-flex justify-content-center opc_hover" style="width: auto;">
+                        <div class="item" style="cursor: pointer">
+                          <a
+                            class="btn-add btn-add"
+                            itemn="0"
                           >
-                            <i class="far fa-check-circle"></i>
+                            <span class="d-block">
+                              <i
+                                style="font-size: 28px"
+                                class="fas fa-cart-plus"
+                              ></i>
+                              <p
+                                style="
+                                  font-size: 11px;
+                                  line-height: 1;
+                                  visibility: hidden;
+                                "
+                              >
+                                &nbsp;
+                              </p>
+                            </span>
 
-                            <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito
-                            </p>
-                          </span>
+                            
+                            <span class="span-addcard px-1"
+                            >
+                              <i class="far fa-check-circle"></i>
 
-                          <!--
-                          <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
-                            <i style="font-size:28px;" class="far fa-check-circle"></i>
-                            <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
-                          </span>
-                        -->
-                        
+                              <p style="font-size: 11px; line-height: 1">
+                                Añadir al carrito
+                              </p>
+                            </span>
+
+                            <!--
+                            <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
+                              <i style="font-size:28px;" class="far fa-check-circle"></i>
+                              <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
+                            </span>
+                          -->
+                          
 
 
 
 
-                        </a>
-                      </div>
-                    </div>
+                          </a>
+                        </div>
+              </div>
+            </div>
 
             <ng-template #nodisponible>
 
@@ -94,6 +97,7 @@
                 type="checkbox"
                 value=""
                 id="flexCheckChecked"
+                (click)="addAllDomains()"
               />
 
               <label class="form-check-label" for="flexCheckChecked">
@@ -113,91 +117,92 @@
           >
             &nbsp;
           </div>
+          <ng-container *ngFor="let dominio of dominios">
+            <div class="col-md-6 col-xs-12" *ngIf="dominio.status=='free'">
+              <div class="row d-flex align-items-center card-newd" >
+                <div class="col-md-6 col-5">
+                  <h6>{{dominio.domain}}</h6>
+                </div>
 
-          <div class="col-md-6 col-xs-12" *ngFor="let dominio of dominios">
-            <div class="row d-flex align-items-center card-newd">
-              <div class="col-md-6 col-5">
-                <h6>{{dominio.domain}}</h6>
-              </div>
-
-              <div class="col-md-6 col-7">
-                <div class="row d-flex align-items-center">
-                  <div class="col-8 p-0">
-                    <div class="precio-dominio-recomendacion float-right">
-                      <p style="margin: 5px; text-align: right">
-                        <b style="color: #005ad2">{{dominio.precio_bd | currency:'USD':'symbol-narrow':'0.0-0':'es-CL'}} CLP</b><br /><small
-                          style="color: #afb0b2"
-                          >Por el primer año</small
-                        >
-                      </p>
+                <div class="col-md-6 col-7">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-8 p-0">
+                      <div class="precio-dominio-recomendacion float-right">
+                        <p style="margin: 5px; text-align: right">
+                          <b style="color: #005ad2">{{dominio.precio_bd | currency:'USD':'symbol-narrow':'0.0-0':'es-CL'}} CLP</b><br /><small
+                            style="color: #afb0b2"
+                            >Por el primer año</small
+                          >
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="col-4 p-0">
-                    <div
-                      class="btn_hover0 d-flex justify-content-center"
-                      [ngClass]="{'opc_hover2': dominio.agregado == true, 'opc_hover' : dominio.agregado == false }"
-                    >
-                      <div class="item" style="cursor: pointer">
-                        <a
-                          class="btn-add"
-                          [ngClass]="{'btn-delete': dominio.agregado == true, 'btn-add' : dominio.agregado == false }"
-                          itemn="0"
-                        >
-                          <span [ngClass]="{
-                            'd-none': dominio.agregado == true,
-                            'd-block': !dominio.agregado
-                          }">
-                            <i
-                              style="font-size: 28px"
-                              class="fas fa-cart-plus"
-                            ></i>
-                            <p
-                              style="
-                                font-size: 11px;
-                                line-height: 1;
-                                visibility: hidden;
-                              "
+                    <div class="col-4 p-0">
+                      <div
+                        class="btn_hover0 d-flex justify-content-center"
+                        [ngClass]="{'opc_hover2': dominio.agregado == true, 'opc_hover' : dominio.agregado == false }"
+                      >
+                        <div class="item" style="cursor: pointer">
+                          <a
+                            class="btn-add"
+                            [ngClass]="{'btn-delete': dominio.agregado == true, 'btn-add' : dominio.agregado == false }"
+                            itemn="0"
+                          >
+                            <span [ngClass]="{
+                              'd-none': dominio.agregado == true,
+                              'd-block': !dominio.agregado
+                            }">
+                              <i
+                                style="font-size: 28px"
+                                class="fas fa-cart-plus"
+                              ></i>
+                              <p
+                                style="
+                                  font-size: 11px;
+                                  line-height: 1;
+                                  visibility: hidden;
+                                "
+                              >
+                                &nbsp;
+                              </p>
+                            </span>
+
+                            <span class="span-addcard px-1"
+
+                            [ngClass]="{
+                              'd-none': dominio.agregado == true
+                            }"
+                            (click)="agregarcarro(dominio)"
+
                             >
-                              &nbsp;
-                            </p>
-                          </span>
+                              <i class="far fa-check-circle"></i>
 
-                          <span class="span-addcard px-1"
-
-                          [ngClass]="{
-                            'd-none': dominio.agregado == true
-                          }"
-                          (click)="agregarcarro(dominio)"
-
-                          >
-                            <i class="far fa-check-circle"></i>
-
-                            <p style="font-size: 11px; line-height: 1">
-                              Añadir al carrito {{dominio.agregado}}
-                            </p>
-                          </span>
+                              <p style="font-size: 11px; line-height: 1">
+                                Añadir al carrito {{dominio.agregado}}
+                              </p>
+                            </span>
 
 
-                          
-                          <span class="px-1 d-block" style="padding: 20px 20px;height: 80px;"  
-                            *ngIf="dominio.agregado"
-                          >
-                            <i style="font-size:28px;" class="far fa-check-circle"></i>
-                            <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
-                          </span>
-                          
+                            
+                            <span class="px-1 d-block" style="padding: 20px 20px;height: 80px;"  
+                              *ngIf="dominio.agregado"
+                            >
+                              <i style="font-size:28px;" class="far fa-check-circle"></i>
+                              <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
+                            </span>
+                            
 
 
 
-                        </a>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ng-container>
 
         </div>
 

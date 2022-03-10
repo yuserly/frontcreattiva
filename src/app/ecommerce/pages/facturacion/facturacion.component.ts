@@ -173,6 +173,11 @@ export class FacturacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    console.log("datos del formulario");
+    console.log(this.form);
+    this.form.markAllAsTouched()
+
     let infopago = JSON.parse(localStorage.getItem('infopago')!);
 
     let carrito = JSON.parse(localStorage.getItem('carrito')!);

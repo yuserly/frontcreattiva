@@ -152,7 +152,7 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     carrito.map((p, i) => {
-      if (p.producto.subcategoria_id == 26) {
+      if (p.producto.subcategoria_id == 31) {
         if(p.dominio===dominio){
           console.log(i);
           carrito.splice(i, 1);
@@ -206,7 +206,7 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
     carrito.map((p, i) => {
-      if (p.producto.subcategoria_id == 26) {
+      if (p.producto.subcategoria_id == 31) {
 
           carrito.splice(i);
       }
@@ -275,7 +275,7 @@ export class DominioComponent implements OnInit {
     let cont = 0;
 
     carrito.map((p, i) => {
-      if (p.producto.subcategoria_id == 26) {
+      if (p.producto.subcategoria_id == 31) {
         cont++;
       }
       return p;
@@ -304,7 +304,7 @@ export class DominioComponent implements OnInit {
       return true;
     }else if(carrito.length>1){
       carrito.map((p, i) => {
-        if (p.producto.subcategoria_id == 26) {
+        if (p.producto.subcategoria_id == 31) {
               cont++;
         }
         return p;

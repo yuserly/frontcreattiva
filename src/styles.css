@@ -660,7 +660,7 @@ input#cantidadlicencias::-webkit-inner-spin-button {
 input#cantidadlicencias {
   -moz-appearance: textfield;
 }
-/*
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -668,10 +668,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=number] { -moz-appearance:textfield; }
+
 .alerta{
   border:3px solid #005AD2!important;
   font-size:14px!important;
-}*/
+}
 .swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel{
   width: 100px!important;
 }

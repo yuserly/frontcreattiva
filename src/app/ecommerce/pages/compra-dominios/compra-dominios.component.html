@@ -216,7 +216,7 @@
 			    	</div>
 
 			    	<ng-container *ngFor="let dominio of dominios">
-				    	<div class="col-md-12 col-xs-12" *ngIf="dominio.status=='free'">
+				    	<div class="col-md-12 col-xs-12" *ngIf="dominio.status=='free' && dominio.domain!==dominiobuscado">
 				            <div class="row d-flex align-items-center card-newd">
 				              <div class="col-md-6 col-5">
 				                <h6>{{dominio.domain}}</h6>

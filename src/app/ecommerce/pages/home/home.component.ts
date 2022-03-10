@@ -1,5 +1,5 @@
 import { DominiosService } from './../../services/dominios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Categorias,
@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   categorias: Categorias[] = [];
   subcategorias: Subcategorias[] = [];
   productos: Productos[] = [];
+
+  @ViewChild('subfoco') subfoco!: ElementRef;
 
   constructor(
     private categoriasServices: CategoriasService,
@@ -68,6 +70,7 @@ export class HomeComponent implements OnInit {
       }else{
         this.productos = [];
       }
+
     });
   }
 
@@ -79,6 +82,9 @@ export class HomeComponent implements OnInit {
         p['active'] = false;
       }
     });
+
+    this.subfoco.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
   }
 
   buscarproducto(id: number) {

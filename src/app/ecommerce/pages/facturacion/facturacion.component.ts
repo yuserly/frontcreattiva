@@ -217,91 +217,96 @@ export class FacturacionComponent implements OnInit {
       this.CategoriasService.getempresaxid(empresaselect).subscribe((resp) => {
         console.log(resp);
 
-        if (resp.data) {
-          if (token && empresaselect) {
-            this.seleccion.nombre = resp.data.nombre;
-            this.seleccion.email = resp.data.email;
-            this.seleccion.telefono = resp.data.telefono;
-            this.seleccion.pais = resp.data.pais;
-            this.seleccion.rut = resp.data.rut;
-            this.seleccion.razonsocial = resp.data.razonsocial;
-            this.seleccion.giro = resp.data.giro;
-            this.seleccion.telefonoempresa = resp.data.telefono_empresa;
-            this.seleccion.emailempresa = resp.data.email_empresa;
-            this.seleccion.mediopago = 1;
-
-            if (resp.data.razonsocial) {
-              this.nombrefacturacion = resp.data.razonsocial;
-            }
-
-            if (resp.data.tipo == 1) {
-              this.seleccion.isempresa = true;
-              this.empresadatos = true;
-            } else {
-              this.seleccion.isempresa = false;
-              this.empresadatos = false;
-
-            }
-            this.seleccion.direccion = resp.data.direccion;
-            this.seleccion.region = resp.data.region;
-            this.seleccion.comuna = resp.data.comuna;
-
-            if (resp.data.nombre && resp.data.email && resp.data.telefono) {
-              this.datoscompradorsave = true;
-            }
-
-            if (resp.data.tipo == 1) {
-              if (
-                resp.data.rut &&
-                resp.data.razonsocial &&
-                resp.data.giro &&
-                resp.data.telefono_empresa &&
-                resp.data.email_empresa
-              ) {
-                this.datosfacturacion = true;
-              }
-            } else {
-              if (
-                resp.data.rut &&
-                resp.data.telefono_empresa &&
-                resp.data.email_empresa
-              ) {
-                this.datosfacturacion = true;
-              }
-            }
-
-            if (resp.data.direccion && resp.data.region && resp.data.comuna) {
-              this.datosdireccion = true;
-              this.existedireccion = true;
-            }
-          } else {
-            localStorage.removeItem('token');
-            localStorage.removeItem('empresaselect');
-
-            this.router.navigate(['/login']);
-          }
-        } else {
-          this.seleccion.nombre = usuario.nombre;
-          this.seleccion.email = usuario.email;
-          this.seleccion.pais = 'Chile';
-          this.seleccion.isempresa = true;
-        }
-
-        this.form.reset(this.seleccion);
-
-        // if (this.form.value.comuna != 0) {
-        //   this.buscarcomuna();
-        // }
+        this.datosdelcliente(resp);
       });
 
     }else{
 
-          this.seleccion.nombre = usuario.nombre;
-          this.seleccion.email = usuario.email;
-          this.seleccion.pais = 'Chile';
-          this.seleccion.isempresa = true;
-          this.form.reset(this.seleccion);
+      this.CategoriasService.getempresa(usuario.email).subscribe((resp) => {
+        console.log(resp);
+
+        this.datosdelcliente(resp);
+      });
     }
+
+  }
+
+  datosdelcliente(resp:any){
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+    let token = localStorage.getItem('token')!;
+    let empresaselect = parseInt(localStorage.getItem('empresaselect')!);
+
+    if (resp.data) {
+      if (token && empresaselect) {
+        this.seleccion.nombre = resp.data.nombre;
+        this.seleccion.email = resp.data.email;
+        this.seleccion.telefono = resp.data.telefono;
+        this.seleccion.pais = resp.data.pais;
+        this.seleccion.rut = resp.data.rut;
+        this.seleccion.razonsocial = resp.data.razonsocial;
+        this.seleccion.giro = resp.data.giro;
+        this.seleccion.telefonoempresa = resp.data.telefono_empresa;
+        this.seleccion.emailempresa = resp.data.email_empresa;
+        this.seleccion.mediopago = 1;
+
+        if (resp.data.razonsocial) {
+          this.nombrefacturacion = resp.data.razonsocial;
+        }
+
+        if (resp.data.tipo == 1) {
+          this.seleccion.isempresa = true;
+          this.empresadatos = true;
+        } else {
+          this.seleccion.isempresa = false;
+          this.empresadatos = false;
+
+        }
+        this.seleccion.direccion = resp.data.direccion;
+        this.seleccion.region = resp.data.region;
+        this.seleccion.comuna = resp.data.comuna;
+
+        if (resp.data.nombre && resp.data.email && resp.data.telefono) {
+          this.datoscompradorsave = true;
+        }
+
+        if (resp.data.tipo == 1) {
+          if (
+            resp.data.rut &&
+            resp.data.razonsocial &&
+            resp.data.giro &&
+            resp.data.telefono_empresa &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
+          }
+        } else {
+          if (
+            resp.data.rut &&
+            resp.data.telefono_empresa &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
+          }
+        }
+
+        if (resp.data.direccion && resp.data.region && resp.data.comuna) {
+          this.datosdireccion = true;
+          this.existedireccion = true;
+        }
+      } else {
+        localStorage.removeItem('token');
+        localStorage.removeItem('empresaselect');
+
+        this.router.navigate(['/login']);
+      }
+    } else {
+      this.seleccion.nombre = usuario.nombre;
+      this.seleccion.email = usuario.email;
+      this.seleccion.pais = 'Chile';
+      this.seleccion.isempresa = true;
+    }
+
+    this.form.reset(this.seleccion);
 
   }
 

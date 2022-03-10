@@ -166,7 +166,7 @@
                 </div>
               </div>
             </div>
-            <div class="accordion-item mt-2">
+            <div class="accordion-item mt-2" *ngIf="datoscompradorsave">
               <p><b>2.- Datos facturación:</b></p>
 
               <h2
@@ -309,7 +309,7 @@
                 </div>
               </div>
             </div>
-            <div class="accordion-item mt-2">
+            <div class="accordion-item mt-2" *ngIf="datosfacturacion">
               <p><b>3.- Dirección:</b></p>
 
               <h2
@@ -448,7 +448,7 @@
             </div>
           </div>
 
-          <div class="mt-2 mediospago">
+          <div class="mt-2 mediospago" *ngIf="datosdireccion">
             <p><b>4.- Medio de pago:</b></p>
 
             <div class="row d-flex justify-content-center">

@@ -20,6 +20,13 @@ export class LoginSucursalComponent implements OnInit {
     ]
   });
 
+  formpass: FormGroup = this.fb.group({
+    emailpass: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.emailPattern)],
+    ]
+  });
+
   get mensajeerroremail(): string {
     const error = this.form.get('email')?.errors;
 
@@ -33,6 +40,10 @@ export class LoginSucursalComponent implements OnInit {
   }
 
   hide: boolean = true;
+  cargando:boolean = false;
+  emailenviado:boolean = false;
+  errormail:boolean = false;
+
 
   constructor(private fb: FormBuilder,
     private validacion: ValidatorService,
@@ -107,6 +118,38 @@ export class LoginSucursalComponent implements OnInit {
         }
       }
     });
+  }
+
+  recuperar(){
+    if (this.formpass.invalid) {
+      this.formpass.markAllAsTouched();
+      return;
+    }
+
+    this.cargando = true;
+
+    this.categoriasService
+      .recuperarpassword(this.formpass.value.emailpass)
+      .subscribe((resp) => {
+
+        console.log(resp)
+
+        if (resp.data.ok) {
+          this.emailenviado = true;
+          this.cargando = false;
+        } else {
+          this.errormail = true;
+          this.cargando = false;
+
+        }
+
+        console.log(this.cargando)
+        console.log(this.errormail)
+        console.log(this.emailenviado)
+
+
+      });
+
   }
 
   validarcampo(campo: string) {

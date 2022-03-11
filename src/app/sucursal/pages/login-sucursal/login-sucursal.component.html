@@ -57,10 +57,7 @@
                           formControlName="password"
                         />
 
-                        <div
-                          class="input-group-prepend d-flex"
-
-                        >
+                        <div class="input-group-prepend d-flex">
                           <div class="input-group-text" (click)="hide = !hide">
                             <i class="icono-pass far fa-eye-slash"></i>
                           </div>
@@ -86,7 +83,12 @@
                     </div>
 
                     <div class="float-left">
-                      <a href="/validar-email" class="text-muted">
+                      <a
+                        class="text-muted"
+                        style="cursor: pointer"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalrecuperarpass"
+                      >
                         Olvidó su contraseña</a
                       >
                     </div>
@@ -101,6 +103,146 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Recuperar pass-->
+    <div
+      class="modal fade"
+      id="modalrecuperarpass"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="border-bottom: 0px; padding-bottom: 0px"
+          >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-12" *ngIf="!cargando && !emailenviado && !errormail; else spinner">
+              <form [formGroup]="formpass">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Ingresa tu email</label>
+                  <input
+                    type="email'"
+                    class="form-control"
+                    id="email"
+                    formControlName="emailpass"
+                    aria-describedby="email"
+                  />
+                </div>
+                <div class="text-center mt-4">
+                  <button
+                    type="button"
+                    class="btn"
+                    style="
+                      background-color: #005ad2;
+                      color: #f2f3f5;
+                      font-weight: bold;
+                      width: 60%;
+                    "
+                    [disabled]="formpass.invalid"
+                    (click)="recuperar()"
+                  >
+                    Recuperar
+                  </button>
+                </div>
+              </form>
+            </div>
+            <ng-template #spinner>
+              <div
+                class="col-md-12 d-flex justify-content-center"
+                *ngIf="cargando"
+              >
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </ng-template>
+
+              <div
+                class="col-md-12 d-flex justify-content-center"
+                *ngIf="emailenviado"
+              >
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <i
+                      class="far fa-thumbs-up mb-3"
+                      style="color: #2fdd92; font-size: 46px;"
+                    ></i>
+
+                    <p>
+                      Hemos enviado un correo electronico a la
+                      siguiente direccion:
+                      {{ formpass.value.emailpass }}
+                    </p>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-center mt-4">
+                      <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        class="btn"
+                        style="
+                          background-color: #005ad2;
+                          color: #f2f3f5;
+                          font-weight: bold;
+                          width: 70%;
+                        "
+                      >
+                        Entiendo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="col-md-12 d-flex justify-content-center"
+                *ngIf="errormail"
+              >
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <i class="far fa-times-circle mb-3" style="color: #d82148; font-size: 46px;"></i>
+
+                    <p>
+                      El correo ingresado {{ formpass.value.emailpass }} no se
+                      encuentra registrado
+                    </p>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-center mt-4">
+                      <button
+                        type="button"
+                        data-bs-dismiss="modal"
+                        class="btn"
+                        style="
+                          background-color: #005ad2;
+                          color: #f2f3f5;
+                          font-weight: bold;
+                          width: 70%;
+                        "
+                      >
+                        Entiendo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Recuperar pass-->
   </div>
 </main>
 

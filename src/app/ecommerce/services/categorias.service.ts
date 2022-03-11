@@ -179,7 +179,7 @@ export class CategoriasService {
     console.log(carrito);
 
     carrito.forEach((element, i) => {
-    
+
         element.periodos.forEach((element2) => {
 
           if (element.periodo == element2.id_periodo) {
@@ -199,7 +199,7 @@ export class CategoriasService {
               ahorroa = element2.ahorro;
 
             }
-            
+
 
             productos.push({
               nombre: element.producto.nombre,
@@ -226,7 +226,7 @@ export class CategoriasService {
         });
 
 
-      
+
     });
 
     console.log()
@@ -252,5 +252,9 @@ export class CategoriasService {
   generarordencompra(data:any){
     return this.http.post<any>(`${this.urlBase}/generarorder`, data)
 
+  }
+
+  recuperarpassword(email:string){
+    return this.http.get<any>(`${this.urlBase}/solicitudcambiopass/${email}`);
   }
 }

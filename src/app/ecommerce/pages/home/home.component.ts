@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   categorias: Categorias[] = [];
   subcategorias: Subcategorias[] = [];
   productos: Productos[] = [];
+  logueado: boolean = false;
 
   @ViewChild('subfoco') subfoco!: ElementRef;
 
@@ -29,7 +30,12 @@ export class HomeComponent implements OnInit {
     public DominiosService: DominiosService,
     private router: Router
   ) {
-    // this.router.navigate(['/hosting/hosting-ssd']);
+    let token = localStorage.getItem('token')!;
+      let empresaselect = localStorage.getItem('empresaselect')!;
+
+      if(token && empresaselect){
+        this.logueado = true;
+      }
   }
 
   ngOnInit(): void {

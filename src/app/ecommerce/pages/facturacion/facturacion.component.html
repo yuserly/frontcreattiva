@@ -7,31 +7,6 @@
         <div class="row">
           <div class="col-md-12 mb-2 d-flex justify-content-between">
             <h5><b>Detalles de la compra</b></h5>
-
-            <div class="row">
-              <div class="col-md-4 px-0">
-                <label class="form-check-label" for="flexSwitchCheckChecked"
-                  >Persona</label
-                >
-              </div>
-              <div class="col-md-4">
-                <div class="form-check form-switch">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="flexSwitchCheckChecked"
-                    (change)="mostrardatosempresa()"
-                    formControlName="isempresa"
-                  />
-                </div>
-              </div>
-              <div class="col-md-4 px-0">
-                <label class="form-check-label" for="flexSwitchCheckChecked"
-                  >Empresa</label
-                >
-              </div>
-            </div>
           </div>
         </div>
 
@@ -94,38 +69,33 @@
                       </div>
                       <div class="col">
                         <div class="form-group">
-
                           <div class="input-group">
-                              <div class="input-group-prepend d-flex">
-                                  <div class="input-group-text">
-                                      +569
-                                  </div>
-                              </div>
+                            <div class="input-group-prepend d-flex">
+                              <div class="input-group-text">+569</div>
+                            </div>
 
-                              <input
-                                class="form-control input__field_telefono"
-                                [ngClass]="{
-                                  'is-invalid': validarcampo('telefono')
-                                }"
-                                type="number"
-                                [readonly]="datoscompradorsave"
-                                placeholder="Móvil"
-                                id="telefono"
-                                required
-                                formControlName="telefono"
-                              />
+                            <input
+                              class="form-control input__field_telefono"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('telefono')
+                              }"
+                              type="number"
+                              [readonly]="datoscompradorsave"
+                              placeholder="Móvil"
+                              id="telefono"
+                              required
+                              formControlName="telefono"
+                            />
 
-                              <div
-                                class="invalid-feedback"
-                                *ngIf="validarcampo('telefono')"
-                              >
-                                {{ mensajeerrortelefono }}
-                              </div>
-
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('telefono')"
+                            >
+                              {{ mensajeerrortelefono }}
+                            </div>
                           </div>
-
+                        </div>
                       </div>
-                    </div>
 
                       <div class="col">
                         <select
@@ -167,7 +137,41 @@
               </div>
             </div>
             <div class="accordion-item mt-2" *ngIf="datoscompradorsave">
-              <p><b>2.- Datos facturación:</b></p>
+              <div class="row mt-3">
+                <div class="col-6 align-middle">
+                  <p><b>2.- Datos facturación:</b></p>
+                </div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-md-4 px-0">
+                      <label
+                        class="form-check-label"
+                        for="flexSwitchCheckChecked"
+                        >Persona</label
+                      >
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckChecked"
+                          (change)="mostrardatosempresa()"
+                          formControlName="isempresa"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-0">
+                      <label
+                        class="form-check-label"
+                        for="flexSwitchCheckChecked"
+                        >Empresa</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <h2
                 class="accordion-header d-flex justify-content-between"
@@ -210,7 +214,9 @@
                         [ngClass]="{ 'is-invalid': validarcampo('rut') }"
                         id="inputEmail4"
                         [readonly]="datosfacturacion"
-                        placeholder="Rut Empresa"
+                        [placeholder]="
+                          form.value.isempresa ? 'RUT Empresa' : 'RUT'
+                        "
                         (change)="validarrut()"
                         formControlName="rut"
                       />
@@ -239,36 +245,34 @@
                       />
                     </div>
                     <div class="col-md-6">
-
-
                       <div class="input-group">
-                          <div class="input-group-prepend d-flex">
-                              <div class="input-group-text">
-                                  +569
-                              </div>
-                          </div>
+                        <div class="input-group-prepend d-flex">
+                          <div class="input-group-text">+569</div>
+                        </div>
 
-                          <input
-                            type="number"
-                            class="form-control"
-                            [ngClass]="{
-                              'is-invalid': validarcampo('telefonoempresa')
-                            }"
-                            id="inputEmail4"
-                            [readonly]="datosfacturacion"
-                            placeholder="Tel. Empresa"
-                            formControlName="telefonoempresa"
-                          />
+                        <input
+                          type="number"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': validarcampo('telefonoempresa')
+                          }"
+                          id="inputEmail4"
+                          [readonly]="datosfacturacion"
+                          [placeholder]="
+                            form.value.isempresa
+                              ? 'Tel. Empresa'
+                              : 'Tel. contacto'
+                          "
+                          formControlName="telefonoempresa"
+                        />
 
-                          <div
-                            class="invalid-feedback"
-                            *ngIf="validarcampo('telefonoempresa')"
-                          >
-                            {{ mensajeerrortelefonoempresa }}
-                          </div>
-
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('telefonoempresa')"
+                        >
+                          {{ mensajeerrortelefonoempresa }}
+                        </div>
                       </div>
-
                     </div>
                     <div class="col-md-6">
                       <input
@@ -279,7 +283,11 @@
                         }"
                         id="inputPassword4"
                         [readonly]="datosfacturacion"
-                        placeholder="Email Empresa"
+                        [placeholder]="
+                          form.value.isempresa
+                            ? 'Email Empresa'
+                            : 'Email contacto'
+                        "
                         formControlName="emailempresa"
                       />
                       <div
@@ -345,15 +353,18 @@
               >
                 <div class="accordion-body px-0">
                   <div class="row g-3">
-
-
-                    <div class="col-md-12" *ngIf="existedireccion; else botondireccion">
+                    <div
+                      class="col-md-12"
+                      *ngIf="existedireccion; else botondireccion"
+                    >
                       <form class="row g-3">
                         <div class="col-12">
                           <input
                             type="text"
                             class="form-control"
-                            [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
+                            [ngClass]="{
+                              'is-invalid': validarcampo('direccion')
+                            }"
                             id="inputAddress"
                             placeholder="Direccion"
                             formControlName="direccion"
@@ -399,30 +410,27 @@
                           </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                        <button
-                        *ngIf="!datosdireccion"
-                          type="button"
-                          class="btn"
-                          style="
-                            background-color: #005ad2;
-                            color: #f2f3f5;
-                            font-weight: bold;
-                            width: 60%;
-                          "
-                          (click)="guardardireccion()"
-                        >
-                          Confirmar
-                        </button>
-                      </div>
-
-
+                          <button
+                            *ngIf="!datosdireccion"
+                            type="button"
+                            class="btn"
+                            style="
+                              background-color: #005ad2;
+                              color: #f2f3f5;
+                              font-weight: bold;
+                              width: 60%;
+                            "
+                            (click)="guardardireccion()"
+                          >
+                            Confirmar
+                          </button>
+                        </div>
                       </form>
                     </div>
 
                     <!-- boton direccion -->
 
                     <ng-template #botondireccion>
-
                       <div class="col-md-12 mt-4 text-center">
                         <button
                           type="button"
@@ -439,9 +447,7 @@
                           Agregar nueva dirección
                         </button>
                       </div>
-
                     </ng-template>
-
                   </div>
                 </div>
               </div>
@@ -549,9 +555,32 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-12 text-center mt-4">
+    <div class="col-md-4">
+      <app-detalle-pedido
+        [totalcarroarray]="totalcarroarray"
+      ></app-detalle-pedido>
+
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="promociones" />
+            <label
+              class="form-check-label"
+              for="promociones"
+              style="font-size: 13px"
+              >Quiero recibir promociones (opcional)</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-6">
+          <p class="mt-2">TOTAL {{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</p>
+        </div>
+        <div class="col-6">
           <button
             type="button"
             class="btn"
@@ -560,20 +589,25 @@
               background-color: #009900;
               color: #f2f3f5;
               font-weight: bold;
-              width: 45%;
+              width: 100%;
             "
             (click)="finalizarcompra()"
           >
-            FINALIZAR COMPRA
+            COMPRAR
           </button>
         </div>
+        <div class="col-12">
+          <span class="text-muted" style="font-size: 12px">
+            * Al confirmar el pedido declaras haber leído y aceptado nuestros
+            <span
+              style="cursor: pointer"
+              data-bs-toggle="modal"
+              data-bs-target="#modalterminos"
+              ><strong>Términos y condiciones.</strong>
+            </span>
+          </span>
+        </div>
       </div>
-    </div>
-
-    <div class="col-md-4">
-      <app-detalle-pedido
-        [totalcarroarray]="totalcarroarray"
-      ></app-detalle-pedido>
     </div>
 
     <!-- Modal -->
@@ -699,6 +733,57 @@
       </div>
     </div>
     <!-- Modal -->
+
+    <!-- Modal Terminos-->
+    <div
+      class="modal fade"
+      id="modalterminos"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="border-bottom: 0px; padding-bottom: 0px"
+          >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+
+            <h6 class="me-4 mb-4 "> <strong>Términos y Condiciones</strong> </h6>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+              illo voluptatem ipsa in ea a libero esse iusto, architecto ut
+              voluptatum voluptate id omnis, natus quam cumque laborum? Eum,
+              non. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Laboriosam aliquam hic assumenda eum possimus iusto dolores illo
+              animi. Ullam quo officia iusto tenetur minus eius quasi sit.
+
+              Facere, aspernatur dolores. Lorem ipsum dolor, sit amet
+              consectetur adipisicing elit. Minima animi illum enim aliquid quam
+              veritatis in corporis sint itaque praesentium expedita, ad aperiam
+              rem suscipit adipisci eius quasi eveniet porro. Lorem ipsum dolor
+              sit amet, consectetur adipisicing elit. Eligendi cum sequi ratione
+              natus, dolor, optio animi illum officia aliquam error aspernatur
+              necessitatibus, corrupti quam unde dolores aliquid deserunt?
+              Dignissimos, nesciunt?
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Terminos-->
   </div>
 </div>
 

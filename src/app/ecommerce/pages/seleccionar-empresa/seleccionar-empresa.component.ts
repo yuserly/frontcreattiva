@@ -31,11 +31,22 @@ export class SeleccionarEmpresaComponent implements OnInit {
 
   }
 
-  seleccionar(id_empresa:number){
-    console.log(id_empresa)
-    if(id_empresa){
+  seleccionar(empresa:Empresas){
+    console.log(empresa)
+
+
+    if(empresa){
+      let datauser = JSON.parse(localStorage.getItem('usuario')!);
+
+      let usuario = {
+        nombre: datauser.nombre,
+        email: datauser.email,
+        razonsocial:empresa.razonsocial
+      }
+
+      localStorage.setItem('usuario', JSON.stringify(usuario));
       localStorage.setItem(
-        'empresaselect',id_empresa.toString()
+        'empresaselect',empresa.toString()
       );
       let carrito = JSON.parse(localStorage.getItem('carrito')!);
 

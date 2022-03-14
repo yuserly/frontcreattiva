@@ -1,5 +1,5 @@
 import { DominiosService } from './../../services/dominios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Categorias,
@@ -21,13 +21,21 @@ export class HomeComponent implements OnInit {
   categorias: Categorias[] = [];
   subcategorias: Subcategorias[] = [];
   productos: Productos[] = [];
+  logueado: boolean = false;
+
+  @ViewChild('subfoco') subfoco!: ElementRef;
 
   constructor(
     private categoriasServices: CategoriasService,
     public DominiosService: DominiosService,
     private router: Router
   ) {
-    // this.router.navigate(['/hosting/hosting-ssd']);
+    let token = localStorage.getItem('token')!;
+      let empresaselect = localStorage.getItem('empresaselect')!;
+
+      if(token && empresaselect){
+        this.logueado = true;
+      }
   }
 
   ngOnInit(): void {
@@ -47,7 +55,7 @@ export class HomeComponent implements OnInit {
 
     this.buscarsubcategoria(1);
 
-    this.itemsCarrito();
+
   }
 
   buscarsubcategoria(id: number) {
@@ -68,6 +76,7 @@ export class HomeComponent implements OnInit {
       }else{
         this.productos = [];
       }
+
     });
   }
 
@@ -79,6 +88,9 @@ export class HomeComponent implements OnInit {
         p['active'] = false;
       }
     });
+
+    this.subfoco.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
   }
 
   buscarproducto(id: number) {
@@ -93,16 +105,5 @@ export class HomeComponent implements OnInit {
     this.productos = productos;
   }
 
-  itemsCarrito(){
-    let index = JSON.parse(localStorage.getItem('index')!);
-
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-
-    if(carrito){
-      this.DominiosService.totalCarro = carrito.length;
-    }else{
-      this.DominiosService.totalCarro = 0;
-    }
-  }
 
 }

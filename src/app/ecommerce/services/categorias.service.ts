@@ -147,6 +147,13 @@ export class CategoriasService {
     )
   }
 
+  //validar cupon
+  validarcupon(cupon:string,subcategoria_id:number):Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/validarcupon/${cupon}/${subcategoria_id}`);
+
+  }
+
   calculototalcarro() {
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
     let productos: ProductoCarro[] = [];
@@ -163,27 +170,36 @@ export class CategoriasService {
     let total: number = 0;
     let ahorro: number = 0;
 
+    let montocupon:number = 0;
+
       //totalLicencias = element.cantidadlicencias;
       //console.log("Total licencias: "+element.cantidadlicencias);
 
+    console.log("datos del carrito, detalles:");
+    console.log(carrito);
 
     carrito.forEach((element, i) => {
-    
+
         element.periodos.forEach((element2) => {
 
           if (element.periodo == element2.id_periodo) {
 
-            if(element.producto.subcategoria_id==17 ||
-              element.producto.subcategoria_id==20){
+            //Licencias Google Workspace y Microsoft 365
+            if(element.producto.subcategoria_id==20 ||
+              element.producto.subcategoria_id==24){
+
               precio = element2.precio_descuento*<number>element.cantidad;
               precioold = element2.precio*<number>element.cantidad;
               ahorroa = element2.ahorro*<number>element.cantidad;
+
             }else{
+
               precio = element2.precio_descuento;
               precioold = element2.precio;
               ahorroa = element2.ahorro;
+
             }
-            
+
 
             productos.push({
               nombre: element.producto.nombre,
@@ -191,11 +207,26 @@ export class CategoriasService {
               precioold: precioold,
               ahorro: ahorroa,
             });
+
+            //asignar cupon a detalles
+            montocupon = <number>element.cupon_descuento;
+
+            if(montocupon>0){
+              productos.push({
+                nombre: 'Cupón de descuento para '+element.producto.nombre,
+                precio: montocupon*-1,
+                precioold: 0,
+                ahorro: 0,
+              });
+            }
+
+
+
           }
         });
 
 
-      
+
     });
 
     console.log()
@@ -221,5 +252,9 @@ export class CategoriasService {
   generarordencompra(data:any){
     return this.http.post<any>(`${this.urlBase}/generarorder`, data)
 
+  }
+
+  recuperarpassword(email:string){
+    return this.http.get<any>(`${this.urlBase}/solicitudcambiopass/${email}`);
   }
 }

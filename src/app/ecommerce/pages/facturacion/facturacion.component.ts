@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 import { CategoriasService } from '../../services/categorias.service';
@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./facturacion.component.css'],
 })
 export class FacturacionComponent implements OnInit {
+
+  // @ViewChild('modalv') modal!: ElementRef;
   totalcarroarray!: TotalCarro;
   paises: Paises[] = [];
   regiones: Regiones[] = [];
@@ -24,8 +26,10 @@ export class FacturacionComponent implements OnInit {
   datoscompradorsave: boolean = false;
   datosfacturacion: boolean = false;
   datosdireccion: boolean = false;
-  nombrefacturacion: string = 'Creattiva Datacenter';
+  nombrefacturacion: string = '';
   empresadatos:boolean = true;
+  existedireccion:boolean = false;
+
 
   form: FormGroup = this.fb.group({
     nombre: [
@@ -60,8 +64,8 @@ export class FacturacionComponent implements OnInit {
     ],
     isempresa: [true, Validators.required],
     direccion: ['', [Validators.required]],
-    region: [0, [Validators.required, this.validacion.validarRegionComuna]],
-    comuna: [0, [Validators.required, this.validacion.validarRegionComuna]],
+    region: ['', [Validators.required, this.validacion.validarRegionComuna]],
+    comuna: ['', [Validators.required, this.validacion.validarRegionComuna]],
     mediopago: [1, [Validators.required]],
   });
 
@@ -77,8 +81,8 @@ export class FacturacionComponent implements OnInit {
     emailempresa: '',
     isempresa: true,
     direccion: '',
-    region: 0,
-    comuna: 0,
+    region: '',
+    comuna: '',
     mediopago: 1,
   };
 
@@ -152,6 +156,15 @@ export class FacturacionComponent implements OnInit {
     return '';
   }
 
+  // google
+
+  formattedaddress=" ";
+  options={
+    componentRestrictions:{
+      country:["CL"]
+    }
+  }
+
   constructor(
     private fb: FormBuilder,
     private validacion: ValidatorService,
@@ -160,6 +173,11 @@ export class FacturacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    console.log("datos del formulario");
+    console.log(this.form);
+    this.form.markAllAsTouched()
+
     let infopago = JSON.parse(localStorage.getItem('infopago')!);
 
     let carrito = JSON.parse(localStorage.getItem('carrito')!);
@@ -194,84 +212,102 @@ export class FacturacionComponent implements OnInit {
     let token = localStorage.getItem('token')!;
     let empresaselect = parseInt(localStorage.getItem('empresaselect')!);
 
-    this.CategoriasService.getempresaxid(empresaselect).subscribe((resp) => {
-      console.log(resp);
+    if(empresaselect){
 
-      if (resp.data) {
-        if (token && empresaselect) {
-          this.seleccion.nombre = resp.data.nombre;
-          this.seleccion.email = resp.data.email;
-          this.seleccion.telefono = resp.data.telefono;
-          this.seleccion.pais = resp.data.pais;
-          this.seleccion.rut = resp.data.rut;
-          this.seleccion.razonsocial = resp.data.razonsocial;
-          this.seleccion.giro = resp.data.giro;
-          this.seleccion.telefonoempresa = resp.data.telefono_empresa;
-          this.seleccion.emailempresa = resp.data.email_empresa;
-          this.seleccion.mediopago = 1;
+      this.CategoriasService.getempresaxid(empresaselect).subscribe((resp) => {
+        console.log(resp);
 
-          if (resp.data.razonsocial) {
-            this.nombrefacturacion = resp.data.razonsocial;
-          }
+        this.datosdelcliente(resp);
+      });
 
-          if (resp.data.tipo == 1) {
-            this.seleccion.isempresa = true;
-            this.empresadatos = true;
-          } else {
-            this.seleccion.isempresa = false;
-            this.empresadatos = false;
+    }else{
 
-          }
-          this.seleccion.direccion = resp.data.direccion;
-          this.seleccion.region = parseInt(resp.data.region);
-          this.seleccion.comuna = parseInt(resp.data.comuna);
+      this.CategoriasService.getempresa(usuario.email).subscribe((resp) => {
+        console.log(resp);
 
-          if (resp.data.nombre && resp.data.email && resp.data.telefono) {
-            this.datoscompradorsave = true;
-          }
+        this.datosdelcliente(resp);
+      });
+    }
 
-          if (resp.data.tipo == 1) {
-            if (
-              resp.data.rut &&
-              resp.data.razonsocial &&
-              resp.data.giro &&
-              resp.data.telefono_empresa &&
-              resp.data.email_empresa
-            ) {
-              this.datosfacturacion = true;
-            }
-          } else {
-            if (
-              resp.data.rut &&
-              resp.data.telefono_empresa &&
-              resp.data.email_empresa
-            ) {
-              this.datosfacturacion = true;
-            }
-          }
+  }
 
-          if (resp.data.direccion && resp.data.region && resp.data.comuna) {
-            this.datosdireccion = true;
+  datosdelcliente(resp:any){
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+    let token = localStorage.getItem('token')!;
+    let empresaselect = parseInt(localStorage.getItem('empresaselect')!);
+
+    if (resp.data) {
+      if (token && empresaselect) {
+        this.seleccion.nombre = resp.data.nombre;
+        this.seleccion.email = resp.data.email;
+        this.seleccion.telefono = resp.data.telefono;
+        this.seleccion.pais = resp.data.pais;
+        this.seleccion.rut = resp.data.rut;
+        this.seleccion.razonsocial = resp.data.razonsocial;
+        this.seleccion.giro = resp.data.giro;
+        this.seleccion.telefonoempresa = resp.data.telefono_empresa;
+        this.seleccion.emailempresa = resp.data.email_empresa;
+        this.seleccion.mediopago = 1;
+
+        if (resp.data.razonsocial) {
+          this.nombrefacturacion = resp.data.razonsocial;
+        }
+
+        if (resp.data.tipo == 1) {
+          this.seleccion.isempresa = true;
+          this.empresadatos = true;
+        } else {
+          this.seleccion.isempresa = false;
+          this.empresadatos = false;
+
+        }
+        this.seleccion.direccion = resp.data.direccion;
+        this.seleccion.region = resp.data.region;
+        this.seleccion.comuna = resp.data.comuna;
+
+        if (resp.data.nombre && resp.data.email && resp.data.telefono) {
+          this.datoscompradorsave = true;
+        }
+
+        if (resp.data.tipo == 1) {
+          if (
+            resp.data.rut &&
+            resp.data.razonsocial &&
+            resp.data.giro &&
+            resp.data.telefono_empresa &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
           }
         } else {
-          localStorage.removeItem('token');
-          localStorage.removeItem('empresaselect');
+          if (
+            resp.data.rut &&
+            resp.data.telefono_empresa &&
+            resp.data.email_empresa
+          ) {
+            this.datosfacturacion = true;
+          }
+        }
 
-          this.router.navigate(['/login']);
+        if (resp.data.direccion && resp.data.region && resp.data.comuna) {
+          this.datosdireccion = true;
+          this.existedireccion = true;
         }
       } else {
-        this.seleccion.nombre = usuario.nombre;
-        this.seleccion.email = usuario.email;
-        this.seleccion.pais = 'Chile';
-        this.seleccion.isempresa = true;
-      }
+        localStorage.removeItem('token');
+        localStorage.removeItem('empresaselect');
 
-      this.form.reset(this.seleccion);
-
-      if (this.form.value.comuna != 0) {
-        this.buscarcomuna();
+        this.router.navigate(['/login']);
       }
-    });
+    } else {
+      this.seleccion.nombre = usuario.nombre;
+      this.seleccion.email = usuario.email;
+      this.seleccion.pais = 'Chile';
+      this.seleccion.isempresa = true;
+    }
+
+    this.form.reset(this.seleccion);
+
   }
 
   validarcampo(campo: string) {
@@ -388,6 +424,7 @@ export class FacturacionComponent implements OnInit {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
         console.log(resp);
         this.datosdireccion = true;
+        this.existedireccion = true;
       });
     }
   }
@@ -440,5 +477,16 @@ export class FacturacionComponent implements OnInit {
         });
       }
     }
+  }
+
+  AddressChange(address: any) {
+    //setting address from API to local variable
+    //  this.form.value.direccion=address.formatted_address
+
+    console.log(address);
+
+    this.form.get('direccion')!.setValue(`${address.address_components[1].long_name} ${address.address_components[0].long_name}`);
+    this.form.get('region')!.setValue(address.address_components[5].long_name)
+    this.form.get('comuna')!.setValue(address.address_components[3].long_name)
   }
 }

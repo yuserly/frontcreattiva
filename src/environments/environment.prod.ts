@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  urlBase: 'https://admin.v2.creattiva.cl/api',
+  //urlBase: 'https://admin.v2.creattiva.cl/api',
+  urlBase: 'https://api.t2.creattivadatacenter.com/api',
 };

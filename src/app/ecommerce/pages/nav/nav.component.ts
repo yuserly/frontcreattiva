@@ -1,5 +1,6 @@
 import { DominiosService } from './../../services/dominios.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   countcarro:number = 0;
+  carvisible: boolean = true;
 
-  constructor(public DominiosService: DominiosService) { }
+  constructor(public DominiosService: DominiosService, private router: Router) { }
 
   ngOnInit(): void {
+
+    console.log(this.router.routerState.snapshot.url)
+    let ruta = this.router.routerState.snapshot.url;
+
+    if(ruta == '/facturacion' || ruta == '/configuracion' || ruta == '/formulario-pago' || ruta == '/carrito' ){
+      this.carvisible = false;
+    }
 
     let carrito = JSON.parse(localStorage.getItem('carrito')!);
 

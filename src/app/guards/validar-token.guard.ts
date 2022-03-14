@@ -20,7 +20,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
         if(!valid){
           localStorage.removeItem('token')
           localStorage.removeItem('empresaselect')
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login-sucursal']);
         }
       })
     );
@@ -33,7 +33,7 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
         if(!valid){
           localStorage.removeItem('token')
           localStorage.removeItem('empresaselect')
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login-sucursal']);
         }
       })
     );

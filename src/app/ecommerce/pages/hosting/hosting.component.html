@@ -10,31 +10,35 @@
   <div class="row">
     <div class="col-md-8">
       <app-dominio *ngIf="
-      producto.tipo_producto_id == 1 ||
       producto.subcategoria_id == 1 ||
+      producto.subcategoria_id == 2 ||
+      producto.subcategoria_id == 3 ||
+      producto.subcategoria_id == 4 ||
+      producto.subcategoria_id == 5 ||
       producto.subcategoria_id == 6 ||
       producto.subcategoria_id == 7 ||
       producto.subcategoria_id == 8 ||
       producto.subcategoria_id == 9 ||
-      producto.subcategoria_id == 10 ||
-      producto.subcategoria_id == 17 ||
-      producto.subcategoria_id == 20
+      producto.subcategoria_id == 12 ||
+      producto.subcategoria_id == 20 ||
+      producto.subcategoria_id == 22 ||
+      producto.subcategoria_id == 24
     " (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"
     [dominioscarrito]="carrito"></app-dominio>
 
     <app-cantidadlicencias 
-    *ngIf="producto.subcategoria_id == 17 ||
-            producto.subcategoria_id == 20
+    *ngIf="producto.subcategoria_id == 21 ||
+            producto.subcategoria_id == 24
     " (totalcarrod)="totalcarro($event)"
     ></app-cantidadlicencias>
 
       <app-vps
         *ngIf="
-          producto.subcategoria_id == 6 ||
-          producto.subcategoria_id == 7 ||
-          producto.subcategoria_id == 8 ||
           producto.subcategoria_id == 9 ||
-          producto.subcategoria_id == 10
+          producto.subcategoria_id == 10 ||
+          producto.subcategoria_id == 11 ||
+          producto.subcategoria_id == 12 ||
+          producto.subcategoria_id == 13
         "
         [sistemaOperativo] = "sistemaOperativo"
         (totalcarrovps)="totalcarro($event)"
@@ -67,6 +71,8 @@
     <div class="col-md-4">
       <app-detalle-pedido
         [totalcarroarray]="totalcarroarray"
+        (totalcarrod)="totalcarro($event)"
+        [aplicarCupon]="aplicarCupon"
       ></app-detalle-pedido>
     </div>
   </div>

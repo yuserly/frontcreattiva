@@ -4,61 +4,92 @@
       <h5><b>Detalles del pedido</b></h5>
     </div>
     <div class="card-body p-0">
-      <div class="row" *ngFor="let item of totalcarroarray.productos;">
-        <div class="col-md-6">
-          <h6 class="px-3 pt-3"><b></b></h6>
+      
 
+      <div class="row pt-2 d-flex align-items-center" *ngFor="let item of totalcarroarray.productos;">
+        <div class="col-md-7">
           <h6 class="px-3">{{item.nombre}}</h6>
 
         </div>
 
-        <div class="col-md-6">
-          <h6 class="px-3 pt-3">{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
+        <div class="col-md-5">
+          <h6 class="px-3">{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
 
-          <small class="px-3" style="text-decoration: line-through"
+          <small class="px-3" style="text-decoration: line-through" *ngIf="item.precioold>0"
             >{{item.precioold | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small
           >
         </div>
-      </div>
-
-      <hr class="hr_detallescompra" />
-
-      <div class="row">
         <div class="col-md-12">
-          <div class="d-flex justify-content-center">
-            <form>
-              <div class="form-group">
-                <label class="input">
-                  <input
-                    class="input__field"
-                    type="text"
-                    placeholder=" "
-                    id="cupon"
-                    name="cupon"
-                    required
-                  />
-
-                  <span class="input__label">Cupón de descuento</span>
-                  <small id="errorcupon" style="color: #ff0000"></small>
-                </label>
-
-                <button
-                  type="button"
-                  class="btn"
-                  style="
-                    background-color: #005ad2;
-                    color: #f2f3f5;
-                    font-weight: bold;
-                    border-radius: unset;
-                  "
-                >
-                  Aplicar
-                </button>
-              </div>
-            </form>
-          </div>
+          <hr class="hr_detallescompra" />
         </div>
       </div>
+
+      <!--<div class="row" *ngIf="aplicarCupon==1">-->
+      <div class="row">
+        <div class="col-md-12">
+
+            <div class="row" *ngIf="validezcupon==1; else agregarcupon">
+              <div class="col-md-8">
+                <h6 class="px-3 pt-3">
+                  <b>Cupón agregado</b>
+                  <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
+                </h6>
+                <h6 class="px-3">
+                  THEBDKGD
+                </h6>
+              </div>
+              <div class="col-md-4 d-flex justify-content-center align-items-center">
+                  <i  (click)="quitarCupon()"
+                      class="fas fa-trash-alt deletecupon"
+                      style="cursor:pointer"
+                    ></i>
+              </div>
+            </div>
+
+            <ng-template #agregarcupon>
+              <form class="pt-3" [formGroup]="form_cupon">
+                <div class="form-group d-flex justify-content-center">
+                  <label class="input">
+                    <input
+                      class="input__field"
+                      type="text"
+                      placeholder=" "
+                      id="cupon"
+                      name="cupon"
+                      formControlName="cupon"
+                      required
+                    />
+
+                    <span class="input__label">Cupón de descuento</span>
+                  </label>
+
+                  <button
+                    type="button"
+                    class="btn"
+                    [disabled]="form_cupon.invalid"
+                    (click)="validarcupon()"
+
+                    style="
+                      background-color: #005ad2;
+                      color: #f2f3f5;
+                      font-weight: bold;
+                      border-radius: unset;
+                    "
+                  >
+                    Aplicar
+                  </button>
+                </div>
+                <small class="text-danger text-center"
+                      [ngClass]="validezcupon == 2 ? 'd-block' : 'd-none'"
+                      ><b>El Cupón es inválido</b></small>
+
+              </form>
+            </ng-template>
+            
+        </div>
+      </div>
+
+      <!--<hr class="hr_detallescompra" *ngIf="aplicarCupon==1" />-->
 
       <hr class="hr_detallescompra" />
 

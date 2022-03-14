@@ -1,5 +1,5 @@
 <div class="card card-border p-3 mt-4">
-  <div class="row px-5">
+  <div class="row px-3">
     <div class="col-md-12">
       <h5 id="invalidPeriodo"><b>{{periodonum}}. Selecciona período de facturación</b></h5>
       <small class="text-danger" *ngIf="invalidPeriodo == 2">
@@ -16,7 +16,7 @@
                                   item.id_periodo==3 && mostrarPeriodo2Year==1 || 
                                   item.id_periodo==4 && mostrarPeriodo3Year==1)">
               
-              <div class="col-md-4 text-center">
+              <div class="col-md-4 text-center px-2">
                 <button
                 type="button"
                 class="btn bg-azul-crt text-white p-0"
@@ -72,11 +72,22 @@
                 "
               >
 
-              <strong class="px-3" style="font-size: 17px">
-                Cada {{item.periodo}}
+              <strong class="px-3" style="font-size: 17px;color: #1f2044;">
+                Cada {{item.periodo}} 
+                <span *ngIf="item.descuento>0" class="badge rounded-pill bg-warning text-dark" style="border-radius: unset!important;font-size: 13px;"><b>
+                  {{item.descuento}}% desc.
+                </b>
+                </span>
               </strong>
-                                
-              <br />
+
+              <p class="px-3" style="font-size: 13px;color: #1f2044;">
+                Ahorra: {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP
+              </p>
+                    
+
+              <p class="px-3 mb-0" style="font-size: 12px;color: #1f2044;">
+                Valor equivalente mensual
+              </p>
                                 
               <strong class="px-3">
                 {{item.precio_mensual | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}
@@ -85,8 +96,8 @@
               </strong>
                                 
               <p class="px-3" style="line-height: 1.2">
-                <small style="font-size: 14px; color: #1f2044">
-                  De:
+                <small style="font-size: 13px; color: #1f2044">
+                  De
                   <span style="text-decoration: line-through"
                     >{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL' }} </span
                   >
@@ -94,22 +105,31 @@
             
                 <br />
             
-                <small style="font-size: 14px; color: #1f2044">
-                  A: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b> <br />
-                  por {{item.periodo}}
+                <small style="font-size: 13px; color: #1f2044">
+                  Por <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP por {{item.periodo}}</b>
                 </small>
               </p>
                                 
-                                  <div class="mb-0 pt-1 pb-1 text-center card-footer">
-                                    <small><b>Ahorra: {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
-                                  </div>
+              <div class="mb-0 pt-1 pb-1 px-0 text-center card-footer">
+                <h6 *ngIf="item.id_periodo==3 || item.id_periodo==4; else sinpromo">
+                  <p class="px-3 mb-0" style="font-size: 16px;">
+                    <b style="color: #1f2044;">Obtén un año de</b><br>
+                    <b>Dominio gratis <svg fill="#0d6efd" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="18px"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"/></svg></b>
+
+                  </p>
+                </h6>
+                <ng-template #sinpromo>
+                  <h6  style="visibility: hidden;"><b>0 CLP</b></h6>
+                </ng-template>
+              </div>
+
               </label>
               </div>
             </ng-container>
 
             <ng-container *ngIf="(item.id_periodo==5 && mostrarPagoUnico==1)">
               
-              <div class="col-md-4 text-center">
+              <div class="col-md-4 text-center px-2">
               <input
                 type="radio"
                 class="btn-check"
@@ -161,8 +181,8 @@
                 </small>
               </p>
                                 
-              <div class="mb-0 pt-1 pb-1 text-center card-footer">
-                <small  style="visibility: hidden;"><b>Ahorra: 0 CLP</b></small>
+              <div class="mb-0 pt-1 pb-1 px-0 text-center card-footer">
+                <h6  style="visibility: hidden;"><b>Ahorra: 0 CLP</b></h6>
               </div>
               </label>
               </div>
@@ -198,7 +218,7 @@
               >
 
               <strong class="px-3" style="font-size: 17px">
-                Cada 1 {{item.periodo}}
+                {{item.periodo}}
               </strong>
                                 
               <br />
@@ -225,8 +245,8 @@
                 </small>
               </p>
                                 
-              <div class="mb-0 pt-1 pb-1 text-center card-footer">
-                <small  style="visibility: hidden;"><b>Ahorra: 0 CLP</b></small>
+              <div class="mb-0 pt-1 pb-1 px-0 text-center card-footer">
+                <h6  style="visibility: hidden;"><b>Ahorra: 0 CLP</b></h6>
               </div>
               </label>
               </div>
@@ -237,5 +257,12 @@
 
       </div>
     </div>
+  </div>
+  <div class="row px-3">
+    
+    <h6 class="px-3 text-center mt-4" style="color: #1f2044;">
+      Entre más tiempo dure la contratación, <b>mayor será tu  AHORRO !</b>
+    </h6>
+
   </div>
 </div>

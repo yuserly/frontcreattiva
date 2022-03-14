@@ -31,6 +31,7 @@ export class HostingComponent implements OnInit {
 
   dominionum:number = 0;
   periodonum:number = 0;
+  aplicarCupon:number = 1;
 
 
 
@@ -70,8 +71,8 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria_id == 17 || //Google Workspace
-      this.producto.subcategoria_id == 20
+    if(this.producto.subcategoria_id == 20 || //Google Workspace
+      this.producto.subcategoria_id == 24 //licencias microsoft 365
      ){
 
       this.dominionum = 1;
@@ -79,9 +80,12 @@ export class HostingComponent implements OnInit {
 
     }
 
-    if(this.producto.subcategoria_id == 11 || //Pago unico
-      this.producto.subcategoria_id == 14  ||
-      this.producto.subcategoria_id == 16
+    if(this.producto.subcategoria_id == 8 || //Pago unico
+      this.producto.subcategoria_id == 15  ||
+      this.producto.subcategoria_id == 18 ||
+      this.producto.subcategoria_id == 21 ||
+      this.producto.subcategoria_id == 23 ||
+      this.producto.subcategoria_id == 26
       ){
  
        this.periodonum = 1;
@@ -89,11 +93,11 @@ export class HostingComponent implements OnInit {
      }
      
 
-    if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
+    if(this.producto.subcategoria_id == 9 || this.producto.subcategoria_id == 11 || this.producto.subcategoria_id == 12){
 
       this.getos('linux');
 
-    }else if(this.producto.subcategoria_id == 7 || this.producto.subcategoria_id == 10){
+    }else if(this.producto.subcategoria_id == 10 || this.producto.subcategoria_id == 13){
       this.getos('windows');
     }
 
@@ -161,11 +165,11 @@ export class HostingComponent implements OnInit {
     //validación de VPS
     else if( /*this.producto.subcategoria_id == 1 ||
         this.producto.tipo_producto_id == 1 ||*/
-        this.producto.subcategoria_id == 6 ||
-        this.producto.subcategoria_id == 7 ||
-        this.producto.subcategoria_id == 8 ||
         this.producto.subcategoria_id == 9 ||
-        this.producto.subcategoria_id == 10 ){
+        this.producto.subcategoria_id == 10 ||
+        this.producto.subcategoria_id == 11 ||
+        this.producto.subcategoria_id == 12 ||
+        this.producto.subcategoria_id == 13 ){
 
         console.log("validar vps");
         console.log("respuesta de validación: "+this.validarFormDominiosComponent());
@@ -183,8 +187,8 @@ export class HostingComponent implements OnInit {
 
     }
 
-    //validación de licencias
-    else if(this.producto.subcategoria_id == 17){
+    //validación de licencias Googlw y microsoft 365
+    else if(this.producto.subcategoria_id == 20 || this.producto.subcategoria_id == 24){
 
       if(this.validarFormDominiosComponent()){
 

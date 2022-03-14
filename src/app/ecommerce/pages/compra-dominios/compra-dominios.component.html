@@ -1,0 +1,362 @@
+<app-nav></app-nav>
+<div class="container">
+
+	<div class="row mt-5">
+	    <div class="col-md-12">
+	      <h1 class="azul-crt">Compra tu dominio</h1>
+	      <hr class="hr_title" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+    <div class="col-md-8">
+
+      	<div class="card card-border p-3">
+		  <div class="row px-5">
+
+		    <div class="col-md-12 mb-2">
+
+		      <h5 id="invalidDominio">
+		        <b>1. Busca tu dominio</b>
+		      </h5>
+
+		    </div>
+
+		    <div
+		      class="col-md-12  p-3"
+		      data-opc="nuevodominio"
+		    >
+
+		      <div
+		        class="col-md-12"
+		        data-opc="table-nuevodominio"
+		      >
+		        <form class="pt-3" [formGroup]="form">
+		          <div class="row">
+		            <div
+		              class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+		            >
+		              <div class="form-group">
+		                <h5>www.&nbsp;</h5>
+		              </div>
+		            </div>
+
+		            <div class="col-md-6 col-6 px-0">
+		              <div class="form-group">
+		                <input
+		                  class="input__field_dominio"
+		                  type="text"
+		                  placeholder=" "
+		                  id="dominio"
+		                  formControlName="dominio"
+		                />
+		              </div>
+		            </div>
+
+		            <div class="col-md-2 col-2 px-0">
+		              <div class="form-group contenedor-extension-dominio">
+		                <select
+		                  class="input__field_exten"
+		                  formControlName="extension"
+		                >
+		                  <option value="cl">.cl</option>
+
+		                  <option value="com">.com</option>
+
+		                  <option value="net">.net</option>
+
+		                  <option value="info">.info</option>
+
+		                  <option value="org">.org</option>
+
+		                </select>
+		              </div>
+		            </div>
+
+		            <div class="col-md-2 col-2 d-flex align-items-center">
+		              <button
+		                type="button"
+		                class="btn"
+		                id="busqueda"
+		                style="
+		                  background-color: #005ad2;
+		                  color: #f2f3f5;
+		                  font-weight: bold;
+		                  width: 100%;
+		                  font-size: 14px;
+		                "
+		                [disabled]="form.invalid"
+                		(click)="buscardominio()"
+		              >
+		                Buscar
+		              </button>
+		            </div>
+
+		            <div class="col-md-12 col-12 text-center">
+		              <small id="errordominio" style="color: #ff0000"></small>
+		            </div>
+		          </div>
+		        </form>
+
+		      </div>
+		    
+			  </div>
+
+			</div>
+
+
+        </div>
+
+        <div class="card card-border p-3" *ngIf="dominios.length > 0; else preload">
+		  	<div class="row px-5">
+
+			    <div class="col-md-12 mb-2">
+
+			      <h5 id="invalidDominio">
+			        <b>2. Agrega tus dominios al carrito</b>
+			      </h5>
+
+			    </div>
+
+			    <div class="col-md-12 d-flex justify-content-center align-items-center">
+		            
+
+			    	<div *ngIf="statusDominioBuscado; else nodisponible">
+			            <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600"  >
+			              <i class="far fa-check-circle" style="color: #32cb00"></i>
+			              {{dominiobuscado}} está disponible
+			            </h4>
+
+			            <div class="btn_hover0 d-flex justify-content-center opc_hover" style="width: auto;">
+
+			                <div class="item" style="cursor: pointer">
+			                        <a
+			                          class="btn-add btn-add"
+			                          itemn="0"
+			                        >
+			                          <span class="d-block">
+			                            <i
+			                              style="font-size: 28px"
+			                              class="fas fa-cart-plus"
+			                            ></i>
+			                            <p
+			                              style="
+			                                font-size: 11px;
+			                                line-height: 1;
+			                                visibility: hidden;
+			                              "
+			                            >
+			                              &nbsp;
+			                            </p>
+			                          </span>
+
+			                          
+			                          <span class="span-addcard px-1"
+			                          (click)="agregardominiobuscado()"
+			                          >
+			                            <i class="far fa-check-circle"></i>
+
+			                            <p style="font-size: 11px; line-height: 1">
+			                              Añadir al carrito
+			                            </p>
+			                          </span>
+
+			                          <!--
+			                          <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
+			                            <i style="font-size:28px;" class="far fa-check-circle"></i>
+			                            <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
+			                          </span>
+			                        -->
+			                        
+
+
+
+
+			                        </a>
+			                </div>
+
+			            </div>
+		        	</div>
+
+		            <ng-template #nodisponible>
+
+		              <h4 class="mt-1 text-center titulo-bold" style="font-weight: 600">
+		                <i class="far fa-times-circle" style="color: #c70d00"></i>
+		                {{dominiobuscado}} no está disponible
+		              </h4>
+
+		            </ng-template>
+
+		         </div>
+
+			    <div class="col-md-12  p-3">
+
+			    	<div class="col-md-12">
+			    		<div class="row d-flex align-items-center card-newd">
+			    			<div class="col-md-12">
+			    				<h6 class="mt-1 text-justify titulo-bold">
+						        	Otros dominios que te pueden interesar
+						        </h6>
+						        <div class="form-check">
+					              <input
+					                class="form-check-input"
+					                type="checkbox"
+					                value=""
+					                id="flexCheckChecked"
+					                (click)="addAllDomains()"
+					              />
+
+					              <h6 for="flexCheckChecked">
+					                Seleccionar todos los dominios
+					              </h6>
+					            </div>
+			    			</div>
+			    		</div>
+			    		
+			    	</div>
+
+			    	<ng-container *ngFor="let dominio of dominios">
+				    	<div class="col-md-12 col-xs-12" *ngIf="dominio.status=='free' && dominio.domain!==dominiobuscado">
+				            <div class="row d-flex align-items-center card-newd">
+				              <div class="col-md-6 col-5">
+				                <h6>{{dominio.domain}}</h6>
+				              </div>
+
+				              <div class="col-md-6 col-7">
+				                <div class="row d-flex align-items-center">
+				                  <div class="col-8 p-0">
+				                    <div class="precio-dominio-recomendacion float-right">
+				                      <p style="margin: 5px; text-align: right">
+				                        <b style="color: #005ad2">{{dominio.precio_bd | currency:'USD':'symbol-narrow':'0.0-0':'es-CL'}} CLP</b><br /><small
+				                          style="color: #afb0b2"
+				                          >Por el primer año</small
+				                        >
+				                      </p>
+				                    </div>
+				                  </div>
+
+				                  <div class="col-4 p-0">
+				                    <div
+				                      class="btn_hover0 d-flex justify-content-center"
+				                      [ngClass]="{'opc_hover2': dominio.agregado == true, 'opc_hover' : dominio.agregado == false }"
+				                    >
+				                      <div class="item" style="cursor: pointer">
+				                        <a
+				                          class="btn-add"
+				                          [ngClass]="{'btn-delete': dominio.agregado == true, 'btn-add' : dominio.agregado == false }"
+				                          itemn="0"
+				                        >
+				                          <span [ngClass]="{
+				                            'd-none': dominio.agregado == true,
+				                            'd-block': !dominio.agregado
+				                          }">
+				                            <i
+				                              style="font-size: 28px"
+				                              class="fas fa-cart-plus"
+				                            ></i>
+				                            <p
+				                              style="
+				                                font-size: 11px;
+				                                line-height: 1;
+				                                visibility: hidden;
+				                              "
+				                            >
+				                              &nbsp;
+				                            </p>
+				                          </span>
+
+				                          <span class="span-addcard px-1"
+
+				                          [ngClass]="{
+				                            'd-none': dominio.agregado == true
+				                          }"
+				                          (click)="agregarcarro(dominio)"
+
+				                          >
+				                            <i class="far fa-check-circle"></i>
+
+				                            <p style="font-size: 11px; line-height: 1">
+				                              Añadir al carrito {{dominio.agregado}}
+				                            </p>
+				                          </span>
+
+
+				                          
+				                          <span class="px-1 d-block" style="padding: 20px 20px;height: 80px;"  
+				                            *ngIf="dominio.agregado"
+				                          >
+				                            <i style="font-size:28px;" class="far fa-check-circle"></i>
+				                            <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
+				                          </span>
+				                          
+
+
+
+				                        </a>
+				                      </div>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+			    	</ng-container>
+
+				</div>
+
+			</div>
+
+
+        </div>
+
+        <ng-template class="card card-border p-3" #preload>
+
+	        <div class="modal-body d-flex justify-content-center mb-5 mt-5" *ngIf="mostrarPreload">
+
+	          <div class="spinner-grow text-primary" role="status">
+	            <span class="visually-hidden">Loading...</span>
+	          </div>
+
+	        </div>
+
+	    </ng-template>
+
+
+
+	    <div class="row" *ngIf="mostrarContinuar">
+	        <div class="col-md-12 text-center mt-4">
+	          <button
+	            type="button"
+	            class="btn"
+	            style="
+	              background-color: #005ad2;
+	              color: #f2f3f5;
+	              font-weight: bold;
+	              width: 45%;
+	            "
+	            (click)="validarcarro()"
+	          >
+	            Continuar
+	          </button>
+	        </div>
+      	</div>
+
+</div>
+    <div class="col-md-4">
+      
+    	<app-detalle-pedido
+    	*ngIf="hayproductos"
+        [totalcarroarray]="totalcarroarray"
+        (totalcarrod)="totalcarro($event)"
+        [aplicarCupon]="aplicarCupon"
+      ></app-detalle-pedido>
+
+    </div>
+  </div>
+
+
+</div>
+
+<br /><br /><br /><br /><br />
+<app-footer></app-footer>
+

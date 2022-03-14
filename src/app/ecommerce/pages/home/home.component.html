@@ -98,7 +98,7 @@ style="
       </svg>
       <span class="badge bg-white" style="position: relative;top: -12px;left: -8px;color:black;">{{DominiosService.totalCarro}}</span>
       </a>
-      
+
     </div>
   </div>
 </div>
@@ -108,7 +108,9 @@ style="
 <div class="container">
   <ul class="d-flex flex-row-reverse bd-highlight mb-0">
     <li class="p-2 bd-highlight d-flex align-items-center">
-      <img src="../../../../assets/img/icon-user.webp" width="20px;" />
+      <a [routerLink]="logueado ? '/sucursal': '/login-sucursal' ">
+        <img src="../../../../assets/img/icon-user.webp" width="20px;" />
+      </a>
     </li>
 
     <li>
@@ -313,10 +315,10 @@ data-bs-ride="carousel"
 
 <br><br>
 
-<div class="container"  >
+<div class="container" #subfoco>
 
 
-    <app-caracteristicas [subcategorias]="subcategorias" (getproducto)="obtenerproductos($event)" ></app-caracteristicas>
+    <app-caracteristicas  [subcategorias]="subcategorias" (getproducto)="obtenerproductos($event)" ></app-caracteristicas>
 
     <br>
 

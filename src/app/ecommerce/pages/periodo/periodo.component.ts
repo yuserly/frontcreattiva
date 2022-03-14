@@ -24,7 +24,10 @@ export class PeriodoComponent implements OnInit {
   }
 
   producto!:Productos;
+
   mostrarPeriodoMes:number = 0; 
+  mostrarPeriodo3Meses:number = 0;
+  mostrarPeriodo6Meses:number = 0;
   mostrarPeriodo1Year:number = 0;
   mostrarPeriodo2Year:number = 0;
   mostrarPeriodo3Year:number = 0;
@@ -40,10 +43,13 @@ export class PeriodoComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     this.producto = carrito[index].producto;
 
+<<<<<<< HEAD
     if(this.producto.subcategoria_id == 23 || this.producto.subcategoria_id == 18){
       this.mostrarPeriodoMes = 1;
     }
 
+=======
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
     //Hosting
     if(this.producto.subcategoria_id == 1 ||
       this.producto.subcategoria_id == 2 ||
@@ -57,7 +63,14 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo3Year = 1;
 
     }
+    //Certificado SSL
+    if(this.producto.subcategoria_id == 7){
+
+      this.mostrarPeriodo1Year = 1;
+
+    }
     //vps
+<<<<<<< HEAD
     if(this.producto.subcategoria_id == 6 ||
       this.producto.subcategoria_id == 7 ||
       this.producto.subcategoria_id == 8 ||
@@ -66,38 +79,89 @@ export class PeriodoComponent implements OnInit {
       this.producto.subcategoria_id == 12||
       this.producto.subcategoria_id == 13||
       this.producto.subcategoria_id == 15
+=======
+    if(this.producto.subcategoria_id == 9 ||//VPS en Chile
+      this.producto.subcategoria_id == 10 ||//VPS Windows
+      this.producto.subcategoria_id == 12 //VPS Linux administrado
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
       ){
 
       this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo6Meses = 1;
       this.mostrarPeriodo1Year = 1;
       this.mostrarPeriodo2Year = 1;
       this.mostrarPeriodo3Year = 1;
 
     }
+    if(this.producto.subcategoria_id == 11 ||//vps amazon linux
+       this.producto.subcategoria_id == 13 ||//vps amazon windows
+       this.producto.subcategoria_id == 19 //streaming radio
+      ){
+      this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo3Meses = 1;
+      this.mostrarPeriodo6Meses = 1;
+      this.mostrarPeriodo1Year = 1;
+    }
+    if(this.producto.subcategoria_id == 14 ||//Administración para VPS
+       this.producto.subcategoria_id == 28 ||//Housing
+       this.producto.subcategoria_id == 32 //Cloud backup
+      ){
+      this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo6Meses = 1;
+      this.mostrarPeriodo1Year = 1;
+      this.mostrarPeriodo2Year = 1;
+    }
 
+<<<<<<< HEAD
 
 
     if(this.producto.subcategoria_id == 14  ||
       this.producto.subcategoria_id == 16 ||
       this.producto.subcategoria_id == 22||
       this.producto.subcategoria_id == 19){
+=======
+    if(this.producto.subcategoria_id == 8  || //instalación certificado ssl
+      this.producto.subcategoria_id == 15  ||//Migración para VPS
+      this.producto.subcategoria_id == 18 || //Administración para vps por evento
+      this.producto.subcategoria_id == 21 ||//Migración Google Workspace
+      this.producto.subcategoria_id == 23 ||//Licencias microsoft
+      this.producto.subcategoria_id == 26
+      ){
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
 
       this.mostrarPagoUnico = 1;
 
     }
 
-    if(this.producto.subcategoria_id == 11){
+    if(this.producto.subcategoria_id == 16 || //servidores hp
+       this.producto.subcategoria_id == 17 //servidores dell
+      ){
 
-      this.mostrarPeriodoMes = 1;
+      this.mostrarPeriodo6Meses = 1;
+      this.mostrarPeriodo1Year = 1;
+      this.mostrarPeriodo2Year = 1;
+      this.mostrarPeriodo3Year = 1;
 
     }
+    if(this.producto.subcategoria_id == 22 //Google Ads
+      ){
+      this.mostrarPeriodo6Meses = 1;
+    }
+    if(this.producto.subcategoria_id == 24 ||//Licencias microsoft 365
+      this.producto.subcategoria_id == 20 //licencias googlw workspace
+      ){
 
-    if(this.producto.subcategoria_id == 17 || this.producto.subcategoria_id == 20){
-      //Licencias Google Workspace y Microsoft 365
       this.mostrarPeriodoMes = 1;
       this.mostrarPeriodo1Year = 1;
 
     }
+    if(this.producto.subcategoria_id == 27 || //almacenamiento adicional google workspace
+       this.producto.subcategoria_id == 29 || //licencias cpanel
+       this.producto.subcategoria_id == 30 //licencias imunify360
+      ){
+      this.mostrarPeriodoMes = 1;
+    }
+
 
     console.log("periodos");
     console.log(carrito[index]);

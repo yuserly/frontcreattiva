@@ -94,6 +94,8 @@ export class CarroComponent implements OnInit {
       if (result.isConfirmed) {
         localStorage.removeItem('carrito');
         localStorage.removeItem('index');
+        localStorage.removeItem('comprasucursal')
+
         this.itemsCarrito();
         this.statusCarrito = 0;
       }else{

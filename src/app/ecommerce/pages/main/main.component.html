@@ -105,7 +105,9 @@
   <div class="container">
     <ul class="d-flex flex-row-reverse bd-highlight mb-0">
       <li class="p-2 bd-highlight d-flex align-items-center">
+        <a routerLink="/login-sucursal">
         <img src="../../../../assets/img/icon-user.webp" width="20px;" />
+        </a>
       </li>
 
       <li>
@@ -167,7 +169,7 @@
           <li class="nav-item pe-3 ps-3" *ngFor="let categoria of categorias; let i=index" style="cursor: pointer;">
 
 
-            <a class="btn-nav nav-link item-menu" [ngClass]="{'item-active':categoria.active}" routerLinkActive="item-active" (click)="buscarsubcategoria(categoria.id_categoria)" (click)="activar(i)"
+            <a class="btn-nav nav-link item-menu" [ngClass]="{'item-active':categoria.active}" fragment="subcategoriasdiv" routerLinkActive="item-active" (click)="buscarsubcategoria(categoria.id_categoria)" (click)="activar(i)"
               >{{categoria.nombre}}</a
             >
 
@@ -313,7 +315,7 @@
 
 <br><br>
 
-<div class="container"  >
+<div class="container" attr.id="subcategoriasdiv">
 
 
       <app-caracteristicas [subcategorias]="subcategorias" (getproducto)="obtenerproductos($event)" ></app-caracteristicas>

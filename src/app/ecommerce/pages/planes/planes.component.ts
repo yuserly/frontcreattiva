@@ -45,14 +45,15 @@ export class PlanesComponent implements OnInit {
             .subscribe((resp2) => {
               carro.push({
                 producto: producto,
-                periodo: 0,
+                periodo: 4,
                 dominio: '',
                 sistemaoperativo: 0,
                 versionsistema: 0,
                 administrar: 0,
                 ip: '',
                 periodos: resp2,
-                cantidad: 1
+                cantidad: 1,
+                cupon_descuento: 0
               });
 
               const cantidadcarro = carro.length;
@@ -61,10 +62,17 @@ export class PlanesComponent implements OnInit {
               localStorage.setItem('index', JSON.stringify(index));
               localStorage.setItem('carrito', JSON.stringify(carro));
 
-              this.router.navigate(['/configuracion']);
+              let comprasucursal = localStorage.getItem('comprasucursal');
+
+              if(comprasucursal){
+
+                this.router.navigate(['sucursal/configuracion']);
+              }else{
+                this.router.navigate(['/configuracion']);
+
+              }
+
             });
-
-
 
   }
 }

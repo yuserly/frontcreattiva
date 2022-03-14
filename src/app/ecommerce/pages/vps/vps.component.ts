@@ -41,6 +41,7 @@ export class VpsComponent implements OnInit {
   }
 
   @Input() sistemaOperativo!: SistemaOperativo[];
+  @Input() vpsnum!:number;
   @Output() totalcarrovps: EventEmitter<TotalCarro> = new EventEmitter();
 
   constructor(
@@ -66,7 +67,7 @@ export class VpsComponent implements OnInit {
     let licencia: any= '';
 
     carrito.map((p, i) => {
-      if (p.producto.subcategoria_id == 24) {
+      if (p.producto.subcategoria_id == 29) {
          licencia = p.producto.id_producto;
       }
     });
@@ -84,16 +85,16 @@ export class VpsComponent implements OnInit {
     console.log(this.producto);
     console.log("---------------------");
 
-    if(this.producto.subcategoria_id == 6 || this.producto.subcategoria_id == 8 || this.producto.subcategoria_id == 9){
+    if(this.producto.subcategoria_id == 9 || this.producto.subcategoria_id == 10 || this.producto.subcategoria_id == 16 || this.producto.subcategoria_id == 17){
     
-      // el 24 es el id de las subcategoria a las que pertenece las licencias cpanel
-      this.CategoriasService.getproductos(25).subscribe((resp) => {
+      // el 29 es el id de las subcategoria a las que pertenece las licencias cpanel
+      this.CategoriasService.getproductos(29).subscribe((resp) => {
         this.licencias = resp;
       });
 
-    }else if(this.producto.subcategoria_id == 7 || this.producto.subcategoria_id == 10){
+    }else if(this.producto.subcategoria_id == 10 || this.producto.subcategoria_id == 13){
       // subcategoria 19 tipo de producto 8 licencias sql
-      this.CategoriasService.getproductosxtipo(19,8).subscribe((resp) => {
+      this.CategoriasService.getproductosxtipo(23,8).subscribe((resp) => {
         console.log(resp)
         this.licencias = resp;
       });
@@ -215,13 +216,13 @@ export class VpsComponent implements OnInit {
       if(carrito[index].versionsistema!= 0){
 
         //Si son VPS Windows
-        if(carrito[index].producto.subcategoria.id_subcategoria==7){
+        if(carrito[index].producto.subcategoria.id_subcategoria==10 || carrito[index].producto.subcategoria.id_subcategoria==13){
 
           //validar si tiene SQL Server
           let licencia: any= '';
 
           carrito.map((p, i) => {
-            if (p.producto.subcategoria_id == 19) {
+            if (p.producto.subcategoria_id == 23) {
               licencia = p.producto.id_producto;
             }
           });
@@ -240,11 +241,11 @@ export class VpsComponent implements OnInit {
         }else{ //VPS Linux
 
           if(carrito[index].versionsistema==3 || carrito[index].versionsistema==4){
-            //validar si tiene licencia 
+            //validar si tiene licencia  cpanel
             let licencia: any= '';
 
             carrito.map((p, i) => {
-              if (p.producto.subcategoria_id == 25) {
+              if (p.producto.subcategoria_id == 29) {
                 licencia = p.producto.id_producto;
               }
             });

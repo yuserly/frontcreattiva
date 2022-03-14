@@ -30,6 +30,7 @@ export class HostingComponent implements OnInit {
   // lo usamos para colocarle el numero a los pasos de la configuracion
 
   dominionum:number = 0;
+  vpsnum:number = 2;
   periodonum:number = 0;
   aplicarCupon:number = 1;
 
@@ -90,6 +91,13 @@ export class HostingComponent implements OnInit {
  
        this.periodonum = 1;
  
+     }
+
+     if(this.producto.subcategoria_id == 10 ||
+        this.producto.subcategoria_id == 11 ||
+        this.producto.subcategoria_id == 13){
+      this.vpsnum = 1;
+      this.periodonum = 3;
      }
      
 
@@ -162,17 +170,13 @@ export class HostingComponent implements OnInit {
         
     }
 
-    //validación de VPS
-    else if( /*this.producto.subcategoria_id == 1 ||
-        this.producto.tipo_producto_id == 1 ||*/
+    //validación de VPS que piden dominio
+    else if( 
         this.producto.subcategoria_id == 9 ||
-        this.producto.subcategoria_id == 10 ||
-        this.producto.subcategoria_id == 11 ||
-        this.producto.subcategoria_id == 12 ||
-        this.producto.subcategoria_id == 13 ){
+        this.producto.subcategoria_id == 12  ){
 
         console.log("validar vps");
-        console.log("respuesta de validación: "+this.validarFormDominiosComponent());
+        //console.log("respuesta de validación: "+this.validarFormDominiosComponent());
         if(this.validarFormDominiosComponent()){
           
           if(this.validarFormVpsComponent()){
@@ -184,6 +188,21 @@ export class HostingComponent implements OnInit {
           }
           
         }
+
+    }
+
+    //validacion de VPS que no piden dominio
+    else if(this.producto.subcategoria_id == 10 || 
+            this.producto.subcategoria_id == 11 || 
+            this.producto.subcategoria_id == 13){
+
+      if(this.validarFormVpsComponent()){
+
+            if(this.validarFormPeriodoComponent()){
+              this.router.navigate(['/carrito']);
+            }
+
+          }
 
     }
 

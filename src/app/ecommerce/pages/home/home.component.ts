@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
       });
 
       this.subcategorias = subcategorias;
-      if(this.subcategorias[0].id_subcategoria != 26){
+      if(this.subcategorias[0].id_subcategoria /*!= 26*/){
         this.buscarproducto(this.subcategorias[0].id_subcategoria)
       }else{
         this.productos = [];

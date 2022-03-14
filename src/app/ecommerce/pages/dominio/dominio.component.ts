@@ -14,12 +14,13 @@ export class DominioComponent implements OnInit {
   mostrar:number = 0;
   mostrarold: number = 0;
   haydominios:boolean = false;
+  sinDominio:boolean = false;
   dominios: Result[] = [];
   preciodominio: PrecioDominios[] = [];
   dominiobuscado:string = '';
   statusDominioBuscado:boolean = false;
   dominioguardado:string = '';
-  errorDominio:number = 0;
+  errorDominio:boolean = false;
 
   form:FormGroup = this.fb.group({
     dominio:['',Validators.required],
@@ -290,7 +291,6 @@ export class DominioComponent implements OnInit {
 
   validarFormularios():boolean {
 
-    
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     let cont = 0;
@@ -300,7 +300,7 @@ export class DominioComponent implements OnInit {
 
 
     if(carrito[index].dominio){
-      this.errorDominio = 1;
+      this.errorDominio = false;
       return true;
     }else if(carrito.length>1){
       carrito.map((p, i) => {
@@ -310,18 +310,28 @@ export class DominioComponent implements OnInit {
         return p;
       });
       if(cont>0){
-        this.errorDominio = 1;
+        this.errorDominio = false;
         return true;
       }else{
-        this.errorDominio = 2;
+        this.errorDominio = true;
+        if(this.mostrar==0 && this.mostrarold==0){
+          this.mostrar = 1;
+          this.mostrarold = 0;
+        }
         let el = document.getElementById("invalidDominio");
+
       if(el){el.scrollIntoView({ behavior: 'smooth' });}
         return false;
       }
 
     }else{
       
-      this.errorDominio = 2;
+      this.errorDominio = true;
+      if(this.mostrar==0 && this.mostrarold==0){
+        this.mostrar = 1;
+        this.mostrarold = 0;
+      }
+      
       let el = document.getElementById("invalidDominio");
       if(el){el.scrollIntoView({ behavior: 'smooth' });}
       return false;

@@ -148,9 +148,9 @@ export class CategoriasService {
   }
 
   //validar cupon
-  validarcupon(cupon:string,subcategoria_id:number):Observable<any>{
+  validarcupon(cupon:string):Observable<any>{
 
-    return this.http.get<any>(`${this.urlBase}/validarcupon/${cupon}/${subcategoria_id}`);
+    return this.http.get<any>(`${this.urlBase}/validarcupon/${cupon}`);
 
   }
 
@@ -172,8 +172,7 @@ export class CategoriasService {
 
     let montocupon:number = 0;
 
-      //totalLicencias = element.cantidadlicencias;
-      //console.log("Total licencias: "+element.cantidadlicencias);
+    let nombreproducto: string = '';
 
     console.log("datos del carrito, detalles:");
     console.log(carrito);
@@ -201,8 +200,14 @@ export class CategoriasService {
             }
             
 
+            if(element.producto.subcategoria_id==31){
+              nombreproducto = "Registro de dominio "+element.dominio;
+            }else{
+              nombreproducto = element.producto.nombre;
+            }
+
             productos.push({
-              nombre: element.producto.nombre,
+              nombre: nombreproducto,
               precio: precio,
               precioold: precioold,
               ahorro: ahorroa,
@@ -213,7 +218,7 @@ export class CategoriasService {
 
             if(montocupon>0){
               productos.push({
-                nombre: 'Cupón de descuento para '+element.producto.nombre,
+                nombre: 'Cupón de descuento',
                 precio: montocupon*-1,
                 precioold: 0,
                 ahorro: 0,
@@ -229,7 +234,6 @@ export class CategoriasService {
       
     });
 
-    console.log()
     productos.forEach((element) => {
       neto += element.precio;
       ahorro += element.ahorro;

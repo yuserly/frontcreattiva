@@ -220,8 +220,14 @@
               <strong class="px-3" style="font-size: 17px">
                 {{item.periodo}}
               </strong>
-                                
-              <br />
+
+              <p class="px-3" style="font-size: 13px;color: #1f2044;visibility: hidden;">
+                Ahorra: 0 CLP
+              </p>
+
+              <p class="px-3 mb-0" style="font-size: 12px;color: #1f2044;visibility: hidden;">
+                Valor equivalente mensual
+              </p>
                                 
               <strong class="px-3">
                 {{item.precio_mensual | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}
@@ -230,7 +236,7 @@
               </strong>
                                 
               <p class="px-3" style="line-height: 1.2">
-                <small style="font-size: 14px; color: #1f2044" style="visibility: hidden;">
+                <small style="font-size: 13px; color: #1f2044;visibility: hidden;">
                   De:
                   <span style="text-decoration: line-through"
                     >0 </span
@@ -240,8 +246,8 @@
                 <br />
             
                 <small style="font-size: 14px; color: #1f2044">
-                  Paga solo: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b> <br />
-                  por {{item.periodo}}
+                  Solo: <b>{{item.precio_descuento | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b>
+                  {{item.periodo}}
                 </small>
               </p>
                                 

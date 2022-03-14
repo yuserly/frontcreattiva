@@ -32,6 +32,7 @@ export class PeriodoComponent implements OnInit {
   mostrarPeriodo2Year:number = 0;
   mostrarPeriodo3Year:number = 0;
   mostrarPagoUnico:number = 0;
+  periodoSeleccionado:number = 0;
 
   constructor(private fb: FormBuilder, private CategoriasService:CategoriasService) { }
 
@@ -54,12 +55,14 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo1Year = 1;
       this.mostrarPeriodo2Year = 1;
       this.mostrarPeriodo3Year = 1;
+      this.periodoSeleccionado = 4;
 
     }
     //Certificado SSL
     if(this.producto.subcategoria_id == 7){
 
       this.mostrarPeriodo1Year = 1;
+      this.periodoSeleccionado = 2;
 
     }
     //vps
@@ -73,6 +76,7 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo1Year = 1;
       this.mostrarPeriodo2Year = 1;
       this.mostrarPeriodo3Year = 1;
+      this.periodoSeleccionado = 4;
 
     }
     if(this.producto.subcategoria_id == 11 ||//vps amazon linux
@@ -83,6 +87,7 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo3Meses = 1;
       this.mostrarPeriodo6Meses = 1;
       this.mostrarPeriodo1Year = 1;
+      this.periodoSeleccionado = 4;
     }
     if(this.producto.subcategoria_id == 14 ||//Administración para VPS
        this.producto.subcategoria_id == 28 ||//Housing
@@ -92,6 +97,7 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo6Meses = 1;
       this.mostrarPeriodo1Year = 1;
       this.mostrarPeriodo2Year = 1;
+      this.periodoSeleccionado = 4;
     }
 
     if(this.producto.subcategoria_id == 8  || //instalación certificado ssl
@@ -114,11 +120,13 @@ export class PeriodoComponent implements OnInit {
       this.mostrarPeriodo1Year = 1;
       this.mostrarPeriodo2Year = 1;
       this.mostrarPeriodo3Year = 1;
+      this.periodoSeleccionado = 7;
 
     }
     if(this.producto.subcategoria_id == 22 //Google Ads
       ){
       this.mostrarPeriodo6Meses = 1;
+    this.periodoSeleccionado = 7;
     }
     if(this.producto.subcategoria_id == 24 ||//Licencias microsoft 365
       this.producto.subcategoria_id == 20 //licencias googlw workspace
@@ -126,6 +134,7 @@ export class PeriodoComponent implements OnInit {
 
       this.mostrarPeriodoMes = 1;
       this.mostrarPeriodo1Year = 1;
+      this.periodoSeleccionado = 2;
 
     }
     if(this.producto.subcategoria_id == 27 || //almacenamiento adicional google workspace
@@ -133,6 +142,7 @@ export class PeriodoComponent implements OnInit {
        this.producto.subcategoria_id == 30 //licencias imunify360
       ){
       this.mostrarPeriodoMes = 1;
+      this.periodoSeleccionado = 1;
     }
 
 

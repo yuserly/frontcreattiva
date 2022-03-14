@@ -32,8 +32,13 @@
                           <a
                             class="btn-add btn-add"
                             itemn="0"
+                            [ngClass]="{'btn-delete': dominiopAgregado == true, 'btn-add' : dominiopAgregado == false }"
                           >
-                            <span class="d-block">
+                            <span class="d-block"
+                            [ngClass]="{
+                                    'd-none': dominiopAgregado == true,
+                                    'd-block': !dominiopAgregado
+                                  }">
                               <i
                                 style="font-size: 28px"
                                 class="fas fa-cart-plus"
@@ -51,6 +56,10 @@
 
                             
                             <span class="span-addcard px-1"
+                            [ngClass]="{
+                                    'd-none': dominiopAgregado == true
+                                  }"
+                                  (click)="agregardominiobuscado()"
                             >
                               <i class="far fa-check-circle"></i>
 
@@ -59,12 +68,12 @@
                               </p>
                             </span>
 
-                            <!--
-                            <span class="px-1 d-none" style="padding: 20px 20px;height: 80px;" >
-                              <i style="font-size:28px;" class="far fa-check-circle"></i>
-                              <p style="font-size:11px;line-height: 1;">Continuar al carrito</p>
-                            </span>
-                          -->
+                            <span class="px-1 d-block" style="padding: 20px 20px;height: 80px;"  
+                                *ngIf="dominiopAgregado"
+                              >
+                                <i style="font-size:28px;" class="far fa-check-circle"></i>
+                                <p style="font-size:11px;line-height: 1;">Añadido al carrito</p>
+                              </span>
                           
 
 

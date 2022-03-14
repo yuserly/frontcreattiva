@@ -4,9 +4,7 @@
       <h5 id="invalidDominio">
         <b>{{ dominionum }}. Elije tu dominio</b>
       </h5>
-      <small class="text-danger"
-      [ngClass]="errorDominio == 2 ? 'd-block' : 'd-none'"
-      ><b>Debes ingresar algún dominio</b></small>
+      
     </div>
     <span
       class="badge"
@@ -104,7 +102,8 @@
             </div>
 
             <div class="col-md-12 col-12 text-center">
-              <small id="errordominio" style="color: #ff0000"></small>
+              <small class="text-danger" *ngIf="errorDominio"
+                ><b>Debes ingresar algún dominio</b></small>
             </div>
           </div>
         </form>
@@ -251,6 +250,13 @@
               >
                 Guardar
               </button>
+            </div>
+
+            <div class="col-md-12 col-12 text-center">
+
+              <small class="text-danger" *ngIf="errorDominio"
+                ><b>Debes ingresar algún dominio</b></small>
+
             </div>
           </div>
           <div class="row" *ngIf="dominioguardado">

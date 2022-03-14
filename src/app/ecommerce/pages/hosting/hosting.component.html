@@ -27,7 +27,7 @@
     [dominioscarrito]="carrito"></app-dominio>
 
     <app-cantidadlicencias 
-    *ngIf="producto.subcategoria_id == 21 ||
+    *ngIf="producto.subcategoria_id == 20 ||
             producto.subcategoria_id == 24
     " (totalcarrod)="totalcarro($event)"
     ></app-cantidadlicencias>
@@ -41,6 +41,7 @@
           producto.subcategoria_id == 13
         "
         [sistemaOperativo] = "sistemaOperativo"
+        [vpsnum] = "vpsnum"
         (totalcarrovps)="totalcarro($event)"
       ></app-vps>
 

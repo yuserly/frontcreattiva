@@ -3,7 +3,7 @@
 <div class="card card-border p-3 mt-4">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5 id="invalidSO"><b>2. Selecciona el Sistema Operativo</b></h5>
+      <h5 id="invalidSO"><b>{{vpsnum}}. Selecciona el Sistema Operativo</b></h5>
       <small class="text-danger" *ngIf="errorSO == 2">
         <b>Debes seleccionar el Sistema Operativo y versión correspondiente</b>
       </small>
@@ -38,7 +38,7 @@
               border-top-right-radius: 5px;
             "
           >
-            <h2 class="px-3">{{item.nombre}}</h2>
+            <h3 class="px-3">{{item.nombre}}</h3>
 
             <i [class]="item.icono" style="font-size: 80px"></i>
 
@@ -88,10 +88,10 @@
   </div>
 </div>
 
-<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 6 || producto.subcategoria_id == 8 || producto.subcategoria_id == 9; else vpswindows ">
+<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 10 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17; else vpswindows ">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
-      <h5 id="invalidAdmin"><b>3. Administración para su servidor</b></h5>
+      <h5 id="invalidAdmin"><b>{{vpsnum+1}}. Administración para su servidor</b></h5>
       <small class="text-danger" *ngIf="invalidAdmin == 2">
         <b>Debes seleccionar si desea administración o no en su VPS</b>
       </small>
@@ -152,7 +152,7 @@
 
       <div class="col-md-12 mb-2">
 
-        <h5 id="invalidSqlSrv"><b>3. Agrega SQL Server</b></h5>
+        <h5 id="invalidSqlSrv"><b>{{vpsnum+1}}. Agrega SQL Server</b></h5>
         <small class="text-danger" *ngIf="invalidLicencia == 2">
           <b>Debes seleccionar una licencia</b>
         </small>

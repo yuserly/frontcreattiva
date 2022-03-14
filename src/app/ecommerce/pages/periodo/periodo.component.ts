@@ -44,6 +44,13 @@ export class PeriodoComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     this.producto = carrito[index].producto;
 
+<<<<<<< HEAD
+    if(this.producto.subcategoria_id == 23 || this.producto.subcategoria_id == 18){
+      this.mostrarPeriodoMes = 1;
+    }
+
+=======
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
     //Hosting
     if(this.producto.subcategoria_id == 1 ||
       this.producto.subcategoria_id == 2 ||
@@ -66,9 +73,20 @@ export class PeriodoComponent implements OnInit {
 
     }
     //vps
+<<<<<<< HEAD
+    if(this.producto.subcategoria_id == 6 ||
+      this.producto.subcategoria_id == 7 ||
+      this.producto.subcategoria_id == 8 ||
+      this.producto.subcategoria_id == 9 ||
+      this.producto.subcategoria_id == 10||
+      this.producto.subcategoria_id == 12||
+      this.producto.subcategoria_id == 13||
+      this.producto.subcategoria_id == 15
+=======
     if(this.producto.subcategoria_id == 9 ||//VPS en Chile
       this.producto.subcategoria_id == 10 ||//VPS Windows
       this.producto.subcategoria_id == 12 //VPS Linux administrado
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
       ){
 
       this.mostrarPeriodoMes = 1;
@@ -100,6 +118,14 @@ export class PeriodoComponent implements OnInit {
       this.periodoSeleccionado = 4;
     }
 
+<<<<<<< HEAD
+
+
+    if(this.producto.subcategoria_id == 14  ||
+      this.producto.subcategoria_id == 16 ||
+      this.producto.subcategoria_id == 22||
+      this.producto.subcategoria_id == 19){
+=======
     if(this.producto.subcategoria_id == 8  || //instalación certificado ssl
       this.producto.subcategoria_id == 15  ||//Migración para VPS
       this.producto.subcategoria_id == 18 || //Administración para vps por evento
@@ -107,6 +133,7 @@ export class PeriodoComponent implements OnInit {
       this.producto.subcategoria_id == 23 ||//Licencias microsoft
       this.producto.subcategoria_id == 26
       ){
+>>>>>>> 419d82ff12c3b6d5e48e2a0f20bd1cb2d61212c7
 
       this.mostrarPagoUnico = 1;
 

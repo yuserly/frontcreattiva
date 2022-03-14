@@ -11,9 +11,23 @@ import { CategoriasService } from 'src/app/ecommerce/services/categorias.service
 export class MainComponent implements OnInit {
 
   categorias:Categorias[] = [];
+  nombreempresa:string = '';
+  nombre:string = '';
 
   constructor(private categoriasServices:CategoriasService,
-    private router: Router) { }
+    private router: Router) {
+      let usuario = JSON.parse(localStorage.getItem('usuario')!);
+      this.nombre = usuario.nombre;
+
+      if(usuario.razonsocial){
+        this.nombreempresa = usuario.razonsocial;
+
+      }else{
+        this.nombreempresa = usuario.nombre;
+
+      }
+
+    }
 
   ngOnInit(): void {
     this.categoriasServices.getCategorias().subscribe(resp => {

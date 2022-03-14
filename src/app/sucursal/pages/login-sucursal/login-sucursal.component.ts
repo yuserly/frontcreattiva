@@ -20,6 +20,13 @@ export class LoginSucursalComponent implements OnInit {
     ]
   });
 
+  formpass: FormGroup = this.fb.group({
+    emailpass: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.emailPattern)],
+    ]
+  });
+
   get mensajeerroremail(): string {
     const error = this.form.get('email')?.errors;
 
@@ -33,13 +40,28 @@ export class LoginSucursalComponent implements OnInit {
   }
 
   hide: boolean = true;
+  cargando:boolean = false;
+  emailenviado:boolean = false;
+  errormail:boolean = false;
+
 
   constructor(private fb: FormBuilder,
     private validacion: ValidatorService,
     private router: Router,
-    private categoriasService: CategoriasService) { }
+    private categoriasService: CategoriasService) {
+      let token = localStorage.getItem('token')!;
+      let empresaselect = localStorage.getItem('empresaselect')!;
+
+      if(token && empresaselect){
+        this.router.navigate(['/sucursal']);
+      }else{
+        localStorage.removeItem('token');
+        localStorage.removeItem('empresaselect')
+      }
+    }
 
   ngOnInit(): void {
+
   }
 
   continuar() {
@@ -59,18 +81,27 @@ export class LoginSucursalComponent implements OnInit {
       if (resp.data) {
 
         if (resp.data.token) {
-          let usuario = {
-            nombre: resp.data.empresas[0].nombre,
-            email: resp.data.empresas[0].email
-          }
 
-          localStorage.setItem('usuario', JSON.stringify(usuario));
 
           if (resp.data.empresas.lenght > 1) {
             localStorage.setItem('token', resp.data.token);
+            let usuario = {
+              nombre: resp.data.empresas[0].nombre,
+              email: resp.data.empresas[0].email
+            }
+
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+
             this.router.navigate(['/seleccionar-empresa']);
           } else {
             localStorage.setItem('token', resp.data.token);
+            let usuario = {
+              nombre: resp.data.empresas[0].nombre,
+              email: resp.data.empresas[0].email,
+              razonsocial:resp.data.empresas[0].razonsocial
+            }
+
+            localStorage.setItem('usuario', JSON.stringify(usuario));
             localStorage.setItem(
               'empresaselect',
               resp.data.empresas[0]['id_empresa']
@@ -87,6 +118,38 @@ export class LoginSucursalComponent implements OnInit {
         }
       }
     });
+  }
+
+  recuperar(){
+    if (this.formpass.invalid) {
+      this.formpass.markAllAsTouched();
+      return;
+    }
+
+    this.cargando = true;
+
+    this.categoriasService
+      .recuperarpassword(this.formpass.value.emailpass)
+      .subscribe((resp) => {
+
+        console.log(resp)
+
+        if (resp.data.ok) {
+          this.emailenviado = true;
+          this.cargando = false;
+        } else {
+          this.errormail = true;
+          this.cargando = false;
+
+        }
+
+        console.log(this.cargando)
+        console.log(this.errormail)
+        console.log(this.emailenviado)
+
+
+      });
+
   }
 
   validarcampo(campo: string) {

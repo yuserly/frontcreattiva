@@ -40,7 +40,7 @@ export class PeriodoComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     this.producto = carrito[index].producto;
 
-    if(this.producto.subcategoria_id == 23){
+    if(this.producto.subcategoria_id == 23 || this.producto.subcategoria_id == 18){
       this.mostrarPeriodoMes = 1;
     }
 
@@ -62,7 +62,10 @@ export class PeriodoComponent implements OnInit {
       this.producto.subcategoria_id == 7 ||
       this.producto.subcategoria_id == 8 ||
       this.producto.subcategoria_id == 9 ||
-      this.producto.subcategoria_id == 10
+      this.producto.subcategoria_id == 10||
+      this.producto.subcategoria_id == 12||
+      this.producto.subcategoria_id == 13||
+      this.producto.subcategoria_id == 15
       ){
 
       this.mostrarPeriodoMes = 1;
@@ -76,7 +79,8 @@ export class PeriodoComponent implements OnInit {
 
     if(this.producto.subcategoria_id == 14  ||
       this.producto.subcategoria_id == 16 ||
-      this.producto.subcategoria_id == 22){
+      this.producto.subcategoria_id == 22||
+      this.producto.subcategoria_id == 19){
 
       this.mostrarPagoUnico = 1;
 

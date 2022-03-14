@@ -664,6 +664,7 @@ input#cantidadlicencias {
 }
 .swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel{
   width: 100px!important;
+}
 .card-articulo{
 
 border-bottom: 1px solid rgb(27 31 35 / 15%);

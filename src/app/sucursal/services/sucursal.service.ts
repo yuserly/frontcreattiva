@@ -27,4 +27,14 @@ export class SucursalService {
 
   }
 
+  getcodepassword(code:string): Observable<any>{
+    return this.http.get<any>(`${this.urlBase}/getcodepassword/${code}`);
+  }
+
+  cambiopassword(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/cambiopassword`, data)
+
+  }
+
 }

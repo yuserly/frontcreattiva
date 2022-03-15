@@ -92,6 +92,7 @@ export interface Periodo {
   precio:           number;
   precio_mensual:   number;
   ahorro:           number;
+  preseleccionado:  number;
 }
 
 export interface TotalCarro {

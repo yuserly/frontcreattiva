@@ -44,6 +44,8 @@ export class PeriodoComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     this.producto = carrito[index].producto;
 
+
+    /*
     if(this.producto.subcategoria_id == 23 || this.producto.subcategoria_id == 18){
       this.mostrarPeriodoMes = 1;
     }
@@ -153,7 +155,7 @@ export class PeriodoComponent implements OnInit {
       this.periodoSeleccionado = 1;
     }
 
-
+    */
     console.log("periodos");
     console.log(carrito[index]);
 

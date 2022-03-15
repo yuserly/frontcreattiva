@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { BoundElementProperty } from '@angular/compiler';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Productos, Carrito } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
@@ -43,11 +44,19 @@ export class PlanesComponent implements OnInit {
 
   aggcart(producto: Productos,  carro: Carrito[]){
 
-      let periodoselect = this.periodoseleccionado(producto.subcategoria_id);
+      let periodoselect = 0;
 
           this.categoriasServices
             .getperiodos(producto.id_producto)
             .subscribe((resp2) => {
+
+              resp2.forEach((element) => {
+                if(element.preseleccionado==1){
+                  periodoselect = element.id_periodo;
+                }
+
+              });
+
               carro.push({
                 producto: producto,
                 periodo: periodoselect,

@@ -25,15 +25,6 @@ export class PeriodoComponent implements OnInit {
 
   producto!:Productos;
 
-  mostrarPeriodoMes:number = 0; 
-  mostrarPeriodo3Meses:number = 0;
-  mostrarPeriodo6Meses:number = 0;
-  mostrarPeriodo1Year:number = 0;
-  mostrarPeriodo2Year:number = 0;
-  mostrarPeriodo3Year:number = 0;
-  mostrarPagoUnico:number = 0;
-  periodoSeleccionado:number = 0;
-
   constructor(private fb: FormBuilder, private CategoriasService:CategoriasService) { }
 
   ngOnInit(): void {

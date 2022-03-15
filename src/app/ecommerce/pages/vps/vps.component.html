@@ -67,7 +67,7 @@
        'd-none': form.value.version != 4
     }"
     >
-      <h5><b>2.1. Selecciona la Licencia Cpanel</b>  </h5>
+      <h5><b>{{vpsnum}}.1. Selecciona la Licencia Cpanel</b>  </h5>
 
       <form class="mt-2" [ngClass]="{
         'd-none': form.value.version != 3
@@ -88,7 +88,7 @@
   </div>
 </div>
 
-<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 10 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17; else vpswindows ">
+<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17; else vpswindows ">
   <div class="row px-5">
     <div class="col-md-12 mb-2">
       <h5 id="invalidAdmin"><b>{{vpsnum+1}}. Administración para su servidor</b></h5>

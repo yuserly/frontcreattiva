@@ -26,6 +26,12 @@
     " (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"
     [dominioscarrito]="carrito"></app-dominio>
 
+    <app-direccion-ip 
+          *ngIf="producto.subcategoria_id == 29 ||
+                 producto.subcategoria_id == 30"
+          (totalcarrod)="totalcarro($event)"
+    ></app-direccion-ip>
+
     <app-cantidadlicencias 
     *ngIf="producto.subcategoria_id == 20 ||
             producto.subcategoria_id == 24

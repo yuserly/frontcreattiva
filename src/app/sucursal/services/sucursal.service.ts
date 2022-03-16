@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subcategorias } from 'src/app/ecommerce/interfaces/ecommerce.interface';
 import { environment } from 'src/environments/environment';
-import { Servicios } from '../../ecommerce/interfaces/sucursal.interfaces';
+import { Servicios, Venta } from '../../ecommerce/interfaces/sucursal.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,16 @@ export class SucursalService {
   cambiopassword(data:any):Observable<any>{
 
     return this.http.post(`${this.urlBase}/cambiopassword`, data)
+
+  }
+
+  facturapendientepago(id:string): Observable<Venta[]>{
+    return this.http.get<Venta[]>(`${this.urlBase}/getfacturaspendpago/${id}`);
+  }
+
+  pagarfactura(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/pagarventa`, data)
 
   }
 

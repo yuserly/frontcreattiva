@@ -1,48 +1,225 @@
 <div class="section-servicios pt-5 pb-5">
-
   <div class="container">
-
     <div class="row">
-
       <div class="col-md-12">
-
-        <h2 class="text-left" style="color:black;">Servicios Pendiente de Pago <i class="fas fa-chevron-down ms-2"></i></h2>
+        <h2 class="text-left" style="color: black">
+          Factura Pendiente de Pago <i class="fas fa-chevron-down ms-2"></i>
+        </h2>
 
         <table class="table">
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Descripción del Servicio</th>
-              <th scope="col">Fecha de Contratación</th>
-              <th scope="col">Fecha de Vencimiento</th>
-              <th scope="col">Valor del Servicio</th>
-              <th scope="col">Periodo</th>
+              <th scope="col">Neto</th>
+              <th scope="col">IVA</th>
+              <th scope="col">Total</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Detalle</th>
               <th scope="col">Pagar</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of servicios">
-              <th scope="row">{{item.codigo_venta}}</th>
-              <td>{{item.glosa}}</td>
-              <td>{{item.fecha_inscripcion | date:'dd/MM/YYYY' }}</td>
-              <td>{{item.fecha_renovacion | date:'dd/MM/YYYY' }}</td>
-              <td>{{item.detalleventa[0].venta.neto | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} + IVA</td>
-              <td>{{item.periodo.periodo}}</td>
+              <th scope="row">{{ item.codigo }}</th>
+              <td>
+                {{
+                  item.neto | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                }}
+              </td>
+              <td>
+                {{ item.iva | currency: "USD":"symbol-narrow":"4.0-0":"es-CL" }}
+              </td>
+              <td>
+                {{
+                  item.total_peso
+                    | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                }}
+              </td>
+              <td>{{ item.created_at | date: "dd/MM/YYYY" }}</td>
               <td>
                 <div class="d-flex">
-                  <button class="btn" title="Pagar con Webpay"><img src="../../../../assets/img/icon-webpay.png" width="30px" /></button>
-                  <button class="btn" title="Pagar con Paypal"><img src="../../../../assets/img/paypal.png" width="30px" /></button>
-
+                  <button
+                    class="btn btn-success"
+                    (click)="verdetalles(item.detallesventa)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modaldetalles"
+                  >
+                    Ver
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex">
+                  <button
+                    class="btn"
+                    title="Pagar con Webpay"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalpago"
+                    (click)="pagar(item.id_venta, 1, item.total_peso)"
+                  >
+                    <img
+                      src="../../../../assets/img/icon-webpay.png"
+                      width="30px"
+                    />
+                  </button>
+                  <button
+                    class="btn"
+                    title="Pagar con Paypal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalpago"
+                    (click)="pagar(item.id_venta, 2, item.total_peso)"
+                  >
+                    <img src="../../../../assets/img/paypal.png" width="30px" />
+                  </button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-
       </div>
-
     </div>
 
-  </div>
+    <!-- Modal detalles-->
+    <div
+      class="modal fade"
+      id="modaldetalles"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="border-bottom: 0px; padding-bottom: 0px"
+          >
+            <h5 class="modal-title">Detalles Factura</h5>
 
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <ul>
+                  <li *ngFor="let item of detallesventa">
+                    {{ item.servicios.glosa }}
+                    {{
+                      item.precio_pagado
+                        | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                    }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal detalles-->
+
+    <!-- Modal pago-->
+    <div
+      class="modal fade"
+      id="modalpago"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div
+            class="modal-header"
+            style="border-bottom: 0px; padding-bottom: 0px"
+          >
+            <h5 class="modal-title">Pagar factura</h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div
+                  class="col-md-12 d-flex justify-content-center"
+                  *ngIf="!urlpago; else formpagar"
+                >
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+
+              <ng-template #formpagar>
+                <div class="col-12 text-center">
+
+                  <i class="far fa-usd-circle mb-1" style="color: #2fdd92; font-size: 46px;"></i>
+
+                  <p>Total a pagar {{totalpagar | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"}}</p>
+                </div>
+                <div
+                  class="col-12 mt-5 d-flex justify-content-center"
+                  *ngIf="mediodepago == 1; else pagopaypal"
+                >
+                  <form [action]="urlpago" method="POST">
+                    <input type="hidden" name="token_ws" [value]="token" />
+
+                    <div class="row">
+                      <div class="text-center mt-4">
+                        <button
+                          type="submit"
+                          class="btn"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 100%;
+                          "
+                        >
+                          Pagar
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <ng-template #pagopaypal>
+                  <div class="col-12 mt-5 d-flex justify-content-center">
+                    <div class="row">
+                      <div class="text-center mt-4">
+                        <a
+                          class="btn"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 80%;
+                          "
+                          [href]="urlpago"
+                        >
+                          Pagar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal detalles-->
+  </div>
 </div>

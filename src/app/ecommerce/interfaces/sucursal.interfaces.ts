@@ -35,6 +35,7 @@ export interface Detalleventa {
   created_at:        Date;
   updated_at:        Date;
   venta:             Venta;
+  servicios:         Servicios;
 }
 
 export interface Venta {
@@ -55,6 +56,8 @@ export interface Venta {
   pago_id_paypal:     null;
   created_at:         Date;
   updated_at:         Date;
+  detallesventa:      Detalleventa[];
+
 }
 
 export interface Periodo {

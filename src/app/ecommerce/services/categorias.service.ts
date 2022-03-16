@@ -30,6 +30,11 @@ export class CategoriasService {
     return this.http.get<Categorias[]>(`${this.urlBase}/getcategorias`);
   }
 
+  // productos buscados
+  getProductosCoincidentes(nombre: string): Observable<Productos[]> {
+    return this.http.get<Productos[]>(`${this.urlBase}/getproductosbuscados/${nombre}`);
+  }
+
   // regiones
 
   getRegiones(): Observable<Regiones[]> {

@@ -15,12 +15,17 @@
                         <div class="form-group">
                           <input
                             class="input__field_ip"
+                            [ngClass]="{
+                              'is-invalid': validarcampo('ip')
+                            }"
                             type="text"
                             placeholder=" "
-                            id="direccionip"
+                            (change)="validarip()"
                             formControlName="ip"
-                            pattern="((1[0-9]{2}|2[0-4][0-9]|25[0-5]|[1-9][0-9]|[0-9])\.){3}(1[0-9]{2}|2[0-4][0-9]|25[0-5]|[1-9][0-9]|[0-9])"
                           />
+                          <div class="invalid-feedback" *ngIf="validarcampo('ip')">
+                            {{ mensajeerrorip }}
+                          </div>
                         </div>
                       </div>
           

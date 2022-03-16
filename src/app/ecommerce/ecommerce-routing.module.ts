@@ -13,7 +13,7 @@ import { LoginPasswordComponent } from './pages/login-password/login-password.co
 import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/seleccionar-empresa.component';
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
 import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
-
+import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 
 const routes: Routes = [
   {
@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path:'carrito',
         component:CarroComponent
+      },
+      {
+        path:'resultados-busqueda',
+        component:ResultadosBusquedaComponent
       },
       {
         path:'compra-dominios',
@@ -71,6 +75,11 @@ const routes: Routes = [
         path:'codigo-rapido',
         component:CodigoRapidoComponent
       },
+      {
+        path:'busqueda',
+        component:CodigoRapidoComponent
+      },
+      
     ]
   }
 

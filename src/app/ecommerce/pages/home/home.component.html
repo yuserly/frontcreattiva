@@ -37,16 +37,23 @@ style="
     class="collapse navbar-collapse d-flex justify-content-between"
     id="navbarSupportedContent"
   >
+
+<app-buscador ></app-buscador>
+
+  <!--
     <div
       class="d-flex justify-content-center"
       style="width: 70%; max-width: 550px"
+      [formGroup]="form"
     >
+    
       <div class="input-group">
         <input
           class="form-control"
           type="search"
           placeholder="¿Qué Buscas?"
           aria-label="¿Qué Buscas?"
+          formControlName="textobuscar"
           style="
             border: unset;
             border-top-right-radius: 0px;
@@ -59,11 +66,16 @@ style="
             <i
               class="fas fa-search"
               style="font-size: 1.5rem; color: #000; cursor: pointer"
+              (click)="busquedageneral()"
             ></i>
           </span>
         </div>
       </div>
+
+
     </div>
+
+  -->
 
     <div class="d-flex align-items-center">
       <h6 style="color: #fff" class="me-4">FINALIZAR COMPRA</h6>

@@ -1,9 +1,12 @@
 <div class="listado-planes" id="planes-hosting-ssd">
   <div class="row d-flex justify-content-center mt-3 mb-5">
-    <div class="col-md-4 mb-4" *ngFor="let item of productos; let i = index">
+    <div class="mb-4" 
+    [ngClass]="resultadobusqueda ? 'col-md-3' : 'col-md-4'"
+    *ngFor="let item of productos; let i = index">
       <div
         class="card h-100"
         style="border-right: 1px solid rgba(0, 0, 0, 0.125)"
+        [ngClass]="{ 'card-border': resultadobusqueda}"
       >
         <div class="card-body">
           <div class="row">
@@ -40,7 +43,7 @@
               </span>
             </div>
 
-            <div class="col-12 text-justify ps-4 pe-4">
+            <div class="col-12 text-justify ps-4 pe-4" *ngIf="!resultadobusqueda">
               <!--<small><strong>Precio Normal: $ Anual</strong></small>-->
 
               <ul

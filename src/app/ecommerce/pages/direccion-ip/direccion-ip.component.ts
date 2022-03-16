@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DominiosService } from '../../services/dominios.service';
 import { Result, PrecioDominios } from '../../interfaces/dominios.interfaces';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 import { TotalCarro, Carrito } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 
@@ -16,12 +17,27 @@ export class DireccionIpComponent implements OnInit {
   ipguardada:string = '';
   errorIP:boolean = false;
   form:FormGroup = this.fb.group({
-    ip:['',[Validators.required]]
-  })
+    ip: [
+      '',
+      [Validators.required, Validators.pattern(this.validacion.ipPattern)],
+    ]
+  });
+
+  get mensajeerrorip(): string {
+    const error = this.form.get('ip')?.errors;
+
+    if (error?.required) {
+      return 'La IP es requerida';
+    } else if (error?.pattern) {
+      return 'Debe ingresar una IP válida';
+    }
+
+    return '';
+  };
 
   @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
 
-  constructor(private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
+  constructor(private validacion: ValidatorService, private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
 
@@ -81,5 +97,51 @@ export class DireccionIpComponent implements OnInit {
     //localStorage.setItem('carrito',JSON.stringify(carrito));
     
   }
+
+  validarip(){
+
+    if(!this.form.get('ip')?.errors){
+
+      /*
+        let data = {
+          rut: this.form.value.ip
+        }
+
+        this.CategoriasService.validarrut(data).subscribe(resp =>{
+          console.log(resp)
+
+          if(resp.data){
+
+            Swal.fire({
+              title: 'RUT en uso',
+              text: "Este RUT ya se encuentra en uso ¿Quieres iniciar sesión?",
+              icon: 'info',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Login',
+              cancelButtonText: 'Cancelar',
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['/login']);
+              }else{
+                this.ngOnInit();
+              }
+            })
+
+          }
+
+        })
+
+        */
+    }
+  }
+
+  validarcampo(campo: string) {
+    return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
+  }
+
+  
 
 }

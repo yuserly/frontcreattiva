@@ -1,0 +1,33 @@
+<div
+      class="d-flex justify-content-center"
+      style="width: 200%; max-width: 500px"
+      [formGroup]="form"
+    >
+    
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="¿Qué Buscas?"
+          aria-label="¿Qué Buscas?"
+          formControlName="textobuscar"
+          style="
+            border: unset;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+          "
+        />
+
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="btn-search">
+            <i
+              class="fas fa-search"
+              style="font-size: 1.5rem; color: #000; cursor: pointer"
+              (click)="busquedageneral()"
+            ></i>
+          </span>
+        </div>
+      </div>
+
+
+    </div>

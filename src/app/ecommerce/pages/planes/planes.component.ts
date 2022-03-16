@@ -14,7 +14,9 @@ export class PlanesComponent implements OnInit {
   @ViewChild(PeriodoComponent) PeriodoView!: PeriodoComponent;
 
   @Input() productos!: Productos[];
+  @Input() resultadobusqueda!: boolean;
 
+  productosbuscadosarray!: Productos[];
   constructor(
     private router: Router,
     private categoriasServices: CategoriasService
@@ -90,86 +92,18 @@ export class PlanesComponent implements OnInit {
 
   }
 
-  periodoseleccionado(id:number):number{
+  productosp(productosb:Productos[]){
 
+    this.productosbuscadosarray = productosb;
+    console.log("datos obtenidos por emit");
+    console.log(this.productosbuscadosarray);
 
-    //Hosting
-    if( id == 1 ||
-        id == 2 ||
-        id == 3 ||
-        id == 4 ||
-        id == 5
-      ){
+    if (localStorage.getItem('resultados_busqueda')) {
 
-      return 4;
+      localStorage.setItem('resultados_busqueda', JSON.stringify(this.productosbuscadosarray));
 
     }
-    //Certificado SSL
-    if(id == 7){
-
-      return 2;
-
-    }
-    //vps
-    if( id == 9 ||//VPS en Chile
-        id == 10 ||//VPS Windows
-        id == 12 //VPS Linux administrado
-      ){
-
-      return 4;
-
-    }
-    if(id == 11 ||//vps amazon linux
-       id == 13 ||//vps amazon windows
-       id == 19 //streaming radio
-      ){
-      return 4;
-    }
-    if(id == 14 ||//Administración para VPS
-       id == 28 ||//Housing
-       id == 32 //Cloud backup
-      ){
-      return 4;
-    }
-
-    if(id == 8  || //instalación certificado ssl
-      id == 15  ||//Migración para VPS
-      id == 18 || //Administración para vps por evento
-      id == 21 ||//Migración Google Workspace
-      id == 23 ||//Licencias microsoft
-      id == 26
-      ){
-
-      //this.mostrarPagoUnico = 1;
-
-    }
-
-    if(id == 16 || //servidores hp
-       id == 17 //servidores dell
-      ){
-      return  7;
-
-    }
-    if(id == 22 //Google Ads
-      ){
-      return  7;
-    }
-    if(id == 24 ||//Licencias microsoft 365
-      id == 20 //licencias googlw workspace
-      ){
-      
-      return 2;
-
-    }
-    if(id == 27 || //almacenamiento adicional google workspace
-       id == 29 || //licencias cpanel
-       id == 30 //licencias imunify360
-      ){
-      return 1;
-    }else{
-      return 0;
-    }
-
 
   }
+
 }

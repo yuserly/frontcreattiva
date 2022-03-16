@@ -1,6 +1,7 @@
 import { DominiosService } from './../../services/dominios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Productos } from '../../interfaces/ecommerce.interface';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,7 @@ export class NavComponent implements OnInit {
 
   countcarro:number = 0;
   carvisible: boolean = true;
+  productosbuscadosarray!: Productos[];
 
   constructor(public DominiosService: DominiosService, private router: Router) { }
 
@@ -30,6 +32,14 @@ export class NavComponent implements OnInit {
     }else{
       this.countcarro = carrito.length;
     }
+
+  }
+
+  productosp(productosb:Productos[]){
+
+    this.productosbuscadosarray = productosb;
+    console.log("datos obtenidos por emit");
+    console.log(this.productosbuscadosarray);
 
   }
 

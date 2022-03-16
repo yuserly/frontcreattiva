@@ -64,6 +64,10 @@ export class HostingComponent implements OnInit {
 
     }
 
+    if(this.producto.subcategoria_id==14){
+      this.periodonum = 1;
+    }
+
     if(this.producto.subcategoria.categoria_id == 3 ||
       this.producto.subcategoria.categoria_id == 4
      ){
@@ -86,7 +90,11 @@ export class HostingComponent implements OnInit {
       this.producto.subcategoria_id == 18 ||
       this.producto.subcategoria_id == 21 ||
       this.producto.subcategoria_id == 23 ||
-      this.producto.subcategoria_id == 26
+      this.producto.subcategoria_id == 26 ||
+      this.producto.subcategoria_id == 28 ||
+      this.producto.subcategoria_id == 29 ||
+      this.producto.subcategoria_id == 30 ||
+      this.producto.subcategoria_id == 32
       ){
  
        this.periodonum = 1;
@@ -98,6 +106,11 @@ export class HostingComponent implements OnInit {
         this.producto.subcategoria_id == 13){
       this.vpsnum = 1;
       this.periodonum = 3;
+     }
+
+     if(this.producto.subcategoria_id == 22){
+      this.dominionum = 1;
+      this.periodonum = 2;
      }
      
 
@@ -158,7 +171,9 @@ export class HostingComponent implements OnInit {
     console.log(this.producto);
 
     //validación de hosting
-    if( this.producto.subcategoria.categoria.id_categoria == 1){
+    if( this.producto.subcategoria.categoria.id_categoria == 1 ||
+        this.producto.subcategoria_id ==22 //google ads
+        ){
 
         console.log("validar dominios");
         if(this.validarFormDominiosComponent()){

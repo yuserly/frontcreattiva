@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   Categorias,
   Subcategorias,
-  Carrito
+  Carrito,
+  Productos
 } from '../../interfaces/ecommerce.interface';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias.service';
-import { Productos } from '../../interfaces/ecommerce.interface';
 
 
 @Component({
@@ -19,16 +20,25 @@ import { Productos } from '../../interfaces/ecommerce.interface';
 export class HomeComponent implements OnInit {
 
   categorias: Categorias[] = [];
-  subcategorias: Subcategorias[] = [];
   productos: Productos[] = [];
+  subcategorias: Subcategorias[] = [];
+  productosbuscados: Productos[] = [];
   logueado: boolean = false;
 
   @ViewChild('subfoco') subfoco!: ElementRef;
 
+  form:FormGroup = this.fb.group({
+    textobuscar: [
+      '',
+      [Validators.required],
+    ]
+  });
+
   constructor(
     private categoriasServices: CategoriasService,
     public DominiosService: DominiosService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
     let token = localStorage.getItem('token')!;
       let empresaselect = localStorage.getItem('empresaselect')!;
@@ -54,6 +64,11 @@ export class HomeComponent implements OnInit {
     });
 
     this.buscarsubcategoria(1);
+
+    //limpiar variable de busqueda
+    if (localStorage.getItem('resultados_busqueda')) {
+      localStorage.removeItem('resultados_busqueda');
+    }
 
 
   }
@@ -103,6 +118,42 @@ export class HomeComponent implements OnInit {
 
   obtenerproductos(productos: Productos[]){
     this.productos = productos;
+  }
+
+  busquedageneral(){
+    
+    if(this.form.invalid){
+      this.form.markAllAsTouched()
+      return;
+    }
+
+    let resultados:any = [];
+
+    if (localStorage.getItem('resultados_busqueda')) {
+
+      this.productosbuscados = JSON.parse(localStorage.getItem('resultados_busqueda')!);
+
+    } else {
+
+      this.productosbuscados = [];
+
+    }
+
+    let textoBusqueda = this.form.value.textobuscar;
+
+    this.categoriasServices.getProductosCoincidentes(textoBusqueda).subscribe((productosEncontrados) => {
+      console.log(productosEncontrados);
+
+      this.productosbuscados = productosEncontrados;
+
+      localStorage.setItem('resultados_busqueda', JSON.stringify(this.productosbuscados));
+
+      console.log(this.productosbuscados);
+
+      this.router.navigate(['resultados-busqueda']);
+      
+    });
+
   }
 
 

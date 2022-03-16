@@ -57,8 +57,8 @@ export class VpsComponent implements OnInit {
 
     this.producto = carrito[index].producto;
 
-    console.log("producto");
-    console.log(this.producto);
+    console.log("carrito");
+    console.log(carrito);
     console.log("...");
 
     let os: any = carrito[index].sistemaoperativo;
@@ -85,7 +85,7 @@ export class VpsComponent implements OnInit {
     console.log(this.producto);
     console.log("---------------------");
 
-    if(this.producto.subcategoria_id == 9 || this.producto.subcategoria_id == 10 || this.producto.subcategoria_id == 16 || this.producto.subcategoria_id == 17){
+    if(this.producto.subcategoria_id == 9 || this.producto.subcategoria_id == 11 || this.producto.subcategoria_id == 12){
     
       // el 29 es el id de las subcategoria a las que pertenece las licencias cpanel
       this.CategoriasService.getproductos(29).subscribe((resp) => {
@@ -142,13 +142,15 @@ export class VpsComponent implements OnInit {
     console.log("licencia: ");
     console.log(this.form.value.licencia);
 
+    //Validar licencias Cpanel
     if (this.form.value.licencia != '') {
       let producto!: Productos;
 
       carrito.map((p, i) => {
-        if (p.producto.subcategoria_id == 25) {
+        
+        if (p.producto.subcategoria_id == 23) {
           carrito.splice(i, 1);
-        }else if(p.producto.tipo_producto_id == 8){
+        }else if(p.producto.subcategoria_id == 29){
           carrito.splice(i, 1);
         }
       });
@@ -159,11 +161,22 @@ export class VpsComponent implements OnInit {
         }
       });
 
+      let periodoselect = 0;
+
       this.CategoriasService.getperiodos(this.form.value.licencia).subscribe(
         (resp) => {
+
+          resp.forEach((element) => {
+            if(element.preseleccionado==1){
+              periodoselect = element.id_periodo;
+            }
+
+          });
+
+
           carrito.push({
             producto: producto,
-            periodo: 4,
+            periodo: periodoselect,
             dominio: '',
             sistemaoperativo: 0,
             versionsistema: 0,

@@ -38,7 +38,7 @@ export class CaracteristicasComponent implements OnInit {
       }
     })
 
-    if(id_subcategoria != 26){
+    if(id_subcategoria != 31){
       this.buscarproducto(id_subcategoria);
     }else{
       this.productos = [];

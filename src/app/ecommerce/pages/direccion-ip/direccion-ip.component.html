@@ -1,0 +1,90 @@
+<div class="card card-border p-3 mt-4">
+    <div class="row px-5">
+      <div class="col-md-12 mb-2">
+        <h5 id="invalidCantLicencias">
+          <b>1. Ingresa tu dirección IP</b>
+        </h5>
+      </div>
+      <div class="col-md-12">
+          <div class="row">
+              <div class="col-md-12">
+
+                <form class="pt-3" id="" [formGroup]="form">
+                    <div class="row" *ngIf="!ipguardada || ipguardada==''">
+                      <div class="col-md-5 col-10 px-0">
+                        <div class="form-group">
+                          <input
+                            class="input__field_ip"
+                            [ngClass]="{
+                              'is-invalid': validarcampo('ip')
+                            }"
+                            type="text"
+                            placeholder=" "
+                            (change)="validarip()"
+                            formControlName="ip"
+                          />
+                          <div class="invalid-feedback" *ngIf="validarcampo('ip')">
+                            {{ mensajeerrorip }}
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="col-md-2 col-2 d-flex align-items-center">
+                        <button
+                          type="button"
+                          class="btn"
+                          id="guardarip"
+                          [disabled]="form.invalid"
+                          (click)="guardarip()"
+                          style="
+                            background-color: #005ad2;
+                            color: #f2f3f5;
+                            font-weight: bold;
+                            width: 100%;
+                            font-size: 14px;
+                          "
+                        >
+                          Guardar
+                        </button>
+                      </div>
+          
+                      <div class="col-md-12 col-12 text-center">
+          
+                        <small class="text-danger" *ngIf="errorIP"
+                          ><b>Debes ingresar una dirección IP</b></small>
+          
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="ipguardada!==''">
+                      <div class="col-md-7">
+                        <h6 class="px-3 pt-3">
+                          <b>
+                              Dirección IP guardada
+                          </b>
+                          <i class="ms-2 far fa-check-circle" style="color: #32cb00"></i>
+                        </h6>
+                        <h6 class="px-3">
+                          {{ ipguardada }}
+                          <button
+                            type="button"
+                            (click)="limpiarIpGuardada()"
+                            class="btn btn-outline-dark btn-edit ms-2"
+                          >
+                            cambiar ip
+                            <i class="ms-2 far fa-edit"></i>
+                          </button>
+                        </h6>
+                      </div>
+                    </div>
+                  </form>
+                  
+              </div>
+          </div>
+  
+  
+      </div>
+    </div>
+  
+  </div>
+  
+  

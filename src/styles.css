@@ -176,6 +176,29 @@ padding-left: 0px;
 border-bottom: 0.3px solid #FFF;
 }
 
+.input__field_ip{
+  box-sizing: border-box;
+
+  display: block;
+
+  width: 100%;
+
+  border: 1px solid #005AD2;
+
+  padding: 10px;
+
+  background: transparent;
+
+  border-radius: 5px;
+
+}
+
+.input__field_ip:focus{
+
+  border: 1px solid #005AD2 !important;
+  
+  }
+
 
 .input__field_dominio {
 

@@ -32,6 +32,9 @@ import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/selecci
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
+import { DireccionIpComponent } from './pages/direccion-ip/direccion-ip.component';
+import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 
 
 @NgModule({
@@ -60,7 +63,10 @@ import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios
     LoginPasswordComponent,
     SeleccionarEmpresaComponent,
     CodigoRapidoComponent,
-    CompraDominiosComponent
+    CompraDominiosComponent,
+    DireccionIpComponent,
+    ResultadosBusquedaComponent,
+    BuscadorComponent
   ],
   imports: [
     CommonModule,

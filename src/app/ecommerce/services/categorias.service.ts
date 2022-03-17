@@ -266,4 +266,10 @@ export class CategoriasService {
   recuperarpassword(email:string){
     return this.http.get<any>(`${this.urlBase}/solicitudcambiopass/${email}`);
   }
+
+  registrarconsulta(data:any):Observable<any>{
+
+    return this.http.post(`${this.urlBase}/registrarconsulta`, data)
+
+  }
 }

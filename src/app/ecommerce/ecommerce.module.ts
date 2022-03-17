@@ -35,6 +35,7 @@ import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios
 import { DireccionIpComponent } from './pages/direccion-ip/direccion-ip.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
+import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { BuscadorComponent } from './pages/buscador/buscador.component';
     CompraDominiosComponent,
     DireccionIpComponent,
     ResultadosBusquedaComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    FormularioContactoComponent
   ],
   imports: [
     CommonModule,

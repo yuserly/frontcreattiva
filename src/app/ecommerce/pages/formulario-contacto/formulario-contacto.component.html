@@ -1,0 +1,146 @@
+<app-nav></app-nav>
+
+<div class="container">
+    
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4 class="azul-crt">Contactanos ahora</h4>
+            <hr class="hr_title" />
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6 mt-4">
+
+            <div class="row ">
+
+                <h3 class="azul-crt text-center">Llámanos a nuestra mesa central</h3>
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i style="font-size:40px;" class="fas fa-phone-alt"></i>
+                    <b class="h4">+56 999999999</b>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <img alt="" src="../../../../assets/img/chile.png" width="40px" style="border-radius: 20px;" />
+                    <b class="mx-2">Santiago, Chile.</b>
+                </div>
+
+            </div>
+
+            <div class="row mt-4">
+
+                <h3 class="azul-crt text-center">Escribenos por e-mail</h3>
+                <div class="d-flex align-items-center justify-content-center mb-1">
+                    <i style="font-size:25px;" class="far fa-envelope"></i>
+                    <b class="h5 mx-2">soporte@creattiva.cl</b>
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-1">
+                    <i style="font-size:25px;" class="far fa-envelope"></i>
+                    <b class="h5 mx-2">ventas@creattiva.cl</b>
+                </div>
+                <div class="d-flex align-items-center justify-content-center mb-1">
+                    <i style="font-size:25px;" class="far fa-envelope"></i>
+                    <b class="h5 mx-2">facturacion@creattiva.cl</b>
+                </div>
+
+
+            </div>
+                
+                
+
+        </div>
+        <div class="col-md-6 mt-4">
+
+            <div class="col-md-9 card card-border p-3">
+
+                <h3 class="text-center">Te contactaremos</h3>
+
+                <form class="pt-3 pb-5 px-3" id="formulario_contacto" [formGroup]="form" >
+
+                    <div class="form-group mb-4">
+
+                        <label class="input">
+
+                            <input class="input__field" type="text" placeholder=" " id="nombre" formControlName="nombre" required/>
+
+                            <span class="input__label">Nombre</span>
+                            <small id="errornombre" style="color:#FF0000;"></small>
+
+                        </label>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+
+                        <label class="input">
+
+                            <input class="input__field" type="email" placeholder=" " id="email" formControlName="email" required/>
+
+                            <span class="input__label">Email</span>
+                            <small id="erroremail" style="color:#FF0000;"></small>
+
+                        </label>
+
+                    </div>
+
+                    <div class="form-group mb-4">
+
+                            <div class="input-group">
+                        
+                                <div class="input-group-prepend d-flex">
+                                    
+                                    <div class="input-group-text input__field_tele">
+                                    +569
+                                    </div>
+                                
+                                </div>
+                        
+
+                                <input class="form-control input__field_telefono" type="number" placeholder="Móvil" id="telefono" formControlName="telefono" required  />
+
+                            </div>
+
+                            
+                            <small id="errormovil" style="color:#FF0000;"></small>
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="input">
+
+                            <textarea class="input__field mb-3"  id="mensaje" formControlName="mensaje"></textarea>
+
+                            <span class="input__label">Mensaje/Consulta</span>
+                            
+                            <small id="errormensaje" style="color:#FF0000;"></small>
+
+                        </label>
+
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <div class="col-12">
+                            <!--
+                            <button class="btn" type="button" style="border-radius: 5px; border:1px solid #005AD2; color:#005AD2" data-dismiss="modal">Cancelar</button>
+                            -->
+
+                            <button class="btn btn-submit float-right" type="button" style="border-radius: 5px;color:#FFF; background-color:#005AD2" [disabled]="form.invalid" (click)="enviar()">Enviar</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+                </div>
+
+        </div>
+    </div>
+
+</div>
+
+<br /><br /><br /><br /><br />
+
+<app-footer></app-footer>

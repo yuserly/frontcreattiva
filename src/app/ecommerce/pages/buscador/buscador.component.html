@@ -12,6 +12,7 @@
       placeholder="¿Qué Buscas?"
       aria-label="¿Qué Buscas?"
       formControlName="textobuscar"
+      (keyup.enter)="busquedageneral()"
       style="
         border: unset;
         border-top-right-radius: 0px;
@@ -19,13 +20,12 @@
       "
     />
 
-    <div class="input-group-prepend">
+    <div class="input-group-prepend" (click)="busquedageneral()">
 
       <span class="input-group-text" id="btn-search">
         <i
           class="fas fa-search"
           style="font-size: 1.5rem; color: #000; cursor: pointer"
-          (click)="busquedageneral()"
         ></i>
       </span>
       

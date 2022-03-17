@@ -14,6 +14,7 @@ import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/selecci
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
 import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
+import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,10 @@ const routes: Routes = [
         path:'busqueda',
         component:CodigoRapidoComponent
       },
+      {
+        path:'contacto',
+        component:FormularioContactoComponent
+      }
       
     ]
   }

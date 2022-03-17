@@ -728,3 +728,204 @@ border-color: #0d6efd!important;
 .sidebar .btn-toggle-nav a {
 color: #FFF;
 }
+
+
+   
+.input {
+        
+  position: relative;
+
+  width: 100%;
+
+  }
+
+  .input__label {
+
+    position: absolute;
+  
+    left: 0;
+  
+    top: 0;
+  
+    padding: 7px;
+  
+    margin: 5px;
+  
+    background: #FFF;
+  
+    white-space: nowrap;
+  
+    transform: translate(0, 0);
+  
+    transform-origin: 0 0;
+  
+    transition: transform 120ms ease-in;
+  
+    font-weight: bold;
+  
+    line-height: 1.2;
+  
+    
+  
+    }
+   .input__label {
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  padding: 7px;
+
+  margin: 5px;
+
+  background: #FFF;
+
+  white-space: nowrap;
+
+  transform: translate(0, 0);
+
+  transform-origin: 0 0;
+
+  transition: transform 120ms ease-in;
+
+  font-weight: bold;
+
+  line-height: 1.2;
+
+  
+
+  }
+
+   .input__field {
+
+  box-sizing: border-box;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 10px;
+
+  background: transparent;
+
+  border-radius: 5px;
+
+  border: 1px solid #005AD2 !important;
+
+  }
+
+   .input__field_telefono {
+
+  box-sizing: border-box;
+
+  display: block;
+
+  padding: 10px;
+
+  background: transparent;
+
+  border-top-right-radius: 5px !important;
+
+  border-bottom-right-radius: 5px !important;
+
+  border: 1px solid #005AD2 !important;
+
+  }
+
+  .input__field_tele {
+
+  box-sizing: border-box;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 10px;
+
+  background: transparent;
+
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+
+  border-top: 1px solid #005AD2 !important;
+  border-bottom: 1px solid #005AD2 !important;
+  border-right: none;
+  border-left: 1px solid #005AD2 !important;
+  
+
+  font-weight: bold;
+  line-height: 1;
+
+  }
+
+   .input__field:focus{
+
+      border: 1px solid #005AD2 !important;
+
+  }
+
+   .input__field_telefono:focus{
+
+      border: 1px solid #005AD2 !important;
+
+  }
+
+   .input__field:not(:-moz-placeholder-shown) + #formulario_contacto .input__label {
+
+      transform: translate(0.25rem, -65%) scale(0.8);
+
+      color: #005AD2;
+
+  }
+
+   .input__field:not(:-ms-input-placeholder) + .input__label {
+
+      transform: translate(0.25rem, -65%) scale(0.8);
+
+      color: #005AD2;
+
+  }
+
+  .input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+
+      transform: translate(0.25rem, -65%) scale(0.8);
+
+      color: #005AD2;
+
+  }
+
+  #formulario_contacto #telefono::placeholder { 
+
+      font-weight: bold;
+
+      line-height: 1.2; 
+
+      color:#000000;
+  }
+  #formulario_contacto input#telefono:focus { 
+
+      outline: none;
+  }
+  #formulario_contacto input#telefono:focus {
+
+      outline:none !important;
+
+      outline-width: 0 !important;
+
+      box-shadow: none;
+
+      -moz-box-shadow: none;
+
+      -webkit-box-shadow: none;
+
+  }
+
+
+  #formulario_contacto input[type=number]::-webkit-inner-spin-button,
+  #formulario_contacto input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none !important;
+      margin: 0 !important;
+      }
+  #formulario_contacto input[type=number] { -moz-appearance:textfield !important; }

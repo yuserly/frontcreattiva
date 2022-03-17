@@ -4,13 +4,15 @@
   <div class="row px-3">
     
     <div class="col-md-12 mb-2">
+
       <h5 id="invalidSO"><b>{{vpsnum}}. Selecciona el Sistema Operativo</b></h5>
+
       <small class="text-danger" *ngIf="errorSO == 2">
+
         <b>Debes seleccionar el Sistema Operativo y versión correspondiente</b>
+
       </small>
-      <small class="text-danger" *ngIf="invalidLicencia == 2">
-        <b>Debes seleccionar una licencia de Cpanel</b>
-      </small>
+
     </div>
 
     <div class="col-md-12">
@@ -63,6 +65,7 @@
     </div>
 
 
+  <!--
     <div class="col-md-12 mb-2 mt-3 licenciacpanel" [formGroup]="form" [ngClass]="{
        'd-none': form.value.version !=3
     }"
@@ -87,24 +90,23 @@
           </div>
         </div>
       </form>
+
+
+
     </div>
+  -->
     
 
   </div>
 </div>
 
-<div 
-    class="card card-border p-3 mt-4"
->
+<div class="card card-border p-3 mt-4" *ngIf="mostrarLicencias">
   <div class="row px-3">
 
     <div class="col-md-12 mb-2">
-      <h5 id="invalidSO"><b>{{vpsnum}}. Selecciona su Licencia</b></h5>
-      <small class="text-danger" *ngIf="errorSO == 2">
-        <b>Debes seleccionar el Sistema Operativo y versión correspondiente</b>
-      </small>
+      <h5 id="invalidLicencia"><b>{{vpsnum}}. Selecciona tu Licencia</b></h5>
       <small class="text-danger" *ngIf="invalidLicencia == 2">
-        <b>Debes seleccionar una licencia de Cpanel</b>
+        <b>Debes seleccionar una licencia</b>
       </small>
     </div>
 
@@ -112,13 +114,16 @@
       <div class="row" [formGroup]="form">
         <div class="col-md-3 text-center" *ngFor="let licencia of licencias">
           
-          
+
             <input
               type="radio"
               class="btn-check"
-              [id]=""
+              [id]="licencia.nombre"
+              [value]="licencia.id_producto"
               autocomplete="off"
-              formControlName="os"
+              formControlName="licencia"
+              (click)="licenciaactive(licencia.id_producto)"
+
             />
 
             <label
@@ -132,6 +137,7 @@
                 border-top-right-radius: 5px;
                 width: 150px;height: 150px;
               "
+              [for]="licencia.nombre"
             >
               <h5 class="px-3">{{licencia.nombre}}</h5>
 
@@ -151,7 +157,7 @@
 
 
 
-<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17; else vpswindows ">
+<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17">
   <div class="row px-3">
     <div class="col-md-12 mb-2">
       <h5 id="invalidAdmin"><b>{{vpsnum+1}}. Administración para su servidor</b></h5>
@@ -210,7 +216,9 @@
   </div>
 </div>
 
+<!--
 <ng-template #vpswindows>
+  
   <div class="card card-border p-3 mt-4" [formGroup]="form">
 
     <div class="row px-3">
@@ -244,7 +252,9 @@
     </div>
 
   </div>
+
 </ng-template>
+-->
 
 
 

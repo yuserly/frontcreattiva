@@ -14,6 +14,7 @@ import { SeleccionarEmpresaComponent } from './pages/seleccionar-empresa/selecci
 import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.component';
 import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
+import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 
 const routes: Routes = [
   {
@@ -79,7 +80,11 @@ const routes: Routes = [
         path:'busqueda',
         component:CodigoRapidoComponent
       },
-      
+      {
+        path:'configura-tu-producto/:slug',
+        component:ConfiguracionProductoComponent
+      },
+
     ]
   }
 

@@ -63,6 +63,12 @@ export class CategoriasService {
     );
   }
 
+  getproductosxslug(slug:string): Observable<Productos> {
+    return this.http.get<Productos>(
+      `${this.urlBase}/getproductosxslug/${slug}`
+    );
+  }
+
   getperiodos(id: number): Observable<Periodo[]> {
     return this.http.get<Periodo[]>(`${this.urlBase}/getperiodo/${id}`);
   }

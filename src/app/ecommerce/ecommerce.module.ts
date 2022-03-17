@@ -36,6 +36,7 @@ import { DireccionIpComponent } from './pages/direccion-ip/direccion-ip.componen
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
+import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { FormularioContactoComponent } from './pages/formulario-contacto/formula
     DireccionIpComponent,
     ResultadosBusquedaComponent,
     BuscadorComponent,
-    FormularioContactoComponent
+    FormularioContactoComponent,
+    ConfiguracionProductoComponent
   ],
   imports: [
     CommonModule,

@@ -15,6 +15,7 @@ import { CodigoRapidoComponent } from './pages/codigo-rapido/codigo-rapido.compo
 import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios.component';
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
+import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 
 const routes: Routes = [
   {
@@ -83,8 +84,12 @@ const routes: Routes = [
       {
         path:'contacto',
         component:FormularioContactoComponent
-      }
-      
+      },
+      {
+        path:'configura-tu-producto/:slug',
+        component:ConfiguracionProductoComponent
+      },
+
     ]
   }
 

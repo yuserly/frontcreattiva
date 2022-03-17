@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoriasService } from '../../services/categorias.service';
 import {
   Categorias,
   Subcategorias,
@@ -16,7 +17,11 @@ export class ResultadosBusquedaComponent implements OnInit {
   statusResultado:boolean = false;
   productos_resultado!: Productos[];
   productosbuscadosarray!: Productos[];
-  constructor() { }
+  
+  constructor(
+    private router: Router,
+    private categoriasServices: CategoriasService
+  ) { }
 
   ngOnInit(): void {
 
@@ -49,5 +54,81 @@ export class ResultadosBusquedaComponent implements OnInit {
     }
 
   }
+
+  updateproductosb(productosb:Productos[]){
+
+    this.productosbuscadosarray = productosb;
+    this.productos_resultado = this.productosbuscadosarray;
+    if(this.productosbuscadosarray.length>0){
+      this.statusResultado = true;
+    }else{
+      this.statusResultado = false;
+    }
+
+  }
+
+  contratar(producto: Productos) {
+    if (localStorage.getItem('carrito')) {
+      let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+      this.aggcart(producto, carro);
+
+
+    } else {
+      let carro: Carrito[] = [];
+
+      this.aggcart(producto, carro);
+    }
+  }
+
+  aggcart(producto: Productos,  carro: Carrito[]){
+
+      let periodoselect = 0;
+
+          this.categoriasServices
+            .getperiodos(producto.id_producto)
+            .subscribe((resp2) => {
+
+              resp2.forEach((element) => {
+                if(element.preseleccionado==1){
+                  periodoselect = element.id_periodo;
+                }
+
+              });
+
+              carro.push({
+                producto: producto,
+                periodo: periodoselect,
+                dominio: '',
+                sistemaoperativo: 0,
+                versionsistema: 0,
+                administrar: 0,
+                ip: '',
+                periodos: resp2,
+                cantidad: 1,
+                cupon_descuento: 0,
+              });
+
+              const cantidadcarro = carro.length;
+              const index = cantidadcarro - 1;
+
+              localStorage.setItem('index', JSON.stringify(index));
+              localStorage.setItem('carrito', JSON.stringify(carro));
+
+              let comprasucursal = localStorage.getItem('comprasucursal');
+
+              if(comprasucursal){
+
+                this.router.navigate(['sucursal/configuracion']);
+              }else{
+                this.router.navigate(['/configuracion']);
+
+              }
+
+            });
+
+  }
+
+
 
 }

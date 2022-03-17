@@ -21,6 +21,7 @@ import { CategoriasService } from '../../services/categorias.service';
 export class VpsComponent implements OnInit {
   select: number = 1;
   licencias: Productos[] = [];
+  iconoLicencia:string = '';
   producto!:Productos;
   errorSO:number = 0;
   invalidAdmin:number = 0;
@@ -90,13 +91,14 @@ export class VpsComponent implements OnInit {
       // el 29 es el id de las subcategoria a las que pertenece las licencias cpanel
       this.CategoriasService.getproductos(29).subscribe((resp) => {
         this.licencias = resp;
+        this.iconoLicencia = 'fab fa-cpanel';
       });
 
     }else if(this.producto.subcategoria_id == 10 || this.producto.subcategoria_id == 13){
       // subcategoria 19 tipo de producto 8 licencias sql
       this.CategoriasService.getproductosxtipo(23,8).subscribe((resp) => {
-        console.log(resp)
         this.licencias = resp;
+        this.iconoLicencia = '';
       });
     }
 

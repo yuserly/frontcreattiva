@@ -14,6 +14,9 @@ export class NavComponent implements OnInit {
   carvisible: boolean = true;
   productosbuscadosarray!: Productos[];
 
+  //variable enviada al componente resultados-busqueda
+  @Output() productosbuscados: EventEmitter<Productos[]> = new EventEmitter();
+
   constructor(public DominiosService: DominiosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -38,8 +41,7 @@ export class NavComponent implements OnInit {
   productosp(productosb:Productos[]){
 
     this.productosbuscadosarray = productosb;
-    console.log("datos obtenidos por emit");
-    console.log(this.productosbuscadosarray);
+    this. productosbuscados.emit(this.productosbuscadosarray);
 
   }
 

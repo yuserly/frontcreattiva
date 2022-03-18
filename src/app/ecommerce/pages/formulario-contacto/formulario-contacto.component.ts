@@ -8,6 +8,7 @@ import {
 } from '../../interfaces/ecommerce.interface';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias.service';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,16 +25,66 @@ export class FormularioContactoComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
-    nombre: ['', Validators.required],
-    email: ['', Validators.required],
-    telefono: ['', Validators.required],
+    nombre: ['', [Validators.required,Validators.pattern(this.validacion.nombreUsuarioPattern)]],
+    email: ['', [Validators.required,Validators.pattern(this.validacion.emailPattern)]],
+    telefono: ['', [Validators.required,Validators.pattern(this.validacion.telefonoPattern)]],
     mensaje: ['', Validators.required],
   });
+
+  btnCargando:boolean = false;
+  
+  get mensajeerroremail(): string {
+    const error = this.form.get('email')?.errors;
+
+    if (error?.required) {
+      return 'El email es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un email válido';
+    }
+
+    return '';
+  }
+
+  get mensajeerrornombre(): string {
+    const error = this.form.get('nombre')?.errors;
+
+    if (error?.required) {
+      return 'El nombre es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un nombre válido';
+    }
+
+    return '';
+  }
+
+  get mensajeerrortelefono(): string {
+    const error = this.form.get('telefono')?.errors;
+
+    if (error?.required) {
+      return 'El telefono es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un telefono válido';
+    }
+
+    return '';
+  }
+
+  get mensajeerrormensaje(): string {
+    const error = this.form.get('mensaje')?.errors;
+
+    if (error?.required) {
+      return 'El mensaje o consulta es requerido';
+    }
+
+    return '';
+  }
 
   constructor(
     private categoriasServices: CategoriasService,
     private router: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private validacion: ValidatorService,) 
+    { }
 
   ngOnInit(): void {
 
@@ -59,6 +110,8 @@ export class FormularioContactoComponent implements OnInit {
       return;
     }
 
+    this.btnCargando = true;
+
     this.data.nombre = this.form.value.nombre;
     this.data.email = this.form.value.email;
     this.data.telefono = this.form.value.telefono;
@@ -67,6 +120,9 @@ export class FormularioContactoComponent implements OnInit {
     this.categoriasServices.registrarconsulta(this.data).subscribe((respuesta) => {
       
       if(respuesta==1){
+
+        this.btnCargando = false;
+        window.scroll(0,0);
         Swal.fire({
           position: 'center',
           title: 'Su consulta ha sido enviada',
@@ -94,8 +150,10 @@ export class FormularioContactoComponent implements OnInit {
       
     });
 
-    window.scroll(0,0);
+  }
 
+  validarcampo(campo: string) {
+    return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
   }
 
 }

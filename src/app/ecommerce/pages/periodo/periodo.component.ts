@@ -10,6 +10,7 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 export class PeriodoComponent implements OnInit {
 
   invalidPeriodo:number = 0;
+  mostrarYearFree:boolean = false;
 
   @Input() periodos!:Periodo[];
   @Output() totalcarro: EventEmitter<TotalCarro> = new EventEmitter();
@@ -34,128 +35,15 @@ export class PeriodoComponent implements OnInit {
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     this.producto = carrito[index].producto;
-
-
-    /*
-    if(this.producto.subcategoria_id == 23 || this.producto.subcategoria_id == 18){
-      this.mostrarPeriodoMes = 1;
-    }
-
-    //Hosting
-    if(this.producto.subcategoria_id == 1 ||
-      this.producto.subcategoria_id == 2 ||
-      this.producto.subcategoria_id == 3 ||
-      this.producto.subcategoria_id == 4 ||
-      this.producto.subcategoria_id == 5
-      ){
-
-      this.mostrarPeriodo1Year = 1;
-      this.mostrarPeriodo2Year = 1;
-      this.mostrarPeriodo3Year = 1;
-      this.periodoSeleccionado = 4;
-
-    }
-    //Certificado SSL
-    if(this.producto.subcategoria_id == 7){
-
-      this.mostrarPeriodo1Year = 1;
-      this.periodoSeleccionado = 2;
-
-    }
-    //vps
-    if(this.producto.subcategoria_id == 6 ||
-      this.producto.subcategoria_id == 7 ||
-      this.producto.subcategoria_id == 8 ||
-      this.producto.subcategoria_id == 9 ||
-      this.producto.subcategoria_id == 10||
-      this.producto.subcategoria_id == 12||
-      this.producto.subcategoria_id == 13||
-      this.producto.subcategoria_id == 15
-      ){
-
-      this.mostrarPeriodoMes = 1;
-      this.mostrarPeriodo6Meses = 1;
-      this.mostrarPeriodo1Year = 1;
-      this.mostrarPeriodo2Year = 1;
-      this.mostrarPeriodo3Year = 1;
-      this.periodoSeleccionado = 4;
-
-    }
-    if(this.producto.subcategoria_id == 11 ||//vps amazon linux
-       this.producto.subcategoria_id == 13 ||//vps amazon windows
-       this.producto.subcategoria_id == 19 //streaming radio
-      ){
-      this.mostrarPeriodoMes = 1;
-      this.mostrarPeriodo3Meses = 1;
-      this.mostrarPeriodo6Meses = 1;
-      this.mostrarPeriodo1Year = 1;
-      this.periodoSeleccionado = 4;
-    }
-    if(this.producto.subcategoria_id == 14 ||//Administración para VPS
-       this.producto.subcategoria_id == 28 ||//Housing
-       this.producto.subcategoria_id == 32 //Cloud backup
-      ){
-      this.mostrarPeriodoMes = 1;
-      this.mostrarPeriodo6Meses = 1;
-      this.mostrarPeriodo1Year = 1;
-      this.mostrarPeriodo2Year = 1;
-      this.periodoSeleccionado = 4;
-    }
-
-
-
-    if(this.producto.subcategoria_id == 14  ||
-      this.producto.subcategoria_id == 16 ||
-      this.producto.subcategoria_id == 22||
-      this.producto.subcategoria_id == 19){
-
-      this.mostrarPagoUnico = 1;
-
-    }
-
-    if(this.producto.subcategoria_id == 16 || //servidores hp
-       this.producto.subcategoria_id == 17 //servidores dell
-      ){
-
-      this.mostrarPeriodo6Meses = 1;
-      this.mostrarPeriodo1Year = 1;
-      this.mostrarPeriodo2Year = 1;
-      this.mostrarPeriodo3Year = 1;
-      this.periodoSeleccionado = 7;
-
-    }
-    if(this.producto.subcategoria_id == 22 //Google Ads
-      ){
-      this.mostrarPeriodo6Meses = 1;
-    this.periodoSeleccionado = 7;
-    }
-    if(this.producto.subcategoria_id == 24 ||//Licencias microsoft 365
-      this.producto.subcategoria_id == 20 //licencias googlw workspace
-      ){
-
-      this.mostrarPeriodoMes = 1;
-      this.mostrarPeriodo1Year = 1;
-      this.periodoSeleccionado = 2;
-
-    }
-    if(this.producto.subcategoria_id == 27 || //almacenamiento adicional google workspace
-       this.producto.subcategoria_id == 29 || //licencias cpanel
-       this.producto.subcategoria_id == 30 //licencias imunify360
-      ){
-      this.mostrarPeriodoMes = 1;
-      this.periodoSeleccionado = 1;
-    }
-
-    */
-    console.log("periodos");
-    console.log(carrito[index]);
-
     let selectperiodo: any = carrito[index].periodo;
-
-
     this.seleccion.periodo = selectperiodo ;
-
     this.form.reset(this.seleccion);
+
+    if(this.producto.tipo_producto_id==1){
+      this.mostrarYearFree = true;
+    }else{
+      this.mostrarYearFree = false;
+    }
 
     this.calculototal();
 

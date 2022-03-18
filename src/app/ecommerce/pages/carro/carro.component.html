@@ -22,13 +22,13 @@
             </h6>
           </div>
           <br />
-          <div class="col-12 div0" *ngFor="let item of carrito; let i = index">
-            <div class="d-none d-md-block d-lg-block">
+          <div class="col-md-12" *ngFor="let item of carrito; let i = index">
+            
               <div
                 class="card-articulo d-flex justify-content-center align-items-center"
               >
                 <div class="row" style="width: 100%">
-                  <div class="col-5">
+                  <div class="col-10 col-sm-10 col-md-5">
                     <h6>
                       <!-- <h6 class="px-3 pt-3"><b>Web Hosting</b></h6> -->
 
@@ -37,14 +37,14 @@
                   </div>
 
                   <div
-                    class="col-6 d-flex justify-content-center align-items-center"
+                    class="col-md-6 col-12 col-sm-12 d-flex justify-content-center align-items-center"
                   >
                     <select
                       class="form-control selectperiododominio"
                       id="0"
                       keyarray="0"
                       [value]="item.periodo"
-                      style="width: 50%; margin-right: 20px"
+                      style="width: 70%; margin-right: 20px"
                       (change)="cambiarperiodo(i,$event.target)"
                     >
 
@@ -85,7 +85,7 @@
                   </div>
 
                   <div
-                    class="col-1 d-flex justify-content-center align-items-center"
+                    class="col-md-1 col-12 col-sm-12 mt-sm-3 d-flex justify-content-center align-items-center"
                     (click)="eliminarcarro(i)"
                   >
                     <i
@@ -97,7 +97,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
         </div>
       </div>

@@ -1,37 +1,38 @@
-<div
-      class="d-flex justify-content-center"
-      style="width: 430px"
-      [formGroup]="form"
->
-    
-  <div class="input-group">
-    
-    <input
-      class="form-control"
-      type="search"
-      placeholder="¿Qué Buscas?"
-      aria-label="¿Qué Buscas?"
-      formControlName="textobuscar"
-      (keyup.enter)="busquedageneral()"
-      style="
-        border: unset;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-      "
-    />
 
-    <div class="input-group-prepend" (click)="busquedageneral()">
-
-      <span class="input-group-text" id="btn-search">
-        <i
-          class="fas fa-search"
-          style="font-size: 1.5rem; color: #000; cursor: pointer"
-        ></i>
-      </span>
+  <div
+        class="d-flex justify-content-center"
+        style="width: 100%"
+        [formGroup]="form"
+  >
       
+    <div class="input-group">
+      
+      <input
+        class="form-control"
+        type="search"
+        placeholder="¿Qué Buscas?"
+        aria-label="¿Qué Buscas?"
+        formControlName="textobuscar"
+        (keyup.enter)="busquedageneral()"
+        style="
+          border: unset;
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        "
+      />
+
+      <div class="input-group-prepend" (click)="busquedageneral()">
+
+        <span class="input-group-text" id="btn-search">
+          <i
+            class="fas fa-search"
+            style="font-size: 1.5rem; color: #000; cursor: pointer"
+          ></i>
+        </span>
+        
+      </div>
+
     </div>
+
 
   </div>
-
-
-    </div>

@@ -60,10 +60,24 @@
 
                         <label class="input">
 
-                            <input class="input__field" type="text" placeholder=" " id="nombre" formControlName="nombre" required/>
+                            <input 
+                                class="input__field" 
+                                type="text" 
+                                placeholder=" " 
+                                id="nombre" 
+                                formControlName="nombre" 
+                                [ngClass]="{
+                                    'is-invalid': validarcampo('nombre')
+                                  }"
+                                required/>
 
                             <span class="input__label">Nombre</span>
-                            <small id="errornombre" style="color:#FF0000;"></small>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('nombre')"
+                            >
+                              {{ mensajeerrornombre }}
+                            </div>
 
                         </label>
 
@@ -73,10 +87,24 @@
 
                         <label class="input">
 
-                            <input class="input__field" type="email" placeholder=" " id="email" formControlName="email" required/>
+                            <input 
+                                class="input__field" 
+                                type="email" 
+                                placeholder=" " 
+                                id="email" 
+                                [ngClass]="{
+                                    'is-invalid': validarcampo('email')
+                                  }"
+                                formControlName="email" 
+                                required/>
 
                             <span class="input__label">Email</span>
-                            <small id="erroremail" style="color:#FF0000;"></small>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('email')"
+                            >
+                              {{ mensajeerroremail }}
+                            </div>
 
                         </label>
 
@@ -87,20 +115,34 @@
                             <div class="input-group">
                         
                                 <div class="input-group-prepend d-flex">
-                                    
-                                    <div class="input-group-text input__field_tele">
+
+                                    <div class="input-group-text input__field_tele d-flex align-items-center">
                                     +569
                                     </div>
                                 
                                 </div>
                         
 
-                                <input class="form-control input__field_telefono" type="number" placeholder="Móvil" id="telefono" formControlName="telefono" required  />
+                                <input 
+                                    class="form-control input__field_telefono" 
+                                    type="number" 
+                                    placeholder="Móvil" 
+                                    id="telefono" 
+                                    [ngClass]="{
+                                        'is-invalid': validarcampo('telefono')
+                                      }"
+                                    formControlName="telefono" 
+                                    required  />
 
                             </div>
 
                             
-                            <small id="errormovil" style="color:#FF0000;"></small>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('telefono')"
+                            >
+                              {{ mensajeerrortelefono }}
+                            </div>
 
 
                     </div>
@@ -109,11 +151,27 @@
 
                         <label class="input">
 
-                            <textarea class="input__field mb-3"  id="mensaje" formControlName="mensaje"></textarea>
+                            <textarea 
+                                class="input__field mb-3" 
+                                type="text" 
+                                rows="3" 
+                                placeholder=" " 
+                                id="mensaje" 
+                                [ngClass]="{
+                                    'is-invalid': validarcampo('mensaje')
+                                  }"
+                                formControlName="mensaje" 
+                                required>
+                            </textarea>
 
                             <span class="input__label">Mensaje/Consulta</span>
                             
-                            <small id="errormensaje" style="color:#FF0000;"></small>
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('mensaje')"
+                            >
+                              {{ mensajeerrormensaje }}
+                            </div>
 
                         </label>
 
@@ -122,12 +180,15 @@
                     <div class="row mt-3">
 
                         <div class="col-12">
-                            <!--
-                            <button class="btn" type="button" style="border-radius: 5px; border:1px solid #005AD2; color:#005AD2" data-dismiss="modal">Cancelar</button>
-                            -->
-
-                            <button class="btn btn-submit float-right" type="button" style="border-radius: 5px;color:#FFF; background-color:#005AD2" [disabled]="form.invalid" (click)="enviar()">Enviar</button>
-
+                            <button *ngIf="btnCargando" class="btn btn-submit float-right" type="button" style="border-radius: 5px;color:#FFF; background-color:#005AD2; width: 140px;height: 45px;" [disabled]="true">
+                                <div class="spinner-border text-dark" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </button>
+                            <button *ngIf="!btnCargando" class="btn btn-submit float-right" type="button" style="border-radius: 5px;color:#FFF; background-color:#005AD2; width: 140px;height: 45px;font-size: 18px;" [disabled]="form.invalid" (click)="enviar()">
+                                Enviar
+                            </button>
+                            
                         </div>
 
                     </div>

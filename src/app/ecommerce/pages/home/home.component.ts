@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('resultados_busqueda')) {
       localStorage.removeItem('resultados_busqueda');
     }
+    this.itemsCarrito();
 
 
   }
@@ -154,6 +155,14 @@ export class HomeComponent implements OnInit {
       
     });
 
+  }
+
+  itemsCarrito(){
+    let index = JSON.parse(localStorage.getItem('index')!);
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    this.DominiosService.totalCarro = carrito.length;
   }
 
 

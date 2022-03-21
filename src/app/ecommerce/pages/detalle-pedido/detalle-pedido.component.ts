@@ -14,6 +14,8 @@ export class DetallePedidoComponent implements OnInit {
    @Input() aplicarCupon!:number;
 
   validezcupon:number = 0;
+  cuponAplicado:any = '';
+  
 
   form_cupon:FormGroup = this.fb.group({
     cupon:['',Validators.required]
@@ -28,9 +30,18 @@ export class DetallePedidoComponent implements OnInit {
 
       let index = JSON.parse(localStorage.getItem('index')!);
       let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-      var cdescuento = <number>carrito[index]['cupon_descuento'];
-      
-      if(cdescuento>0){
+      let cdescuento:number = 0;
+      //var cdescuento = <number>carrito[index]['cupon_descuento'];
+
+      carrito.map((p, i) => {
+        
+        if(p['cupon_descuento']!=0){
+          cdescuento = <number>p['cupon_descuento'];
+        }
+
+      });
+
+      if(cdescuento!=0){
         this.validezcupon = 1;
       }else{
         this.validezcupon = 0;
@@ -93,6 +104,7 @@ export class DetallePedidoComponent implements OnInit {
           localStorage.setItem('carrito',JSON.stringify(carrito));
 
           this.validezcupon = 1;
+          this.cuponAplicado = cupon;
 
         }else{
 

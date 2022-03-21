@@ -51,11 +51,11 @@
 
 
             <div class="row mt-2" [ngClass]="{
-              'd-none': item.active != select
+              'd-none': item.active == 0
             }">
               <div class="col">
                 <select class="form-select" formControlName="version" (change)="guardar()">
-                  <option [value]="0" selected>Seleccione versión</option>
+                  <option [value]="0" selected>Seleccione versión </option>
                   <option *ngFor="let item2 of item.versiones" [value]="item2.id_version">{{item2.version}}</option>
                 </select>
               </div>

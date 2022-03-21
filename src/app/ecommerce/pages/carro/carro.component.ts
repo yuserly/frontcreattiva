@@ -14,6 +14,7 @@ export class CarroComponent implements OnInit {
   carrito:Carrito[] = [];
   totalcarroarray!: TotalCarro;
   statusCarrito:number = 0;
+  aplicarCupon:number = 1;
 
   constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) { }
 
@@ -135,6 +136,12 @@ export class CarroComponent implements OnInit {
       this.DominiosService.totalCarro = 0;
     }
 
+
+  }
+
+  totalcarro(carrito:TotalCarro){
+
+    this.totalcarroarray = carrito;
 
   }
 

@@ -124,6 +124,8 @@
     <div class="col-md-4">
       <app-detalle-pedido
         [totalcarroarray]="totalcarroarray"
+        (totalcarrod)="totalcarro($event)"
+        [aplicarCupon]="aplicarCupon"
         *ngIf="statusCarrito !== 0"
       ></app-detalle-pedido>
     </div>

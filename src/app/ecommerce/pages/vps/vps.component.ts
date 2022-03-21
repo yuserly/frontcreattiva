@@ -19,7 +19,7 @@ import { CategoriasService } from '../../services/categorias.service';
   styles: [],
 })
 export class VpsComponent implements OnInit {
-  select: number = 1;
+  select: number = 0;
   licencias: Productos[] = [];
   iconoLicencia:string = '';
   producto!:Productos;
@@ -66,6 +66,17 @@ export class VpsComponent implements OnInit {
     let administrar: any = carrito[index].administrar;
     let licencia: any= '';
 
+    //marcar OS guardado en carro
+    this.sistemaOperativo.map((p, i) => {
+      if (p.id_os == os) {
+        p['active'] = os;
+      } else {
+        p['active'] = 0;
+      }
+
+    });
+    //*************************** */
+
     //mostrar y/o ocultar panel de licencias
     if(os==1 || os==4 || os==5){
       if(version>0){
@@ -73,10 +84,12 @@ export class VpsComponent implements OnInit {
       }else{
         this.mostrarLicencias = false;
       }
+    }else{
+      this.mostrarLicencias = false;
     }
 
 
-    //obtener licencias del carrito
+    //obtener licencias del carrito (Cpanel y Windows)
     carrito.map((p, i) => {
       if (p.producto.subcategoria_id == 29 || p.producto.subcategoria_id == 23) {
          licencia = p.producto.id_producto;
@@ -105,7 +118,7 @@ export class VpsComponent implements OnInit {
       // subcategoria 19 tipo de producto 8 licencias sql
       this.CategoriasService.getproductosxtipo(23,8).subscribe((resp) => {
         this.licencias = resp;
-        this.iconoLicencia = '';
+        this.iconoLicencia = 'fa-windows fab';
       });
     }
 
@@ -113,7 +126,7 @@ export class VpsComponent implements OnInit {
   }
   sistemaopactive(item: SistemaOperativo) {
  
-    this.select = this.form.value.os;
+    this.select = this.form.value.os; //id Sistema operativo
 
     this.sistemaOperativo.map((p, i) => {
       if (p.id_os == item.id_os) {
@@ -124,11 +137,14 @@ export class VpsComponent implements OnInit {
 
     });
 
-    //
+    //Restablecer opciones con nuevo OS seleccionado
     this.seleccion.os = this.form.value.os;
     this.seleccion.version = '';
     this.seleccion.administrar = '';
     this.seleccion.licencia = '';
+    //************************* */
+
+    this.form.reset(this.seleccion);
 
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
@@ -136,29 +152,16 @@ export class VpsComponent implements OnInit {
     carrito[index].sistemaoperativo = this.form.value.os;
     carrito[index].versionsistema = 0;
     
-    //Si son SO centos o windows - mostrar licencias
+    //Mostrar licencias solo a Centos y Windows
     if(this.form.value.os==1 || this.form.value.os==4 || this.form.value.os==5){
       this.mostrarLicencias = true;
-      
-    }else{ //eliminar licencias en caso de ser otro SO
+    }else{ 
       this.mostrarLicencias = false;
-      //eliminar licencias windows o cpanel en caso de seleccionar otro sistema operativo
-      carrito.map((p, i) => {
-        
-        if (p.producto.subcategoria_id == 23) {
-          carrito.splice(i, 1);
-        }else if(p.producto.subcategoria_id == 29){
-          carrito.splice(i, 1);
-        }
-      });
-      
     }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
     let productoscarro = this.CategoriasService.calculototalcarro();
     this.totalcarrovps.emit(productoscarro);
-    console.log("Carrito actual: ");
-    console.log(carrito);
     
     
 
@@ -179,6 +182,7 @@ export class VpsComponent implements OnInit {
 
     let producto!: Productos;
 
+    /*
       carrito.map((p, i) => {
         
         if (p.producto.subcategoria_id == 23) {
@@ -187,7 +191,7 @@ export class VpsComponent implements OnInit {
           carrito.splice(i, 1);
         }
       });
-
+      */
       this.licencias.map((p, i) => {
         if (p.id_producto == idlicencia) {
           producto = p;
@@ -205,7 +209,6 @@ export class VpsComponent implements OnInit {
             }
 
           });
-
 
           carrito.push({
             producto: producto,

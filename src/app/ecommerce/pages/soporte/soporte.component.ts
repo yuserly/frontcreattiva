@@ -9,9 +9,9 @@ import { PreguntasFrecuentes } from '../../interfaces/ecommerce.interface';
 })
 export class SoporteComponent implements OnInit {
 
-  page = 1
+  p: any= 1
 
-  heros = [
+  collection: any[] = [
   { id: 11, name: 'Mr. Nice' },
   { id: 12, name: 'Narco' },
   { id: 13, name: 'Bombasto' },
@@ -27,12 +27,12 @@ export class SoporteComponent implements OnInit {
   ip:string = '';
   mostrarIP:boolean = false;
   mostrarPf:boolean = false;
- 
+
   PreguntasFrecuentes: PreguntasFrecuentes[] = [];
 
   @ViewChild('subfocoresultado') subfocoresultado!: ElementRef;
 
-  constructor(private categoriasServices: CategoriasService) { 
+  constructor(private categoriasServices: CategoriasService) {
 
   }
 
@@ -55,7 +55,7 @@ export class SoporteComponent implements OnInit {
 
       }, 1000);
 
-      
+
     });
 
     this.subfocoresultado.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -69,7 +69,7 @@ export class SoporteComponent implements OnInit {
         this.PreguntasFrecuentes = respuesta;
         console.log(this.PreguntasFrecuentes);
         this.mostrarPf = true;
-      
+
     });
 
   }

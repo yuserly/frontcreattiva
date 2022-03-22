@@ -1,0 +1,13 @@
+h1 { font-family: Lato; }
+a{
+
+padding:  10px 20px;
+background: #ccc;
+border: 1px solid #efefef;
+cursor: pointer;
+}
+
+a.active{
+color: #e2e2e2;
+background: #2e2e2e;
+}

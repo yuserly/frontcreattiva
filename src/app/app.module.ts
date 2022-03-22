@@ -24,6 +24,7 @@ registerLocaleData(localeEsCL)
     AppRoutingModule,
     NgxPaginationModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

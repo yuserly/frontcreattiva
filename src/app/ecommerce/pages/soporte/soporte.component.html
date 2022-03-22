@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 
 <div class="container">
-    
+
     <div class="row mt-5">
         <div class="col-md-12">
             <h1 class="azul-crt">Soporte técnico</h1>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        
+
     	<div class="col-md-12 mt-1">
 
     		<h5 class="azul-crt">¿Necesitas ayuda? Revisa todas nuestras opciones:</h5>
@@ -21,12 +21,12 @@
 
 
             <div class="row d-flex justify-content-center">
-				  	
-			  	<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+			  	<div class="col-sm-6 col-6 col-md-2 mt-3" >
+
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    (click)="preguntasFrecuentes()"
 				  	>
 				    <img alt="" src="../../../../assets/img/preguntas-frecuentes.png" width="70px" style="border-radius: 5px;" />
@@ -37,10 +37,10 @@
 				</div>
 
 				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    routerLink="/compra-dominios"
 				  	>
 				    <img alt="" src="../../../../assets/img/video-tutoriales.png" width="70px" style="border-radius: 5px;" />
@@ -51,10 +51,10 @@
 				</div>
 
 				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    routerLink="/compra-dominios"
 				  	>
 				    <img alt="" src="../../../../assets/img/dns.png" width="70px" style="border-radius: 5px;" />
@@ -65,10 +65,10 @@
 				</div>
 
 				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    routerLink="/compra-dominios"
 				  	>
 				    <img alt="" src="../../../../assets/img/notificar-pago.png" width="70px" style="border-radius: 5px;" />
@@ -79,10 +79,10 @@
 				</div>
 
 				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    routerLink="/sucursal"
 				  	>
 				    <img alt="" src="../../../../assets/img/sucursal-virtual.png" width="70px" style="border-radius: 5px;" />
@@ -93,10 +93,10 @@
 				</div>
 
 				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-			  
 
-				  	<div 
-				    class="card planes-icon plan-active"  
+
+				  	<div
+				    class="card planes-icon plan-active"
 				    (click)="mostrarip()"
 				  	>
 				    <img alt="" src="../../../../assets/img/ip.png" width="70px" style="border-radius: 5px;" />
@@ -106,15 +106,15 @@
 
 				</div>
 
-			</div>   
-                
+			</div>
+
 
         </div>
 
         <div class="col-md-12 mt-5" #subfocoresultado>
 
-    		<h2 class="azul-crt text-center" *ngIf="mostrarIP">Tu dirección IP es: 
-    		
+    		<h2 class="azul-crt text-center" *ngIf="mostrarIP">Tu dirección IP es:
+
     			<b *ngIf="this.ip!=''; else loading">{{this.ip}}</b>
 
     			<ng-template #loading>
@@ -128,11 +128,11 @@
 			    	</b>
 
 		    	</ng-template>
-    		
+
     		</h2>
 
-    		<h2 class="azul-crt text-center" *ngIf="mostrarPf">Revisa nuestras preguntas frecuentes: 
-    		
+    		<h2 class="azul-crt text-center" *ngIf="mostrarPf">Revisa nuestras preguntas frecuentes:
+
     			<ul class="list-group">
 
 				  <li class="list-group-item" *ngFor="let item of PreguntasFrecuentes; let i=index">{{item.TITULO_PAGINA}}</li>
@@ -140,16 +140,30 @@
 				</ul>
 
 
-    		
+
     		</h2>
     		<hr class="hr_title" />
 
     	</div>
 
 
+
+
     </div>
 
 </div>
+
+<ul class="">
+  <li *ngFor="let item of collection | paginate: pageinator.currentPage"> {{item.name}} </li>
+</ul>
+
+<app-paginador [page]="collection.length" #pageinator></app-paginador>
+
+<!-- <ul>
+  <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }"> ... </li>
+</ul> -->
+
+<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
 <br /><br /><br /><br /><br />
 

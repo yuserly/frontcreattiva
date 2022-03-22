@@ -1,0 +1,3 @@
+<div style="margin: 20px">
+  <a *ngFor="let el of pages" [ngClass]="{'active' : active == el}" (click)="active = el" > {{el+1}}</a>
+</div>

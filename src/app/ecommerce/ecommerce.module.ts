@@ -38,7 +38,8 @@ import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
-
+import { PaginationPipe } from './pipes/paginacion.pipe';
+import { PaginadorComponent } from './pages/paginador/paginador.component'
 
 @NgModule({
   declarations: [
@@ -72,7 +73,9 @@ import { SoporteComponent } from './pages/soporte/soporte.component';
     BuscadorComponent,
     FormularioContactoComponent,
     ConfiguracionProductoComponent,
-    SoporteComponent
+    SoporteComponent,
+    PaginationPipe,
+    PaginadorComponent
   ],
   imports: [
     CommonModule,

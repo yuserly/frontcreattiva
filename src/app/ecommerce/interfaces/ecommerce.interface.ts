@@ -34,6 +34,24 @@ export interface Productos {
   active:   boolean;
 }
 
+export interface PreguntasFrecuentes {
+  ID_PAGINA: number;
+  TITULO_PAGINA: string;
+  SUBTITULO_PAGINA: string;
+  ID_PAGINA_PERTENECE: number;
+  ORDEN_PAGINA:number;
+  CONTENIDO_PAGINA: string;
+  SCRIPTS_PAGINA: string;
+  DESCRIPCION_PAGINA: string;
+  KEYWORDS_PAGINA: string;
+  title: string;
+  h1pagina: string;
+  URL_PAGINA: string;
+  SI_UTIL: number;
+  NO_UTIL: number;
+  ESTADO_PAGINA: number;
+}
+
 export interface Caracteristicas{
 
   id_carateristica_producto: number;

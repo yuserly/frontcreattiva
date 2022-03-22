@@ -278,4 +278,14 @@ export class CategoriasService {
     return this.http.post(`${this.urlBase}/registrarconsulta`, data)
 
   }
+
+  consultarIP(){
+
+    return this.http.get<any>(`${this.urlBase}/consultarip`)
+
+  }
+
+  preguntasfrecuentesall(){
+    return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`)
+  }
 }

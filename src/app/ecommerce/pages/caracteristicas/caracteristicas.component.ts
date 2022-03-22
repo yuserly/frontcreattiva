@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import { Subcategorias, Productos } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 
@@ -14,14 +14,19 @@ export class CaracteristicasComponent implements OnInit {
   seleccionado:number = 0;
   id_subcategoria:number = 0;
   productos: Productos[] = [];
+
+  scrollPlanes: boolean = false;
+
   @Input() subcategorias!:Subcategorias[];
   @Output() getproducto: EventEmitter<Productos[]> = new EventEmitter();
+
+  @ViewChild('subfocoplanes') subfocoplanes!: ElementRef;
 
   constructor(private categoriasServices: CategoriasService,) { }
 
 
   ngOnInit(): void {
-
+    this.scrollPlanes = false;
     setTimeout(() => {
       this.buscarproducto(this.subcategorias[0].id_subcategoria);
 
@@ -53,7 +58,12 @@ export class CaracteristicasComponent implements OnInit {
       this.getproducto.emit(this.productos)
     });
 
+    if(this.scrollPlanes){
+      this.subfocoplanes.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    
 
+    this.scrollPlanes = true;
   }
 
 }

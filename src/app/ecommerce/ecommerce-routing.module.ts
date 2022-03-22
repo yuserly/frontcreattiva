@@ -16,6 +16,7 @@ import { CompraDominiosComponent } from './pages/compra-dominios/compra-dominios
 import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resultados-busqueda.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
+import { SoporteComponent } from './pages/soporte/soporte.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,10 @@ const routes: Routes = [
       {
         path:'contacto',
         component:FormularioContactoComponent
+      },
+      {
+        path: 'soporte',
+        component:SoporteComponent
       },
       {
         path:'configura-tu-producto/:slug',

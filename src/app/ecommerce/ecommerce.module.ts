@@ -37,6 +37,7 @@ import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resulta
 import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
+import { SoporteComponent } from './pages/soporte/soporte.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ConfiguracionProductoComponent } from './pages/configuracion-producto/c
     ResultadosBusquedaComponent,
     BuscadorComponent,
     FormularioContactoComponent,
-    ConfiguracionProductoComponent
+    ConfiguracionProductoComponent,
+    SoporteComponent
   ],
   imports: [
     CommonModule,

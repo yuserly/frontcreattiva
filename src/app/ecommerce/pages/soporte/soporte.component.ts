@@ -27,8 +27,11 @@ export class SoporteComponent implements OnInit {
   ip:string = '';
   mostrarIP:boolean = false;
   mostrarPf:boolean = false;
+  PfCargadas:boolean = false;
+  mostrarDNS:boolean = false;
 
   PreguntasFrecuentes: PreguntasFrecuentes[] = [];
+  DnsCreattiva: PreguntasFrecuentes[] = [];
 
   @ViewChild('subfocoresultado') subfocoresultado!: ElementRef;
 
@@ -40,11 +43,13 @@ export class SoporteComponent implements OnInit {
 
     this.ip = '';
     this.mostrarIP = false;
-    this.mostrarPf = false;
+    this.mostrarDNS = false;
 
   }
 
   mostrarip(){
+
+    this.resetElements();
 
     this.mostrarIP = true;
 
@@ -52,25 +57,67 @@ export class SoporteComponent implements OnInit {
 
       setTimeout(() => {
         this.ip = miip.data.ip;
-
-      }, 1000);
+        this.subfocoresultado.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 400);
 
 
     });
-
-    this.subfocoresultado.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
 
   }
 
   preguntasFrecuentes(){
 
+    this.resetElements();
+
+    this.mostrarIP = false;
+    this.mostrarPf = true;
+
     this.categoriasServices.preguntasfrecuentesall().subscribe((respuesta) => {
 
-        this.PreguntasFrecuentes = respuesta;
-        console.log(this.PreguntasFrecuentes);
-        this.mostrarPf = true;
+        this.PfCargadas = true;
+        setTimeout(() => {
+          this.PreguntasFrecuentes = respuesta;
+          console.log(this.PreguntasFrecuentes);
+
+        }, 300);
 
     });
+
+    setTimeout(() => {
+      this.subfocoresultado.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    }, 1000);
+
+  }
+
+  dns(slug:string){
+
+    this.resetElements();
+
+      this.categoriasServices.getfaq(slug).subscribe((respuesta) => {
+
+        this.mostrarDNS = true;
+
+        setTimeout(() => {
+          console.log(respuesta);
+          this.DnsCreattiva = respuesta;
+          
+        }, 600);
+    });
+    
+    setTimeout(() => {
+      this.subfocoresultado.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    }, 1000);
+    
+  }
+
+  resetElements(){
+
+    this.ip = '';
+    this.mostrarIP = false;
+    this.mostrarPf = false;
+    this.mostrarDNS = false;
 
   }
 

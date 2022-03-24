@@ -288,4 +288,10 @@ export class CategoriasService {
   preguntasfrecuentesall(){
     return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`)
   }
+
+  getfaq(slug:string): Observable<any> {
+    return this.http.get<any>(
+      `${this.urlBase}/getfaq/${slug}`
+    );
+  }
 }

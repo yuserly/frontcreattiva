@@ -127,13 +127,17 @@
             &nbsp;
           </div>
           <ng-container *ngFor="let dominio of dominios">
-            <div class="col-md-6 col-xs-12" *ngIf="dominio.status=='free' && dominio.domain!==dominiobuscado">
+            <div class="col-md-6 col-12 col-sm-12" *ngIf="dominio.status=='free' && dominio.domain!==dominiobuscado">
               <div class="row d-flex align-items-center card-newd" >
-                <div class="col-md-6 col-5">
-                  <h6>{{dominio.domain}}</h6>
+                <div class="col-md-6 col-12 col-sm-12">
+
+                  <h6 class="d-none d-md-block d-lg-block">{{dominio.domain}}</h6>
+
+                  <h3 class="d-sm-block d-md-none d-lg-none text-center">{{dominio.domain}}</h3>
+
                 </div>
 
-                <div class="col-md-6 col-7">
+                <div class="col-md-6 col-12 col-sm-12">
                   <div class="row d-flex align-items-center">
                     <div class="col-8 p-0">
                       <div class="precio-dominio-recomendacion float-right">
@@ -187,7 +191,7 @@
                               <i class="far fa-check-circle"></i>
 
                               <p style="font-size: 11px; line-height: 1">
-                                Añadir al carrito {{dominio.agregado}}
+                                Añadir al carrito
                               </p>
                             </span>
 

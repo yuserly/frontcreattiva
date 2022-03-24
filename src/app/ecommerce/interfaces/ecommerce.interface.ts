@@ -13,7 +13,8 @@ export interface Subcategorias {
   icono: string;
   categoria_id: number;
   categoria:  Categorias;
-  active:   boolean
+  active:   boolean;
+  preseleccionado: number;
 }
 
 
@@ -50,6 +51,7 @@ export interface PreguntasFrecuentes {
   SI_UTIL: number;
   NO_UTIL: number;
   ESTADO_PAGINA: number;
+  titulo: string
 }
 
 export interface Caracteristicas{

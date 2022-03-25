@@ -15,7 +15,7 @@ import {
   SistemaOperativo,
 } from '../interfaces/ecommerce.interface';
 import { Paises } from '../interfaces/paises.interfaces';
-import { Regiones, Comunas } from '../interfaces/ecommerce.interface';
+import { Regiones, Comunas} from '../interfaces/ecommerce.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -287,5 +287,48 @@ export class CategoriasService {
 
   preguntasfrecuentesall(){
     return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`)
+  }
+
+  validarconfigcarro():any{
+
+    let carro = JSON.parse(localStorage.getItem('carrito')!);
+    let config = false;
+    let index:any[] = [];
+
+    if(carro.length > 0){
+
+      carro.forEach((element:Carrito, i:number) => {
+
+        if(element.producto.subcategoria.dominio){
+          if(!element.dominio){
+            config = true;
+            index.push(i);
+          }
+        }else if(element.producto.subcategoria.ip){
+          if(!element.ip){
+            config = true;
+            index.push(i);
+          }
+        }else if(element.producto.subcategoria.sistema_operativo){
+          if(!element.sistemaoperativo){
+            config = true;
+            index.push(i);
+          }
+        }else if(element.producto.subcategoria.administrable){
+          if(!element.administrar){
+            config = true;
+            index.push(i);
+          }
+        }
+      });
+
+        let prod = {
+          index: index,
+          config:config
+        }
+
+        return prod;
+
+    }
   }
 }

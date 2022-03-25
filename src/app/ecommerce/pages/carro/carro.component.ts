@@ -16,7 +16,12 @@ export class CarroComponent implements OnInit {
   statusCarrito:number = 0;
   aplicarCupon:number = 1;
 
-  constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) { }
+  constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) {
+
+      // this.CategoriasService.validarconfigcarro();
+
+      console.log(this.CategoriasService.validarconfigcarro());
+   }
 
   ngOnInit(): void {
 

@@ -13,11 +13,16 @@ export interface Subcategorias {
   icono: string;
   categoria_id: number;
   categoria:  Categorias;
+<<<<<<< HEAD
   dominio: boolean,
   ip:boolean,
   sistema_operativo:boolean,
   administrable: boolean,
   active:   boolean
+=======
+  active:   boolean;
+  preseleccionado: number;
+>>>>>>> b7d8fa9d918a6f4b45bd55c72ce7d95ad55f13c7
 }
 
 
@@ -54,6 +59,7 @@ export interface PreguntasFrecuentes {
   SI_UTIL: number;
   NO_UTIL: number;
   ESTADO_PAGINA: number;
+  titulo: string
 }
 
 export interface Caracteristicas{

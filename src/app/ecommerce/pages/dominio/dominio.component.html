@@ -26,7 +26,8 @@
             (change)="nuevodominio()"
             [checked]="haydominios"
           />
-          <label class="form-check-label" for="nuevodominio">
+
+          <label class="form-check-label label-dominios" for="nuevodominio">
             Quiero registrar un nuevo dominio
           </label>
         </div>
@@ -40,14 +41,14 @@
         <form class="pt-3" id="" [formGroup]="form">
           <div class="row">
             <div
-              class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+              class="col-md-2 d-none d-md-block d-lg-block p-0"
             >
-              <div class="form-group">
+              <div class="form-group float-end mt-1">
                 <h5>www.&nbsp;</h5>
               </div>
             </div>
 
-            <div class="col-md-6 col-6 px-0">
+            <div class="col-md-6 col-9 col-sm-9 px-0">
               <div class="form-group">
                 <input
                   class="input__field_dominio"
@@ -60,7 +61,7 @@
               </div>
             </div>
 
-            <div class="col-md-2 col-2 px-0">
+            <div class="col-md-2 col-3 col-sm-3 px-0">
               <div class="form-group contenedor-extension-dominio">
                 <select
                   class="input__field_exten"
@@ -80,11 +81,10 @@
               </div>
             </div>
 
-            <div class="col-md-2 col-2 d-flex align-items-center">
+            <div class="col-md-2 col-12 col-sm-12 d-flex align-items-center">
               <button
                 type="button"
-                class="btn"
-                id="busqueda"
+                class="btn btn-buscar"
                 [disabled]="form.invalid"
                 (click)="buscardominio()"
                 style="
@@ -139,7 +139,7 @@
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 d-none">
               <h6 class="px-3 pt-3">
                 <b>1er año: </b>
                 <span style="text-decoration: line-through"
@@ -179,7 +179,7 @@
             (change)="dominioold()"
             [checked]="dominioguardado"
           />
-          <label class="form-check-label" for="dominioexistente">
+          <label class="form-check-label label-dominios" for="dominioexistente">
             Quiero usar un dominio que ya tengo registrado
           </label>
         </div>
@@ -194,14 +194,14 @@
         <form class="pt-3" id="" [formGroup]="form2">
           <div class="row" *ngIf="!dominioguardado">
             <div
-              class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+              class="col-md-2 col-2 d-none d-md-block d-lg-block p-0"
             >
-              <div class="form-group">
+              <div class="form-group float-end mt-1">
                 <h5>www.&nbsp;</h5>
               </div>
             </div>
 
-            <div class="col-md-6 col-6 px-0">
+            <div class="col-md-6 col-9 col-sm-9 px-0">
               <div class="form-group">
                 <input
                   class="input__field_dominio"
@@ -214,7 +214,7 @@
               </div>
             </div>
 
-            <div class="col-md-2 col-2 px-0">
+            <div class="col-md-2 col-3 col-sm-3 px-0">
               <div class="form-group contenedor-extension-dominio">
                 <select
                   class="input__field_exten"
@@ -233,11 +233,10 @@
               </div>
             </div>
 
-            <div class="col-md-2 col-2 d-flex align-items-center">
+            <div class="col-md-2 col-12 col-sm-12 d-flex align-items-center">
               <button
                 type="button"
-                class="btn"
-                id="guardardominio"
+                class="btn btn-buscar"
                 [disabled]="form2.invalid"
                 (click)="guardardominio()"
                 style="

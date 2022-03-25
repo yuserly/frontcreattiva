@@ -661,6 +661,10 @@ padding-right: 15px;
 padding-left: 15px;
 
 }
+.label-dominios{
+  font-size: 15px!important;
+}
+.btn-buscar{ margin-top: 5px; }
 }
 .btn-edit{
 line-height: unset!important;

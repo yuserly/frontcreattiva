@@ -17,6 +17,7 @@ import { ResultadosBusquedaComponent } from './pages/resultados-busqueda/resulta
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
+import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,10 @@ const routes: Routes = [
       {
         path: 'soporte',
         component:SoporteComponent
+      },
+      {
+        path: 'soporte/faq/:slug',
+        component:PreguntasFrecuentesComponent
       },
       {
         path:'configura-tu-producto/:slug',

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import { Subcategorias, Productos } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-caracteristicas',
@@ -11,6 +12,34 @@ import { CategoriasService } from '../../services/categorias.service';
 export class CaracteristicasComponent implements OnInit {
 
 
+  //owl
+  owl_subcategorias: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    margin: 10,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 2
+      },
+      400: {
+        items: 3
+      },
+      740: {
+        items: 4
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
+
   seleccionado:number = 0;
   id_subcategoria:number = 0;
   productos: Productos[] = [];
@@ -19,6 +48,7 @@ export class CaracteristicasComponent implements OnInit {
 
   @Input() subcategorias!:Subcategorias[];
   @Output() getproducto: EventEmitter<Productos[]> = new EventEmitter();
+  @Output() statusmenu: EventEmitter<boolean> = new EventEmitter();
 
   @ViewChild('subfocoplanes') subfocoplanes!: ElementRef;
 
@@ -35,6 +65,7 @@ export class CaracteristicasComponent implements OnInit {
   }
 
   seleccionarcategoria(id:number,id_subcategoria:number){
+
     this.subcategorias.map((p,i) => {
       if(i == id){
         p["active"] = true;
@@ -50,9 +81,13 @@ export class CaracteristicasComponent implements OnInit {
     }
 
 
+    this.statusmenu.emit(false);
+
+
   }
 
   buscarproducto(id: number) {
+
     this.categoriasServices.getproductos(id).subscribe((productos) => {
       this.productos = productos;
       this.getproducto.emit(this.productos)

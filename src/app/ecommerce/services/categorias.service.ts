@@ -289,6 +289,7 @@ export class CategoriasService {
     return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`)
   }
 
+<<<<<<< HEAD
   validarconfigcarro():any{
 
     let carro = JSON.parse(localStorage.getItem('carrito')!);
@@ -330,5 +331,11 @@ export class CategoriasService {
         return prod;
 
     }
+=======
+  getfaq(slug:string): Observable<any> {
+    return this.http.get<any>(
+      `${this.urlBase}/getfaq/${slug}`
+    );
+>>>>>>> b7d8fa9d918a6f4b45bd55c72ce7d95ad55f13c7
   }
 }

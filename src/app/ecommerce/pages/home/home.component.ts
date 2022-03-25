@@ -9,15 +9,92 @@ import {
 } from '../../interfaces/ecommerce.interface';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styles: [
-  ]
+  ],
+  animations: [
+
+    trigger('openCloseCategorias', [
+      // ...
+      state('open', style({
+        left: '0'
+      })),
+      state('closed', style({
+        left: '-100%'
+      })),
+      transition('open => closed', [
+        animate('0.4s')
+      ]),
+      transition('closed => open', [
+        animate('0.4s')
+      ]),
+    ]),
+    trigger('openCloseSubcategorias', [
+      // ...
+      state('open', style({
+        right: '0'
+      })),
+      state('closed', style({
+        right: '100%'
+      })),
+      transition('open => closed', [
+        animate('0.4s')
+      ]),
+      transition('closed => open', [
+        animate('0.4s')
+      ]),
+    ])
+
+
+  ],
 })
 export class HomeComponent implements OnInit {
+
+isOpen = true;
+
+openCategorias = false;
+
+openSubcategorias = false;
+
+
+customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 2
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+ 
 
   categorias: Categorias[] = [];
   productos: Productos[] = [];
@@ -25,6 +102,11 @@ export class HomeComponent implements OnInit {
   productosbuscados: Productos[] = [];
   logueado: boolean = false;
 
+  //menu movil
+  mostrarNavSubcategorias:boolean = false;
+  mostrarBusqueda:boolean = false;
+  btnSearch:string = 'fas fa-search';
+  
   @ViewChild('subfoco') subfoco!: ElementRef;
 
   form:FormGroup = this.fb.group({
@@ -71,7 +153,20 @@ export class HomeComponent implements OnInit {
     }
     this.itemsCarrito();
 
+    this.mostrarNavSubcategorias = true;
 
+  }
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+  }
+
+  menuCategorias(opc:boolean){
+    this.openCategorias = opc;
+  }
+  menuSubcategorias(opc:boolean){
+    this.openSubcategorias = opc;
+    
   }
 
   buscarsubcategoria(id: number) {
@@ -94,6 +189,7 @@ export class HomeComponent implements OnInit {
       }
 
     });
+    this.mostrarNavSubcategorias = true;
   }
 
   activar(id: number) {
@@ -168,6 +264,27 @@ export class HomeComponent implements OnInit {
       this.DominiosService.totalCarro = 0;
     }
 
+  }
+
+  mostrarsubmenu(){
+    this.mostrarNavSubcategorias = false;
+  }
+
+  ocultarmenu(opc:boolean){
+    //this.mostrarNavSubcategorias = false;
+    this.menuCategorias(false);
+    this.menuSubcategorias(false);
+  }
+
+  mostrarBuscador(){
+    if(this.mostrarBusqueda){
+      this.mostrarBusqueda = false;
+      this.btnSearch = 'fas fa-search';
+    }else{
+      this.mostrarBusqueda = true;
+      this.btnSearch = 'far fa-times-circle';
+    }
+    
   }
 
 

@@ -41,7 +41,6 @@
 
 				  	<div
 				    class="card planes-icon plan-active"
-				    routerLink="/compra-dominios"
 				  	>
 				    <img alt="" src="../../../../assets/img/video-tutoriales.png" width="70px" style="border-radius: 5px;" />
 				    <h5>Videotutoriales</h5>
@@ -55,7 +54,7 @@
 
 				  	<div
 				    class="card planes-icon plan-active"
-				    routerLink="/compra-dominios"
+				    (click)="dns('dns-creattiva')"
 				  	>
 				    <img alt="" src="../../../../assets/img/dns.png" width="70px" style="border-radius: 5px;" />
 				    <h5>DNS Creattiva</h5>
@@ -69,7 +68,7 @@
 
 				  	<div
 				    class="card planes-icon plan-active"
-				    routerLink="/compra-dominios"
+				    
 				  	>
 				    <img alt="" src="../../../../assets/img/notificar-pago.png" width="70px" style="border-radius: 5px;" />
 				    <h5>Notificar Pago</h5>
@@ -111,13 +110,54 @@
 
         </div>
 
-        <div class="col-md-12 mt-5" #subfocoresultado>
+        <div class="col-md-8 mt-5" #subfocoresultado>
 
-    		<h2 class="azul-crt text-center" *ngIf="mostrarIP">Tu dirección IP es:
+    		<div class="azul-crt">
 
-    			<b *ngIf="this.ip!=''; else loading">{{this.ip}}</b>
+    			<div class="text-center" *ngIf="mostrarIP">
 
-    			<ng-template #loading>
+    				<h2>
+
+	    				Tu dirección IP es:
+
+		    			<b *ngIf="this.ip!=''; else loading">{{this.ip}}</b>
+
+	    			</h2>
+
+		    	</div>
+
+		    	<div *ngIf="mostrarPf">
+
+		    		<h2 class="text-center">Revisa nuestras preguntas frecuentes: </h2> 
+
+	    			<ul class="list-group" *ngIf="PfCargadas; else loading">
+
+					  	<li class="list-group-item d-flex justify-content-between" *ngFor="let item of PreguntasFrecuentes; let i=index">
+
+					  		<h5 style="max-width: 80%;">{{item.titulo}}</h5>
+
+					  		<button type="button" class="btn btn-primary d-none d-md-block d-lg-block" routerLink="/soporte/faq/{{item.URL_PAGINA}}">
+							  Ver más <span class="badge bg-secondary" style="background-color: #0054ce!important;"><i class="fas fa-angle-right"></i></span>
+							</button>
+							<span class="badge bg-secondary d-flex align-items-center" style="background-color: #0054ce!important;"><i class="fas fa-angle-right"></i></span>
+
+						</li>
+
+					</ul>
+
+		    	</div>
+
+				<div *ngIf="mostrarDNS">
+
+					<h2 class="text-center">Conecta tu hosting con tu dominio web </h2> 
+
+					<div *ngIf="DnsCreattiva.length>0; else loading" [innerHTML]='DnsCreattiva[0].CONTENIDO_PAGINA'>
+		
+					</div>
+
+		    	</div>
+
+		    	<ng-template #loading>
 
 		    		<b>
 
@@ -129,19 +169,8 @@
 
 		    	</ng-template>
 
-    		</h2>
+    		</div>
 
-    		<h2 class="azul-crt text-center" *ngIf="mostrarPf">Revisa nuestras preguntas frecuentes:
-
-    			<ul class="list-group">
-
-				  <li class="list-group-item" *ngFor="let item of PreguntasFrecuentes; let i=index">{{item.TITULO_PAGINA}}</li>
-
-				</ul>
-
-
-
-    		</h2>
     		<hr class="hr_title" />
 
     	</div>
@@ -153,17 +182,15 @@
 
 </div>
 
+<!--
+
 <ul class="">
   <li *ngFor="let item of collection | paginate: pageinator.currentPage"> {{item.name}} </li>
 </ul>
 
-<app-paginador [page]="collection.length" #pageinator></app-paginador>
+<app-paginador maxSize="3" [page]="collection.length" #pageinator></app-paginador>
 
-<!-- <ul>
-  <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }"> ... </li>
-</ul> -->
-
-<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+-->
 
 <br /><br /><br /><br /><br />
 

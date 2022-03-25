@@ -46,18 +46,21 @@ export class PlanesComponent implements OnInit {
 
   aggcart(producto: Productos,  carro: Carrito[]){
 
-      let periodoselect = 0;
+      let periodoselect = 1;
 
           this.categoriasServices
             .getperiodos(producto.id_producto)
             .subscribe((resp2) => {
 
+              /*
               resp2.forEach((element) => {
                 if(element.preseleccionado==1){
                   periodoselect = element.id_periodo;
                 }
 
-              });
+              });*/
+
+              periodoselect = producto.subcategoria.preseleccionado;
 
               carro.push({
                 producto: producto,

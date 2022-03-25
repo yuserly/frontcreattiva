@@ -15,12 +15,26 @@ export class CarroComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   statusCarrito:number = 0;
   aplicarCupon:number = 1;
+  indexconfig: any[] = [];
+  faltaconfig: boolean = false;
 
   constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) {
 
-      // this.CategoriasService.validarconfigcarro();
+    this.validarconfig();
 
-      console.log(this.CategoriasService.validarconfigcarro());
+      // if(config.config){
+      //   localStorage.setItem('index', JSON.stringify(config.index[0]));
+      //   let comprasucursal = localStorage.getItem('comprasucursal');
+
+      //         if(comprasucursal){
+
+      //           this.router.navigate(['sucursal/configuracion']);
+      //         }else{
+      //           this.router.navigate(['/configuracion']);
+
+      //         }
+      // }
+
    }
 
   ngOnInit(): void {
@@ -37,6 +51,18 @@ export class CarroComponent implements OnInit {
       this.itemsCarrito();
       this.totalcarroarray = this.CategoriasService.calculototalcarro();
     }
+
+  }
+
+  validarconfig(){
+
+
+    let config = this.CategoriasService.validarconfigcarro()
+
+    this.indexconfig = config.index;
+
+    this.faltaconfig = config.config;
+
 
   }
 
@@ -77,6 +103,8 @@ export class CarroComponent implements OnInit {
           this.statusCarrito = 0;
 
         }
+
+        this.validarconfig();
       }
     })
 
@@ -133,8 +161,6 @@ export class CarroComponent implements OnInit {
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
-    console.log(carrito);
-
     if(carrito){
       this.DominiosService.totalCarro = carrito.length;
     }else{
@@ -148,6 +174,11 @@ export class CarroComponent implements OnInit {
 
     this.totalcarroarray = carrito;
 
+  }
+
+  configurar(i:number){
+    localStorage.setItem('index', JSON.stringify(i));
+    this.router.navigate(['/configuracion']);
   }
 
 }

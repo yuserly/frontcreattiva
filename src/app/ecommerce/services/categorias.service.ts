@@ -13,9 +13,9 @@ import {
   ProductoCarro,
   Carrito,
   SistemaOperativo,
+  Regiones, Comunas,
 } from '../interfaces/ecommerce.interface';
 import { Paises } from '../interfaces/paises.interfaces';
-import { Regiones, Comunas} from '../interfaces/ecommerce.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -294,13 +294,22 @@ export class CategoriasService {
     let carro = JSON.parse(localStorage.getItem('carrito')!);
     let config = false;
     let index:any[] = [];
+    let count:number = 0;
 
     if(carro.length > 0){
 
       carro.forEach((element:Carrito, i:number) => {
 
         if(element.producto.subcategoria.dominio){
-          if(!element.dominio){
+
+          carro.map((p:Carrito, ix:number) => {
+            if (p.producto.subcategoria_id == 31) {
+              count++;
+            }
+            return p;
+          });
+
+          if(!element.dominio && count == 0){
             config = true;
             index.push(i);
           }

@@ -7,10 +7,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-8">
-      <app-dominio *ngIf="
-      producto.subcategoria_id == 1 ||
+
+  <!-- producto.subcategoria_id == 1 ||
       producto.subcategoria_id == 2 ||
       producto.subcategoria_id == 3 ||
       producto.subcategoria_id == 4 ||
@@ -22,29 +20,38 @@
       producto.subcategoria_id == 12 ||
       producto.subcategoria_id == 20 ||
       producto.subcategoria_id == 22 ||
-      producto.subcategoria_id == 24
+      producto.subcategoria_id == 24 -->
+
+  <div class="row">
+    <div class="col-md-8">
+      <app-dominio *ngIf="
+      producto.subcategoria.dominio
     " (totalcarrod)="totalcarro($event)" [dominionum] = "dominionum"
     [dominioscarrito]="carrito"></app-dominio>
 
-    <app-direccion-ip 
-          *ngIf="producto.subcategoria_id == 29 ||
-                 producto.subcategoria_id == 30"
+    <!-- producto.subcategoria_id == 29 ||
+    producto.subcategoria_id == 30 -->
+
+    <app-direccion-ip
+          *ngIf="producto.subcategoria.ip"
           (totalcarrod)="totalcarro($event)"
     ></app-direccion-ip>
 
-    <app-cantidadlicencias 
+    <app-cantidadlicencias
     *ngIf="producto.subcategoria_id == 20 ||
             producto.subcategoria_id == 24
     " (totalcarrod)="totalcarro($event)"
     ></app-cantidadlicencias>
 
-      <app-vps
-        *ngIf="
-          producto.subcategoria_id == 9 ||
+    <!-- producto.subcategoria_id == 9 ||
           producto.subcategoria_id == 10 ||
           producto.subcategoria_id == 11 ||
           producto.subcategoria_id == 12 ||
-          producto.subcategoria_id == 13
+          producto.subcategoria_id == 13 -->
+
+      <app-vps
+        *ngIf="
+        producto.subcategoria.sistema_operativo
         "
         [sistemaOperativo] = "sistemaOperativo"
         [vpsnum] = "vpsnum"

@@ -170,7 +170,22 @@ export class FacturacionComponent implements OnInit {
     private validacion: ValidatorService,
     private CategoriasService: CategoriasService,
     private router: Router
-  ) {}
+  ) {
+    let config = this.CategoriasService.validarconfigcarro()
+
+    if(config.config){
+      localStorage.setItem('index', JSON.stringify(config.index[0]));
+      let comprasucursal = localStorage.getItem('comprasucursal');
+
+            if(comprasucursal){
+
+              this.router.navigate(['sucursal/configuracion']);
+            }else{
+              this.router.navigate(['/configuracion']);
+
+            }
+    }
+  }
 
   ngOnInit(): void {
 

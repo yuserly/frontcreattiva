@@ -1,5 +1,5 @@
 import { DominiosService } from './../../services/dominios.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Productos, Periodo, Carrito, TotalCarro, SistemaOperativo } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { Router } from '@angular/router';
@@ -273,6 +273,15 @@ export class HostingComponent implements OnInit {
     return this.PeriodoView.validarFormularios();
 
   }
+
+  ValidarCarroMovil(act:boolean){
+
+    if(act){
+      this.validarcarro();
+    }
+
+  }
+  
 
 
 }

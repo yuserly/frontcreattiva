@@ -86,7 +86,8 @@ border:none;
 }
 .planes-icon{
 border: 1.3px solid #999999;
-height: 150px;
+max-width: 163px;
+height: 163px;
 display: flex;justify-content: center;align-items: center;
 text-align: center;
 padding: 10px;
@@ -651,6 +652,9 @@ box-shadow: rgb(0 0 0 / 2%) 0px 0px 0px 0px, rgb(27 31 35 / 15%) 0px 1px 0px 0px
 }
 
 @media only screen and (max-width: 600px) {
+  .title-section{
+    font-size: 2rem;
+  }
 .titulo-bold{
 font-weight: bold;
 }
@@ -933,3 +937,175 @@ color: #FFF;
       margin: 0 !important;
       }
   #formulario_contacto input[type=number] { -moz-appearance:textfield !important; }
+
+ 
+ 
+ 
+ 
+  .top-menu-principal{
+    height: 60px;
+    background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);
+  }
+  
+  header nav.nav-categorias {
+    width:100%;
+    max-width:1000px;
+    margin:20px auto;
+    background-color: #FFF;
+    z-index: 99;
+    top: 0;
+  }
+  header nav.nav-subcategorias {
+    width:100%;
+    max-width:1000px;
+    height: 100vh;
+    margin:0px auto;
+    background-color: #FFF;
+    z-index: 9999;
+    top: 0;
+  }
+  
+  header nav.nav-categorias ul {
+    overflow:hidden;
+    list-style:none;
+  }
+  
+  header nav.nav-categorias ul li {
+    float:left;
+  }
+  
+  header nav.nav-categorias ul li a {
+    color:#999999;;
+    padding:20px;
+    font-size: 22px;
+    display:block;
+    text-decoration:none;
+  }
+  
+  header nav.nav-categorias ul li span {
+    margin-right:10px;
+  }
+  
+  @media screen and (max-width:800px ) {
+
+    .accordion-body {
+      height: 60vh;
+      overflow-y: scroll;
+  }
+    nav.nav-subcategorias{
+      /*left: -100%;*/
+      right: 100%;
+      position: fixed;
+    }
+    header nav.nav-categorias {
+      width:100%;
+      height:100vh;
+      left:-100%;
+      z-index: 9999;
+      margin:0;
+      position: fixed;
+    }
+    header nav.nav-categorias ul li {
+      display:block;
+      float:none;
+      /*border-bottom:1px solid rgba(255,255,255, .3);*/
+    }
+    header nav.nav-categorias ul{
+      width: 100%;
+    }
+  
+    .top-menu-categoria, .top-menu-subcategoria{
+      width: 100%;
+      height: 60px;
+      background-color: #FFF;
+      border-bottom: 1px solid #000000;
+    }
+  
+    .top-menu-categoria .bt-menu-categorias {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 16px;
+      padding-left: 16px;
+      border-right: 1px solid #000000;
+      border-bottom: 1px;
+      border-top: unset;
+      border-left: unset;
+      color:#0054ce;
+      text-decoration:none;
+      font-weight: bold;
+      font-size:25px;
+      border-radius: unset;
+      background-color: #FFF;
+    }
+    .top-menu-subcategoria .bt-menu-subcategorias {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 16px;
+      padding-left: 16px;
+      border-right: 1px solid #000000;
+      border-bottom: 1px;
+      border-top: unset;
+      border-left: unset;
+      color:#0054ce;
+      text-decoration:none;
+      font-weight: bold;
+      font-size:25px;
+      border-radius: unset;
+      background-color: #FFF;
+    }
+  
+  
+    .top-menu-principal .bt-menu-principal {
+      height: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 16px;
+      padding-left: 16px;
+      border-left: 1px solid #FFF;
+      border-bottom: 1px;
+      border-top: unset;
+      border-right: unset;
+      border-radius: unset;
+      color:#FFF;
+      text-decoration:none;
+      font-weight: bold;
+      font-size:25px;
+      border-radius: unset;
+      background-color: unset;
+    }
+    .top-menu-principal .bt-menu-principal i{
+      font-size: 38px;
+    }
+    .top-menu-principal .bt-menu-search{
+      height: 100%;
+      background-color: unset;
+      font-size: 24px;
+      color: #FFF;
+      border: unset;
+    }
+  
+  }
+  /*owl*/
+    .owl-theme .owl-nav [class*=owl-] {
+        background: #004fc8;
+    }
+    /*****/
+
+     .footer-fixed {
+      z-index: 1;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    background-color: #f5f6f8;
+  }
+
+  .button-detalles:not(.collapsed) {
+    box-shadow: unset;
+    
+}
+.button-detalles{
+  border-style: dashed!important;
+            border-bottom: 2px dashed #8c8b8b;
+}
+

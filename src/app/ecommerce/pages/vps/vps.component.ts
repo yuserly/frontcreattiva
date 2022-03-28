@@ -12,6 +12,7 @@ import {
   TotalCarro,
 } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-vps',
@@ -19,6 +20,63 @@ import { CategoriasService } from '../../services/categorias.service';
   styles: [],
 })
 export class VpsComponent implements OnInit {
+
+
+  //owl
+  owl_sistemaoperativo: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    margin: 10,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 3
+      },
+      740: {
+        items: 6
+      },
+      940: {
+        items: 7
+      }
+    },
+    nav: true
+  }
+
+  //owl
+  owl_licencias: OwlOptions = {
+    loop: false,
+    margin: 10,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        autoWidth: true
+      },
+      400: {
+        items: 4
+      },
+      740: {
+        items: 6
+      },
+      940: {
+        items: 7
+      }
+    },
+    nav: true
+  }
+
   select: number = 0;
   licencias: Productos[] = [];
   iconoLicencia:string = '';

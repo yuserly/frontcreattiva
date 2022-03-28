@@ -1,5 +1,8 @@
+<!--
 <div class="listado-planes">
   <div class="row d-flex justify-content-center mt-3 mb-5">
+
+
     <div class="mb-4" 
     [ngClass]="resultadobusqueda ? 'col-md-3' : 'col-md-4'"
     *ngFor="let item of productos; let i = index">
@@ -44,7 +47,6 @@
             </div>
 
             <div class="col-12 text-justify ps-4 pe-4" *ngIf="!resultadobusqueda">
-              <!--<small><strong>Precio Normal: $ Anual</strong></small>-->
 
               <ul
                 class="list-caracteristicas"
@@ -76,5 +78,108 @@
         </div>
       </div>
     </div>
+
+
+
+
+  </div>
+</div>
+-->
+
+<div class="listado-planes">
+
+  <div class="row d-none">
+    
+    <div class="d-flex justify-content-center">
+      <div (click)="owlCar.prev()"><</div>
+      <div (click)="owlCar.next()">></div>
+    </div>
+
+  </div>
+
+  <div class="row d-flex justify-content-center mt-3 mb-5">
+
+    <owl-carousel-o [options]="owl_planes" #owlCar>
+
+
+      <ng-template carouselSlide *ngFor="let item of productos; let i = index">
+        
+        <div
+          class="card h-100"
+          style="border-right: 1px solid rgba(0, 0, 0, 0.125)"
+          [ngClass]="{ 'card-border': resultadobusqueda}"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h4 class="card-title" style="color: #666666">
+                  Plan {{ item.subcategoria.categoria.nombre }}
+                </h4>
+
+                <h4 class="card-title">{{ item.nombre }}</h4>
+              </div>
+
+              <div class="col-12 px-5">
+                <small style="color: #999b9a; font-weight: bold"
+                  >A partir de</small
+                >
+
+                <span class="badge badge-pill badge-dark float-right porcentaje"
+                  >-{{ item.descuento }}%</span
+                >
+              </div>
+
+              <div class="col-12 text-center">
+                <span style="color: black; font-weight: bold; font-size: 40px"
+                  >{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</span
+                >
+                <span style="color: black; font-weight: bold; font-size: 20px"
+                  >CLP/Mes</span
+                >
+              </div>
+
+              <div class="col-12 text-center">
+                <span style="color: #005ad2; width: 80%"
+                  ><strong>Ahorras {{item.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</strong>
+                </span>
+              </div>
+
+              <div class="col-12 text-justify ps-4 pe-4" *ngIf="!resultadobusqueda">
+                <!--<small><strong>Precio Normal: $ Anual</strong></small>-->
+
+                <ul
+                  class="list-caracteristicas"
+                  *ngFor="let item2 of item.caracteristicas; let j = index"
+                >
+                  <li>
+                    {{ item2.nombre }}
+                    <span class="float-end">{{ item2.capacidad }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-12 d-flex justify-content-center">
+                <button
+                  type="button"
+                  (click)="contratar(item)"
+                  class="btn p-1 mt-4 btncontratar"
+                >
+                  Contratar
+                </button>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12">
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>  
+
+    </owl-carousel-o>
+
   </div>
 </div>

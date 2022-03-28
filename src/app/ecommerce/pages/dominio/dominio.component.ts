@@ -170,8 +170,6 @@ export class DominioComponent implements OnInit {
 
     this.dominioscarrito = carrito;
 
-    this.itemsCarrito();
-
   }
 
   nuevodominio(){
@@ -222,10 +220,7 @@ export class DominioComponent implements OnInit {
     carrito =  JSON.parse(localStorage.getItem('carrito')!);
 
     this.dominioscarrito = carrito;
-
-    this.itemsCarrito();
     
-
 
   }
 
@@ -260,14 +255,6 @@ export class DominioComponent implements OnInit {
     this.dominioscarrito = carrito;
   }
 
-  itemsCarrito(){
-    let index = JSON.parse(localStorage.getItem('index')!);
-
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-
-    this.DominiosService.totalCarro = carrito.length;
-  }
-
   consultarDominiosBuscados():boolean{
     let index = JSON.parse(localStorage.getItem('index')!);
 
@@ -300,8 +287,10 @@ export class DominioComponent implements OnInit {
 
 
     if(carrito[index].dominio){
+
       this.errorDominio = false;
       return true;
+      
     }else if(carrito.length>1){
       carrito.map((p, i) => {
         if (p.producto.subcategoria_id == 31) {

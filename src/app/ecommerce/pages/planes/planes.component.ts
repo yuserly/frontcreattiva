@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Productos, Carrito } from '../../interfaces/ecommerce.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { PeriodoComponent } from '../periodo/periodo.component';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-planes',
   templateUrl: './planes.component.html',
@@ -17,6 +18,32 @@ export class PlanesComponent implements OnInit {
   @Input() resultadobusqueda!: boolean;
 
   productosbuscadosarray!: Productos[];
+
+  owl_planes: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 3
+      },
+      740: {
+        items: 4
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
   constructor(
     private router: Router,
     private categoriasServices: CategoriasService

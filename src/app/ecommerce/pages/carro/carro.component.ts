@@ -15,6 +15,7 @@ export class CarroComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   statusCarrito:number = 0;
   aplicarCupon:number = 1;
+  mostrarMovil:boolean = false;
 
   constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) { }
 

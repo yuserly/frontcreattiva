@@ -57,8 +57,8 @@
         (totalcarro)="totalcarro($event)"
       ></app-periodo>
 
-      <div class="row d-none d-md-block d-lg-block">
-        <div class="col-md-12 text-center mt-4">
+
+        <div class="col-md-12 text-center mt-4 d-none d-md-block d-lg-block">
           <button
             type="button"
             class="btn"
@@ -73,29 +73,17 @@
             Continuar
           </button>
         </div>
-      </div>
+
     </div>
+
     <div class="col-md-4">
       <app-detalle-pedido
         [totalcarroarray]="totalcarroarray"
         (totalcarrod)="totalcarro($event)"
         [aplicarCupon]="aplicarCupon"
+        (eventoMovil) = "ValidarCarroMovil($event)"
       ></app-detalle-pedido>
     </div>
-    <div class="col-md-12 text-center mt-4 d-sm-block d-md-none d-lg-none">
-          <button
-            type="button"
-            class="btn"
-            style="
-              background-color: #005ad2;
-              color: #f2f3f5;
-              font-weight: bold;
-              width: 45%;
-            "
-            (click)="validarcarro()"
-          >
-            Continuar
-          </button>
-        </div>
+      
   </div>
 </div>

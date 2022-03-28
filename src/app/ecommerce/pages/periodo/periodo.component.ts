@@ -2,12 +2,40 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Periodo, Carrito, TotalCarro, ProductoCarro, Productos } from '../../../ecommerce/interfaces/ecommerce.interface';
 import { CategoriasService } from '../../../ecommerce/services/categorias.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-periodo',
   templateUrl: './periodo.component.html',
 })
 export class PeriodoComponent implements OnInit {
+
+   //owl
+  owl_periodos: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        margin: 10
+      },
+      400: {
+        items: 3
+      },
+      740: {
+        items: 6
+      },
+      940: {
+        items: 7
+      }
+    },
+    nav: true
+  }
 
   invalidPeriodo:number = 0;
   mostrarYearFree:boolean = false;

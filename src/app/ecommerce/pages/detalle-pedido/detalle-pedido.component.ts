@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Periodo, Carrito, TotalCarro, ProductoCarro, Productos } from '../../../ecommerce/interfaces/ecommerce.interface';
+import { Periodo, Carrito, TotalCarro, ProductoCarro, Productos, SistemaOperativo } from '../../../ecommerce/interfaces/ecommerce.interface';
 import { CategoriasService } from '../../../ecommerce/services/categorias.service';
+import { Router } from '@angular/router';
+import { DominioComponent } from './../dominio/dominio.component';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -9,9 +11,21 @@ import { CategoriasService } from '../../../ecommerce/services/categorias.servic
 })
 export class DetallePedidoComponent implements OnInit {
 
+  //validación de boton continuar
+  @ViewChild(DominioComponent) DominioView!: DominioComponent;
+  //*************** */
+
+  producto!:Productos;
+  periodos:Periodo[] = [];
+  carrito:Carrito[] = [];
+
+  sistemaOperativo: SistemaOperativo[] = [];
+
    @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
+   @Output() eventoMovil: EventEmitter<boolean> = new EventEmitter();
    @Input() totalcarroarray!:TotalCarro;
    @Input() aplicarCupon!:number;
+   @Input() mostrarMovil!:boolean;
 
   validezcupon:number = 0;
   cuponAplicado:any = '';
@@ -22,7 +36,7 @@ export class DetallePedidoComponent implements OnInit {
   })
 
 
-  constructor(private fb: FormBuilder, private CategoriasService: CategoriasService) { }
+  constructor(private fb: FormBuilder, private CategoriasService: CategoriasService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -178,6 +192,17 @@ export class DetallePedidoComponent implements OnInit {
     this.totalcarrod.emit(productoscarro);
   }
 
+  finalizarcompras(){
+
+    this.router.navigate(['/login-rapido']);
+
+  }
+
+  continuar(){
+
+    this.eventoMovil.emit(true);
+
+  }
 
 
 }

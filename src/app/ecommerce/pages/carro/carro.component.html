@@ -1,4 +1,5 @@
 <app-nav></app-nav>
+
 <div class="container">
 
   <div class="row mt-5">
@@ -11,21 +12,12 @@
   <div class="row d-flex justify-content-center" 
     *ngIf="statusCarrito !== 0">
 
-    <div class="col-md-4 d-sm-block d-md-none d-lg-">
-      <app-detalle-pedido
-        [totalcarroarray]="totalcarroarray"
-        (totalcarrod)="totalcarro($event)"
-        [aplicarCupon]="aplicarCupon"
-        *ngIf="statusCarrito !== 0"
-      ></app-detalle-pedido>
-    </div>
-
     <div class="col-md-8">
       
-      <div class="card card-border px-5 pt-3 pb-3">
+      <div class="card card-border px-md-5 mt-4 mt-md-3 pb-3">
 
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 mt-3 mt-md-3">
             <h6
               class="px-3 float-end"
               style="cursor: pointer"
@@ -41,7 +33,7 @@
                 class="card-articulo d-flex justify-content-center align-items-center"
               >
                 <div class="row" style="width: 100%">
-                  <div class="col-10 col-sm-10 col-md-5">
+                  <div class="col-12 col-sm-12 col-md-5 d-flex align-items-center">
                     <h6>
                       <!-- <h6 class="px-3 pt-3"><b>Web Hosting</b></h6> -->
 
@@ -50,7 +42,7 @@
                   </div>
 
                   <div
-                    class="col-md-6 col-12 col-sm-12 d-flex justify-content-center align-items-center"
+                    class="col-md-6 col-9 col-sm-9 d-flex justify-content-center align-items-center"
                   >
                     <select
                       class="form-control selectperiododominio"
@@ -98,13 +90,12 @@
                   </div>
 
                   <div
-                    class="col-md-1 col-12 col-sm-12 mt-sm-3 d-flex justify-content-center align-items-center"
+                    class="col-md-1 col-3 col-sm-3 d-flex align-items-center"
                     (click)="eliminarcarro(i)"
                   >
                     <i
                       class="fas fa-trash-alt deletecard"
                       index="0"
-                      data-domain="jesusparra2022.net"
                       style="cursor:pointer"
                     ></i>
                   </div>
@@ -115,7 +106,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row d-none d-md-block d-lg-block">
         <div class="col-md-12 text-center mt-4">
           <button
             type="button"
@@ -134,139 +125,17 @@
       </div>
     </div>
 
-    <div class="col-md-4 d-none d-md-block d-lg-block">
+    <div class="col-md-4">
       <app-detalle-pedido
         [totalcarroarray]="totalcarroarray"
         (totalcarrod)="totalcarro($event)"
+        [mostrarMovil]="mostrarMovil"
         [aplicarCupon]="aplicarCupon"
         *ngIf="statusCarrito !== 0"
       ></app-detalle-pedido>
     </div>
 
   </div>
-
-<!--
-  <div class="row d-flex justify-content-center d-sm-block d-md-none d-lg-none" 
-    *ngIf="statusCarrito !== 0">
-    
-    <div class="col-md-12">
-      <app-detalle-pedido
-        [totalcarroarray]="totalcarroarray"
-        (totalcarrod)="totalcarro($event)"
-        [aplicarCupon]="aplicarCupon"
-        *ngIf="statusCarrito !== 0"
-      ></app-detalle-pedido>
-    </div>
-
-    <div class="col-md-12">
-      
-      <div class="card card-border px-1 pt-3 pb-3">
-
-        <div class="row">
-          <div class="col-12">
-            <h6
-              class="px-3 float-end"
-              style="cursor: pointer"
-              (click)="vaciarcarro()"
-            >
-              Vaciar Carro
-            </h6>
-          </div>
-          <br />
-          <div class="col-sm-12" *ngFor="let item of carrito; let i = index">
-            
-              <div
-                class="card-articulo d-flex justify-content-center align-items-center"
-              >
-                <div class="row">
-                  <div class="col-12 col-sm-12">
-
-                      <h6 class="px-3 text-center">{{ item.producto.nombre }}</h6>
-
-                  </div>
-
-                  <div
-                    class="col-12 col-sm-12 d-flex justify-content-center align-items-center"
-                  >
-                    <select
-                      class="form-control selectperiododominio"
-                      id="0"
-                      keyarray="0"
-                      [value]="item.periodo"
-                      style="width: 70%; margin-right: 20px"
-                      (change)="cambiarperiodo(i,$event.target)"
-                    >
-
-
-                    <ng-container *ngFor="let periodo of item.periodos; let j = index">
-
-                      <option
-
-                        [value]="periodo.id_periodo"
-                        *ngIf="periodo.id_periodo == item.periodo; else noselect"
-                        selected
-                      >
-                        {{ periodo.periodo }}
-                        {{
-                          periodo.precio_descuento
-                            | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
-                        }}
-                      </option>
-
-                      <ng-template #noselect>
-                        <option
-
-                        [value]="periodo.id_periodo"
-                      >
-                        {{ periodo.periodo }}
-                        {{
-                          periodo.precio_descuento
-                            | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
-                        }}
-                      </option>
-                      </ng-template>
-
-
-                    </ng-container>
-
-
-                    </select>
-
-                    <i
-                      (click)="eliminarcarro(i)"
-                      class="fas fa-trash-alt deletecard"
-                      style="cursor:pointer"
-                    ></i>
-                  </div>
-
-                </div>
-              </div>
-            
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 text-center mt-4">
-          <button
-            type="button"
-            class="btn"
-            style="
-              background-color: #009900;
-              color: #f2f3f5;
-              font-weight: bold;
-              width: 45%;
-            "
-            (click)="finalizarcompra()"
-          >
-            FINALIZAR COMPRA
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
--->
 
   <div class="row mt-5 d-flex justify-content-center" *ngIf="statusCarrito === 0">
     <div class="col-md-6 col-sm-12 col-12">

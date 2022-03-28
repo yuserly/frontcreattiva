@@ -28,6 +28,7 @@ export class ModalDominioComponent implements OnInit {
 
   ngOnInit(): void {
     this.dominiopAgregado = this.validarDominioBuscado();
+    
   }
 
 
@@ -79,8 +80,6 @@ export class ModalDominioComponent implements OnInit {
 
               this.dominioscarrito.emit(carro);
 
-              this.itemsCarrito();
-
             }
           );
 
@@ -128,8 +127,6 @@ export class ModalDominioComponent implements OnInit {
 
             this.dominioscarrito.emit(carro);
 
-            this.itemsCarrito();
-
           }
         );
 
@@ -169,8 +166,6 @@ export class ModalDominioComponent implements OnInit {
         carro = JSON.parse(localStorage.getItem('carrito')!);
 
         this.dominioscarrito.emit(carro);
-
-        this.itemsCarrito();
 
       }
     );
@@ -223,10 +218,6 @@ export class ModalDominioComponent implements OnInit {
 
               this.dominioscarrito.emit(carro);
 
-              this.itemsCarrito();
-
-
-
             }
           );
 
@@ -237,18 +228,16 @@ export class ModalDominioComponent implements OnInit {
 
   }
 
-  itemsCarrito(){
-    let index = JSON.parse(localStorage.getItem('index')!);
-
-    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-
-    this.DominiosService.totalCarro = carrito.length;
-  }
-
   validarDominioBuscado():boolean{
 
+    console.log("carrito upd");
+
+    let carro: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+    console.log(carro);
 
     let existd = false;
+
     this.dominios.forEach((element) => {
 
       this.dominiosencarrito.forEach((element2) => {

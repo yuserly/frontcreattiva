@@ -16,7 +16,6 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 
@@ -28,7 +27,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   animations: [
 
     trigger('openCloseCategorias', [
-      // ...
+  
       state('open', style({
         left: '0'
       })),
@@ -43,7 +42,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
       ]),
     ]),
     trigger('openCloseSubcategorias', [
-      // ...
+ 
       state('open', style({
         right: '0'
       })),
@@ -56,6 +55,23 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
       transition('closed => open', [
         animate('0.4s')
       ]),
+    ]),
+    trigger('openCloseSearch', [
+
+      state('open', style({
+        display: 'block',
+        opacity: 1
+      })),
+      state('closed', style({
+        display: 'none',
+        opacity: 1
+      })),
+      transition('open => closed', [
+        animate('0.1s')
+      ]),
+      transition('closed => open', [
+        animate('0.1s')
+      ]),
     ])
 
 
@@ -63,37 +79,18 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeComponent implements OnInit {
 
+//menú movil
+margintop:number = 0;
+
 isOpen = true;
 
 openCategorias = false;
 
 openSubcategorias = false;
 
+openSearch = false;
 
-customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 2
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
-    nav: true
-  }
+btnSearch:string = 'fas fa-search';
  
 
   categorias: Categorias[] = [];
@@ -101,13 +98,9 @@ customOptions: OwlOptions = {
   subcategorias: Subcategorias[] = [];
   productosbuscados: Productos[] = [];
   logueado: boolean = false;
-
-  //menu movil
-  mostrarNavSubcategorias:boolean = false;
-  mostrarBusqueda:boolean = false;
-  btnSearch:string = 'fas fa-search';
   
   @ViewChild('subfoco') subfoco!: ElementRef;
+  @ViewChild('subfocoplanes') subfocoplanes!: ElementRef;
 
   form:FormGroup = this.fb.group({
     textobuscar: [
@@ -151,14 +144,16 @@ customOptions: OwlOptions = {
     if (localStorage.getItem('resultados_busqueda')) {
       localStorage.removeItem('resultados_busqueda');
     }
+    //actualizar n carrito
     this.itemsCarrito();
+    let carrito = JSON.parse(localStorage.getItem('carrito')!);
 
-    this.mostrarNavSubcategorias = true;
+    if (carrito.length>0) {
+      this.margintop = 110;
+    }else{
+      this.margintop = 0;
+    }
 
-  }
-
-  toggle() {
-    this.isOpen = !this.isOpen;
   }
 
   menuCategorias(opc:boolean){
@@ -166,7 +161,15 @@ customOptions: OwlOptions = {
   }
   menuSubcategorias(opc:boolean){
     this.openSubcategorias = opc;
-    
+  }
+  menuSearch(){
+    if(this.openSearch){
+      this.openSearch = false;
+      this.btnSearch = 'fas fa-search';
+    }else{
+      this.openSearch = true;
+      this.btnSearch = 'far fa-times-circle';
+    }
   }
 
   buscarsubcategoria(id: number) {
@@ -189,7 +192,7 @@ customOptions: OwlOptions = {
       }
 
     });
-    this.mostrarNavSubcategorias = true;
+
   }
 
   activar(id: number) {
@@ -206,10 +209,10 @@ customOptions: OwlOptions = {
   }
 
   buscarproducto(id: number) {
-    this.categoriasServices.getproductos(id).subscribe((productos) => {
-      this.productos = productos;
-  });
 
+    this.categoriasServices.getproductos(id).subscribe((productos) => {
+        this.productos = productos;
+    });
 
   }
 
@@ -266,25 +269,31 @@ customOptions: OwlOptions = {
 
   }
 
-  mostrarsubmenu(){
-    this.mostrarNavSubcategorias = false;
-  }
-
   ocultarmenu(opc:boolean){
-    //this.mostrarNavSubcategorias = false;
     this.menuCategorias(false);
     this.menuSubcategorias(false);
   }
 
-  mostrarBuscador(){
-    if(this.mostrarBusqueda){
-      this.mostrarBusqueda = false;
-      this.btnSearch = 'fas fa-search';
+  seleccionarcategoria(id:number,id_subcategoria:number){
+
+    this.subcategorias.map((p,i) => {
+      if(i == id){
+        p["active"] = true;
+      }else{
+        p["active"] = false;
+      }
+    })
+
+    if(id_subcategoria != 31){
+      this.buscarproducto(id_subcategoria);
     }else{
-      this.mostrarBusqueda = true;
-      this.btnSearch = 'far fa-times-circle';
+      this.productos = [];
     }
-    
+
+    this.ocultarmenu(false);
+    this.subfocoplanes.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    //this.statusmenu.emit(false);
+
   }
 
 

@@ -1,7 +1,7 @@
 
 
 <div class="card card-border p-3 mt-4">
-  <div class="row px-3">
+  <div class="row px-1 px-md-3">
     
     <div class="col-md-12 mb-2">
 
@@ -17,50 +17,59 @@
 
     <div class="col-md-12">
       <div class="row" [formGroup]="form">
-        <div class="col-md-4 text-center" *ngFor="let item of sistemaOperativo; let i=index">
-          <input
-            type="radio"
-            class="btn-check"
-            [id]="item.nombre"
-            [value]="item.id_os"
-            autocomplete="off"
-            formControlName="os"
-            (change)="sistemaopactive(item)"
-          />
 
-          <label
-            class="btn btn-periodos px-0 pb-0 card-border text-center"
-            [for]="item.nombre"
-            style="
-              width: 100%;
-              border-radius: 0px;
-              text-align: left;
-              border-bottom-left-radius: 5px;
-              border-bottom-right-radius: 5px;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            "
-          >
-            <h3 class="px-3">{{item.nombre}}</h3>
+        <owl-carousel-o [options]="owl_sistemaoperativo">
 
-            <i [class]="item.icono" style="font-size: 80px"></i>
+          <ng-template class="text-center" carouselSlide *ngFor="let item of sistemaOperativo; let i=index">
 
-            <br />
-            <br />
-          </label>
+              <input
+                type="radio"
+                class="btn-check"
+                [id]="item.nombre"
+                [value]="item.id_os"
+                autocomplete="off"
+                formControlName="os"
+                (change)="sistemaopactive(item)"
+              />
+    
+              <label
+                class="btn btn-periodos px-0 pb-0 card-border text-center"
+                [for]="item.nombre"
+                style="
+                  width: 100%;
+                  border-radius: 0px;
+                  text-align: left;
+                  border-bottom-left-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  border-top-left-radius: 5px;
+                  border-top-right-radius: 5px;
+                "
+              >
+                <h3 class="px-3">{{item.nombre}}</h3>
+    
+                <i [class]="item.icono" style="font-size: 80px"></i>
+    
+                <br />
+                <br />
+              </label>
+    
+    
+                <div class="row mt-2" [ngClass]="{
+                  'd-none': item.active == 0
+                }">
+                  <div class="col">
+                    <select class="form-select" formControlName="version" (change)="guardar()">
+                      <option [value]="0" selected>Seleccione versión </option>
+                      <option *ngFor="let item2 of item.versiones" [value]="item2.id_version">{{item2.version}}</option>
+                    </select>
+                  </div>
+                </div>
+           
 
+          </ng-template>
 
-            <div class="row mt-2" [ngClass]="{
-              'd-none': item.active == 0
-            }">
-              <div class="col">
-                <select class="form-select" formControlName="version" (change)="guardar()">
-                  <option [value]="0" selected>Seleccione versión </option>
-                  <option *ngFor="let item2 of item.versiones" [value]="item2.id_version">{{item2.version}}</option>
-                </select>
-              </div>
-            </div>
-        </div>
+        </owl-carousel-o>
+
       </div>
     </div>
 
@@ -112,43 +121,48 @@
 
     <div class="col-md-12">
       <div class="row" [formGroup]="form">
-        <div class="col-md-3 text-center" *ngFor="let licencia of licencias">
-          
 
-            <input
-              type="radio"
-              class="btn-check"
-              [id]="licencia.nombre"
-              [value]="licencia.id_producto"
-              autocomplete="off"
-              formControlName="licencia"
-              (click)="licenciaactive(licencia.id_producto)"
+        <owl-carousel-o [options]="owl_licencias">
 
-            />
+          <ng-template class="text-center" carouselSlide *ngFor="let licencia of licencias">
+          <div class="d-flex justify-content-center">
 
-            <label
-              class="btn btn-periodos mb-3 px-0 pb-0 card-border text-center"
-              style="
-                border-radius: 0px;
-                text-align: left;
-                border-bottom-left-radius: 5px;
-                border-bottom-right-radius: 5px;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                width: 150px;height: 150px;
-              "
-              [for]="licencia.nombre"
-            >
-              <h5 class="px-3">{{licencia.nombre}}</h5>
+              <input
+                type="radio"
+                class="btn-check"
+                [id]="licencia.nombre"
+                [value]="licencia.id_producto"
+                autocomplete="off"
+                formControlName="licencia"
+                (click)="licenciaactive(licencia.id_producto)"
+  
+              />
+  
+              <label
+                class="btn btn-periodos mb-3 px-0 pb-0 card-border text-center"
+                style="
+                  border-radius: 0px;
+                  text-align: left;
+                  border-bottom-left-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  border-top-left-radius: 5px;
+                  border-top-right-radius: 5px;
+                  width: 150px;height: 150px;
+                "
+                [for]="licencia.nombre"
+              >
+                <h5 class="px-3">{{licencia.nombre}}</h5>
+  
+                <i class="{{iconoLicencia}}" style="font-size: 80px"></i>
+  
+                <br />
+                <br />
+              </label>
+              </div>
+          </ng-template>
 
-              <i class="{{iconoLicencia}}" style="font-size: 80px"></i>
+        </owl-carousel-o>
 
-              <br />
-              <br />
-            </label>
-          
-
-        </div>
       </div>
     </div>
 

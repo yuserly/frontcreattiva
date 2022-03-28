@@ -27,13 +27,13 @@ export class CaracteristicasComponent implements OnInit {
         items: 2
       },
       400: {
-        items: 3
+        items: 4
       },
       740: {
-        items: 4
+        items: 6
       },
       940: {
-        items: 4
+        items: 7
       }
     },
     nav: true

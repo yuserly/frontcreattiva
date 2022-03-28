@@ -1,5 +1,6 @@
 <div class="card card-border p-3 mt-4">
-  <div class="row px-3">
+  <div class="row px-1 px-md-3">
+
     <div class="col-md-12">
       <h5 id="invalidPeriodo"><b>{{periodonum}}. Selecciona período de facturación</b></h5>
       <small class="text-danger" *ngIf="invalidPeriodo == 2">
@@ -7,16 +8,26 @@
       </small>
     </div>
 
+    <div class="col-md-12 px-1 px-md-3">
+    
+      <h6 class="px-1 px-md-3 text-center mt-4" style="color: #1f2044;">
+        Entre más tiempo dure la contratación, <b>mayor será tu  AHORRO !</b>
+      </h6>
+
+    </div>
+
     <div class="col-md-12">
       <div class="row" [formGroup]="form">
 
-          <ng-container *ngFor="let item of periodos; let i=index">
+        <owl-carousel-o [options]="owl_periodos">
+
+          <ng-template carouselSlide *ngFor="let item of periodos; let i=index">
             
             <ng-container *ngIf="(item.id_periodo==2 ||
                                   item.id_periodo==3 || 
                                   item.id_periodo==4 )">
               
-              <div class="col-md-4 text-center px-2">
+              <div class="text-center px-2">
                 <button
                 type="button"
                 class="btn bg-azul-crt text-white p-0"
@@ -135,7 +146,7 @@
 
             <ng-container *ngIf="item.id_periodo==5">
               
-              <div class="col-md-4 text-center px-2">
+              <div class=" text-center px-2">
               <input
                 type="radio"
                 class="btn-check"
@@ -196,7 +207,7 @@
 
             <ng-container *ngIf="item.id_periodo==1">
               
-              <div class="col-md-4 text-center">
+              <div class=" text-center">
               
                 <button type="button" class="btn bg-white text-white p-0" style="font-size: 16px; width: 100%; border-radius: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px;" style="visibility: hidden;"></button>
               
@@ -266,7 +277,7 @@
 
             <ng-container *ngIf="item.id_periodo>5">
               
-              <div class="col-md-4 text-center px-2">
+              <div class="text-center px-2">
               
                 <button
                 type="button"
@@ -360,17 +371,12 @@
               </div>
             </ng-container>
           
-          </ng-container>
+          </ng-template>
 
+        </owl-carousel-o>
 
       </div>
     </div>
   </div>
-  <div class="row px-3">
-    
-    <h6 class="px-3 text-center mt-4" style="color: #1f2044;">
-      Entre más tiempo dure la contratación, <b>mayor será tu  AHORRO !</b>
-    </h6>
 
-  </div>
 </div>

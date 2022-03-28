@@ -96,6 +96,10 @@ const routes: Routes = [
         component:PreguntasFrecuentesComponent
       },
       {
+        path: 'soporte/:ip',
+        component:SoporteComponent
+      },
+      {
         path:'configura-tu-producto/:slug',
         component:ConfiguracionProductoComponent
       },

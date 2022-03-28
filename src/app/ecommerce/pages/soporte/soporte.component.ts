@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CategoriasService } from '../../services/categorias.service';
 import { PreguntasFrecuentes } from '../../interfaces/ecommerce.interface';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -35,7 +37,9 @@ export class SoporteComponent implements OnInit {
 
   @ViewChild('subfocoresultado') subfocoresultado!: ElementRef;
 
-  constructor(private categoriasServices: CategoriasService) {
+  constructor(private categoriasServices: CategoriasService, private routeparams: ActivatedRoute,) {
+
+    
 
   }
 

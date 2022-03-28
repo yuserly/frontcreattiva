@@ -23,9 +23,13 @@ export class DetallePedidoComponent implements OnInit {
 
    @Output() totalcarrod: EventEmitter<TotalCarro> = new EventEmitter();
    @Output() eventoMovil: EventEmitter<boolean> = new EventEmitter();
+   @Output() eventoMovilComprar: EventEmitter<boolean> = new EventEmitter();
+
    @Input() totalcarroarray!:TotalCarro;
    @Input() aplicarCupon!:number;
-   @Input() mostrarMovil!:boolean;
+   @Input() mostrarBtnFinalizarMovil!:boolean;
+   @Input() mostrarBtnComprarMovil!:boolean;
+   @Input() mostrarContinuarLink!:boolean;
 
   validezcupon:number = 0;
   cuponAplicado:any = '';
@@ -39,8 +43,6 @@ export class DetallePedidoComponent implements OnInit {
   constructor(private fb: FormBuilder, private CategoriasService: CategoriasService, private router: Router) { }
 
   ngOnInit(): void {
-
-    console.log("mostrar movil: "+this.mostrarMovil);
 
     if (localStorage.getItem('carrito')) {
 
@@ -203,6 +205,12 @@ export class DetallePedidoComponent implements OnInit {
   continuar(){
 
     this.eventoMovil.emit(true);
+
+  }
+
+  finalizarcomprar(){
+
+    this.eventoMovilComprar.emit(true);
 
   }
 

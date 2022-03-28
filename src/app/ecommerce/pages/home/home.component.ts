@@ -75,7 +75,7 @@ import {
     ])
 
 
-  ],
+  ]
 })
 export class HomeComponent implements OnInit {
 

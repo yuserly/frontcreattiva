@@ -23,6 +23,7 @@ export class CompraDominiosComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   statusDominioBuscado:boolean = false;
   dominiopAgregado:boolean = false;
+  mostrarContinuarLink:boolean = true;
 
 
   form:FormGroup = this.fb.group({

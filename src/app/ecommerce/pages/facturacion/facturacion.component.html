@@ -3,16 +3,17 @@
 <div class="container">
   <div class="row mt-5 d-flex justify-content-center" [formGroup]="form">
     <div class="col-md-6">
-      <div class="card card-border p-5">
-        <div class="row">
+      <div class="card card-border p-3">
+        <div class="row px-1 px-md-3">
           <div class="col-md-12 mb-2 d-flex justify-content-between">
             <h5><b>Detalles de la compra</b></h5>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row px-1 px-md-3">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item mt-2">
+              
               <p><b>1.- Datos del comprador / Contacto técnico:</b></p>
 
               <h2
@@ -67,7 +68,7 @@
                           {{ mensajeerroremail }}
                         </div>
                       </div>
-                      <div class="col">
+                      <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                           <div class="input-group">
                             <div class="input-group-prepend d-flex">
@@ -97,7 +98,7 @@
                         </div>
                       </div>
 
-                      <div class="col">
+                      <div class="col-12 col-sm-12 col-md-6">
                         <select
                           id="inputState"
                           class="form-select"
@@ -138,19 +139,19 @@
             </div>
             <div class="accordion-item mt-2" *ngIf="datoscompradorsave">
               <div class="row mt-3">
-                <div class="col-6 align-middle">
+                <div class="col-md-6 col-12 col-sm-12 align-middle">
                   <p><b>2.- Datos facturación:</b></p>
                 </div>
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-md-4 px-0">
+                <div class="col-md-6 col-12 col-sm-12">
+                  <div class="row px-2 px-md-3">
+                    <div class="col-4 col-sm-4 col-md-4 px-0">
                       <label
                         class="form-check-label"
                         for="flexSwitchCheckChecked"
                         >Persona</label
                       >
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-4 col-sm-4 col-md-4">
                       <div class="form-check form-switch">
                         <input
                           class="form-check-input"
@@ -162,7 +163,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4 px-0">
+                    <div class="col-4 col-sm-4 col-md-4 px-0">
                       <label
                         class="form-check-label"
                         for="flexSwitchCheckChecked"
@@ -318,100 +319,122 @@
               </div>
             </div>
             <div class="accordion-item mt-2" *ngIf="datosfacturacion">
-              <p><b>3.- Dirección:</b></p>
+              <div class="row mt-3">
+                <p><b>3.- Dirección:</b></p>
 
-              <h2
-                class="accordion-header d-flex justify-content-between"
-                id="flush-headingThree"
-              >
-                <button
-                  class="btn-acordeon accordion-button pt-0 pb-0"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseThree"
-                  aria-expanded="false"
-                  aria-controls="flush-collapseThree"
+                <h2
+                  class="accordion-header d-flex justify-content-between"
+                  id="flush-headingThree"
                 >
-                  {{ form.value.direccion }}
-                </button>
+                  <button
+                    class="btn-acordeon accordion-button pt-0 pb-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseThree"
+                  >
+                    {{ form.value.direccion }}
+                  </button>
 
-                <button
-                  type="button"
-                  class="btn btn-outline-dark color-gris border-gris btn-editar"
-                  *ngIf="datosdireccion"
-                  (click)="modificardireccion()"
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark color-gris border-gris btn-editar"
+                    *ngIf="datosdireccion"
+                    (click)="modificardireccion()"
+                  >
+                    Modificar <i class="far fa-edit"></i>
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseThree"
+                  class="accordion-collapse collapse"
+                  [ngClass]="{ show: datosdireccion == false }"
+                  aria-labelledby="flush-headingThree"
+                  data-bs-parent="#accordionFlushExample"
                 >
-                  Modificar <i class="far fa-edit"></i>
-                </button>
-              </h2>
-              <div
-                id="flush-collapseThree"
-                class="accordion-collapse collapse"
-                [ngClass]="{ show: datosdireccion == false }"
-                aria-labelledby="flush-headingThree"
-                data-bs-parent="#accordionFlushExample"
-              >
-                <div class="accordion-body px-0">
-                  <div class="row g-3">
-                    <div
-                      class="col-md-12"
-                      *ngIf="existedireccion; else botondireccion"
-                    >
-                      <form class="row g-3">
-                        <div class="col-12">
-                          <input
-                            type="text"
-                            class="form-control"
-                            [ngClass]="{
-                              'is-invalid': validarcampo('direccion')
-                            }"
-                            id="inputAddress"
-                            placeholder="Direccion"
-                            formControlName="direccion"
-                            ngx-google-places-autocomplete
-                            (onAddressChange)="AddressChange($event)"
-                          />
-                          <div
-                            class="invalid-feedback"
-                            *ngIf="validarcampo('direccion')"
-                          >
-                            {{ mensajeerrordireccion }}
+                  <div class="accordion-body px-0">
+                    <div class="row g-3">
+                      <div
+                        class="col-md-12"
+                        *ngIf="existedireccion; else botondireccion"
+                      >
+                        <form class="row g-3">
+                          <div class="col-12">
+                            <input
+                              type="text"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('direccion')
+                              }"
+                              id="inputAddress"
+                              placeholder="Direccion"
+                              formControlName="direccion"
+                              ngx-google-places-autocomplete
+                              (onAddressChange)="AddressChange($event)"
+                            />
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('direccion')"
+                            >
+                              {{ mensajeerrordireccion }}
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-6">
-                          <input
-                            type="text"
-                            class="form-control"
-                            [ngClass]="{ 'is-invalid': validarcampo('region') }"
-                            formControlName="region"
-                            placeholder="Region"
-                          />
-                          <div
-                            class="invalid-feedback"
-                            *ngIf="validarcampo('region')"
-                          >
-                            La region es requerida
+                          <div class="col-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              [ngClass]="{ 'is-invalid': validarcampo('region') }"
+                              formControlName="region"
+                              placeholder="Region"
+                            />
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('region')"
+                            >
+                              La region es requerida
+                            </div>
                           </div>
-                        </div>
 
-                        <div class="col-6">
-                          <input
-                            type="text"
-                            class="form-control"
-                            [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
-                            formControlName="comuna"
-                            placeholder="comuna"
-                          />
-                          <div
-                            class="invalid-feedback"
-                            *ngIf="validarcampo('comuna')"
-                          >
-                            La comuna es requerida
+                          <div class="col-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
+                              formControlName="comuna"
+                              placeholder="comuna"
+                            />
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('comuna')"
+                            >
+                              La comuna es requerida
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-12 d-flex justify-content-center">
+                          <div class="col-12 d-flex justify-content-center">
+                            <button
+                              *ngIf="!datosdireccion"
+                              type="button"
+                              class="btn"
+                              style="
+                                background-color: #005ad2;
+                                color: #f2f3f5;
+                                font-weight: bold;
+                                width: 60%;
+                              "
+                              (click)="guardardireccion()"
+                            >
+                              Confirmar
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <!-- boton direccion -->
+
+                      <ng-template #botondireccion>
+                        <div class="col-md-12 mt-4 text-center">
                           <button
-                            *ngIf="!datosdireccion"
                             type="button"
                             class="btn"
                             style="
@@ -420,137 +443,139 @@
                               font-weight: bold;
                               width: 60%;
                             "
-                            (click)="guardardireccion()"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modaldirecciones"
                           >
-                            Confirmar
+                            Agregar nueva dirección
                           </button>
                         </div>
-                      </form>
+                      </ng-template>
                     </div>
-
-                    <!-- boton direccion -->
-
-                    <ng-template #botondireccion>
-                      <div class="col-md-12 mt-4 text-center">
-                        <button
-                          type="button"
-                          class="btn"
-                          style="
-                            background-color: #005ad2;
-                            color: #f2f3f5;
-                            font-weight: bold;
-                            width: 60%;
-                          "
-                          data-bs-toggle="modal"
-                          data-bs-target="#modaldirecciones"
-                        >
-                          Agregar nueva dirección
-                        </button>
-                      </div>
-                    </ng-template>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="mt-2 mediospago" *ngIf="datosdireccion">
             <p><b>4.- Medio de pago:</b></p>
 
             <div class="row d-flex justify-content-center">
-              <div class="col-md-4 text-center">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  formControlName="mediopago"
-                  id="periodo1"
-                  [value]="1"
-                  checked
-                  autocomplete="off"
-                />
 
-                <label
-                  class="btn btn-periodos px-0 pb-0 card-border"
-                  for="periodo1"
-                  style="
-                    width: 100%;
-                    border-radius: 0px;
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    height: 20vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  <img src="../../../../assets/img/icon-webpay.png" />
-                </label>
-              </div>
+              <owl-carousel-o [options]="owl_metodosdepago">
 
-              <div class="col-md-4 text-center">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  formControlName="mediopago"
-                  id="periodo2"
-                  [value]="2"
-                  autocomplete="off"
-                />
+                <ng-template carouselSlide class="text-center">
+                  
+                  <div class="d-flex justify-content-center">
 
-                <label
-                  class="btn btn-periodos px-0 pb-0 card-border"
-                  for="periodo2"
-                  style="
-                    width: 100%;
-                    border-radius: 0px;
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    height: 20vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  <img src="../../../../assets/img/paypal.png" width="100px" />
-                </label>
-              </div>
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      formControlName="mediopago"
+                      id="periodo1"
+                      [value]="1"
+                      checked
+                      autocomplete="off"
+                    />
+    
+                    <label
+                      class="btn btn-periodos px-0 pb-0 card-border"
+                      for="periodo1"
+                      style="
+                        width: 100%;
+                        max-width: 207px;
+                        border-radius: 0px;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        height: 25vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <img src="../../../../assets/img/icon-webpay.png" />
+                    </label>
+                    
+                  </div>
+                  
+                </ng-template>
+  
+                <ng-template carouselSlide class="text-center">
+                  <div class="d-flex justify-content-center">
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      formControlName="mediopago"
+                      id="periodo2"
+                      [value]="2"
+                      autocomplete="off"
+                    />
+    
+                    <label
+                      class="btn btn-periodos px-0 pb-0 card-border"
+                      for="periodo2"
+                      style="
+                        width: 100%;
+                        max-width: 207px;
+                        border-radius: 0px;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        height: 25vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <img src="../../../../assets/img/paypal.png" width="80px" />
+                    </label>
+                  </div>
+                </ng-template>
+  
+                <ng-template carouselSlide class="text-center">
+                  
+                  <div class="d-flex justify-content-center">
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      formControlName="mediopago"
+                      id="periodo3"
+                      [value]="3"
+                      autocomplete="off"
+                    />
+    
+                    <label
+                      class="btn btn-periodos px-0 pb-0 card-border"
+                      for="periodo3"
+                      style="
+                        width: 100%;
+                        max-width: 207px;
+                        border-radius: 0px;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        height: 25vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <img
+                        src="../../../../assets/img/icon-transfer.png"
+                        width="100px"
+                      />
+                    </label>
+                  </div>
 
-              <div class="col-md-4 text-center">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  formControlName="mediopago"
-                  id="periodo3"
-                  [value]="3"
-                  autocomplete="off"
-                />
+                </ng-template>
 
-                <label
-                  class="btn btn-periodos px-0 pb-0 card-border"
-                  for="periodo3"
-                  style="
-                    width: 100%;
-                    border-radius: 0px;
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    height: 20vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  <img
-                    src="../../../../assets/img/icon-transfer.png"
-                    width="100px"
-                  />
-                </label>
-              </div>
+              </owl-carousel-o>
+
             </div>
           </div>
         </div>
@@ -559,7 +584,9 @@
 
     <div class="col-md-4">
       <app-detalle-pedido
+        (eventoMovilComprar) = "ValidarBtnComprarMovil($event)"
         [totalcarroarray]="totalcarroarray"
+        [mostrarBtnComprarMovil]="mostrarBtnComprarMovil"
       ></app-detalle-pedido>
 
       <div class="row mt-4">
@@ -576,7 +603,7 @@
         </div>
       </div>
 
-      <div class="row mt-4">
+      <div class="row mt-4 d-none d-sm-none d-md-block d-lg-block">
         <div class="col-6">
           <p class="mt-2">TOTAL {{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</p>
         </div>

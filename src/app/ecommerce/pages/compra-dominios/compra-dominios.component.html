@@ -12,7 +12,7 @@
     <div class="col-md-8">
 
       	<div class="card card-border p-3">
-		  <div class="row px-5">
+		  <div class="row px-1 px-md-3">
 
 		    <div class="col-md-12 mb-2">
 
@@ -34,14 +34,14 @@
 		        <form class="pt-3" [formGroup]="form">
 		          <div class="row">
 		            <div
-		              class="col-md-2 col-2 d-flex align-items-end justify-content-end p-0"
+		              class="col-md-2 d-none d-md-block d-lg-block p-0"
 		            >
 		              <div class="form-group">
 		                <h5>www.&nbsp;</h5>
 		              </div>
 		            </div>
 
-		            <div class="col-md-6 col-6 px-0">
+		            <div class="col-md-6 col-9 col-sm-9 px-0">
 		              <div class="form-group">
 		                <input
 		                  class="input__field_dominio"
@@ -53,7 +53,7 @@
 		              </div>
 		            </div>
 
-		            <div class="col-md-2 col-2 px-0">
+		            <div class="col-md-2 col-3 col-sm-3 px-0">
 		              <div class="form-group contenedor-extension-dominio">
 		                <select
 		                  class="input__field_exten"
@@ -73,7 +73,7 @@
 		              </div>
 		            </div>
 
-		            <div class="col-md-2 col-2 d-flex align-items-center">
+		            <div class="col-md-2 col-12 col-sm-12 d-flex align-items-center mt-2 mt-md-0">
 		              <button
 		                type="button"
 		                class="btn"
@@ -108,7 +108,7 @@
         </div>
 
         <div class="card card-border p-3" *ngIf="dominios.length > 0; else preload">
-		  	<div class="row px-5" id="scrolltb">
+		  	<div class="row px-1 px-md-3" id="scrolltb">
 
 			    <div class="col-md-12 mb-2">
 
@@ -337,7 +337,7 @@
 
 
 
-	    <div class="row">
+	    <div class="row d-none d-sm-none d-lg-block d-md-block">
 	        <div class="col-md-12 text-center mt-4">
 	          <button
 	            type="button"
@@ -361,6 +361,7 @@
     	<app-detalle-pedido
     	*ngIf="hayproductos"
         [totalcarroarray]="totalcarroarray"
+		[mostrarContinuarLink]="mostrarContinuarLink"
         (totalcarrod)="totalcarro($event)"
         [aplicarCupon]="aplicarCupon"
       ></app-detalle-pedido>

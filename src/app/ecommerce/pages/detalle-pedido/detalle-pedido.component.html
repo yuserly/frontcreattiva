@@ -398,13 +398,32 @@
               background-color: #009900;
               color: #f2f3f5;
               font-weight: bold;
-              width: 60%;
+              width: 80%;
             "
-            *ngIf="mostrarMovil==true; else btncontinuar"
+            *ngIf="mostrarBtnFinalizarMovil==true; else btncomprar"
             (click)="finalizarcompras()"
           >
             FINALIZAR COMPRA
           </button>
+
+        <ng-template #btncomprar>
+
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #009900;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 80%;
+            "
+            *ngIf="mostrarBtnComprarMovil==true; else btncontinuar"
+            (click)="finalizarcomprar()"
+          >
+            COMPRAR
+          </button>
+
+        </ng-template>
 
         <ng-template #btncontinuar>
 
@@ -415,9 +434,29 @@
               background-color: #005ad2;
               color: #f2f3f5;
               font-weight: bold;
-              width: 45%;
+              width: 80%;
             "
+            *ngIf="mostrarBtnComprarMovil==true; else btncontinuarlink"
             (click)="continuar()"
+          >
+            Continuar
+        </button>
+
+        </ng-template>
+
+        <ng-template #btncontinuarlink>
+
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-color: #005ad2;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 80%;
+            "
+            *ngIf="mostrarContinuarLink==true"
+            routerLink="/carrito"
           >
             Continuar
         </button>

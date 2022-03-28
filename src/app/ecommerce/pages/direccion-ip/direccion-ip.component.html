@@ -1,5 +1,5 @@
 <div class="card card-border p-3 mt-4">
-    <div class="row px-5">
+    <div class="row px-1 px-md-3">
       <div class="col-md-12 mb-2">
         <h5 id="invalidCantLicencias">
           <b>1. Ingresa tu dirección IP</b>
@@ -11,7 +11,7 @@
 
                 <form class="pt-3" id="" [formGroup]="form">
                     <div class="row" *ngIf="!ipguardada || ipguardada==''">
-                      <div class="col-md-5 col-10 px-0">
+                      <div class="col-md-6 col-12 col-sm-12 px-0">
                         <div class="form-group">
                           <input
                             class="input__field_ip"
@@ -29,7 +29,7 @@
                         </div>
                       </div>
           
-                      <div class="col-md-2 col-2 d-flex align-items-center">
+                      <div class="col-md-2 col-12 col-sm-12 mt-2 mt-md-0 d-flex align-items-center">
                         <button
                           type="button"
                           class="btn"

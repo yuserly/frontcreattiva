@@ -10,6 +10,7 @@ import {
   Comunas,
 } from '../../interfaces/ecommerce.interface';
 import { Router } from '@angular/router';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-facturacion',
@@ -17,6 +18,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./facturacion.component.css'],
 })
 export class FacturacionComponent implements OnInit {
+
+   //owl
+   owl_metodosdepago: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1,
+        margin: 10
+      },
+      400: {
+        items: 3,
+        margin: 10
+      },
+      740: {
+        items: 6
+      },
+      940: {
+        items: 7
+      }
+    },
+    nav: true
+  }
 
   // @ViewChild('modalv') modal!: ElementRef;
   totalcarroarray!: TotalCarro;
@@ -29,6 +58,7 @@ export class FacturacionComponent implements OnInit {
   nombrefacturacion: string = '';
   empresadatos:boolean = true;
   existedireccion:boolean = false;
+  mostrarBtnComprarMovil:boolean = true;
 
 
   form: FormGroup = this.fb.group({
@@ -503,5 +533,13 @@ export class FacturacionComponent implements OnInit {
     this.form.get('direccion')!.setValue(`${address.address_components[1].long_name} ${address.address_components[0].long_name}`);
     this.form.get('region')!.setValue(address.address_components[5].long_name)
     this.form.get('comuna')!.setValue(address.address_components[3].long_name)
+  }
+
+  ValidarBtnComprarMovil(act:boolean){
+
+    if(act){
+      this.finalizarcompra();
+    }
+
   }
 }

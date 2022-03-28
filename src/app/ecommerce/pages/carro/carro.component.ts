@@ -15,7 +15,7 @@ export class CarroComponent implements OnInit {
   totalcarroarray!: TotalCarro;
   statusCarrito:number = 0;
   aplicarCupon:number = 1;
-  mostrarMovil:boolean = true;
+  mostrarBtnFinalizarMovil:boolean = true;
   indexconfig: any[] = [];
   faltaconfig: boolean = false;
 

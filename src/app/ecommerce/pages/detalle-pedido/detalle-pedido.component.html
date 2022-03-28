@@ -395,32 +395,32 @@
             type="button"
             class="btn"
             style="
+              background-color: #009900;
+              color: #f2f3f5;
+              font-weight: bold;
+              width: 60%;
+            "
+            *ngIf="mostrarMovil==true; else btncontinuar"
+            (click)="finalizarcompras()"
+          >
+            FINALIZAR COMPRA
+          </button>
+
+        <ng-template #btncontinuar>
+
+          <button
+            type="button"
+            class="btn"
+            style="
               background-color: #005ad2;
               color: #f2f3f5;
               font-weight: bold;
               width: 45%;
             "
             (click)="continuar()"
-            *ngIf="mostrarMovil; else finalizarcompra"
           >
             Continuar
         </button>
-
-        <ng-template #finalizarcompra>
-
-          <button
-            type="button"
-            class="btn"
-            style="
-              background-color: #009900;
-              color: #f2f3f5;
-              font-weight: bold;
-              width: 60%;
-            "
-            (click)="finalizarcompras()"
-          >
-            FINALIZAR COMPRA
-          </button>
 
         </ng-template>
 

@@ -40,6 +40,8 @@ export class DetallePedidoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log("mostrar movil: "+this.mostrarMovil);
+
     if (localStorage.getItem('carrito')) {
 
       let index = JSON.parse(localStorage.getItem('index')!);

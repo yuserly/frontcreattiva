@@ -19,11 +19,17 @@ export class FormularioPagoComponent implements OnInit {
   metodopago:number = 0;
 
 
-  constructor(private CategoriasService: CategoriasService, private router: Router) { }
+  constructor(private CategoriasService: CategoriasService, private router: Router) {
+
+  }
 
   ngOnInit(): void {
 
     let infopago = JSON.parse(localStorage.getItem('infopago')!)
+
+    if(!infopago){
+      this.router.navigate(['/facturacion']);
+    }
 
     if(infopago.metodopago == 3 || infopago.metodopago == '3'){
 

@@ -44,6 +44,10 @@ export class HostingComponent implements OnInit {
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
+    if (!carrito || carrito.length == 0) {
+      this.router.navigate(['/']);
+    }
+
     this.carrito = JSON.parse(localStorage.getItem('carrito')!);
 
     this.producto = carrito[index].producto;
@@ -96,9 +100,9 @@ export class HostingComponent implements OnInit {
       this.producto.subcategoria_id == 30 ||
       this.producto.subcategoria_id == 32
       ){
- 
+
        this.periodonum = 1;
- 
+
      }
 
      if(this.producto.subcategoria_id == 10 ||
@@ -112,7 +116,7 @@ export class HostingComponent implements OnInit {
       this.dominionum = 1;
       this.periodonum = 2;
      }
-     
+
 
     if(this.producto.subcategoria_id == 9 || this.producto.subcategoria_id == 11 || this.producto.subcategoria_id == 12){
 
@@ -180,20 +184,20 @@ export class HostingComponent implements OnInit {
           if(this.validarFormPeriodoComponent()){
             this.router.navigate(['/carrito']);
           }
-          
+
         }
-        
+
     }
 
     //validación de VPS que piden dominio
-    else if( 
+    else if(
         this.producto.subcategoria_id == 9 ||
         this.producto.subcategoria_id == 12  ){
 
         console.log("validar vps");
         //console.log("respuesta de validación: "+this.validarFormDominiosComponent());
         if(this.validarFormDominiosComponent()){
-          
+
           if(this.validarFormVpsComponent()){
 
             if(this.validarFormPeriodoComponent()){
@@ -201,14 +205,14 @@ export class HostingComponent implements OnInit {
             }
 
           }
-          
+
         }
 
     }
 
     //validacion de VPS que no piden dominio
-    else if(this.producto.subcategoria_id == 10 || 
-            this.producto.subcategoria_id == 11 || 
+    else if(this.producto.subcategoria_id == 10 ||
+            this.producto.subcategoria_id == 11 ||
             this.producto.subcategoria_id == 13){
 
       if(this.validarFormVpsComponent()){
@@ -231,7 +235,7 @@ export class HostingComponent implements OnInit {
           this.router.navigate(['/carrito']);
 
         }
-        
+
       }
 
     }
@@ -244,7 +248,7 @@ export class HostingComponent implements OnInit {
 
     }
 
-   
+
 
   }
 

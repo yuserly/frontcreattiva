@@ -104,7 +104,7 @@
 
     </div>
   -->
-    
+
 
   </div>
 </div>
@@ -169,9 +169,9 @@
   </div>
 </div>
 
+<!-- producto.subcategoria_id == 9 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17 -->
 
-
-<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria_id == 9 || producto.subcategoria_id == 11 || producto.subcategoria_id == 12 || producto.subcategoria_id == 16 || producto.subcategoria_id == 17">
+<div class="card card-border p-3 mt-4" [formGroup]="form" *ngIf="producto.subcategoria.administrable">
   <div class="row px-3">
     <div class="col-md-12 mb-2">
       <h5 id="invalidAdmin"><b>{{vpsnum+1}}. Administración para su servidor</b></h5>
@@ -208,7 +208,7 @@
       class="col-md-12 card card-border p-3"
       style="border: 1.3px solid #999999; cursor: pointer"
     >
-    
+
       <div class="col-md-12">
         <div class="form-check">
           <input
@@ -232,7 +232,7 @@
 
 <!--
 <ng-template #vpswindows>
-  
+
   <div class="card card-border p-3 mt-4" [formGroup]="form">
 
     <div class="row px-3">

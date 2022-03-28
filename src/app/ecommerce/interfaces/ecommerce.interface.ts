@@ -13,7 +13,11 @@ export interface Subcategorias {
   icono: string;
   categoria_id: number;
   categoria:  Categorias;
-  active:   boolean;
+  dominio: boolean,
+  ip:boolean,
+  sistema_operativo:boolean,
+  administrable: boolean,
+  active:   boolean
   preseleccionado: number;
 }
 

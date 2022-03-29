@@ -49,15 +49,21 @@ export class DetallePedidoComponent implements OnInit {
       let index = JSON.parse(localStorage.getItem('index')!);
       let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
       let cdescuento:number = 0;
+      console.log("sssssss");
+      console.log(carrito);
       //var cdescuento = <number>carrito[index]['cupon_descuento'];
 
       carrito.map((p, i) => {
-        
-        if(p['cupon_descuento']!=0){
+
+        if(p['cupon_descuento'] && p['cupon_descuento']!=0){
+
           cdescuento = <number>p['cupon_descuento'];
+
         }
 
       });
+
+      console.log("cupon: "+cdescuento);
 
       if(cdescuento!=0){
         this.validezcupon = 1;

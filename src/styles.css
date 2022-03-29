@@ -1089,6 +1089,10 @@ color: #FFF;
     .owl-theme .owl-nav [class*=owl-] {
         background: #004fc8;
     }
+    .owlopc > .owl-carousel .owl-item img {
+      display: block;
+      width: 60%;
+  }
     /*****/
 
      .footer-fixed {
@@ -1108,4 +1112,15 @@ color: #FFF;
   border-style: dashed!important;
             border-bottom: 2px dashed #8c8b8b;
 }
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: #0054ce!important;
+  color: #fefefe;
+  cursor: default;
+}
+.ngx-pagination{
+  margin: 0px;
+  padding: 0px;
+}
+
 

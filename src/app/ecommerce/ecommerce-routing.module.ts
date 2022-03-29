@@ -96,7 +96,7 @@ const routes: Routes = [
         component:PreguntasFrecuentesComponent
       },
       {
-        path: 'soporte/:ip',
+        path: 'ip',
         component:SoporteComponent
       },
       {

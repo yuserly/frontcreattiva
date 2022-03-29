@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriasService } from '../../services/categorias.service';
 import { PreguntasFrecuentes } from '../../interfaces/ecommerce.interface';
 import { switchMap } from 'rxjs/operators';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -11,26 +12,42 @@ import { switchMap } from 'rxjs/operators';
 })
 export class SoporteComponent implements OnInit {
 
-  p: any= 1
+  //owl
+  owl_opciones: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 2,
+        margin: 10
+      },
+      400: {
+        items: 4
+      },
+      740: {
+        items: 6
+      },
+      940: {
+        items: 7
+      }
+    },
+    nav: true
+  }
 
-  collection: any[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+  page: number= 1;
+  maxSize: number = 3;
 
   ip:string = '';
   mostrarIP:boolean = false;
   mostrarPf:boolean = false;
   PfCargadas:boolean = false;
   mostrarDNS:boolean = false;
+  totalpf: number = 0;
 
   PreguntasFrecuentes: PreguntasFrecuentes[] = [];
   DnsCreattiva: PreguntasFrecuentes[] = [];
@@ -39,7 +56,6 @@ export class SoporteComponent implements OnInit {
 
   constructor(private categoriasServices: CategoriasService, private routeparams: ActivatedRoute,) {
 
-    
 
   }
 
@@ -48,6 +64,11 @@ export class SoporteComponent implements OnInit {
     this.ip = '';
     this.mostrarIP = false;
     this.mostrarDNS = false;
+
+    if(this.routeparams.snapshot.url.join('/')=='ip'){
+      this.mostrarip();
+    }
+
 
   }
 
@@ -81,8 +102,8 @@ export class SoporteComponent implements OnInit {
         this.PfCargadas = true;
         setTimeout(() => {
           this.PreguntasFrecuentes = respuesta;
-          console.log(this.PreguntasFrecuentes);
-
+          this.totalpf = this.PreguntasFrecuentes.length;
+          this.maxSize = 5;
         }, 300);
 
     });

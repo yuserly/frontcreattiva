@@ -19,91 +19,91 @@
 
         <div class="col-md-12 mt-2">
 
+            <div class="">
 
-            <div class="row d-flex justify-content-center">
+				<owl-carousel-o class="owlopc" [options]="owl_opciones">
 
-			  	<div class="col-sm-6 col-6 col-md-2 mt-3" >
+					<ng-template carouselSlide >
+						<div
+						class="card planes-icon plan-active"
+						(click)="preguntasFrecuentes()"
+						>
+						<img alt="" src="../../../../assets/img/preguntas-frecuentes.png" width="70px" style="border-radius: 5px;" />
+						<h5>Preguntas frecuentes</h5>
 
+						</div>
+					</ng-template>
 
-				  	<div
-				    class="card planes-icon plan-active"
-				    (click)="preguntasFrecuentes()"
-				  	>
-				    <img alt="" src="../../../../assets/img/preguntas-frecuentes.png" width="70px" style="border-radius: 5px;" />
-				    <h5>Preguntas frecuentes</h5>
-
-				  	</div>
-
-				</div>
-
-				<div class="col-sm-6 col-6 col-md-2 mt-3" >
+					<ng-template carouselSlide>
 
 
-				  	<div
-				    class="card planes-icon plan-active"
-				  	>
-				    <img alt="" src="../../../../assets/img/video-tutoriales.png" width="70px" style="border-radius: 5px;" />
-				    <h5>Videotutoriales</h5>
+						<div
+						class="card planes-icon plan-active"
+						>
+						<img alt="" src="../../../../assets/img/video-tutoriales.png" width="70px" style="border-radius: 5px;" />
+						<h5>Videotutoriales</h5>
 
-				  	</div>
+						</div>
 
-				</div>
+					</ng-template>
 
-				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-
-
-				  	<div
-				    class="card planes-icon plan-active"
-				    (click)="dns('dns-creattiva')"
-				  	>
-				    <img alt="" src="../../../../assets/img/dns.png" width="70px" style="border-radius: 5px;" />
-				    <h5>DNS Creattiva</h5>
-
-				  	</div>
-
-				</div>
-
-				<div class="col-sm-6 col-6 col-md-2 mt-3" >
+					<ng-template carouselSlide>
 
 
-				  	<div
-				    class="card planes-icon plan-active"
-				    
-				  	>
-				    <img alt="" src="../../../../assets/img/notificar-pago.png" width="70px" style="border-radius: 5px;" />
-				    <h5>Notificar Pago</h5>
+						<div
+						class="card planes-icon plan-active"
+						(click)="dns('dns-creattiva')"
+						>
+						<img alt="" src="../../../../assets/img/dns.png" width="70px" style="border-radius: 5px;" />
+						<h5>DNS Creattiva</h5>
 
-				  	</div>
+						</div>
 
-				</div>
+					</ng-template>
 
-				<div class="col-sm-6 col-6 col-md-2 mt-3" >
-
-
-				  	<div
-				    class="card planes-icon plan-active"
-				    routerLink="/sucursal"
-				  	>
-				    <img alt="" src="../../../../assets/img/sucursal-virtual.png" width="70px" style="border-radius: 5px;" />
-				    <h5>Sucursal Virtual</h5>
-
-				  	</div>
-
-				</div>
-
-				<div class="col-sm-6 col-6 col-md-2 mt-3" >
+					<ng-template carouselSlide>
 
 
-				  	<div
-				    class="card planes-icon plan-active"
-				    (click)="mostrarip()"
-				  	>
-				    <img alt="" src="../../../../assets/img/ip.png" width="70px" style="border-radius: 5px;" />
-				    <h5>Mi IP</h5>
+						<div
+						class="card planes-icon plan-active"
+						
+						>
+						<img alt="" src="../../../../assets/img/notificar-pago.png" width="70px" style="border-radius: 5px;" />
+						<h5>Notificar Pago</h5>
 
-				  	</div>
+						</div>
 
-				</div>
+					</ng-template>
+
+					<ng-template carouselSlide >
+
+
+						<div
+						class="card planes-icon plan-active"
+						routerLink="/sucursal"
+						>
+						<img alt="" src="../../../../assets/img/sucursal-virtual.png" width="70px" style="border-radius: 5px;" />
+						<h5>Sucursal Virtual</h5>
+
+						</div>
+
+					</ng-template>
+
+					<ng-template carouselSlide>
+
+
+						<div
+						class="card planes-icon plan-active"
+						(click)="mostrarip()"
+						>
+						<img alt="" src="../../../../assets/img/ip.png" width="70px" style="border-radius: 5px;" />
+						<h5>Mi IP</h5>
+
+						</div>
+
+					</ng-template>
+
+				</owl-carousel-o>
 
 			</div>
 
@@ -128,22 +128,41 @@
 
 		    	<div *ngIf="mostrarPf">
 
-		    		<h2 class="text-center">Revisa nuestras preguntas frecuentes: </h2> 
+		    		<h2 class="text-center">Revisa nuestras preguntas frecuentes:</h2> 
 
-	    			<ul class="list-group" *ngIf="PfCargadas; else loading">
+					<div *ngIf="PfCargadas; else loading">
 
-					  	<li class="list-group-item d-flex justify-content-between" *ngFor="let item of PreguntasFrecuentes; let i=index">
+						<ul class="list-group">
 
-					  		<h5 style="max-width: 80%;">{{item.titulo}}</h5>
+							<li class="list-group-item d-flex justify-content-between" *ngFor="let item of PreguntasFrecuentes | paginate: {itemsPerPage: 5, currentPage: page, totalItems: totalpf}">
+  
+								<h5 style="max-width: 80%;">{{item.titulo}}</h5>
+  
+							  <span 
+								  class="badge bg-secondary d-flex align-items-center" 
+								  style="background-color: #0054ce!important;cursor:pointer"
+								  routerLink="/soporte/faq/{{item.URL_PAGINA}}"
+							  >
+								  
+								  <i class="fas fa-angle-right"></i>
+							  
+							  </span>
+  
+  
+						  </li>
+  
+					  </ul>
 
-					  		<button type="button" class="btn btn-primary d-none d-md-block d-lg-block" routerLink="/soporte/faq/{{item.URL_PAGINA}}">
-							  Ver más <span class="badge bg-secondary" style="background-color: #0054ce!important;"><i class="fas fa-angle-right"></i></span>
-							</button>
-							<span class="badge bg-secondary d-flex align-items-center" style="background-color: #0054ce!important;"><i class="fas fa-angle-right"></i></span>
-
-						</li>
-
-					</ul>
+					</div>
+						
+					<br>
+					<pagination-controls 
+						(pageChange)="page = $event"
+						previousLabel="Anterior"
+						nextLabel="Siguiente"
+						[maxSize]="maxSize"
+						class="text-center paginador"
+					></pagination-controls>
 
 		    	</div>
 

@@ -38,10 +38,11 @@ import { BuscadorComponent } from './pages/buscador/buscador.component';
 import { FormularioContactoComponent } from './pages/formulario-contacto/formulario-contacto.component';
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
-import { PaginationPipe } from './pipes/paginacion.pipe';
-import { PaginadorComponent } from './pages/paginador/paginador.component';
+//import { PaginationPipe } from './pipes/paginacion.pipe';
+//import { PaginadorComponent } from './pages/paginador/paginador.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { CarouselModule } from 'ngx-owl-carousel-o'; 
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -76,8 +77,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormularioContactoComponent,
     ConfiguracionProductoComponent,
     SoporteComponent,
-    PaginationPipe,
-    PaginadorComponent,
+    //PaginationPipe,
+    //PaginadorComponent,
     PreguntasFrecuentesComponent
   ],
   imports: [
@@ -86,7 +87,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ReactiveFormsModule,
     SharedModule,
     GooglePlaceModule,
-    CarouselModule
+    CarouselModule,
+    NgxPaginationModule
   ],
   exports:[
     CaracteristicasComponent,

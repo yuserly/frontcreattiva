@@ -26,6 +26,7 @@ export class HostingComponent implements OnInit {
   carrito:Carrito[] = [];
   totalcarroarray!: TotalCarro;
   sistemaOperativo: SistemaOperativo[] = [];
+  mostrarBtnContinuarMovil:boolean = true;
 
   // lo usamos para colocarle el numero a los pasos de la configuracion
 

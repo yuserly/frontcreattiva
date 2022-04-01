@@ -29,6 +29,7 @@ export class DetallePedidoComponent implements OnInit {
    @Input() aplicarCupon!:number;
    @Input() mostrarBtnFinalizarMovil!:boolean;
    @Input() mostrarBtnComprarMovil!:boolean;
+   @Input() mostrarBtnContinuarMovil!:boolean;
    @Input() mostrarContinuarLink!:boolean;
 
   validezcupon:number = 0;

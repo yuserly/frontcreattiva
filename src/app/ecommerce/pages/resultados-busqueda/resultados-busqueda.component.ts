@@ -14,9 +14,10 @@ import {
 })
 export class ResultadosBusquedaComponent implements OnInit {
 
-  statusResultado:boolean = false;
   productos_resultado!: Productos[];
   productosbuscadosarray!: Productos[];
+  mostrarbuscador:boolean = false;
+
   
   constructor(
     private router: Router,
@@ -28,11 +29,9 @@ export class ResultadosBusquedaComponent implements OnInit {
     if (localStorage.getItem('resultados_busqueda')) {
 
       this.productos_resultado = JSON.parse(localStorage.getItem('resultados_busqueda')!);
-      this.statusResultado = true;
     } else {
 
       this.productos_resultado = [];
-      this.statusResultado = false;
     }
 
     console.log("resultados de busqueda");
@@ -55,15 +54,31 @@ export class ResultadosBusquedaComponent implements OnInit {
 
   }
 
+  updtproductosmovil(productosb:Productos[]){
+
+    this.productosbuscadosarray = productosb;
+
+    if(this.productosbuscadosarray.length>0){
+
+      if (localStorage.getItem('resultados_busqueda')) {
+
+        localStorage.setItem('resultados_busqueda', JSON.stringify(this.productosbuscadosarray));
+  
+      }
+      
+      this.productos_resultado = this.productosbuscadosarray;
+
+    }else{
+      this.productos_resultado = [];
+    }
+
+
+  }
+
   updateproductosb(productosb:Productos[]){
 
     this.productosbuscadosarray = productosb;
     this.productos_resultado = this.productosbuscadosarray;
-    if(this.productosbuscadosarray.length>0){
-      this.statusResultado = true;
-    }else{
-      this.statusResultado = false;
-    }
 
   }
 
@@ -81,53 +96,63 @@ export class ResultadosBusquedaComponent implements OnInit {
     }
   }
 
-  aggcart(producto: Productos,  carro: Carrito[]){
+  productossearch(){
 
-      let periodoselect = 0;
-
-          this.categoriasServices
-            .getperiodos(producto.id_producto)
-            .subscribe((resp2) => {
-
-              resp2.forEach((element) => {
-                if(element.preseleccionado==1){
-                  periodoselect = element.id_periodo;
-                }
-
-              });
-
-              carro.push({
-                producto: producto,
-                periodo: periodoselect,
-                dominio: '',
-                sistemaoperativo: 0,
-                versionsistema: 0,
-                administrar: 0,
-                ip: '',
-                periodos: resp2,
-                cantidad: 1,
-                cupon_descuento: 0,
-              });
-
-              const cantidadcarro = carro.length;
-              const index = cantidadcarro - 1;
-
-              localStorage.setItem('index', JSON.stringify(index));
-              localStorage.setItem('carrito', JSON.stringify(carro));
-
-              let comprasucursal = localStorage.getItem('comprasucursal');
-
-              if(comprasucursal){
-
-                this.router.navigate(['sucursal/configuracion']);
-              }else{
-                this.router.navigate(['/configuracion']);
-
-              }
-
-            });
+   
 
   }
+
+  aggcart(producto: Productos,  carro: Carrito[]){
+
+    let periodoselect = 1;
+
+        this.categoriasServices
+          .getperiodos(producto.id_producto)
+          .subscribe((resp2) => {
+
+            /*
+            resp2.forEach((element) => {
+              if(element.preseleccionado==1){
+                periodoselect = element.id_periodo;
+              }
+
+            });*/
+
+            periodoselect = producto.subcategoria.preseleccionado;
+
+            carro.push({
+              producto: producto,
+              periodo: periodoselect,
+              dominio: '',
+              sistemaoperativo: 0,
+              versionsistema: 0,
+              administrar: 0,
+              ip: '',
+              periodos: resp2,
+              cantidad: 1,
+              cupon_descuento: 0,
+            });
+
+            const cantidadcarro = carro.length;
+            const index = cantidadcarro - 1;
+
+            localStorage.setItem('index', JSON.stringify(index));
+            localStorage.setItem('carrito', JSON.stringify(carro));
+
+            let comprasucursal = localStorage.getItem('comprasucursal');
+
+            if(comprasucursal){
+
+              this.router.navigate(['sucursal/configuracion']);
+            }else{
+              this.router.navigate(['/configuracion']);
+
+            }
+
+          });
+
+  }
+
 
 
 

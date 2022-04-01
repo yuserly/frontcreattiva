@@ -82,6 +82,8 @@ export class NavComponent implements OnInit {
   openSearch = false;
 
   btnSearch:string = 'fas fa-search';
+
+  @Input() mostrarbuscador!:boolean;
   //**************** */
 
   categorias: Categorias[] = [];

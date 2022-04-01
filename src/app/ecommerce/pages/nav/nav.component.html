@@ -90,7 +90,7 @@
 
       </div>
 
-      <div class="col-md-12 px-4 mt-2" *ngIf="carvisible">
+      <div class="col-md-12 px-4 mt-2" *ngIf="carvisible && mostrarbuscador!==false">
 
         <app-buscador (productosbusc)="productosp($event)"></app-buscador>
 
@@ -116,7 +116,7 @@
 
           </ng-template>
 
-          <a routerLink="/carrito">
+          <a routerLink="/carrito" *ngIf="countcarro>0">
 
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" viewBox="0 0 128.000000 128.000000" preserveAspectRatio="xMidYMid meet">
 

@@ -16,7 +16,7 @@ import { CategoriasService } from '../../services/categorias.service';
 export class BuscadorComponent implements OnInit {
 
   productosbuscados: Productos[] = [];
-
+  textsearch: string = '';
   form:FormGroup = this.fb.group({
     textobuscar: [
       '',
@@ -34,6 +34,7 @@ export class BuscadorComponent implements OnInit {
     if (localStorage.getItem('resultados_busqueda')) {
       localStorage.removeItem('resultados_busqueda');
     }
+
 
   }
 
@@ -57,6 +58,7 @@ export class BuscadorComponent implements OnInit {
     }
 
     let textoBusqueda = this.form.value.textobuscar;
+    localStorage.setItem('textobuscado', JSON.stringify(textoBusqueda));
 
     this.categoriasServices.getProductosCoincidentes(textoBusqueda).subscribe((productosEncontrados) => {
       console.log(productosEncontrados);

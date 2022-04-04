@@ -74,7 +74,9 @@
 </nav>
 
 
-<nav class="navbar navbar-expand-lg navbar-light d-sm-block d-lg-none d-md-none" style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);height: 60px;">
+<nav  [ngClass]="countcarro>0 && carvisible? 'carmovilfull' : 'carmovilclear'"
+      class="navbar navbar-expand-lg navbar-light d-sm-block d-lg-none d-md-none" 
+      style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);">
 
   <div class="container">
 
@@ -110,7 +112,7 @@
 
             <a class="d-flex align-items-center" style="text-decoration: none;visibility: hidden;" routerLink="/carrito">
 
-              <h6 style="color: #fff" class="me-4">FINALIZAR COMPRA</h6>
+              <h6 style="color: #fff" class="me-4">FINALIZAR COMPRA...</h6>
   
             </a>
 

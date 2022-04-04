@@ -96,6 +96,10 @@ const routes: Routes = [
         component:PreguntasFrecuentesComponent
       },
       {
+        path: 'soporte/faq',
+        component:SoporteComponent
+      },
+      {
         path: 'ip',
         component:SoporteComponent
       },

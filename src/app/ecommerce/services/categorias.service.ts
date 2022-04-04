@@ -14,6 +14,7 @@ import {
   Carrito,
   SistemaOperativo,
   Regiones, Comunas,
+  PreguntasFrecuentes
 } from '../interfaces/ecommerce.interface';
 import { Paises } from '../interfaces/paises.interfaces';
 
@@ -33,6 +34,11 @@ export class CategoriasService {
   // productos buscados
   getProductosCoincidentes(nombre: string): Observable<Productos[]> {
     return this.http.get<Productos[]>(`${this.urlBase}/getproductosbuscados/${nombre}`);
+  }
+
+  //preguntas frecuentes buscadas
+  getPreguntasfrecuentesCoincidentes(nombre: string): Observable<PreguntasFrecuentes[]> {
+    return this.http.get<PreguntasFrecuentes[]>(`${this.urlBase}/getpreguntasfrecuentesbuscadas/${nombre}`);
   }
 
   // regiones

@@ -163,12 +163,22 @@ btnSearch:string = 'fas fa-search';
     this.openSubcategorias = opc;
   }
   menuSearch(){
+    let carrito = JSON.parse(localStorage.getItem('carrito')!);
+
     if(this.openSearch){
       this.openSearch = false;
       this.btnSearch = 'fas fa-search';
+
+      if (carrito && carrito.lenght>0) {
+        this.margintop = 110;
+      }else{
+        this.margintop = 0;
+      }
+
     }else{
       this.openSearch = true;
       this.btnSearch = 'far fa-times-circle';
+      this.margintop = 110;
     }
   }
 

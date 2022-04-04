@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriasService } from '../../services/categorias.service';
 import { PreguntasFrecuentes } from '../../interfaces/ecommerce.interface';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
@@ -49,12 +50,19 @@ export class SoporteComponent implements OnInit {
   mostrarDNS:boolean = false;
   totalpf: number = 0;
 
+  form:FormGroup = this.fb.group({
+    textobuscarpf: [
+      '',
+      [Validators.required],
+    ]
+  });
+
   PreguntasFrecuentes: PreguntasFrecuentes[] = [];
   DnsCreattiva: PreguntasFrecuentes[] = [];
 
   @ViewChild('subfocoresultado') subfocoresultado!: ElementRef;
 
-  constructor(private categoriasServices: CategoriasService, private routeparams: ActivatedRoute,) {
+  constructor(private categoriasServices: CategoriasService, private routeparams: ActivatedRoute,private fb: FormBuilder) {
 
 
   }
@@ -67,6 +75,9 @@ export class SoporteComponent implements OnInit {
 
     if(this.routeparams.snapshot.url.join('/')=='ip'){
       this.mostrarip();
+    }
+    if(this.routeparams.snapshot.url.join('/')=='soporte/faq'){
+      this.preguntasFrecuentes();
     }
 
 
@@ -104,7 +115,7 @@ export class SoporteComponent implements OnInit {
           this.PreguntasFrecuentes = respuesta;
           this.totalpf = this.PreguntasFrecuentes.length;
           this.maxSize = 5;
-        }, 300);
+        }, 100);
 
     });
 
@@ -143,6 +154,77 @@ export class SoporteComponent implements OnInit {
     this.mostrarIP = false;
     this.mostrarPf = false;
     this.mostrarDNS = false;
+
+  }
+
+  busquedageneralpf(){
+    
+    if(this.form.invalid){
+      this.form.markAllAsTouched()
+      return;
+    }
+
+    let resultados:any = [];
+
+    /*
+
+    if (localStorage.getItem('resultados_busqueda')) {
+
+      this.PreguntasFrecuentes = JSON.parse(localStorage.getItem('resultados_busqueda')!);
+
+    } else {
+
+      this.PreguntasFrecuentes = [];
+
+    }
+    */
+
+    let textoBusqueda = this.form.value.textobuscarpf;
+
+    console.log("pregunta buscada: "+textoBusqueda);
+
+    this.categoriasServices.getPreguntasfrecuentesCoincidentes(textoBusqueda).subscribe((preguntasEncontradas) => {
+      console.log(preguntasEncontradas);
+
+      this.PreguntasFrecuentes = preguntasEncontradas;
+      this.totalpf = this.PreguntasFrecuentes.length;
+      this.maxSize = 5;
+
+      /*
+      this.PreguntasFrecuentes = productosEncontrados;
+
+      localStorage.setItem('resultados_busqueda', JSON.stringify(this.productosbuscados));
+
+      console.log("nuevos productos");
+      console.log(this.productosbuscados);
+
+      this.productosbusc.emit(this.productosbuscados);
+
+      this.router.navigate(['/resultados-busqueda']);
+      */
+      
+    });
+
+    /*
+
+    localStorage.setItem('textobuscado', JSON.stringify(textoBusqueda));
+
+    this.categoriasServices.getProductosCoincidentes(textoBusqueda).subscribe((productosEncontrados) => {
+      console.log(productosEncontrados);
+
+      this.PreguntasFrecuentes = productosEncontrados;
+
+      localStorage.setItem('resultados_busqueda', JSON.stringify(this.productosbuscados));
+
+      console.log("nuevos productos");
+      console.log(this.productosbuscados);
+
+      this.productosbusc.emit(this.productosbuscados);
+
+      this.router.navigate(['/resultados-busqueda']);
+      
+    });
+    */
 
   }
 

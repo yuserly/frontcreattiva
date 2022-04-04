@@ -1122,5 +1122,11 @@ color: #FFF;
   margin: 0px;
   padding: 0px;
 }
+.carmovilfull{
+  height: auto;
+}
+.carmovilclear{
+  height: 60px;
+}
 
 

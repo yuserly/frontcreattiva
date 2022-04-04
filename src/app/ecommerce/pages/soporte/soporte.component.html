@@ -130,6 +130,46 @@
 
 		    		<h2 class="text-center">Revisa nuestras preguntas frecuentes:</h2> 
 
+					<div
+						class="d-flex justify-content-center"
+						
+					>
+					
+					<div class="input-group mt-2 mb-2" 
+						 style="width: 100%;max-width: 380px;    border: 1.3px solid #0054ce;"
+						 [formGroup]="form"
+					>
+					
+						<input
+							class="form-control"
+							type="search"
+							placeholder="¿Qué Buscas?"
+							aria-label="¿Qué Buscas?"
+							formControlName="textobuscarpf"
+        					(keyup.enter)="busquedageneralpf()"
+							style="
+							border: unset;
+							border-top-right-radius: 0px;
+							border-bottom-right-radius: 0px;
+							"
+						/>
+
+						<div class="input-group-prepend" (click)="busquedageneralpf()">
+
+							<span class="input-group-text" id="btn-search">
+							<i
+								class="fas fa-search"
+								style="font-size: 1.5rem; color: #000; cursor: pointer"
+							></i>
+							</span>
+							
+						</div>
+
+					</div>
+
+
+				</div>
+
 					<div *ngIf="PfCargadas; else loading">
 
 						<ul class="list-group">

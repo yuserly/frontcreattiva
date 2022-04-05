@@ -20,6 +20,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class FacturacionComponent implements OnInit {
 
    //owl
+   /*
    owl_metodosdepago: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -45,7 +46,7 @@ export class FacturacionComponent implements OnInit {
       }
     },
     nav: true
-  }
+  }*/
 
   // @ViewChild('modalv') modal!: ElementRef;
   totalcarroarray!: TotalCarro;

@@ -146,13 +146,15 @@ btnSearch:string = 'fas fa-search';
     }
     //actualizar n carrito
     this.itemsCarrito();
+
     let carrito = JSON.parse(localStorage.getItem('carrito')!);
 
-    if (carrito.length>0) {
-      this.margintop = 110;
-    }else{
+    if (!carrito || carrito.length == 0) {
       this.margintop = 0;
+    }else{
+      this.margintop = 110;
     }
+
 
   }
 
@@ -271,10 +273,10 @@ btnSearch:string = 'fas fa-search';
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
-    if(carrito.length>0){
-      this.DominiosService.totalCarro = carrito.length;
-    }else{
+    if (!carrito || carrito.length == 0) {
       this.DominiosService.totalCarro = 0;
+    }else{
+      this.DominiosService.totalCarro = carrito.length;
     }
 
   }

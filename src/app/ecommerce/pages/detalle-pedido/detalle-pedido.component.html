@@ -10,18 +10,18 @@
 
     <div class="row pt-2 d-flex align-items-center" *ngFor="let item of totalcarroarray.productos;">
       
-      <div class="col-md-7">
+      <div class="col-md-6">
         
         <h6 class="px-3">{{item.nombre}}</h6>
 
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-6">
 
-        <h6 class="px-3">{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
+        <h6 class="px-1">{{item.precio | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
 
-        <small class="px-3" style="text-decoration: line-through" *ngIf="item.precioold>0"
-          >{{item.precioold | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small
+        <small style="font-size:12" class="px-1" *ngIf="item.precioold>0 && item.precio>0"
+          >antes <span style="text-decoration: line-through">{{item.precioold | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</span></small
         >
 
       </div>
@@ -31,6 +31,26 @@
         <hr class="hr_detallescompra" />
 
       </div>
+
+      <div class="col-md-6" *ngIf="item.ahorro>0">
+      
+        <h6 class="px-3">Descuento para {{item.nombre}}</h6>
+
+      </div>
+
+      <div class="col-md-6" *ngIf="item.ahorro>0">
+
+        <h6 class="px-1">{{(item.ahorro*-1) | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</h6>
+
+      </div>
+
+      <div class="col-md-12" *ngIf="item.ahorro>0">
+
+        <hr class="hr_detallescompra" />
+
+      </div>
+
+
 
     </div>
 
@@ -164,7 +184,7 @@
 
         <h6 class="px-3 pt-1 azul-crt"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
 
-        <small class="px-3">Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small>
+        <small class="px-3" *ngIf="totalcarroarray.ahorro>0">Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small>
 
       </div>
 

@@ -21,7 +21,17 @@ export class CarroComponent implements OnInit {
 
   constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) {
 
-    this.validarconfig();
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
+    if (!carrito || carrito.length == 0) {
+
+      this.router.navigate(['/']);
+      
+    }else{
+
+      this.validarconfig();
+
+    }
 
       // if(config.config){
       //   localStorage.setItem('index', JSON.stringify(config.index[0]));

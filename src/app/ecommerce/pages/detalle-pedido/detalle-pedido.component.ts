@@ -50,8 +50,9 @@ export class DetallePedidoComponent implements OnInit {
       let index = JSON.parse(localStorage.getItem('index')!);
       let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
       let cdescuento:number = 0;
-      console.log("sssssss");
-      console.log(carrito);
+      console.log("detalles del carrito");
+      console.log(this.totalcarroarray);
+      console.log("....................");
       //var cdescuento = <number>carrito[index]['cupon_descuento'];
 
       carrito.map((p, i) => {
@@ -64,7 +65,7 @@ export class DetallePedidoComponent implements OnInit {
 
       });
 
-      console.log("cupon: "+cdescuento);
+      //console.log("cupon: "+cdescuento);
 
       if(cdescuento!=0){
         this.validezcupon = 1;

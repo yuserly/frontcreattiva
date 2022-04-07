@@ -992,6 +992,9 @@ color: #FFF;
   
   @media screen and (max-width:800px ) {
 
+    .opcion-metodo-pago{
+      height: auto!important;
+    }
     .accordion-body {
       height: 60vh;
       overflow-y: scroll;
@@ -1131,6 +1134,18 @@ color: #FFF;
 }
 .carmovilclear{
   height: 60px;
+}
+.opcion-metodo-pago{
+  width: 100%;
+  border-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  cursor:pointer
 }
 
 

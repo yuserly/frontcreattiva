@@ -170,8 +170,9 @@ export class ModalDominioComponent implements OnInit {
       }
     );
 
-
-    //console.log(JSON.parse(localStorage.getItem('carrito')!))
+    console.log("productos en el carro - ventana modal");
+    console.log(JSON.parse(localStorage.getItem('carrito')!));
+    console.log("......................................");
   }
 
   agregardominiobuscado(){

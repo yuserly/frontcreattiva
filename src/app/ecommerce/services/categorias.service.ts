@@ -172,6 +172,7 @@ export class CategoriasService {
   }
 
   calculototalcarro() {
+
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
     let productos: ProductoCarro[] = [];
     let productoscarro: TotalCarro;
@@ -191,12 +192,19 @@ export class CategoriasService {
 
     let nombreproducto: string = '';
 
+    let contDominios: number = 0;
+
+    let descuentodominio: number = 0;
+
     console.log("datos del carrito, detalles:");
     console.log(carrito);
+
 
     carrito.forEach((element, i) => {
 
         element.periodos.forEach((element2) => {
+
+          console.log(element2);
 
           if (element.periodo == element2.id_periodo) {
 
@@ -208,6 +216,35 @@ export class CategoriasService {
               precioold = element2.precio*<number>element.cantidad;
               ahorroa = element2.ahorro*<number>element.cantidad;
 
+            }else if(element.producto.subcategoria_id==31){ 
+              //aplicar descuento 1 año gratis solo para periodos 2 y 3 años
+
+              console.log("tiene hosting: "+this.consultarServiciosHost());
+
+              if(this.consultarServiciosHost()==false && (element.periodo==3 || element.periodo==4)){
+                
+                contDominios++;
+
+                if(contDominios==1){
+                  
+                  precio = element2.precio;
+                  precioold = 0;
+                  ahorroa = element2.precio;
+                  descuentodominio = element2.precio*-1;
+                }else{
+                  precio = element2.precio;
+                  precioold = element2.precio;
+                  ahorroa = 0;
+                }
+
+              }else{
+                
+                precio = element2.precio;
+                precioold = element2.precio;
+                ahorroa = 0;
+
+              }
+
             }else{
 
               precio = element2.precio_descuento;
@@ -216,7 +253,7 @@ export class CategoriasService {
 
             }
 
-
+            
             if(element.producto.subcategoria_id==31){
               nombreproducto = "Registro de dominio "+element.dominio;
             }else{
@@ -255,7 +292,7 @@ export class CategoriasService {
       neto += element.precio;
       ahorro += element.ahorro;
     });
-
+    neto += descuentodominio;
     iva = Math.round(neto * 0.19);
     total = neto + iva;
 
@@ -351,4 +388,51 @@ export class CategoriasService {
       `${this.urlBase}/getfaq/${slug}`
     );
   }
+
+
+  consultarServiciosHost():boolean{
+    
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    let tienehosting = false;
+
+    if (usuario) {
+
+      this.getempresa(usuario.email)
+      .subscribe((resp) => {   
+
+        console.log("datos de empresa: ");
+        console.log(resp);
+        
+        this.getservicios(resp.data.id_empresa)
+        .subscribe((resp2) => {
+          
+          tienehosting = resp2.status;
+          
+          console.log("tiene servicios: ");
+        console.log(resp2.status);
+          
+        });
+      
+
+        
+      });
+
+    }else{
+
+      tienehosting = true;
+
+    }
+
+    return tienehosting;
+
+    
+    
+  }
+
+  getservicios(idmpresa:number):Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/getconsultarservicios/${idmpresa}`);
+  }
+
 }

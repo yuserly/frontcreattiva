@@ -23,6 +23,7 @@ export class CarroComponent implements OnInit {
 
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
 
+    /*
     if (!carrito || carrito.length == 0) {
 
       this.router.navigate(['/']);
@@ -32,6 +33,16 @@ export class CarroComponent implements OnInit {
       this.validarconfig();
 
     }
+    */
+      if (carrito) {
+
+        if(carrito.length > 0){
+
+          this.validarconfig();
+
+        }
+        
+      }
 
       // if(config.config){
       //   localStorage.setItem('index', JSON.stringify(config.index[0]));

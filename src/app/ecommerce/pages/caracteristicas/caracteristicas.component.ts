@@ -57,10 +57,15 @@ export class CaracteristicasComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollPlanes = false;
-    setTimeout(() => {
-      this.buscarproducto(this.subcategorias[0].id_subcategoria);
 
-    }, 1000);
+    if(this.subcategorias.length>0){
+
+      setTimeout(() => {
+        this.buscarproducto(this.subcategorias[0].id_subcategoria);
+  
+      }, 1000);
+
+    }
 
   }
 

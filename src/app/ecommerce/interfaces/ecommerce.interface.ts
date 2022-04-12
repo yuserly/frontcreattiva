@@ -101,6 +101,7 @@ export interface Carrito{
   periodos:Periodo[];
   cantidad?: number;
   cupon_descuento?: number;
+  code_cupon_descuento?: number;
 
 }
 

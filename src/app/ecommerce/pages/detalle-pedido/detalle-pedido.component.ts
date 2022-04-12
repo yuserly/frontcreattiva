@@ -121,10 +121,12 @@ export class DetallePedidoComponent implements OnInit {
 
           if(resp['tipo_descuento']==1){ //monto fijo
              carrito[0].cupon_descuento = resp['monto'];
+             carrito[0].code_cupon_descuento = cupon;
              
           }else if(resp['tipo_descuento']==2){ //porcentaje de descuento
             const descc = (resp['monto'] * producto.ahorro)/100;
             carrito[0].cupon_descuento = descc;
+            carrito[0].code_cupon_descuento = cupon;
           }
 
           localStorage.setItem('carrito',JSON.stringify(carrito));
@@ -147,42 +149,6 @@ export class DetallePedidoComponent implements OnInit {
 
       let productoscarro = this.CategoriasService.calculototalcarro();
       this.totalcarrod.emit(productoscarro);
-      
-
-    /*
-
-      if(resp['monto']!=0){
-
-        //validar que haya sido ingresado algún producto compatible con el cupon
-        resp['subcategorias'].forEach((element) => {
-
-          if(producto.subcategoria_id==element.subcategoria_id){
-            productoexiste = true;
-          }
-
-        });
-        //************
-
-        if(resp['tipo_descuento']==1){ //monto fijo
-           carrito[index].cupon_descuento = resp['monto'];
-           
-        }else if(resp['tipo_descuento']==2){ //porcentaje de descuento
-          const descc = (resp['monto'] * producto.ahorro)/100;
-          carrito[index].cupon_descuento = descc;
-        }
-
-        localStorage.setItem('carrito',JSON.stringify(carrito));
-        this.validezcupon = 1;
-
-      }else{
-
-        this.validezcupon = 2;
-
-      }
-
-      let productoscarro = this.CategoriasService.calculototalcarro();
-      this.totalcarrod.emit(productoscarro);
-    */
 
     });
 
@@ -196,6 +162,7 @@ export class DetallePedidoComponent implements OnInit {
 
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    carrito[index].cupon_descuento = 0;
     carrito[index].cupon_descuento = 0;
     localStorage.setItem('carrito',JSON.stringify(carrito));
     this.validezcupon = 0;

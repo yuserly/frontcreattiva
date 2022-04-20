@@ -39,22 +39,52 @@
               >
                 <div class="row" style="width: 100%">
                   <div class="col-12 col-sm-12 col-md-5 d-flex align-items-center">
-                    <h6>
                       <!-- <h6 class="px-3 pt-3"><b>Web Hosting</b></h6> -->
 
-                      <h6 class="px-3">{{ item.producto.nombre }}</h6>
-                    </h6>
+                      <div>
+
+                        <h6 class="mb-0">{{ item.producto.nombre }}</h6>
+                        <p class="mb-0">por 
+                          
+                          <ng-container *ngFor="let periodo of item.periodos">
+
+                              <b *ngIf="periodo.id_periodo==item.periodo">
+                                {{periodo.periodo}}
+                              </b>
+
+                          </ng-container>
+                          </p>
+                        <small>
+                          
+                          <b>{{ item.dominio }}</b>
+
+                            <button
+                              *ngIf="item.dominio!='' && item.producto.subcategoria_id==1"
+                              type="button"
+                              (click)="limpiarDomGuardado(i)"
+                              class="btn px-2 btn-outline-dark btn-edit ms-1"
+                            >
+                              Cambiar
+                              <i class="ms-1 far fa-edit"></i>
+                            </button>
+                        
+                        </small>
+
+                      </div>
+                      
                   </div>
 
                   <div
-                    class="col-md-5 col-8 col-sm-8 d-flex justify-content-center align-items-center"
+                    class="col-md-5 col-8 col-sm-8 mt-3 mt-sm-0"
                   >
+
+                    <h6>Periodo de pago</h6>
                     <select
-                      class="form-control selectperiododominio"
+                      class="form-select selectperiododominio"
                       id="0"
                       keyarray="0"
                       [value]="item.periodo"
-                      style="width: 70%; margin-right: 20px"
+                      style="width: 80%; margin-right: 20px"
                       (change)="cambiarperiodo(i,$event.target)"
                     >
 

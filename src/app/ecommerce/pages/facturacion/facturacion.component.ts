@@ -246,7 +246,19 @@ export class FacturacionComponent implements OnInit {
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
 
     this.CategoriasService.getpaises().subscribe((resp) => {
-      this.paises = resp;
+
+      let paisesall:any = [];
+
+      resp.forEach((element) => {
+
+        paisesall.push(element.name.common);
+
+      })
+
+      //this.paises = resp;
+      this.paises = paisesall.sort();
+
+
     });
 
     this.CategoriasService.getRegiones().subscribe((resp) => {

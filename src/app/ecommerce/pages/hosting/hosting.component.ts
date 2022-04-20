@@ -33,7 +33,7 @@ export class HostingComponent implements OnInit {
   dominionum:number = 0;
   vpsnum:number = 2;
   periodonum:number = 0;
-  aplicarCupon:number = 1;
+  aplicarCupon:number = 0;
 
 
 

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let usuario = JSON.parse(localStorage.getItem('usuario')!);
 
-    if (usuario || usuario.length > 0) {
+    if (usuario) {
       this.categoriasService.getempresa(usuario.email).subscribe((resp) => {
         console.log(resp)
         if (resp.data) {

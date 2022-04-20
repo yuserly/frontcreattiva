@@ -254,8 +254,10 @@ export class CategoriasService {
             }
 
             
-            if(element.producto.subcategoria_id==31){
+            if(element.producto.subcategoria_id==31){ //dominios
               nombreproducto = "Registro de dominio "+element.dominio;
+            }else if(element.producto.subcategoria_id==1){ //planes hosting
+              nombreproducto = element.producto.nombre+" "+element.dominio;
             }else{
               nombreproducto = element.producto.nombre;
             }
@@ -433,6 +435,11 @@ export class CategoriasService {
   getservicios(idmpresa:number):Observable<any>{
 
     return this.http.get<any>(`${this.urlBase}/getconsultarservicios/${idmpresa}`);
+  }
+
+  getbanners():Observable<any>{
+
+    return this.http.get<any>(`${this.urlBase}/getbanners`);
   }
 
 }

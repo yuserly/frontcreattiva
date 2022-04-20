@@ -65,6 +65,9 @@ export class CarroComponent implements OnInit {
 
     this.carrito = carrito;
 
+    console.log("componente carrito");
+    console.log(this.carrito);
+
     if(!carrito || carrito.length == 0){
       this.statusCarrito = 0;
       this.itemsCarrito();
@@ -86,6 +89,17 @@ export class CarroComponent implements OnInit {
     this.faltaconfig = config.config;
 
 
+  }
+
+  limpiarDomGuardado(i:number){
+    let index = JSON.parse(localStorage.getItem('index')!);
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    carrito[index].dominio = '';
+    localStorage.setItem('carrito',JSON.stringify(carrito));
+
+    localStorage.setItem('index', JSON.stringify(i));
+    this.router.navigate(['/configuracion']);
+    
   }
 
   eliminarcarro(i:number){
@@ -196,7 +210,10 @@ export class CarroComponent implements OnInit {
 
     this.totalcarroarray = carrito;
 
+
   }
+
+
 
   configurar(i:number){
     localStorage.setItem('index', JSON.stringify(i));

@@ -2,6 +2,10 @@
   font-family: amazon;
   src: url('./assets/fonts/AmazonEmber_Rg.ttf');
 }
+.carousel-inner{
+  max-height: 333px;
+  min-height: 333px;
+}
 input, h1, h2, h3, h4, h5, h6, span, a, p, strong,li,button, label{
   font-family: amazon!important;
 }
@@ -652,6 +656,11 @@ box-shadow: rgb(0 0 0 / 2%) 0px 0px 0px 0px, rgb(27 31 35 / 15%) 0px 1px 0px 0px
 }
 
 @media only screen and (max-width: 600px) {
+  .carousel-inner{
+    margin-top: 60px;
+    max-height: 288px!important;
+    min-height: 288px!important;
+  }
   .title-section{
     font-size: 2rem;
   }
@@ -724,7 +733,14 @@ font-size: 20px;
 .btn-metodospago{
   border-color: #D3CFCD!important;
   font-size: 20px;
+  height:140px;
+  width: 140px;
+  border-radius: 15px;
+  cursor:pointer;
   }
+.opcion-metodo-pago > .container-img{
+  height:70px;
+}
 .btn-check{
 color: #0d6efd!important;
 border-color: #0d6efd!important;
@@ -1090,6 +1106,18 @@ color: #FFF;
       color: #FFF;
       border: unset;
     }
+
+    .btn-metodospago{
+      height:auto!important;
+      width: 100%!important;
+      display: inline-flex!important;
+      }
+      .opcion-metodo-pago > .container-img{
+        height:60px!important;
+      }
+      .opcion-metodo-pago > p{
+        font-size: 15px!important;
+      }
   
   }
   /*owl*/
@@ -1142,9 +1170,10 @@ color: #FFF;
   border-bottom-right-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  height: 12vh;
+  /*height: 12vh;*/
+  /*
   display: flex;
-  align-items: center;
+  align-items: center;*/
   cursor:pointer
 }
 

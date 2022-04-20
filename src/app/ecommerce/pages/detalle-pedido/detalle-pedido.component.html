@@ -54,7 +54,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="aplicarCupon==1">
 
       <div class="col-md-12 px-4">
 
@@ -138,7 +138,7 @@
 
     </div>
 
-    <hr class="hr_detallescompra" />
+    <hr class="hr_detallescompra" *ngIf="aplicarCupon==1" />
 
     <div class="row pb-1">
 

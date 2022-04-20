@@ -12,9 +12,11 @@ import Swal from 'sweetalert2';
 export class CodigoRapidoComponent implements OnInit {
 
   correo: string = '';
+  contador:number = 6;
+  errorCodigo:boolean = false;
 
   form: FormGroup = this.fb.group({
-    code: ['', [Validators.required, Validators.minLength(6)]],
+    code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
   });
 
   constructor(private categoriasService: CategoriasService,
@@ -31,7 +33,15 @@ export class CodigoRapidoComponent implements OnInit {
     this.correo = usuario.email;
   }
 
+  validarcaracteres(event: any){
+    //console.log(event.target.value.length);
+    this.contador = 6 - event.target.value.length;
+    this.errorCodigo = false;
+  }
+
   continuar(){
+
+    this.errorCodigo = false;
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -49,7 +59,13 @@ export class CodigoRapidoComponent implements OnInit {
       console.log(resp);
 
       if (resp.data) {
+
+        this.errorCodigo = false;
+
         if (resp.data.token) {
+
+          this.errorCodigo = false;
+
           if (resp.data.empresas.lenght > 1) {
             localStorage.setItem('token', resp.data.token);
             this.router.navigate(['/seleccionar-empresa']);
@@ -62,21 +78,28 @@ export class CodigoRapidoComponent implements OnInit {
             this.router.navigate(['/facturacion']);
           }
         } else {
+          this.errorCodigo = true;
+
+          /*
           Swal.fire({
             icon: 'error',
             title: 'Codigo incorrecto',
             showConfirmButton: false,
             timer: 1500
-          })
+          })*/
         }
       }else{
 
+        this.errorCodigo = true;
+
+        /*
         Swal.fire({
           icon: 'error',
           title: 'Codigo incorrecto',
           showConfirmButton: false,
           timer: 1500
         })
+        */
 
       }
     });

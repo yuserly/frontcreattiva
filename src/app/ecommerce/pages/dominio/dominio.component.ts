@@ -52,10 +52,47 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     console.log(carrito);
     console.log(carrito[index].dominio);
-    if(carrito[index].dominio){
-      console.log("Dominio:" +carrito[index].dominio);
-      this.dominioguardado = <string>carrito[index].dominio;
+    this.updtglosadetalles(carrito);
+
+  }
+
+  updtglosadetalles(data:Carrito[]){
+
+    if(data.length>0){
+
+      data.reverse().forEach((element) => {
+
+        let cont = 0;
+        
+        if(element.producto.subcategoria_id == 31){
+          cont++;
+          if(cont==1){
+  
+            let index = JSON.parse(localStorage.getItem('index')!);
+  
+            let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+  
+            carrito[index].dominio = element.dominio;
+  
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            
+          }
+        }
+  
+      });
+
+    }else{
+
+      let index = JSON.parse(localStorage.getItem('index')!);
+  
+      let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+      carrito[index].dominio = '';
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+
     }
+    
 
   }
 
@@ -65,6 +102,9 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     carrito[index].dominio = this.dominioguardado;
     localStorage.setItem('carrito',JSON.stringify(carrito));
+
+    let productoscarro = this.CategoriasService.calculototalcarro();
+    this.totalcarrod.emit(productoscarro);
   }
   guardardominio(){
     if(this.form2.invalid){
@@ -81,6 +121,9 @@ export class DominioComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     carrito[index].dominio = this.dominioguardado;
     localStorage.setItem('carrito',JSON.stringify(carrito));
+
+    let productoscarro = this.CategoriasService.calculototalcarro();
+    this.totalcarrod.emit(productoscarro);
 
 
 
@@ -152,9 +195,13 @@ export class DominioComponent implements OnInit {
 
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
+    let contd = 0;
+
     carrito.map((p, i) => {
       if (p.producto.subcategoria_id == 31) {
+
         if(p.dominio===dominio){
+          
           console.log(i);
           carrito.splice(i, 1);
         }
@@ -253,6 +300,28 @@ export class DominioComponent implements OnInit {
 
   uptlistdominios(carrito:Carrito[]){
     this.dominioscarrito = carrito;
+
+    this.dominioscarrito.reverse().forEach((element) => {
+
+      let cont = 0;
+      
+      if(element.producto.subcategoria_id == 31){
+        cont++;
+        if(cont==1){
+
+          let index = JSON.parse(localStorage.getItem('index')!);
+
+          let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+
+          carrito[index].dominio = element.dominio;
+
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          
+        }
+      }
+
+    });
+
   }
 
   consultarDominiosBuscados():boolean{

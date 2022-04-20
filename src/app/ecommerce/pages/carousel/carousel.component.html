@@ -1,0 +1,175 @@
+<div id="carouselExampleCaptions" class="carousel slide carousel_desktop" data-bs-ride="carousel">
+
+    <!--
+    <div class="carousel-indicators">
+
+        <ng-container *ngFor="let banner of banners; let i=index">
+            <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="{i}"
+                class="active"
+                [ngClass]="{'active': i == 0}"
+                aria-current="true"
+                aria-label="Slide {i}"
+            ></button>
+
+        </ng-container>
+
+    </div>
+  -->
+    <!-- <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+  
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+  
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div> -->
+  
+    <div class="carousel-inner">
+
+            <ng-container *ngFor="let banner of banners; let i=index">
+  
+              <div class="carousel-item" [ngClass]="{'active': i == 0}">
+                <img src="https://admin.creattiva.cl/banners/{{banner.banner}}" class="w-100 d-sm-none d-none d-md-block d-lg-block" alt="..." />
+          
+                <img src="https://admin.creattiva.cl/banners/{{banner.banner_movil}}" class="w-100 d-md-none d-lg-none d-sm-block" alt="..." />
+          
+                <div class="contenido-slider d-none d-lg-block d-md-block">
+                  
+                  
+                  <!-- <h1>{{banner.titulo}}</h1>
+          
+                  <p [innerHTML]='banner.texto'>
+                  </p> -->
+                  
+                  <!--
+                  <button
+                    type="button"
+                    class="btn p-1 mt-4 btnslider"
+                    idproducto=""
+                    data-toggle="modal"
+                    data-target="#modalDatos"
+                  >
+                    Ir a Planes
+                  </button>
+                -->
+                </div>
+                </div>
+              </ng-container>
+
+
+
+      <!-- <div class="carousel-item active" >
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-sm-none d-none d-md-block d-lg-block" alt="..." />
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-md-none d-lg-none d-sm-block" style="height: 288px;" alt="..." />
+  
+        <div class="contenido-slider d-none d-lg-block d-md-block">
+          <h1>Somos la conexión de tu sitio web con el mundo.</h1>
+  
+          <p>
+            Antes de escribir tu primera publicación, compartir tu primera foto o
+            vender tu primer producto, tu sitio web debe estar en línea.
+          </p>
+  
+          <button
+            type="button"
+            class="btn p-1 mt-4 btnslider"
+            idproducto=""
+            data-toggle="modal"
+            data-target="#modalDatos"
+          >
+            Ir a Planes
+          </button>
+        </div>
+      </div> -->
+  
+      <!-- <div class="carousel-item">
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-sm-none d-none d-md-block d-lg-block" alt="..." />
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-md-none d-lg-none d-sm-block" style="height: 288px;" alt="..." />
+  
+        <div class="contenido-slider d-none d-lg-block d-md-block">
+          <h1>Somos la conexión de tu sitio web con el mundo.</h1>
+  
+          <p>
+            Antes de escribir tu primera publicación, compartir tu primera foto o
+            vender tu primer producto, tu sitio web debe estar en línea.
+          </p>
+  
+          <button
+            type="button"
+            class="btn p-1 mt-4 btnslider"
+            idproducto=""
+            data-toggle="modal"
+            data-target="#modalDatos"
+          >
+            Ir a Planes
+          </button>
+        </div>
+      </div> -->
+  
+      <!-- <div class="carousel-item">
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-sm-none d-none d-md-block d-lg-block" alt="..." />
+  
+        <img src="../../../../assets/img/fondo-slider.webp" class="w-100 d-md-none d-lg-none d-sm-block" style="height: 288px;" alt="..." />
+  
+        <div class="contenido-slider d-none d-lg-block d-md-block">
+          <h1>Somos la conexión de tu sitio web con el mundo.</h1>
+  
+          <p>
+            Antes de escribir tu primera publicación, compartir tu primera foto o
+            vender tu primer producto, tu sitio web debe estar en línea.
+          </p>
+  
+          <button
+            type="button"
+            class="btn p-1 mt-4 btnslider"
+            idproducto=""
+            data-toggle="modal"
+            data-target="#modalDatos"
+          >
+            Ir a Planes
+          </button>
+        </div>
+      </div> -->
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  
+      <span class="visually-hidden">Previous</span>
+  
+    </button>
+  
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  
+      <span class="visually-hidden">Next</span>
+  
+    </button>
+  
+  </div>

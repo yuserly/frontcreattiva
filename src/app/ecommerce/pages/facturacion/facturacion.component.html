@@ -107,9 +107,9 @@
                           <option selected>Pais</option>
                           <option
                             *ngFor="let pais of paises; let i = index"
-                            [value]="pais.name.common"
+                            [value]="pais"
                           >
-                            {{ pais.name.common }}
+                            {{ pais }}
                           </option>
                         </select>
                       </div>
@@ -581,31 +581,38 @@
 
             -->
 
-            <div class="row d-flex justify-content-center">
+            <div class="row align-items-center">
 
-                <div class="text-center col-md-12 mb-3">
+                <div class="col-md-4 col-12 col-sm-12 mb-3">
                   
-                  <div class="btn btn-metodospago card-border w-100 d-flex justify-content-center" style="cursor:pointer">
+                  <div class="btn btn-metodospago card-border">
 
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      formControlName="mediopago"
-                      id="periodo1"
-                      [value]="1"
-                      checked
-                      autocomplete="off"
-                    />
-    
+                    <div class="text-start">
+
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        formControlName="mediopago"
+                        id="periodo1"
+                        [value]="1"
+                        checked
+                        autocomplete="off"
+                      />
+
+                    </div>
+
                     <label
-                      class="px-0 pb-0 d-flex justify-content-between align-items-center opcion-metodo-pago"
+                      class="px-0 pb-0 opcion-metodo-pago"
                       for="periodo1"
                     >
-                      <img src="../../../../assets/img/icon-webpay.png" />
 
-                      <h6>Paga con Webpay</h6>
+                      <div class="container-img">
 
-                      <div>&nbsp;</div>
+                        <img src="../../../../assets/img/icon-webpay.png" width="98px" />
+
+                      </div>
+
+                      <p style="font-size: 13px;">Pago con Webpay</p>
 
                     </label>
                     
@@ -613,10 +620,11 @@
                   
                 </div>
   
-                <div class="text-center col-md-12 mb-3">
+                <div class="col-md-4 col-12 col-sm-12 mb-3">
                   
-                  <div class="btn btn-metodospago card-border w-100 d-flex justify-content-center"  style="cursor:pointer">
+                  <div class="btn btn-metodospago card-border" >
                       
+                    <div class="text-start">
                       <input
                         type="radio"
                         class="form-check-input"
@@ -625,16 +633,21 @@
                         [value]="2"
                         autocomplete="off"
                       />
-      
+                    </div>
+    
+
                       <label
-                        class="px-0 pb-0 d-flex justify-content-between align-items-center opcion-metodo-pago"
+                        class="px-0 pb-0 opcion-metodo-pago"
                         for="periodo2"
                       >
-                        <img src="../../../../assets/img/paypal.png" width="80px" />
 
-                        <h6>Paga con Paypal</h6>
+                        <div class="container-img">
+                      
+                          <img src="../../../../assets/img/paypal.png" width="70px" />
+    
+                        </div>
 
-                        <div>&nbsp;</div>
+                        <p style="font-size: 13px;">Pago con Paypal</p>
 
                       </label>
 
@@ -642,30 +655,36 @@
 
                 </div>
   
-                <div class="text-center col-md-12  mb-3">
+                <div class="col-md-4 col-12 col-sm-12  mb-3">
                   
-                  <div class="btn btn-metodospago card-border w-100 d-flex justify-content-center"  style="cursor:pointer">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      formControlName="mediopago"
-                      id="periodo3"
-                      [value]="3"
-                      autocomplete="off"
-                    />
-    
+                  <div class="btn btn-metodospago card-border" >
+
+                    <div class="text-start">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        formControlName="mediopago"
+                        id="periodo3"
+                        [value]="3"
+                        autocomplete="off"
+                      />
+                    </div>
+
                     <label
-                      class="px-0 pb-0 d-flex justify-content-between align-items-center opcion-metodo-pago"
+                      class="px-0 pb-0 opcion-metodo-pago"
                       for="periodo3"
                     >
-                      <img
-                        src="../../../../assets/img/icon-transfer.png"
-                        width="100px"
-                      />
 
-                      <h6>Paga con transferencia</h6>
+                      <div class="container-img">
+                      
+                        <img
+                          src="../../../../assets/img/icon-transfer.png"
+                          width="98px"
+                        />
 
-                      <div>&nbsp;</div>
+                      </div>
+
+                      <p style="font-size: 13px;">Pago transferencia</p>
 
                     </label>
                   </div>

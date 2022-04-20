@@ -43,6 +43,7 @@ import { SoporteComponent } from './pages/soporte/soporte.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { CarouselModule } from 'ngx-owl-carousel-o'; 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CarouselComponent } from './pages/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SoporteComponent,
     //PaginationPipe,
     //PaginadorComponent,
-    PreguntasFrecuentesComponent
+    PreguntasFrecuentesComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,

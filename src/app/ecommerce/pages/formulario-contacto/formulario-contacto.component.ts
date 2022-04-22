@@ -32,6 +32,10 @@ export class FormularioContactoComponent implements OnInit {
   });
 
   btnCargando:boolean = false;
+
+  mensajeEnviado:boolean = false;
+
+  contador:number = 8;
   
   get mensajeerroremail(): string {
     const error = this.form.get('email')?.errors;
@@ -122,7 +126,11 @@ export class FormularioContactoComponent implements OnInit {
       if(respuesta==1){
 
         this.btnCargando = false;
+        this.mensajeEnviado = true;
+
         window.scroll(0,0);
+
+        /*
         Swal.fire({
           position: 'center',
           title: 'Su consulta ha sido enviada',
@@ -137,6 +145,7 @@ export class FormularioContactoComponent implements OnInit {
         }).then((result) => {
          
         })
+        */
         this.data = {
           nombre: '',
           telefono:'',
@@ -154,6 +163,11 @@ export class FormularioContactoComponent implements OnInit {
 
   validarcampo(campo: string) {
     return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
+  }
+
+  validarcaracteres(event: any){
+    this.contador = 8 - event.target.value.length;
+    //this.errorCodigo = false;
   }
 
 }

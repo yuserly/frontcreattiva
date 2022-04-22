@@ -210,13 +210,112 @@
 
           <h2 class="accordion-header" id="headingOne">
 
-            <button class="button-detalles accordion-button pt-0 pb-0 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #f5f6f8">
+            
+            <!-- <button class="button-detalles accordion-button pt-0 pb-0 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #f5f6f8">
 
               <h5 class="m-1"><b>Detalles del pedido</b></h5>
 
               <hr class="hr_detallescompra">
 
-            </button>
+            </button> -->
+
+            <div class="row">
+
+              <div class="col-10 d-flex justify-content-center">
+
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #009900;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    font-size: 18px;
+                    width: 80%;
+                    height: 100%;
+                  "
+                  *ngIf="mostrarBtnFinalizarMovil==true; else btncomprar"
+                  (click)="finalizarcompras()"
+                >
+                  CONTINUAR
+                </button>
+
+              <ng-template #btncomprar>
+
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #009900;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    font-size: 18px;
+                    width: 80%;
+                    height: 100%;
+                  "
+                  *ngIf="mostrarBtnComprarMovil==true; else btncontinuar"
+                  (click)="finalizarcomprar()"
+                >
+                FINALIZAR COMPRA
+                </button>
+
+              </ng-template>
+
+              <ng-template #btncontinuar>
+
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #005ad2;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    font-size: 18px;
+                    width: 80%;
+                    height: 100%;
+                  "
+                  *ngIf="mostrarBtnContinuarMovil==true; else btncontinuarlink"
+                  (click)="continuar()"
+                >
+                  Continuar
+              </button>
+
+              </ng-template>
+
+              <ng-template #btncontinuarlink>
+
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    background-color: #005ad2;
+                    color: #f2f3f5;
+                    font-weight: bold;
+                    font-size: 18px;
+                    width: 80%;
+                    height: 100%;
+                  "
+                  *ngIf="mostrarContinuarLink==true"
+                  routerLink="/carrito"
+                >
+                  Continuar
+              </button>
+
+              </ng-template>
+
+              </div>
+
+              <div class="col-2">
+
+                <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #f5f6f8;height:50px;">
+    
+                </button>
+
+              </div>
+
+              <hr class="hr_detallescompra">
+
+            </div>
 
           </h2>
 
@@ -255,7 +354,7 @@
                   </div>
 
 
-                  <div class="row">
+                  <div class="row" *ngIf="aplicarCupon==1">
 
                     <div class="col-md-12 px-4">
 
@@ -341,7 +440,7 @@
 
                
 
-                  <hr class="hr_detallescompra">
+                  <hr class="hr_detallescompra" *ngIf="aplicarCupon==1">
                   
                 </div>
 
@@ -390,16 +489,40 @@
     </div>
 
     <div class="row pb-1">
-
+      
       <div class="col-12 col-sm-12 d-flex">
 
-        <h6 class="px-3 pt-1"><b>Total pedido:</b></h6>
+        <h6 class="px-3" style="width: 40%;"><b>Neto pedido:</b></h6>
 
         <div>
 
-          <h6 class="px-3 pt-1 azul-crt"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
+          <h6 class="px-3 azul-crt"><b>{{totalcarroarray.neto | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
 
-          <small class="px-3">Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</small>
+        </div>
+
+      </div>
+
+      <div class="col-12 col-sm-12 d-flex">
+
+        <h6 class="px-3" style="width: 40%;"><b>IVA pedido:</b></h6>
+
+        <div>
+
+          <h6 class="px-3 azul-crt"><b>{{totalcarroarray.iva | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
+
+        </div>
+
+      </div>
+
+      <div class="col-12 col-sm-12 d-flex">
+
+        <h6 class="px-3" style="width: 40%;"><b>Total pedido:</b></h6>
+
+        <div class="d-flex">
+
+          <h6 class="px-3 azul-crt"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
+
+          <small class="d-flex align-items-center"><b>Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
 
         </div>
 
@@ -407,40 +530,42 @@
 
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
     
       <div class="col-md-12 text-center mt-1">
 
         <button
             type="button"
-            class="btn"
+            class="btn mb-5"
             style="
               background-color: #009900;
               color: #f2f3f5;
               font-weight: bold;
+              font-size: 18px;
               width: 80%;
             "
             *ngIf="mostrarBtnFinalizarMovil==true; else btncomprar"
             (click)="finalizarcompras()"
           >
-            FINALIZAR COMPRA
+            CONTINUAR
           </button>
 
         <ng-template #btncomprar>
 
           <button
             type="button"
-            class="btn"
+            class="btn mb-5"
             style="
               background-color: #009900;
               color: #f2f3f5;
               font-weight: bold;
+              font-size: 18px;
               width: 80%;
             "
             *ngIf="mostrarBtnComprarMovil==true; else btncontinuar"
             (click)="finalizarcomprar()"
           >
-            COMPRAR
+          FINALIZAR COMPRA
           </button>
 
         </ng-template>
@@ -449,11 +574,12 @@
 
           <button
             type="button"
-            class="btn"
+            class="btn mb-5"
             style="
               background-color: #005ad2;
               color: #f2f3f5;
               font-weight: bold;
+              font-size: 18px;
               width: 80%;
             "
             *ngIf="mostrarBtnContinuarMovil==true; else btncontinuarlink"
@@ -468,11 +594,12 @@
 
           <button
             type="button"
-            class="btn"
+            class="btn mb-5"
             style="
               background-color: #005ad2;
               color: #f2f3f5;
               font-weight: bold;
+              font-size: 18px;
               width: 80%;
             "
             *ngIf="mostrarContinuarLink==true"
@@ -485,7 +612,7 @@
 
       </div>
 
-    </div>
+    </div> -->
 
   </div>
 

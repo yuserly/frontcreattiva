@@ -54,11 +54,11 @@
 
                           </ng-container>
                           </p>
-                        <small>
+                        <small *ngIf="item.dominio!=''; else selectdominio">
                           
                           <b>{{ item.dominio }}</b>
 
-                            <button
+                            <!-- <button
                               *ngIf="item.dominio!='' && item.producto.subcategoria_id==1"
                               type="button"
                               (click)="limpiarDomGuardado(i)"
@@ -66,9 +66,47 @@
                             >
                               Cambiar
                               <i class="ms-1 far fa-edit"></i>
-                            </button>
+                            </button> -->
                         
                         </small>
+
+                        <ng-template #selectdominio>
+
+                            <div *ngIf="item.producto.tipo_producto_id==1">
+                              
+                              <small><b>Seleccione el dominio principal</b></small>
+                              
+                              <select
+                                class="form-select selectdominiohosting"
+                                style="font-size: 12px;"
+                                (change)="cambiardominiohosting(i,$event.target)"
+                              >
+                              
+                              <option [value]="">
+                              
+                                  ---
+                                  
+                              </option>
+                              
+                              <ng-container  *ngFor="let itemk of carrito; let k = index">
+                              
+                                <option
+                                  *ngIf="itemk.dominio!=''"
+                                  [value]="itemk.dominio"
+                                 
+                                >
+                                  {{ itemk.dominio }}
+                                  
+                                </option>
+                              
+                              </ng-container>
+                            
+                              </select>
+                            </div>
+
+        
+
+                        </ng-template>
 
                       </div>
                       

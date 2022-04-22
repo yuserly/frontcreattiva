@@ -82,11 +82,14 @@ export class CarroComponent implements OnInit {
   validarconfig(){
 
 
-    let config = this.CategoriasService.validarconfigcarro()
+    let config = this.CategoriasService.validarconfigcarro();
 
-    this.indexconfig = config.index;
+    if(config.index){
 
-    this.faltaconfig = config.config;
+      this.indexconfig = config.index;
+      this.faltaconfig = config.config;
+
+    }
 
 
   }
@@ -182,6 +185,18 @@ export class CarroComponent implements OnInit {
     localStorage.setItem('carrito',JSON.stringify(this.carrito));
 
     this.totalcarroarray = this.CategoriasService.calculototalcarro();
+
+  }
+
+  cambiardominiohosting(i:number, dominio:any){
+
+    this.carrito[i].dominio = dominio.value;
+
+    localStorage.setItem('carrito',JSON.stringify(this.carrito));
+
+    this.totalcarroarray = this.CategoriasService.calculototalcarro();
+
+    console.log(this.carrito);
 
   }
 

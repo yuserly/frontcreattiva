@@ -19,7 +19,7 @@ export class DominioComponent implements OnInit {
   preciodominio: PrecioDominios[] = [];
   dominiobuscado:string = '';
   statusDominioBuscado:boolean = false;
-  dominioguardado:string = '';
+  dominioguardado:any = '';
   errorDominio:boolean = false;
 
   form:FormGroup = this.fb.group({
@@ -45,68 +45,78 @@ export class DominioComponent implements OnInit {
   constructor(private DominiosService:DominiosService, private fb: FormBuilder, private CategoriasService: CategoriasService) { }
 
   ngOnInit(): void {
+
     //validar si existen dominios buscados en el carrito
     this.haydominios = this.consultarDominiosBuscados();
+
     //validar si existe un dominio guardado y guardar
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
-    console.log(carrito);
-    console.log(carrito[index].dominio);
-    this.updtglosadetalles(carrito);
+    if(carrito[index].dominio!==''){
+      this.dominioguardado = carrito[index].dominio;
+    }
 
   }
 
-  updtglosadetalles(data:Carrito[]){
+  // updtglosadetalles(data:Carrito[]){
 
-    if(data.length>0){
+  //   if(data.length>0){
 
-      data.reverse().forEach((element) => {
+  //     data.reverse().forEach((element) => {
 
-        let cont = 0;
+  //       let cont = 0;
         
-        if(element.producto.subcategoria_id == 31){
-          cont++;
-          if(cont==1){
+  //       if(element.producto.subcategoria_id == 31){
+  //         cont++;
+  //         if(cont==1){
   
-            let index = JSON.parse(localStorage.getItem('index')!);
+  //           let index = JSON.parse(localStorage.getItem('index')!);
   
-            let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+  //           let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
   
-            carrito[index].dominio = element.dominio;
+  //           carrito[index].dominio = element.dominio;
   
-            localStorage.setItem('carrito', JSON.stringify(carrito));
+  //           localStorage.setItem('carrito', JSON.stringify(carrito));
             
-          }
-        }
+  //         }
+  //       }
   
-      });
+  //     });
 
-    }else{
+  //   }else{
 
-      let index = JSON.parse(localStorage.getItem('index')!);
+  //     let index = JSON.parse(localStorage.getItem('index')!);
   
-      let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+  //     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-      carrito[index].dominio = '';
+  //     carrito[index].dominio = '';
 
-      localStorage.setItem('carrito', JSON.stringify(carrito));
+  //     localStorage.setItem('carrito', JSON.stringify(carrito));
 
-    }
+  //   }
     
 
-  }
+  // }
 
   limpiarDomGuardado(){
+
     this.dominioguardado = '';
+
     let index = JSON.parse(localStorage.getItem('index')!);
+
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
     carrito[index].dominio = this.dominioguardado;
+
     localStorage.setItem('carrito',JSON.stringify(carrito));
 
     let productoscarro = this.CategoriasService.calculototalcarro();
+
     this.totalcarrod.emit(productoscarro);
+
   }
   guardardominio(){
+
     if(this.form2.invalid){
       this.form2.markAllAsTouched()
       return;
@@ -118,17 +128,18 @@ export class DominioComponent implements OnInit {
     this.dominioguardado = dominio+'.'+extension;
 
     let index = JSON.parse(localStorage.getItem('index')!);
+
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+
     carrito[index].dominio = this.dominioguardado;
+
     localStorage.setItem('carrito',JSON.stringify(carrito));
 
     let productoscarro = this.CategoriasService.calculototalcarro();
+
     this.totalcarrod.emit(productoscarro);
 
-
-
-
-    //console.log(JSON.parse(localStorage.getItem('carrito')!));
+    this.dominioscarrito = carrito;
 
   }
 
@@ -301,26 +312,26 @@ export class DominioComponent implements OnInit {
   uptlistdominios(carrito:Carrito[]){
     this.dominioscarrito = carrito;
 
-    this.dominioscarrito.reverse().forEach((element) => {
+    // this.dominioscarrito.reverse().forEach((element) => {
 
-      let cont = 0;
+    //   let cont = 0;
       
-      if(element.producto.subcategoria_id == 31){
-        cont++;
-        if(cont==1){
+    //   if(element.producto.subcategoria_id == 31){
+    //     cont++;
+    //     if(cont==1){
 
-          let index = JSON.parse(localStorage.getItem('index')!);
+    //       let index = JSON.parse(localStorage.getItem('index')!);
 
-          let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
+    //       let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
 
-          carrito[index].dominio = element.dominio;
+    //       carrito[index].dominio = element.dominio;
 
-          localStorage.setItem('carrito', JSON.stringify(carrito));
+    //       localStorage.setItem('carrito', JSON.stringify(carrito));
           
-        }
-      }
+    //     }
+    //   }
 
-    });
+    // });
 
   }
 
@@ -350,10 +361,6 @@ export class DominioComponent implements OnInit {
     let index = JSON.parse(localStorage.getItem('index')!);
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     let cont = 0;
-    console.log("producto buscado: ");
-    console.log(carrito);
-    //console.log(carrito[index]);
-
 
     if(carrito[index].dominio){
 
@@ -385,10 +392,8 @@ export class DominioComponent implements OnInit {
     }else{
       
       this.errorDominio = true;
-      if(this.mostrar==0 && this.mostrarold==0){
-        this.mostrar = 1;
-        this.mostrarold = 0;
-      }
+      this.haydominios = true;
+      this.nuevodominio();
       
       let el = document.getElementById("invalidDominio");
       if(el){el.scrollIntoView({ behavior: 'smooth' });}

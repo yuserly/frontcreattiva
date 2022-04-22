@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 export class LoginPasswordComponent implements OnInit {
   nombre: string = '';
 
+  btn_codrapido:boolean = false;
+
   form: FormGroup = this.fb.group({
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
@@ -77,6 +79,8 @@ export class LoginPasswordComponent implements OnInit {
 
   solicitudcode(){
 
+    this.btn_codrapido = true;
+
     let usuario = JSON.parse(localStorage.getItem('usuario')!);
 
     let data = {
@@ -85,6 +89,7 @@ export class LoginPasswordComponent implements OnInit {
     this.categoriasService.solicitudcode(data).subscribe(resp =>{
       if(resp.data){
         if(resp.data.ok){
+          this.btn_codrapido = false;
           this.router.navigate(['/codigo-rapido']);
         }else{
 

@@ -60,7 +60,7 @@ export class FacturacionComponent implements OnInit {
   empresadatos:boolean = true;
   existedireccion:boolean = false;
   mostrarBtnComprarMovil:boolean = true;
-
+  aplicarCupon:number = 1;
 
   form: FormGroup = this.fb.group({
     nombre: [
@@ -552,6 +552,7 @@ export class FacturacionComponent implements OnInit {
 
     if(act){
       this.finalizarcompra();
+      console.log("Se ejecuto");
     }
 
   }

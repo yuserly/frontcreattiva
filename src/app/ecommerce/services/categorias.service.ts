@@ -219,31 +219,30 @@ export class CategoriasService {
             }else if(element.producto.subcategoria_id==31){ 
               //aplicar descuento 1 año gratis solo para periodos 2 y 3 años
 
-              console.log("tiene hosting: "+this.consultarServiciosHost());
 
-              if(this.consultarServiciosHost()==false && (element.periodo==3 || element.periodo==4)){
+              // if(this.consultarServiciosHost()==false && (element.periodo==3 || element.periodo==4)){
                 
-                contDominios++;
+              //   contDominios++;
 
-                if(contDominios==1){
+              //   if(contDominios==1){
                   
-                  precio = element2.precio;
-                  precioold = 0;
-                  ahorroa = element2.precio;
-                  descuentodominio = element2.precio*-1;
-                }else{
-                  precio = element2.precio;
-                  precioold = element2.precio;
-                  ahorroa = 0;
-                }
+              //     precio = element2.precio;
+              //     precioold = 0;
+              //     ahorroa = element2.precio;
+              //     descuentodominio = element2.precio*-1;
+              //   }else{
+              //     precio = element2.precio;
+              //     precioold = element2.precio;
+              //     ahorroa = 0;
+              //   }
 
-              }else{
+              // }else{
                 
                 precio = element2.precio;
                 precioold = element2.precio;
                 ahorroa = 0;
 
-              }
+           //   }
 
             }else{
 
@@ -257,7 +256,11 @@ export class CategoriasService {
             if(element.producto.subcategoria_id==31){ //dominios
               nombreproducto = "Registro de dominio "+element.dominio;
             }else if(element.producto.subcategoria_id==1){ //planes hosting
-              nombreproducto = element.producto.nombre+" "+element.dominio;
+              if(element.dominio!=''){
+                nombreproducto = element.producto.nombre+" "+element.dominio;
+              }else{
+                nombreproducto = element.producto.nombre;
+              }
             }else{
               nombreproducto = element.producto.nombre;
             }

@@ -204,11 +204,11 @@
 
     <div class="row">
 
-      <div class="accordion" id="accordionExample">
+      <div class="accordion" id="accordionExampleMovil">
 
         <div class="accordion-item">
 
-          <h2 class="accordion-header" id="headingOne">
+          <h2 class="accordion-header" id="headingOne" style="border-top: 1px solid #005AD2;">
 
             
             <!-- <button class="button-detalles accordion-button pt-0 pb-0 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #f5f6f8">
@@ -219,9 +219,9 @@
 
             </button> -->
 
-            <div class="row">
+            <div class="row pt-1" style="background-color: #f5f6f8;">
 
-              <div class="col-10 d-flex justify-content-center">
+              <div class="col-9 d-flex justify-content-center">
 
                 <button
                   type="button"
@@ -305,7 +305,7 @@
 
               </div>
 
-              <div class="col-2">
+              <div class="col-3">
 
                 <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #f5f6f8;height:50px;">
     
@@ -319,7 +319,7 @@
 
           </h2>
 
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExampleMovil">
             
             <div class="accordion-body">
 
@@ -518,11 +518,11 @@
 
         <h6 class="px-3" style="width: 40%;"><b>Total pedido:</b></h6>
 
-        <div class="d-flex">
+        <div>
 
-          <h6 class="px-3 azul-crt"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
+          <h6 class="px-3 azul-crt mb-0"><b>{{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></h6>
 
-          <small class="d-flex align-items-center"><b>Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
+          <small class="px-3"><b>Ahorra {{totalcarroarray.ahorro | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}} CLP</b></small>
 
         </div>
 

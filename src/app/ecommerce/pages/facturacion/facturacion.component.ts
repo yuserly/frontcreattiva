@@ -61,6 +61,7 @@ export class FacturacionComponent implements OnInit {
   existedireccion:boolean = false;
   mostrarBtnComprarMovil:boolean = true;
   aplicarCupon:number = 1;
+  tienerut:boolean = false;
 
   form: FormGroup = this.fb.group({
     nombre: [
@@ -80,8 +81,16 @@ export class FacturacionComponent implements OnInit {
     ],
     pais: ['', [Validators.required]],
     rut: ['', [Validators.required, this.validacion.validarRut]],
-    razonsocial: [''],
-    giro: [''],
+    razonsocial: ['',
+    [
+      Validators.required,
+      Validators.pattern(this.validacion.nombreUsuarioPattern),
+    ],],
+    giro: ['',
+    [
+      Validators.required,
+      Validators.pattern(this.validacion.nombreUsuarioPattern),
+    ],],
     telefonoempresa: [
       '',
       [
@@ -129,13 +138,37 @@ export class FacturacionComponent implements OnInit {
     return '';
   }
 
+  get mensajeerrorrazonsocial(): string {
+    const error = this.form.get('razonsocial')?.errors;
+
+    if (error?.required) {
+      return 'La razón social es requerida';
+    } else if (error?.pattern) {
+      return 'Debe ingresar una razón social válida';
+    }
+
+    return '';
+  }
+
+  get mensajeerrorgiro(): string {
+    const error = this.form.get('giro')?.errors;
+
+    if (error?.required) {
+      return 'El giro es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un giro válido';
+    }
+
+    return '';
+  }
+
   get mensajeerroremail(): string {
     const error = this.form.get('email')?.errors;
 
     if (error?.required) {
       return 'El email es requerido';
     } else if (error?.pattern) {
-      return 'Debe ingresar un email valido';
+      return 'Debe ingresar un email válido';
     }
 
     return '';
@@ -146,7 +179,7 @@ export class FacturacionComponent implements OnInit {
     if (error?.required) {
       return 'El telefono de empresa es requerido';
     } else if (error?.pattern) {
-      return 'Debe ingresar un telefono de empresa valido';
+      return 'Debe ingresar un telefono de empresa válido';
     }
 
     return '';
@@ -257,6 +290,9 @@ export class FacturacionComponent implements OnInit {
 
       //this.paises = resp;
       this.paises = paisesall.sort();
+
+      console.log("hjh");
+      console.log(this.paises);
 
 
     });
@@ -388,10 +424,19 @@ export class FacturacionComponent implements OnInit {
       !this.form.get('telefono')?.errors &&
       !this.form.get('pais')?.errors
     ) {
+
+      if(this.form.value.pais=='Chile'){
+        this.tienerut = true;
+      }else{
+        this.tienerut = false;
+      }
+
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
         console.log(resp);
         this.datoscompradorsave = true;
       });
+    }else{
+      this.form.markAllAsTouched()
     }
   }
 
@@ -440,37 +485,85 @@ export class FacturacionComponent implements OnInit {
     }
 
     if (this.form.value.isempresa) {
-      if (
-        !this.form.get('rut')?.errors &&
-        this.form.value.razonsocial != '' &&
-        this.form.value.giro != '' &&
-        !this.form.get('telefonoempresa')?.errors &&
-        !this.form.get('emailempresa')?.errors
-      ) {
-        this.CategoriasService.crearempresa(this.form.value).subscribe(
-          (resp) => {
-            console.log(resp);
-            this.datosfacturacion = true;
-          }
-        );
-      } else {
-        // this.form.markAllAsTouched()
+      
+      if(this.tienerut){ //si tiene rut
+
+        if (
+          !this.form.get('rut')?.errors &&
+          this.form.value.razonsocial != '' &&
+          this.form.value.giro != '' &&
+          !this.form.get('telefonoempresa')?.errors &&
+          !this.form.get('emailempresa')?.errors
+        ) {
+          this.CategoriasService.crearempresa(this.form.value).subscribe(
+            (resp) => {
+              console.log(resp);
+              this.datosfacturacion = true;
+            }
+          );
+        } else {
+          this.form.markAllAsTouched()
+        }
+
+
+      }else{
+
+        if (
+          this.form.value.razonsocial != '' &&
+          this.form.value.giro != '' &&
+          !this.form.get('telefonoempresa')?.errors &&
+          !this.form.get('emailempresa')?.errors
+        ) {
+
+          this.CategoriasService.crearempresa(this.form.value).subscribe(
+            (resp) => {
+              console.log(resp);
+              this.datosfacturacion = true;
+            }
+          );
+        } else {
+          this.form.markAllAsTouched()
+        }
+
       }
+      
     } else {
-      if (
-        !this.form.get('rut')?.errors &&
-        !this.form.get('telefonoempresa')?.errors &&
-        !this.form.get('emailempresa')?.errors
-      ) {
-        this.CategoriasService.crearempresa(this.form.value).subscribe(
-          (resp) => {
-            console.log(resp);
-            this.datosfacturacion = true;
-          }
-        );
-      } else {
-        // this.form.markAllAsTouched()
+
+      if(this.tienerut){ //si tiene rut
+
+        if (
+          !this.form.get('rut')?.errors &&
+          !this.form.get('telefonoempresa')?.errors &&
+          !this.form.get('emailempresa')?.errors
+        ) {
+          this.CategoriasService.crearempresa(this.form.value).subscribe(
+            (resp) => {
+              console.log(resp);
+              this.datosfacturacion = true;
+            }
+          );
+        } else {
+          // this.form.markAllAsTouched()
+        }
+
+      }else{
+
+        if (
+          !this.form.get('telefonoempresa')?.errors &&
+          !this.form.get('emailempresa')?.errors
+        ) {
+          this.CategoriasService.crearempresa(this.form.value).subscribe(
+            (resp) => {
+              console.log(resp);
+              this.datosfacturacion = true;
+            }
+          );
+        } else {
+          // this.form.markAllAsTouched()
+        }
+
       }
+
     }
   }
   guardardireccion() {
@@ -504,6 +597,7 @@ export class FacturacionComponent implements OnInit {
   }
 
   finalizarcompra() {
+
     if (this.form.value.isempresa == 1) {
       if (
         !this.form.invalid &&

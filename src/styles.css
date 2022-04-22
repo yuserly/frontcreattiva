@@ -1011,7 +1011,7 @@ color: #FFF;
     .opcion-metodo-pago{
       height: auto!important;
     }
-    .accordion-body {
+    #accordionExampleMovil .accordion-body {
       height: 60vh;
       overflow-y: scroll;
   }

@@ -208,7 +208,8 @@
               >
                 <div class="accordion-body px-0">
                   <form class="row g-3">
-                    <div class="col-md-5">
+                    
+                    <div class="col-md-5" *ngIf="tienerut">
                       <input
                         type="text"
                         class="form-control"
@@ -225,25 +226,44 @@
                         {{ mensajeerrorrut }}
                       </div>
                     </div>
+
                     <div class="col-md-7" *ngIf="empresadatos">
                       <input
                         type="text"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': validarcampo('razonsocial')
+                        }"
                         id="inputPassword4"
                         [readonly]="datosfacturacion"
                         placeholder="Razón Social"
                         formControlName="razonsocial"
                       />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('razonsocial')"
+                      >
+                        {{ mensajeerrorrazonsocial }}
+                      </div>
                     </div>
                     <div class="col-12" *ngIf="empresadatos">
                       <input
                         type="text"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': validarcampo('giro')
+                        }"
                         id="inputAddress"
                         [readonly]="datosfacturacion"
                         placeholder="Giro"
                         formControlName="giro"
                       />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="validarcampo('giro')"
+                      >
+                        {{ mensajeerrorgiro }}
+                      </div>
                     </div>
                     <div class="col-md-6">
                       <div class="input-group">

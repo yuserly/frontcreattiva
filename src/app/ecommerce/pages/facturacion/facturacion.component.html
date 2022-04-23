@@ -13,7 +13,7 @@
         <div class="row px-1 px-md-3">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item mt-2">
-              
+
               <p><b>1.- Datos del comprador / Contacto técnico:</b></p>
 
               <h2
@@ -208,7 +208,7 @@
               >
                 <div class="accordion-body px-0">
                   <form class="row g-3">
-                    
+
                     <div class="col-md-5" *ngIf="tienerut">
                       <input
                         type="text"
@@ -487,7 +487,7 @@
               <owl-carousel-o [options]="owl_metodosdepago">
 
                 <ng-template carouselSlide class="text-center">
-                  
+
                   <div class="d-flex justify-content-center">
 
                     <input
@@ -499,7 +499,7 @@
                       checked
                       autocomplete="off"
                     />
-    
+
                     <label
                       class="btn btn-periodos px-0 pb-0 card-border"
                       for="periodo1"
@@ -519,11 +519,11 @@
                     >
                       <img src="../../../../assets/img/icon-webpay.png" />
                     </label>
-                    
+
                   </div>
-                  
+
                 </ng-template>
-  
+
                 <ng-template carouselSlide class="text-center">
                   <div class="d-flex justify-content-center">
                     <input
@@ -534,7 +534,7 @@
                       [value]="2"
                       autocomplete="off"
                     />
-    
+
                     <label
                       class="btn btn-periodos px-0 pb-0 card-border"
                       for="periodo2"
@@ -556,9 +556,9 @@
                     </label>
                   </div>
                 </ng-template>
-  
+
                 <ng-template carouselSlide class="text-center">
-                  
+
                   <div class="d-flex justify-content-center">
                     <input
                       type="radio"
@@ -568,7 +568,7 @@
                       [value]="3"
                       autocomplete="off"
                     />
-    
+
                     <label
                       class="btn btn-periodos px-0 pb-0 card-border"
                       for="periodo3"
@@ -604,7 +604,7 @@
             <div class="row align-items-center">
 
                 <div class="col-md-4 col-12 col-sm-12 mb-3">
-                  
+
                   <div class="btn btn-metodospago card-border">
 
                     <div class="text-start">
@@ -635,15 +635,15 @@
                       <p style="font-size: 13px;">Pago con Webpay</p>
 
                     </label>
-                    
+
                   </div>
-                  
+
                 </div>
-  
+
                 <div class="col-md-4 col-12 col-sm-12 mb-3">
-                  
+
                   <div class="btn btn-metodospago card-border" >
-                      
+
                     <div class="text-start">
                       <input
                         type="radio"
@@ -654,7 +654,7 @@
                         autocomplete="off"
                       />
                     </div>
-    
+
 
                       <label
                         class="px-0 pb-0 opcion-metodo-pago"
@@ -662,9 +662,9 @@
                       >
 
                         <div class="container-img">
-                      
+
                           <img src="../../../../assets/img/paypal.png" width="70px" />
-    
+
                         </div>
 
                         <p style="font-size: 13px;">Pago con Paypal</p>
@@ -674,9 +674,9 @@
                   </div>
 
                 </div>
-  
+
                 <div class="col-md-4 col-12 col-sm-12  mb-3">
-                  
+
                   <div class="btn btn-metodospago card-border" >
 
                     <div class="text-start">
@@ -696,7 +696,7 @@
                     >
 
                       <div class="container-img">
-                      
+
                         <img
                           src="../../../../assets/img/icon-transfer.png"
                           width="98px"
@@ -807,6 +807,7 @@
                     <input
                       type="text"
                       class="form-control"
+                      [options]="options"
                       [ngClass]="{ 'is-invalid': validarcampo('direccion') }"
                       id="inputAddress"
                       placeholder="Direccion"
@@ -870,7 +871,7 @@
                   "
                   (click)="guardardireccion()"
                 >
-                  Confirmar
+                  Guardar
                 </button>
 
                 <ng-template #cerrarmodal>
@@ -887,7 +888,7 @@
                     "
                     (click)="guardardireccion()"
                   >
-                    Confirmar
+                    Cerrar
                   </button>
                 </ng-template>
               </div>

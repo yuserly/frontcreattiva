@@ -11,6 +11,7 @@ import {
 } from '../../interfaces/ecommerce.interface';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
 
 @Component({
   selector: 'app-facturacion',
@@ -223,9 +224,12 @@ export class FacturacionComponent implements OnInit {
   // google
 
   formattedaddress=" ";
-  options={
+  options: Options={
+    types: [],
+    fields:['ALL'],
+    strictBounds: false,
     componentRestrictions:{
-      country:["CL"]
+      country:"cl"
     }
   }
 
@@ -282,6 +286,8 @@ export class FacturacionComponent implements OnInit {
 
       let paisesall:any = [];
 
+      console.log(resp);
+
       resp.forEach((element) => {
 
         paisesall.push(element.name.common);
@@ -291,8 +297,7 @@ export class FacturacionComponent implements OnInit {
       //this.paises = resp;
       this.paises = paisesall.sort();
 
-      console.log("hjh");
-      console.log(this.paises);
+
 
 
     });
@@ -485,7 +490,7 @@ export class FacturacionComponent implements OnInit {
     }
 
     if (this.form.value.isempresa) {
-      
+
       if(this.tienerut){ //si tiene rut
 
         if (
@@ -526,7 +531,7 @@ export class FacturacionComponent implements OnInit {
         }
 
       }
-      
+
     } else {
 
       if(this.tienerut){ //si tiene rut

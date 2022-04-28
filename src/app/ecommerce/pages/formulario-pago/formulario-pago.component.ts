@@ -27,6 +27,8 @@ export class FormularioPagoComponent implements OnInit {
 
     let infopago = JSON.parse(localStorage.getItem('infopago')!)
 
+    console.log(infopago);
+
     if(!infopago){
       this.router.navigate(['/facturacion']);
     }
@@ -34,6 +36,12 @@ export class FormularioPagoComponent implements OnInit {
     if(infopago.metodopago == 3 || infopago.metodopago == '3'){
 
       this.router.navigate(['/pago-transferencia']);
+
+    }
+
+    if((infopago.metodopago == 4 || infopago.metodopago == '4') && infopago.pagoexitoso == 1 ){
+
+      this.router.navigate(['/pago-exitoso']);
 
     }
 

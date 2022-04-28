@@ -67,7 +67,7 @@ export class FacturacionComponent implements OnInit {
   form: FormGroup = this.fb.group({
     nombre: [
       '',
-      [Validators.required, Validators.pattern(this.validacion.nombrePattern)],
+      [Validators.required],
     ],
     email: [
       '',
@@ -257,8 +257,7 @@ export class FacturacionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("datos del formulario");
-    console.log(this.form);
+
     this.form.markAllAsTouched()
 
     let infopago = JSON.parse(localStorage.getItem('infopago')!);
@@ -286,8 +285,6 @@ export class FacturacionComponent implements OnInit {
 
       let paisesall:any = [];
 
-      console.log(resp);
-
       resp.forEach((element) => {
 
         paisesall.push(element.name.common);
@@ -303,7 +300,7 @@ export class FacturacionComponent implements OnInit {
     });
 
     this.CategoriasService.getRegiones().subscribe((resp) => {
-      console.log(resp);
+
       this.regiones = resp;
     });
 
@@ -314,7 +311,7 @@ export class FacturacionComponent implements OnInit {
     if(empresaselect){
 
       this.CategoriasService.getempresaxid(empresaselect).subscribe((resp) => {
-        console.log(resp);
+
 
         this.datosdelcliente(resp);
       });
@@ -322,7 +319,7 @@ export class FacturacionComponent implements OnInit {
     }else{
 
       this.CategoriasService.getempresa(usuario.email).subscribe((resp) => {
-        console.log(resp);
+
 
         this.datosdelcliente(resp);
       });
@@ -437,7 +434,7 @@ export class FacturacionComponent implements OnInit {
       }
 
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
-        console.log(resp);
+
         this.datoscompradorsave = true;
       });
     }else{
@@ -502,7 +499,7 @@ export class FacturacionComponent implements OnInit {
         ) {
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
-              console.log(resp);
+
               this.datosfacturacion = true;
             }
           );
@@ -522,7 +519,7 @@ export class FacturacionComponent implements OnInit {
 
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
-              console.log(resp);
+
               this.datosfacturacion = true;
             }
           );
@@ -543,7 +540,7 @@ export class FacturacionComponent implements OnInit {
         ) {
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
-              console.log(resp);
+
               this.datosfacturacion = true;
             }
           );
@@ -559,7 +556,7 @@ export class FacturacionComponent implements OnInit {
         ) {
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
-              console.log(resp);
+
               this.datosfacturacion = true;
             }
           );
@@ -578,11 +575,13 @@ export class FacturacionComponent implements OnInit {
       !this.form.get('comuna')?.errors
     ) {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
-        console.log(resp);
+
         this.datosdireccion = true;
         this.existedireccion = true;
       });
     }
+
+    console.log(this.form);
   }
 
   modificardatoscomprador() {
@@ -615,7 +614,7 @@ export class FacturacionComponent implements OnInit {
         };
 
         this.CategoriasService.generarordencompra(data).subscribe((resp) => {
-          console.log(resp);
+
           localStorage.setItem('infopago', JSON.stringify(resp));
           this.router.navigate(['/formulario-pago']);
         });
@@ -628,7 +627,7 @@ export class FacturacionComponent implements OnInit {
         };
 
         this.CategoriasService.generarordencompra(data).subscribe((resp) => {
-          console.log(resp);
+
           localStorage.setItem('infopago', JSON.stringify(resp));
           this.router.navigate(['/formulario-pago']);
         });

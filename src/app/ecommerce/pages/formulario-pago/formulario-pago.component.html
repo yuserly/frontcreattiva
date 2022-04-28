@@ -102,7 +102,7 @@
 
     <div
       class="col-12 mt-5 d-flex justify-content-center"
-      *ngIf="metodopago == 1; else pagopaypal"
+      *ngIf="metodopago == 1"
     >
       <form [action]="urlpago" method="POST">
         <input type="hidden" name="token_ws" [value]="token" />
@@ -125,8 +125,33 @@
         </div>
       </form>
     </div>
-    <ng-template #pagopaypal>
-      <div class="col-12 mt-5 d-flex justify-content-center">
+
+    <div
+      class="col-12 mt-5 d-flex justify-content-center"
+      *ngIf="metodopago == 4"
+    >
+      <form [action]="urlpago" method="POST">
+        <input type="hidden" name="TBK_TOKEN" [value]="token" />
+
+        <div class="row">
+          <div class="text-center mt-2 mb-4">
+            <button
+              type="submit"
+              class="btn"
+              style="
+                background-color: #005ad2;
+                color: #f2f3f5;
+                font-weight: bold;
+                width: 100%;
+              "
+            >
+              Pagar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+      <div *ngIf="metodopago == 2" class="col-12 mt-5 d-flex justify-content-center">
         <div class="row">
           <div class="text-center mt-4">
             <a
@@ -144,7 +169,6 @@
           </div>
         </div>
       </div>
-    </ng-template>
   </div>
 </div>
 

@@ -13,8 +13,9 @@ import {
   ProductoCarro,
   Carrito,
   SistemaOperativo,
-  Regiones, Comunas,
-  PreguntasFrecuentes
+  Regiones,
+  Comunas,
+  PreguntasFrecuentes,
 } from '../interfaces/ecommerce.interface';
 import { Paises } from '../interfaces/paises.interfaces';
 
@@ -33,12 +34,18 @@ export class CategoriasService {
 
   // productos buscados
   getProductosCoincidentes(nombre: string): Observable<Productos[]> {
-    return this.http.get<Productos[]>(`${this.urlBase}/getproductosbuscados/${nombre}`);
+    return this.http.get<Productos[]>(
+      `${this.urlBase}/getproductosbuscados/${nombre}`
+    );
   }
 
   //preguntas frecuentes buscadas
-  getPreguntasfrecuentesCoincidentes(nombre: string): Observable<PreguntasFrecuentes[]> {
-    return this.http.get<PreguntasFrecuentes[]>(`${this.urlBase}/getpreguntasfrecuentesbuscadas/${nombre}`);
+  getPreguntasfrecuentesCoincidentes(
+    nombre: string
+  ): Observable<PreguntasFrecuentes[]> {
+    return this.http.get<PreguntasFrecuentes[]>(
+      `${this.urlBase}/getpreguntasfrecuentesbuscadas/${nombre}`
+    );
   }
 
   // regiones
@@ -49,7 +56,7 @@ export class CategoriasService {
 
   // comunas
 
-  getComunas(id:number): Observable<Comunas[]> {
+  getComunas(id: number): Observable<Comunas[]> {
     return this.http.get<Comunas[]>(`${this.urlBase}/getcomunas/${id}`);
   }
 
@@ -69,7 +76,7 @@ export class CategoriasService {
     );
   }
 
-  getproductosxslug(slug:string): Observable<Productos> {
+  getproductosxslug(slug: string): Observable<Productos> {
     return this.http.get<Productos>(
       `${this.urlBase}/getproductosxslug/${slug}`
     );
@@ -91,88 +98,71 @@ export class CategoriasService {
 
   // lista de paises
 
-  getpaises () : Observable<Paises[]>{
+  getpaises(): Observable<Paises[]> {
     return this.http.get<Paises[]>('https://restcountries.com/v3.1/all');
   }
 
   // login
 
-  login(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/login`, data)
-
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/login`, data);
   }
 
   // empresa
 
-  crearempresa(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/crearempresa`, data)
-
+  crearempresa(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/crearempresa`, data);
   }
 
-  validarrut(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/validarrut`, data)
-
+  validarrut(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/validarrut`, data);
   }
 
   // solicitud codigo accesso
 
-  solicitudcode(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/solicitudcodigo`, data)
-
+  solicitudcode(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/solicitudcodigo`, data);
   }
 
   // login por codigo
 
-  logincode(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/logincode`, data)
-
+  logincode(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/logincode`, data);
   }
 
-  getempresa(email:string):Observable<any>{
-
+  getempresa(email: string): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/empresa/${email}`);
   }
 
-  getempresascliente(email:string):Observable<any>{
-
+  getempresascliente(email: string): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/empresascliente/${email}`);
   }
 
-  getempresaxid(id:number):Observable<any>{
-
+  getempresaxid(id: number): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/empresa/xid/${id}`);
   }
 
   // validar token
 
-  validartoken(){
-
+  validartoken() {
     const token = localStorage.getItem('token');
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<any>(`${this.urlBase}/validartoken`, {headers}).pipe(
-      map(resp =>{
+    return this.http.get<any>(`${this.urlBase}/validartoken`, { headers }).pipe(
+      map((resp) => {
         return resp.data.ok;
       }),
-      catchError(err => of(false))
-    )
+      catchError((err) => of(false))
+    );
   }
 
   //validar cupon
-  validarcupon(cupon:string):Observable<any>{
-
+  validarcupon(cupon: string): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/validarcupon/${cupon}`);
-
   }
 
   calculototalcarro() {
-
     let carrito: Carrito[] = JSON.parse(localStorage.getItem('carrito')!);
     let productos: ProductoCarro[] = [];
     let productoscarro: TotalCarro;
@@ -181,14 +171,14 @@ export class CategoriasService {
     let precioold = 0;
     let ahorroa = 0;
 
-    let tlicencias:number = 10;
+    let tlicencias: number = 10;
 
     let neto: number = 0;
     let iva: number = 0;
     let total: number = 0;
     let ahorro: number = 0;
 
-    let montocupon:number = 0;
+    let montocupon: number = 0;
 
     let nombreproducto: string = '';
 
@@ -196,101 +186,111 @@ export class CategoriasService {
 
     let descuentodominio: number = 0;
 
-    console.log("datos del carrito, detalles:");
-    console.log(carrito);
-
-
     carrito.forEach((element, i) => {
+      element.periodos.forEach((element2) => {
+        if (element.periodo == element2.id_periodo) {
+          //Licencias Google Workspace y Microsoft 365
+          if (
+            element.producto.subcategoria_id == 20 ||
+            element.producto.subcategoria_id == 24
+          ) {
+            precio = element2.precio_descuento * <number>element.cantidad;
+            precioold = element2.precio * <number>element.cantidad;
+            ahorroa = element2.ahorro * <number>element.cantidad;
+          } else if (element.producto.subcategoria_id == 31) {
+            //aplicar descuento 1 año gratis solo para periodos 2 y 3 años
 
-        element.periodos.forEach((element2) => {
+            let hayhosting = false;
+            let cumpleperiodo = false;
 
-          console.log(element2);
+            carrito.forEach((element3, i) => {
+              if (element3.producto.subcategoria_id == 1) {
+                hayhosting = true;
 
-          if (element.periodo == element2.id_periodo) {
+                if (element3.periodo == 3 || element3.periodo == 4) {
+                  cumpleperiodo = true;
+                }
+              }
+            });
 
-            //Licencias Google Workspace y Microsoft 365
-            if(element.producto.subcategoria_id==20 ||
-              element.producto.subcategoria_id==24){
+            if (
+              hayhosting &&
+              this.consultarServiciosHost() == false &&
+              cumpleperiodo
+            ) {
+              contDominios++;
 
-              precio = element2.precio_descuento*<number>element.cantidad;
-              precioold = element2.precio*<number>element.cantidad;
-              ahorroa = element2.ahorro*<number>element.cantidad;
+              if (contDominios == 1) {
+                precio = element2.precio;
+                precioold = 0;
 
-            }else if(element.producto.subcategoria_id==31){ 
-              //aplicar descuento 1 año gratis solo para periodos 2 y 3 años
+                element.periodos.forEach((element3) => {
+                  if (element3.id_periodo == 2) {
+                    ahorroa = element3.precio;
 
+                    descuentodominio = element3.precio * -1;
+                  }
+                });
 
-              // if(this.consultarServiciosHost()==false && (element.periodo==3 || element.periodo==4)){
-                
-              //   contDominios++;
+                // ahorroa = element2.precio*-1;
 
-              //   if(contDominios==1){
-                  
-              //     precio = element2.precio;
-              //     precioold = 0;
-              //     ahorroa = element2.precio;
-              //     descuentodominio = element2.precio*-1;
-              //   }else{
-              //     precio = element2.precio;
-              //     precioold = element2.precio;
-              //     ahorroa = 0;
-              //   }
-
-              // }else{
-                
+                console.log(
+                  precio,
+                  precioold,
+                  ahorroa,
+                  descuentodominio,
+                  'aqui'
+                );
+              } else {
                 precio = element2.precio;
                 precioold = element2.precio;
                 ahorroa = 0;
-
-           //   }
-
-            }else{
-
-              precio = element2.precio_descuento;
-              precioold = element2.precio;
-              ahorroa = element2.ahorro;
-
-            }
-
-            
-            if(element.producto.subcategoria_id==31){ //dominios
-              nombreproducto = "Registro de dominio "+element.dominio;
-            }else if(element.producto.subcategoria_id==1){ //planes hosting
-              if(element.dominio!=''){
-                nombreproducto = element.producto.nombre+" "+element.dominio;
-              }else{
-                nombreproducto = element.producto.nombre;
               }
-            }else{
+            } else {
+              precio = element2.precio;
+              precioold = element2.precio;
+              ahorroa = 0;
+            }
+          } else {
+            precio = element2.precio_descuento;
+            precioold = element2.precio;
+            ahorroa = element2.ahorro;
+          }
+
+          if (element.producto.subcategoria_id == 31) {
+            //dominios
+            nombreproducto = 'Registro de dominio ' + element.dominio;
+          } else if (element.producto.subcategoria_id == 1) {
+            //planes hosting
+            if (element.dominio != '') {
+              nombreproducto = element.producto.nombre + ' ' + element.dominio;
+            } else {
               nombreproducto = element.producto.nombre;
             }
-
-            productos.push({
-              nombre: nombreproducto,
-              precio: precio,
-              precioold: precioold,
-              ahorro: ahorroa,
-            });
-
-            //asignar cupon a detalles
-            montocupon = <number>element.cupon_descuento;
-
-            if(montocupon>0){
-              productos.push({
-                nombre: 'Cupón de descuento',
-                precio: montocupon*-1,
-                precioold: 0,
-                ahorro: 0,
-              });
-            }
-
-
-
+          } else {
+            nombreproducto = element.producto.nombre;
           }
-        });
 
+          productos.push({
+            nombre: nombreproducto,
+            precio: precio,
+            precioold: precioold,
+            ahorro: ahorroa,
+          });
 
+          //asignar cupon a detalles
+          montocupon = <number>element.cupon_descuento;
 
+          if (montocupon > 0) {
+            productos.push({
+              nombre: 'Cupón de descuento',
+              precio: montocupon * -1,
+              precioold: 0,
+              ahorro: 0,
+            });
+          }
+        }
+      });
     });
 
     productos.forEach((element) => {
@@ -312,137 +312,103 @@ export class CategoriasService {
     return productoscarro;
   }
 
-  generarordencompra(data:any){
-    return this.http.post<any>(`${this.urlBase}/generarorder`, data)
-
+  generarordencompra(data: any) {
+    return this.http.post<any>(`${this.urlBase}/generarorder`, data);
   }
 
-  recuperarpassword(email:string){
+  recuperarpassword(email: string) {
     return this.http.get<any>(`${this.urlBase}/solicitudcambiopass/${email}`);
   }
 
-  registrarconsulta(data:any):Observable<any>{
-
-    return this.http.post(`${this.urlBase}/registrarconsulta`, data)
-
+  registrarconsulta(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/registrarconsulta`, data);
   }
 
-  consultarIP(){
-
-    return this.http.get<any>(`${this.urlBase}/consultarip`)
-
+  consultarIP() {
+    return this.http.get<any>(`${this.urlBase}/consultarip`);
   }
 
-  preguntasfrecuentesall(){
-    return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`)
+  preguntasfrecuentesall() {
+    return this.http.get<any>(`${this.urlBase}/preguntasfrecuentesall`);
   }
 
-  validarconfigcarro():any{
-
+  validarconfigcarro(): any {
     let carro = JSON.parse(localStorage.getItem('carrito')!);
     let config = false;
-    let index:any[] = [];
-    let count:number = 0;
+    let index: any[] = [];
+    let count: number = 0;
 
-    if(carro.length > 0){
-
-      carro.forEach((element:Carrito, i:number) => {
-
-        if(element.producto.subcategoria.dominio){
-
-          carro.map((p:Carrito, ix:number) => {
+    if (carro.length > 0) {
+      carro.forEach((element: Carrito, i: number) => {
+        if (element.producto.subcategoria.dominio) {
+          carro.map((p: Carrito, ix: number) => {
             if (p.producto.subcategoria_id == 31) {
               count++;
             }
             return p;
           });
 
-          if(!element.dominio && count == 0){
+          if (!element.dominio && count == 0) {
             config = true;
             index.push(i);
           }
-        }else if(element.producto.subcategoria.ip){
-          if(!element.ip){
+        } else if (element.producto.subcategoria.ip) {
+          if (!element.ip) {
             config = true;
             index.push(i);
           }
-        }else if(element.producto.subcategoria.sistema_operativo){
-          if(!element.sistemaoperativo){
+        } else if (element.producto.subcategoria.sistema_operativo) {
+          if (!element.sistemaoperativo) {
             config = true;
             index.push(i);
           }
-        }else if(element.producto.subcategoria.administrable){
-          if(!element.administrar){
+        } else if (element.producto.subcategoria.administrable) {
+          if (!element.administrar) {
             config = true;
             index.push(i);
           }
         }
       });
 
-        let prod = {
-          index: index,
-          config:config
-        }
+      let prod = {
+        index: index,
+        config: config,
+      };
 
-        return prod;
-
+      return prod;
     }
   }
-  getfaq(slug:string): Observable<any> {
-    return this.http.get<any>(
-      `${this.urlBase}/getfaq/${slug}`
-    );
+  getfaq(slug: string): Observable<any> {
+    return this.http.get<any>(`${this.urlBase}/getfaq/${slug}`);
   }
 
-
-  consultarServiciosHost():boolean{
-    
+  consultarServiciosHost(): boolean {
     let usuario = JSON.parse(localStorage.getItem('usuario')!);
 
     let tienehosting = false;
 
     if (usuario) {
-
-      this.getempresa(usuario.email)
-      .subscribe((resp) => {   
-
-        console.log("datos de empresa: ");
-        console.log(resp);
-        
-        this.getservicios(resp.data.id_empresa)
-        .subscribe((resp2) => {
-          
-          tienehosting = resp2.status;
-          
-          console.log("tiene servicios: ");
-        console.log(resp2.status);
-          
-        });
-      
-
-        
+      this.getempresa(usuario.email).subscribe((resp) => {
+        if (resp.data) {
+          this.getservicios(resp.data.id_empresa).subscribe((resp2) => {
+            tienehosting = resp2.status;
+          });
+        }
       });
-
-    }else{
-
+    } else {
       tienehosting = true;
-
     }
 
     return tienehosting;
-
-    
-    
   }
 
-  getservicios(idmpresa:number):Observable<any>{
-
-    return this.http.get<any>(`${this.urlBase}/getconsultarservicios/${idmpresa}`);
+  getservicios(idmpresa: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.urlBase}/getconsultarservicios/${idmpresa}`
+    );
   }
 
-  getbanners():Observable<any>{
-
+  getbanners(): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/getbanners`);
   }
-
 }

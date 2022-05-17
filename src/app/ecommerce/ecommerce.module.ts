@@ -41,9 +41,10 @@ import { SoporteComponent } from './pages/soporte/soporte.component';
 //import { PaginationPipe } from './pipes/paginacion.pipe';
 //import { PaginadorComponent } from './pages/paginador/paginador.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
-import { CarouselModule } from 'ngx-owl-carousel-o'; 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CarouselComponent } from './pages/carousel/carousel.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { CarouselComponent } from './pages/carousel/carousel.component';
     SharedModule,
     GooglePlaceModule,
     CarouselModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    TranslateModule
   ],
   exports:[
     CaracteristicasComponent,

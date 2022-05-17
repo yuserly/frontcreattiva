@@ -3,7 +3,7 @@
   <div class="row d-flex justify-content-center mt-3 mb-5">
 
 
-    <div class="mb-4" 
+    <div class="mb-4"
     [ngClass]="resultadobusqueda ? 'col-md-3' : 'col-md-4'"
     *ngFor="let item of productos; let i = index">
       <div
@@ -89,7 +89,7 @@
 <div class="listado-planes">
 
   <div class="row d-none">
-    
+
     <div class="d-flex justify-content-center">
       <div (click)="owlCar.prev()"><</div>
       <div (click)="owlCar.next()">></div>
@@ -164,7 +164,7 @@
                     (click)="contratar(item)"
                     class="btn p-1 mt-4 btncontratar"
                   >
-                    Contratar
+                    {{'contratar' | translate}}
                   </button>
                 </div>
               </div>
@@ -177,7 +177,7 @@
             </div>
           </div>
 
-      </ng-template>  
+      </ng-template>
 
     </owl-carousel-o>
 

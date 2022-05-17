@@ -13,7 +13,6 @@
         <div class="row px-1 px-md-3">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item mt-2">
-
               <p><b>1.- Datos del comprador / Contacto técnico:</b></p>
 
               <h2
@@ -208,7 +207,6 @@
               >
                 <div class="accordion-body px-0">
                   <form class="row g-3">
-
                     <div class="col-md-5" *ngIf="tienerut">
                       <input
                         type="text"
@@ -345,6 +343,7 @@
                 <h2
                   class="accordion-header d-flex justify-content-between"
                   id="flush-headingThree"
+                  *ngIf="existedireccion"
                 >
                   <button
                     class="btn-acordeon accordion-button pt-0 pb-0"
@@ -404,7 +403,9 @@
                             <input
                               type="text"
                               class="form-control"
-                              [ngClass]="{ 'is-invalid': validarcampo('region') }"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('region')
+                              }"
                               formControlName="region"
                               placeholder="Region"
                             />
@@ -420,7 +421,9 @@
                             <input
                               type="text"
                               class="form-control"
-                              [ngClass]="{ 'is-invalid': validarcampo('comuna') }"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('comuna')
+                              }"
                               formControlName="comuna"
                               placeholder="comuna"
                             />
@@ -450,32 +453,36 @@
                         </form>
                       </div>
 
-                      <!-- boton direccion -->
 
-                      <ng-template #botondireccion>
-                        <div class="col-md-12 mt-4 text-center">
-                          <button
-                            type="button"
-                            class="btn"
-                            style="
-                              background-color: #005ad2;
-                              color: #f2f3f5;
-                              font-weight: bold;
-                              width: 60%;
-                            "
-                            data-bs-toggle="modal"
-                            data-bs-target="#modaldirecciones"
-                          >
-                            Agregar nueva dirección
-                          </button>
-                        </div>
-                      </ng-template>
                     </div>
                   </div>
+
+                   <!-- boton direccion -->
+
+                   <ng-template #botondireccion>
+                    <div class="col-md-12 mt-4 text-center">
+                      <button
+                        type="button"
+                        class="btn"
+                        style="
+                          background-color: #005ad2;
+                          color: #f2f3f5;
+                          font-weight: bold;
+                          width: 60%;
+                        "
+                        data-bs-toggle="modal"
+                        data-bs-target="#modaldirecciones"
+                      >
+                        Agregar nueva dirección
+                      </button>
+                    </div>
+                  </ng-template>
+
+
+
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="mt-2 mediospago" *ngIf="datosdireccion">
@@ -602,153 +609,111 @@
             -->
 
             <div class="row align-items-center">
-
-                <div class="col-md-4 col-12 col-sm-12 mb-3">
-
-                  <div class="btn btn-metodospago card-border">
-
-                    <div class="text-start">
-
-                      <input
-                        type="radio"
-                        class="form-check-input"
-                        formControlName="mediopago"
-                        id="periodo1"
-                        [value]="1"
-                        checked
-                        autocomplete="off"
-                      />
-
-                    </div>
-
-                    <label
-                      class="px-0 pb-0 opcion-metodo-pago"
-                      for="periodo1"
-                    >
-
-                      <div class="container-img">
-
-                        <img src="../../../../assets/img/icon-webpay.png" width="98px" />
-
-                      </div>
-
-                      <p style="font-size: 13px;">Pago con Webpay</p>
-
-                    </label>
-
+              <div class="col-md-4 col-12 col-sm-12 mb-3">
+                <div class="btn btn-metodospago card-border">
+                  <div class="text-start">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="mediopago"
+                      id="periodo1"
+                      [value]="1"
+                      checked
+                      autocomplete="off"
+                    />
                   </div>
 
-                </div>
-
-                <div class="col-md-4 col-12 col-sm-12 mb-3">
-
-                  <div class="btn btn-metodospago card-border">
-
-                    <div class="text-start">
-
-                      <input
-                        type="radio"
-                        class="form-check-input"
-                        formControlName="mediopago"
-                        id="periodo1"
-                        [value]="4"
-                        autocomplete="off"
-                      />
-
-                    </div>
-
-                    <label
-                      class="px-0 pb-0 opcion-metodo-pago"
-                      for="periodo1"
-                    >
-
-                      <div class="container-img">
-
-                        <img src="../../../../assets/img/icon-webpay.png" width="98px" />
-
-                      </div>
-
-                      <p style="font-size: 13px;">Pago con OneClick</p>
-
-                    </label>
-
-                  </div>
-
-                </div>
-
-                <div class="col-md-4 col-12 col-sm-12 mb-3">
-
-                  <div class="btn btn-metodospago card-border" >
-
-                    <div class="text-start">
-                      <input
-                        type="radio"
-                        class="form-check-input"
-                        formControlName="mediopago"
-                        id="periodo2"
-                        [value]="2"
-                        autocomplete="off"
+                  <label class="px-0 pb-0 opcion-metodo-pago" for="periodo1">
+                    <div class="container-img">
+                      <img
+                        src="../../../../assets/img/icon-webpay.png"
+                        width="98px"
                       />
                     </div>
 
+                    <p style="font-size: 13px">Pago con Webpay</p>
+                  </label>
+                </div>
+              </div>
 
-                      <label
-                        class="px-0 pb-0 opcion-metodo-pago"
-                        for="periodo2"
-                      >
-
-                        <div class="container-img">
-
-                          <img src="../../../../assets/img/paypal.png" width="70px" />
-
-                        </div>
-
-                        <p style="font-size: 13px;">Pago con Paypal</p>
-
-                      </label>
-
+              <div class="col-md-4 col-12 col-sm-12 mb-3">
+                <div class="btn btn-metodospago card-border">
+                  <div class="text-start">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="mediopago"
+                      id="periodo1"
+                      [value]="4"
+                      autocomplete="off"
+                    />
                   </div>
 
-                </div>
-
-                <div class="col-md-4 col-12 col-sm-12  mb-3">
-
-                  <div class="btn btn-metodospago card-border" >
-
-                    <div class="text-start">
-                      <input
-                        type="radio"
-                        class="form-check-input"
-                        formControlName="mediopago"
-                        id="periodo3"
-                        [value]="3"
-                        autocomplete="off"
+                  <label class="px-0 pb-0 opcion-metodo-pago" for="periodo1">
+                    <div class="container-img">
+                      <img
+                        src="../../../../assets/img/icon-webpay.png"
+                        width="98px"
                       />
                     </div>
 
-                    <label
-                      class="px-0 pb-0 opcion-metodo-pago"
-                      for="periodo3"
-                    >
+                    <p style="font-size: 13px">Pago con OneClick</p>
+                  </label>
+                </div>
+              </div>
 
-                      <div class="container-img">
-
-                        <img
-                          src="../../../../assets/img/icon-transfer.png"
-                          width="98px"
-                        />
-
-                      </div>
-
-                      <p style="font-size: 13px;">Pago transferencia</p>
-
-                    </label>
+              <div class="col-md-4 col-12 col-sm-12 mb-3">
+                <div class="btn btn-metodospago card-border">
+                  <div class="text-start">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="mediopago"
+                      id="periodo2"
+                      [value]="2"
+                      autocomplete="off"
+                    />
                   </div>
 
-                </div>
+                  <label class="px-0 pb-0 opcion-metodo-pago" for="periodo2">
+                    <div class="container-img">
+                      <img
+                        src="../../../../assets/img/paypal.png"
+                        width="70px"
+                      />
+                    </div>
 
+                    <p style="font-size: 13px">Pago con Paypal</p>
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-12 col-sm-12 mb-3">
+                <div class="btn btn-metodospago card-border">
+                  <div class="text-start">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="mediopago"
+                      id="periodo3"
+                      [value]="3"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <label class="px-0 pb-0 opcion-metodo-pago" for="periodo3">
+                    <div class="container-img">
+                      <img
+                        src="../../../../assets/img/icon-transfer.png"
+                        width="98px"
+                      />
+                    </div>
+
+                    <p style="font-size: 13px">Pago transferencia</p>
+                  </label>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -756,7 +721,7 @@
 
     <div class="col-md-4">
       <app-detalle-pedido
-        (eventoMovilComprar) = "ValidarBtnComprarMovil($event)"
+        (eventoMovilComprar)="ValidarBtnComprarMovil($event)"
         [totalcarroarray]="totalcarroarray"
         [mostrarBtnComprarMovil]="mostrarBtnComprarMovil"
         [aplicarCupon]="aplicarCupon"
@@ -778,13 +743,20 @@
 
       <div class="row mt-4 d-none d-sm-none d-md-block d-lg-block">
         <div class="col-6">
-          <p class="mt-2">TOTAL {{totalcarroarray.total | currency:'USD':'symbol-narrow':'4.0-0':'es-CL'}}</p>
+          <p class="mt-2">
+            TOTAL
+            {{
+              totalcarroarray.total
+                | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+            }}
+          </p>
         </div>
         <div class="col-6">
           <button
             type="button"
             class="btn"
             [disabled]="form.invalid"
+            *ngIf="!creandocompra; else cargando"
             style="
               background-color: #009900;
               color: #f2f3f5;
@@ -795,6 +767,14 @@
           >
             COMPRAR
           </button>
+
+          <ng-template #cargando>
+
+            <div class="spinner-border text-success ms-2" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </ng-template>
+
         </div>
         <div class="col-12">
           <span class="text-muted" style="font-size: 12px">
@@ -827,6 +807,7 @@
             style="border-bottom: 0px; padding-bottom: 0px"
           >
             <button
+              #btncerrarmodal
               type="button"
               class="btn-close"
               data-bs-dismiss="modal"
@@ -959,8 +940,7 @@
             ></button>
           </div>
           <div class="modal-body">
-
-            <h6 class="me-4 mb-4 "> <strong>Términos y Condiciones</strong> </h6>
+            <h6 class="me-4 mb-4"><strong>Términos y Condiciones</strong></h6>
 
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
@@ -969,7 +949,6 @@
               non. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Laboriosam aliquam hic assumenda eum possimus iusto dolores illo
               animi. Ullam quo officia iusto tenetur minus eius quasi sit.
-
               Facere, aspernatur dolores. Lorem ipsum dolor, sit amet
               consectetur adipisicing elit. Minima animi illum enim aliquid quam
               veritatis in corporis sint itaque praesentium expedita, ad aperiam
@@ -978,13 +957,15 @@
               natus, dolor, optio animi illum officia aliquam error aspernatur
               necessitatibus, corrupti quam unde dolores aliquid deserunt?
               Dignissimos, nesciunt?
-
             </p>
           </div>
         </div>
       </div>
     </div>
     <!-- Modal Terminos-->
+
+
+
   </div>
 </div>
 

@@ -27,7 +27,7 @@ import {
   animations: [
 
     trigger('openCloseCategorias', [
-  
+
       state('open', style({
         left: '0'
       })),
@@ -42,7 +42,7 @@ import {
       ]),
     ]),
     trigger('openCloseSubcategorias', [
- 
+
       state('open', style({
         right: '0'
       })),
@@ -91,14 +91,15 @@ openSubcategorias = false;
 openSearch = false;
 
 btnSearch:string = 'fas fa-search';
- 
+
 
   categorias: Categorias[] = [];
   productos: Productos[] = [];
   subcategorias: Subcategorias[] = [];
   productosbuscados: Productos[] = [];
   logueado: boolean = false;
-  
+  lang:string = '';
+
   @ViewChild('subfoco') subfoco!: ElementRef;
   @ViewChild('subfocoplanes') subfocoplanes!: ElementRef;
 
@@ -124,6 +125,9 @@ btnSearch:string = 'fas fa-search';
   }
 
   ngOnInit(): void {
+
+    this.lang = localStorage.getItem('lang') || 'es';
+
     this.categoriasServices.getCategorias().subscribe((categorias) => {
       categorias.map((p, i) => {
         if (i == 0) {
@@ -155,6 +159,12 @@ btnSearch:string = 'fas fa-search';
       this.margintop = 110;
     }
 
+
+  }
+  changeLang(data:any){
+    localStorage.setItem('lang', data.value );
+
+    window.location.reload();
 
   }
 
@@ -233,7 +243,7 @@ btnSearch:string = 'fas fa-search';
   }
 
   busquedageneral(){
-    
+
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return;
@@ -263,7 +273,7 @@ btnSearch:string = 'fas fa-search';
       console.log(this.productosbuscados);
 
       this.router.navigate(['resultados-busqueda']);
-      
+
     });
 
   }

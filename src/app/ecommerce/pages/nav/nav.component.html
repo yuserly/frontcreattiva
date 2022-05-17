@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="/">
 
           <img alt="" class="img-fluid" src="../../../../assets/img/logoWeb.webp" width="260px" />
-    
+
         </a>
 
       </div>
@@ -17,13 +17,13 @@
       <div class="col-md-4 d-flex align-items-center">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          
+
           <span class="navbar-toggler-icon"></span>
 
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          
+
           <div class="w-100">
             <app-buscador (productosbusc)="productosp($event)"></app-buscador>
           </div>
@@ -33,17 +33,17 @@
       </div>
 
       <div class="col-md-4 d-flex justify-content-end align-items-center" *ngIf="carvisible">
-            
+
           <a routerLink="/carrito" class="d-flex align-items-center" style="text-decoration: none;" *ngIf="countcarro>0">
-            
+
             <h6 style="color: #fff;" class="me-4">FINALIZAR COMPRA</h6>
 
           </a>
-  
+
           <a routerLink="/carrito">
-  
+
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" viewBox="0 0 128.000000 128.000000" preserveAspectRatio="xMidYMid meet">
-  
+
               <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
               fill="#FFF" stroke="none">
               <path d="M0 1230 l0 -29 72 -3 73 -3 29 -110 c16 -60 71 -265 123 -454 l93
@@ -59,12 +59,12 @@
               -9 51 -21z m581 -4 c45 -44 25 -117 -35 -130 -60 -13 -113 50 -90 106 21 51
               86 64 125 24z"/>
               </g>
-  
+
             </svg>
             <span class="badge bg-white" style="position: relative;top: -12px;left: -8px;color:black;">{{countcarro}}</span>
-  
+
           </a>
-  
+
       </div>
 
     </div>
@@ -75,7 +75,7 @@
 
 
 <nav  [ngClass]="countcarro>0 && carvisible? 'carmovilfull' : 'carmovilclear'"
-      class="navbar navbar-expand-lg navbar-light d-sm-block d-lg-none d-md-none" 
+      class="navbar navbar-expand-lg navbar-light d-sm-block d-lg-none d-md-none"
       style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);">
 
   <div class="container">
@@ -87,7 +87,7 @@
         <a class="navbar-brand" href="/">
 
           <img alt="" src="../../../../assets/img/logoWeb.webp" width="100%" style="max-width: 190px;" />
-  
+
         </a>
 
       </div>
@@ -113,7 +113,7 @@
             <a class="d-flex align-items-center" style="text-decoration: none;visibility: hidden;" routerLink="/carrito">
 
               <h6 style="color: #fff" class="me-4">FINALIZAR COMPRA...</h6>
-  
+
             </a>
 
           </ng-template>
@@ -146,6 +146,14 @@
 
         </div>
 
+      </div>
+
+      <div class="col-3">
+        <select (change)="changeLang($event.target)">
+          <option value="es" [selected]="lang == 'es'">ES</option>
+          <option value="en" [selected]="lang == 'en'">EN</option>
+
+        </select>
       </div>
 
     </div>

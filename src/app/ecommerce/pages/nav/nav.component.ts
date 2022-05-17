@@ -18,7 +18,7 @@ import {
   animations: [
 
     trigger('openCloseCategorias', [
-  
+
       state('open', style({
         left: '0'
       })),
@@ -33,7 +33,7 @@ import {
       ]),
     ]),
     trigger('openCloseSubcategorias', [
- 
+
       state('open', style({
         right: '0'
       })),
@@ -100,9 +100,12 @@ export class NavComponent implements OnInit {
   //variable enviada al componente resultados-busqueda
   @Output() productosbuscados: EventEmitter<Productos[]> = new EventEmitter();
 
+  lang:string = '';
+
   constructor(public DominiosService: DominiosService, private router: Router, private categoriasServices: CategoriasService) { }
 
   ngOnInit(): void {
+    this.lang = localStorage.getItem('lang') || 'es';
 
     console.log(this.router.routerState.snapshot.url)
     let ruta = this.router.routerState.snapshot.url;
@@ -133,6 +136,11 @@ export class NavComponent implements OnInit {
       this.categorias = categorias;
     });
 
+  }
+  changeLang(data:any){
+    localStorage.setItem('lang', data.value );
+
+    window.location.reload();
   }
 
   productosp(productosb:Productos[]){

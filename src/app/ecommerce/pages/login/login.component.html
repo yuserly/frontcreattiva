@@ -38,6 +38,7 @@
                   id="email"
                   aria-describedby="emailUsuario"
                   formControlName="email"
+                  (keyup)="cambiarminuscula($event)"
 
                 />
                 <div class="invalid-feedback" *ngIf="validarcampo('email')">

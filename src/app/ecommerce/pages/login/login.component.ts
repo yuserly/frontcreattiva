@@ -64,6 +64,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  cambiarminuscula(string: any){
+
+   let min = string.target.value.toLowerCase();
+
+   this.form.get('email')!.setValue(min);
+
+  }
+
   continuar() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();

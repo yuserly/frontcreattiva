@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="/">
 
           <img alt="" class="img-fluid" src="../../../../assets/img/logoWeb.webp" width="260px" />
-    
+
         </a>
 
       </div>
@@ -17,13 +17,13 @@
       <div class="col-md-4 d-flex align-items-center">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          
+
           <span class="navbar-toggler-icon"></span>
 
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          
+
           <div class="w-100">
             <app-buscador></app-buscador>
           </div>
@@ -32,18 +32,18 @@
 
       </div>
 
-      <div class="col-md-4 d-flex justify-content-end align-items-center">
-            
+      <div class="col-md-3 d-flex justify-content-end align-items-center">
+
           <a routerLink="/carrito" class="d-flex align-items-center" style="text-decoration: none;" *ngIf="DominiosService.totalCarro>0">
-            
+
             <h6 style="color: #fff;" class="me-4">FINALIZAR COMPRA</h6>
 
           </a>
-  
+
           <a routerLink="/carrito">
-  
+
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" viewBox="0 0 128.000000 128.000000" preserveAspectRatio="xMidYMid meet">
-  
+
               <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
               fill="#FFF" stroke="none">
               <path d="M0 1230 l0 -29 72 -3 73 -3 29 -110 c16 -60 71 -265 123 -454 l93
@@ -59,12 +59,20 @@
               -9 51 -21z m581 -4 c45 -44 25 -117 -35 -130 -60 -13 -113 50 -90 106 21 51
               86 64 125 24z"/>
               </g>
-  
+
             </svg>
             <span class="badge bg-white" style="position: relative;top: -12px;left: -8px;color:black;">{{DominiosService.totalCarro}}</span>
-  
+
           </a>
-  
+
+      </div>
+
+      <div class="col-1">
+        <select (change)="changeLang($event.target)" class="form-select">
+          <option value="es" [selected]="lang == 'es'">ES</option>
+          <option value="en" [selected]="lang == 'en'">EN</option>
+
+        </select>
       </div>
 
     </div>
@@ -100,7 +108,7 @@
 
 
 	</div>
-  
+
   <!--buscador-->
   <div class="fixed-top" style="margin-top: 60px;z-index: 9999;">
     <div class="container" [@openCloseSearch]="openSearch ? 'open' : 'closed'" style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);position: relative;">
@@ -114,19 +122,19 @@
         </div>
 
       </div>
-      
+
 
     </div>
   </div>
 
   <!--carrito y finalizar compra-->
-  <div 
+  <div
     *ngIf="DominiosService.totalCarro>0"
-    class="fixed-top" 
+    class="fixed-top"
     style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);
     margin-top: 60px;"
   >
-    
+
     <div class="container">
 
       <div class="row">
@@ -205,30 +213,30 @@
 			<ul>
 				<li *ngFor="let categoria of categorias; let i=index">
 
-					<a class="item-categoria" 
-            [ngClass]="{'item-active':categoria.active}" 
-            routerLinkActive="item-active" 
-            (click)="buscarsubcategoria(categoria.id_categoria)" 
+					<a class="item-categoria"
+            [ngClass]="{'item-active':categoria.active}"
+            routerLinkActive="item-active"
+            (click)="buscarsubcategoria(categoria.id_categoria)"
             (click)="menuSubcategorias(true)"
             (click)="activar(i)"
           >
 
-            
-            
-            {{categoria.nombre}} 
-						
+
+
+            {{categoria.nombre}}
+
             <i class="fas fa-chevron-right float-end"></i>
-					
+
           </a>
 
 				</li>
 
         <li>
 
-					<a class="item-categoria" routerLink="/contacto">Contactenos 
-						
+					<a class="item-categoria" routerLink="/contacto">Contactenos
+
             <i class="fas fa-chevron-right float-end"></i>
-					
+
           </a>
 
 				</li>
@@ -236,13 +244,13 @@
         <li>
 
 					<a class="item-categoria" routerLink="/contacto">Blog
-						
+
             <i class="fas fa-chevron-right float-end"></i>
-					
+
           </a>
 
 				</li>
-				
+
 			</ul>
 	</nav>
 
@@ -266,10 +274,10 @@
         <div class="row d-flex justify-content-center">
 
           <div class="col-sm-6 col-6 col-md-2 mt-3" *ngFor="let subcategoria of subcategorias; let i=index "  >
-      
-            <div 
-              class="card planes-icon"  
-              [ngClass]="{'plan-active':subcategoria.active}" 
+
+            <div
+              class="card planes-icon"
+              [ngClass]="{'plan-active':subcategoria.active}"
               routerLink="/compra-dominios"
               *ngIf="subcategoria.id_subcategoria == 31; else otrasSubcategorias"
             >
@@ -277,28 +285,28 @@
               <h5>{{subcategoria.nombre}}</h5>
 
               <h6><b>Ver planes <i class="fas fa-arrow-right" style="font-size: 14px;"></i></b></h6>
-      
+
             </div>
-      
+
             <ng-template #otrasSubcategorias>
-      
-            <div 
-              class="card planes-icon"  
-              [ngClass]="{'plan-active':subcategoria.active}" 
+
+            <div
+              class="card planes-icon"
+              [ngClass]="{'plan-active':subcategoria.active}"
               (click)="seleccionarcategoria(i, subcategoria.id_subcategoria )"
             >
-      
+
               <i [class]="subcategoria.icono"></i>
               <h5>{{subcategoria.nombre}}</h5>
 
               <h6><b>Ver planes <i class="fas fa-arrow-right" style="font-size: 14px;"></i></b></h6>
-      
+
             </div>
-      
+
             </ng-template>
-      
+
           </div>
-      
+
         </div>
 
 			</div>
@@ -320,7 +328,7 @@
       </li>
 
       <li class="p-2 bd-highlight d-flex align-items-center">
-        <a routerLink="/soporte">Soporte</a>
+        <a routerLink="/soporte" class="text-capitalize">{{'soporte' | translate}}</a>
       </li>
 
       <li>
@@ -328,7 +336,7 @@
       </li>
 
       <li class="p-2 bd-highlight d-flex align-items-center">
-        <a routerLink="/contacto">Ventas</a>
+        <a routerLink="/contacto" class="text-capitalize">{{'ventas' | translate}}</a>
       </li>
 
       <li>
@@ -336,12 +344,12 @@
       </li>
 
       <li class="p-2 bd-highlight d-flex align-items-center">
-        <a href="/"><span> Cotiza Online</span></a>
+        <a href="/"><span class="text-capitalize"> {{'cotiza online' | translate}}</span></a>
       </li>
 
       <li class="p-2 bd-highlight d-flex align-items-center">
         <img src="../../../../assets/img/tele-central.webp" style="width: 200px" />
-        
+
       </li>
     </ul>
   </div>
@@ -401,7 +409,7 @@
 
 <div class="container" #subfoco>
 
-  
+
     <app-caracteristicas  [subcategorias]="subcategorias" (getproducto)="obtenerproductos($event)" ></app-caracteristicas>
 
     <div #subfocoplanes></div>
@@ -425,7 +433,7 @@
 
     <div class="col-md-12">
 
-      <h1 class="title-section text-center">¿Qué quieres hacer?</h1>
+      <h1 class="title-section text-center text-capitalize">¿{{'que quieres hacer' | translate}}?</h1>
 
       <h4 class="text-center">Cuéntanos de tu proyecto, tenemos soluciones que se</h4>
 

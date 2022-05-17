@@ -20,35 +20,6 @@ import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 })
 export class FacturacionComponent implements OnInit {
 
-   //owl
-   /*
-   owl_metodosdepago: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['<', '>'],
-    responsive: {
-      0: {
-        items: 1,
-        margin: 10
-      },
-      400: {
-        items: 3,
-        margin: 10
-      },
-      740: {
-        items: 6
-      },
-      940: {
-        items: 7
-      }
-    },
-    nav: true
-  }*/
-
   // @ViewChild('modalv') modal!: ElementRef;
   totalcarroarray!: TotalCarro;
   paises: Paises[] = [];
@@ -63,6 +34,18 @@ export class FacturacionComponent implements OnInit {
   mostrarBtnComprarMovil:boolean = true;
   aplicarCupon:number = 1;
   tienerut:boolean = false;
+  creandocompra:boolean = false;
+
+  // informacion necesaria para ir a pagos
+
+  metodopago:any = '';
+  urlpago: any = '';
+  token:any = '';
+
+  @ViewChild('btncerrarmodal',{static:true}) btncerrarmodal!: ElementRef<HTMLFormElement>;
+
+
+  // fomulario
 
   form: FormGroup = this.fb.group({
     nombre: [
@@ -82,16 +65,8 @@ export class FacturacionComponent implements OnInit {
     ],
     pais: ['', [Validators.required]],
     rut: ['', [Validators.required, this.validacion.validarRut]],
-    razonsocial: ['',
-    [
-      Validators.required,
-      Validators.pattern(this.validacion.nombreUsuarioPattern),
-    ],],
-    giro: ['',
-    [
-      Validators.required,
-      Validators.pattern(this.validacion.nombreUsuarioPattern),
-    ],],
+    razonsocial: [''],
+    giro: [''],
     telefonoempresa: [
       '',
       [
@@ -253,10 +228,12 @@ export class FacturacionComponent implements OnInit {
 
             }
     }
+
+
+
   }
 
   ngOnInit(): void {
-
 
     this.form.markAllAsTouched()
 
@@ -576,6 +553,8 @@ export class FacturacionComponent implements OnInit {
     ) {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
 
+        this.btncerrarmodal.nativeElement.click();
+
         this.datosdireccion = true;
         this.existedireccion = true;
       });
@@ -603,6 +582,7 @@ export class FacturacionComponent implements OnInit {
   finalizarcompra() {
 
     if (this.form.value.isempresa == 1) {
+      this.creandocompra = true;
       if (
         !this.form.invalid &&
         this.form.value.razonsocial != '' &&
@@ -615,11 +595,42 @@ export class FacturacionComponent implements OnInit {
 
         this.CategoriasService.generarordencompra(data).subscribe((resp) => {
 
-          localStorage.setItem('infopago', JSON.stringify(resp));
-          this.router.navigate(['/formulario-pago']);
+          if(resp){
+
+            if(resp.metodopago == 3 || resp.metodopago == '3'){
+
+              this.router.navigate(['/pago-transferencia']);
+
+            }
+
+            if((resp.metodopago == 4 || resp.metodopago == '4') && resp.pagoexitoso == 1 ){
+
+              this.router.navigate(['/pago-exitoso']);
+
+            }
+
+            this.metodopago = resp.metodopago;
+
+            this.urlpago = resp.url;
+
+            this.token = resp.token;
+
+            this.ejecutarformpago();
+
+
+
+          }
+
+          // localStorage.setItem('infopago', JSON.stringify(resp));
+          // this.router.navigate(['/formulario-pago']);
         });
+
+
       }
     } else {
+
+      this.creandocompra = true;
+
       if (!this.form.invalid) {
         let data = {
           datos: this.form.value,
@@ -628,10 +639,59 @@ export class FacturacionComponent implements OnInit {
 
         this.CategoriasService.generarordencompra(data).subscribe((resp) => {
 
-          localStorage.setItem('infopago', JSON.stringify(resp));
-          this.router.navigate(['/formulario-pago']);
+          if(resp){
+
+            if(resp.metodopago == 3 || resp.metodopago == '3'){
+
+              this.router.navigate(['/pago-transferencia']);
+
+            }
+
+            if((resp.metodopago == 4 || resp.metodopago == '4') && resp.pagoexitoso == 1 ){
+
+              this.router.navigate(['/pago-exitoso']);
+
+            }
+
+            this.metodopago = resp.metodopago;
+
+            this.urlpago = resp.url;
+
+            this.token = resp.token;
+
+            // this.ejecutarformpago();
+
+
+          }
+
+          // localStorage.setItem('infopago', JSON.stringify(resp));
+          // this.router.navigate(['/formulario-pago']);
         });
+
       }
+    }
+  }
+
+  ejecutarformpago(){
+
+    console.log(this.metodopago, this.urlpago, this.token);
+
+
+    if(this.metodopago == 4 || this.metodopago == '4'){
+
+      // window.location.href  = "http://backendcreattiva.cp/pago/oneclick/"+this.token;
+      window.location.href  = "https://api.t2.creattivadatacenter.com/pago/oneclick/"+this.token;
+    }
+
+    if(this.metodopago == 1 || this.metodopago == '1'){
+      // window.location.href  = "http://backendcreattiva.cp/pago/webpayplus/"+this.token;
+      window.location.href  = "https://api.t2.creattivadatacenter.com/pago/webpayplus/"+this.token;
+
+
+    }
+
+    if(this.metodopago == 2 || this.metodopago == '2'){
+      window.location.href  = this.urlpago;
     }
   }
 

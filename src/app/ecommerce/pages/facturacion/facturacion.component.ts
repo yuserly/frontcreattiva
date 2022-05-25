@@ -35,6 +35,8 @@ export class FacturacionComponent implements OnInit {
   aplicarCupon:number = 1;
   tienerut:boolean = false;
   creandocompra:boolean = false;
+  tieneregoneclick :boolean = false;
+  nrotarjeta:string = '';
 
   // informacion necesaria para ir a pagos
 
@@ -320,7 +322,14 @@ export class FacturacionComponent implements OnInit {
         this.seleccion.giro = resp.data.giro;
         this.seleccion.telefonoempresa = resp.data.telefono_empresa;
         this.seleccion.emailempresa = resp.data.email_empresa;
-        this.seleccion.mediopago = 1;
+
+        if(resp.data.user.tbktajerta){
+          this.seleccion.mediopago = 4;
+          this.nrotarjeta = resp.data.user.tbktajerta;
+          this.tieneregoneclick = true;
+        }else{
+          this.seleccion.mediopago = 1;
+        }
 
         if (resp.data.razonsocial) {
           this.nombrefacturacion = resp.data.razonsocial;
@@ -377,6 +386,7 @@ export class FacturacionComponent implements OnInit {
       this.seleccion.email = usuario.email;
       this.seleccion.pais = 'Chile';
       this.seleccion.isempresa = true;
+      this.tieneregoneclick = false;
     }
 
     this.form.reset(this.seleccion);

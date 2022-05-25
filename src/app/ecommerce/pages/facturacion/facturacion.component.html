@@ -609,6 +609,45 @@
             -->
 
             <div class="row align-items-center">
+              <div class="col-md-12 col-12 col-sm-12 mb-3" *ngIf="tieneregoneclick">
+                <div class="alert" style="background-color: #009900; color: #f2f3f5; font-weight: bold; width: 100%;" role="alert">
+                  Ya haz agregado tu tarjeta a OneClick, ahora continua para pagar.
+                </div>
+                <div class="btn btn-metodospago card-border d-flex" style="width: 100%">
+                  <div class="text-start mt-5">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="mediopago"
+                      id="periodo1"
+                      [value]="4"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <label class="px-0 pb-0 opcion-metodo-pago d-flex mt-4" for="periodo1">
+                    <div class="row" style="width: 100%;">
+                      <div class="col-4">
+
+                        <div class="container-img ml-1">
+                          <img
+                            src="../../../../assets/img/icon-webpay.png"
+                            width="98px"
+                          />
+                        </div>
+
+                      </div>
+                      <div class="col-8">
+                       <strong><p style="font-size: 20px"> 50% Descuento</p></strong> 
+                       
+                       <strong><p style="font-size: 15px"> Webpay OneClick, Tarjeta nro {{nrotarjeta}} </p></strong>
+                      </div>
+                    </div>
+                    
+
+                  </label>
+                </div>
+              </div>
               <div class="col-md-4 col-12 col-sm-12 mb-3">
                 <div class="btn btn-metodospago card-border">
                   <div class="text-start">
@@ -636,7 +675,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 col-12 col-sm-12 mb-3">
+              <div class="col-md-4 col-12 col-sm-12 mb-3" *ngIf="!tieneregoneclick">
                 <div class="btn btn-metodospago card-border">
                   <div class="text-start">
                     <input

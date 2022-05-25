@@ -124,6 +124,12 @@ export class CategoriasService {
     return this.http.post(`${this.urlBase}/solicitudcodigo`, data);
   }
 
+  // registrar producto agregado al carro
+
+  registrocarrito(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/registroscarrito`, data);
+  }
+
   // login por codigo
 
   logincode(data: any): Observable<any> {

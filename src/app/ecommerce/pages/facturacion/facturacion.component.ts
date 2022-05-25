@@ -323,9 +323,9 @@ export class FacturacionComponent implements OnInit {
         this.seleccion.telefonoempresa = resp.data.telefono_empresa;
         this.seleccion.emailempresa = resp.data.email_empresa;
 
-        if(resp.data.user.tbktajerta){
+        if(resp.data.user.tbktarjeta){
           this.seleccion.mediopago = 4;
-          this.nrotarjeta = resp.data.user.tbktajerta;
+          this.nrotarjeta = resp.data.user.tbktarjeta;
           this.tieneregoneclick = true;
         }else{
           this.seleccion.mediopago = 1;

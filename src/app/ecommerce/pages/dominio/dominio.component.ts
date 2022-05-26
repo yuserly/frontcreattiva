@@ -141,6 +141,8 @@ export class DominioComponent implements OnInit {
 
     this.dominioscarrito = carrito;
 
+    this.registroDetallesCarrito(carrito[index]);
+
   }
 
   buscardominio(){
@@ -404,6 +406,31 @@ export class DominioComponent implements OnInit {
 
   scrollToTop(){
     window.scroll(0,0);
+  }
+
+  registroDetallesCarrito(data:any){
+
+    let url = location.href;
+
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    let detallesAdicionales= [{
+      "url":url,
+      "usuario":usuario
+    }];
+
+    let arrayInfo= [{
+      "opc":'updt',
+      "data":data,
+      "adicionales":detallesAdicionales
+    }];
+
+    this.CategoriasService
+        .registrocarrito(arrayInfo)
+        .subscribe((resp) => {
+          console.log(resp);
+        });
+
   }
 
 }

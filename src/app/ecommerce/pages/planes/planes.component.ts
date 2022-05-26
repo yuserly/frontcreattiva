@@ -73,7 +73,7 @@ export class PlanesComponent implements OnInit {
 
   aggcart(producto: Productos,  carro: Carrito[]){
 
-    //this.registroCarrito(producto); //registro en tabla registrosCarrito
+    this.registroDetallesCarrito(producto); //registro en tabla registrosCarrito
 
       let periodoselect = 1;
 
@@ -138,12 +138,25 @@ export class PlanesComponent implements OnInit {
 
   }
 
-  registroCarrito(data:any){
-    console.log("registroCarrito data");
-    console.log(data);
+  registroDetallesCarrito(data:any){
+
+    let url = location.href;
+
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    let detallesAdicionales= [{
+      "url":url,
+      "usuario":usuario
+    }];
+
+    let arrayInfo= [{
+      "opc":'add',
+      "data":data,
+      "adicionales":detallesAdicionales
+    }];
 
     this.categoriasServices
-        .registrocarrito(data)
+        .registrocarrito(arrayInfo)
         .subscribe((resp) => {
           console.log(resp);
         });

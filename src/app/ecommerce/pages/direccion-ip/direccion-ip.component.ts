@@ -76,6 +76,9 @@ export class DireccionIpComponent implements OnInit {
     let productoscarro = this.CategoriasService.calculototalcarro();
     this.totalcarrod.emit(productoscarro);
 
+    this.registroDetallesCarrito(carrito[index]);
+    
+
   }
 
   limpiarIpGuardada(){
@@ -140,6 +143,31 @@ export class DireccionIpComponent implements OnInit {
 
   validarcampo(campo: string) {
     return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
+  }
+
+  registroDetallesCarrito(data:any){
+
+    let url = location.href;
+
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    let detallesAdicionales= [{
+      "url":url,
+      "usuario":usuario
+    }];
+
+    let arrayInfo= [{
+      "opc":'updt',
+      "data":data,
+      "adicionales":detallesAdicionales
+    }];
+
+    this.CategoriasService
+        .registrocarrito(arrayInfo)
+        .subscribe((resp) => {
+          console.log(resp);
+        });
+
   }
 
   

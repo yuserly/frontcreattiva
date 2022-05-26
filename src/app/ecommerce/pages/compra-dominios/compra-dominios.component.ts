@@ -174,6 +174,8 @@ export class CompraDominiosComponent implements OnInit {
 
           });
 
+          this.registroDetallesCarrito(carro);
+
           localStorage.setItem('carrito', JSON.stringify(carro));
 
           let productoscarro = this.CategoriasService.calculototalcarro();
@@ -400,6 +402,8 @@ export class CompraDominiosComponent implements OnInit {
 
               });
 
+              this.registroDetallesCarrito(carro);
+
               localStorage.setItem('carrito', JSON.stringify(carro));
 
               let productoscarro = this.CategoriasService.calculototalcarro();
@@ -435,6 +439,8 @@ export class CompraDominiosComponent implements OnInit {
                   cupon_descuento: 0
 
                 });
+
+                this.registroDetallesCarrito(carro);
 
                 localStorage.setItem('carrito', JSON.stringify(carro));
 
@@ -490,6 +496,35 @@ export class CompraDominiosComponent implements OnInit {
 
 
         this.router.navigate(['/carrito']);
+
+  }
+
+  registroDetallesCarrito(data:any){
+
+    let url = location.href;
+
+    let totalr = data.lenght;
+
+    let index = Object.keys(data).length-1;
+
+    let usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    let detallesAdicionales= [{
+      "url":url,
+      "usuario":usuario
+    }];
+
+    let arrayInfo= [{
+      "opc":'add',
+      "data":data[index],
+      "adicionales":detallesAdicionales
+    }];
+
+    this.CategoriasService
+        .registrocarrito(arrayInfo)
+        .subscribe((resp) => {
+          console.log(resp);
+        });
 
   }
 

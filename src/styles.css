@@ -730,6 +730,9 @@ color: #D3CFCD!important;
 border-color: #D3CFCD!important;
 font-size: 20px;
 }
+.height-periodos{
+  min-height: 230px;
+}
 .btn-metodospago{
   border-color: #D3CFCD!important;
   font-size: 20px;

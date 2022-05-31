@@ -161,21 +161,25 @@
 
                     </select>
                   </div>
+           
+                <ng-container *ngFor="let item2 of indexconfig">
 
                   <div
-                  class="col-md-1 col-2 col-sm-2 d-flex align-items-center"
-                  (click)="configurar(i)"
-                  *ngFor="let item2 of indexconfig"
-                >
-
-
+                    class="col-md-1 col-2 col-sm-2 d-flex align-items-center"
+                    (click)="configurar(i)"
+                    *ngIf="item2 == i"
+                  >
                     <i
-                    class="far fa-cogs deletecard"
-                    [ngClass]="{'text-danger': item2 == i}"
-                    style="cursor:pointer"
-                  ></i>
+                      class="far fa-cogs deletecard"
+                      *ngIf="item2 == i"
+                      [ngClass]="{'text-danger': item2 == i}"
+                      style="cursor:pointer"
+                    ></i>
 
-                </div>
+                  </div>
+
+                </ng-container>
+
 
                   <div
                     class="col-md-1 col-2 col-sm-2 d-flex align-items-center"

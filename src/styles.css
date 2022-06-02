@@ -150,6 +150,7 @@ float: right;
 ul.list-caracteristicas{
 list-style: none;
 padding: 0px;
+margin-bottom: 8px;
 }
 .cont-img-quehacer{
 height: 100px;

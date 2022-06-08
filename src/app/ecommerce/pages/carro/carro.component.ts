@@ -18,6 +18,7 @@ export class CarroComponent implements OnInit {
   mostrarBtnFinalizarMovil:boolean = true;
   indexconfig: any[] = [];
   faltaconfig: boolean = false;
+  validarhosting: boolean = true;
 
   constructor( private router: Router, private CategoriasService: CategoriasService, private DominiosService:DominiosService) {
 
@@ -202,8 +203,36 @@ export class CarroComponent implements OnInit {
 
   finalizarcompra(){
 
-    this.router.navigate(['/login-rapido']);
+    if(this.validardominios()==0){
+      this.router.navigate(['/login-rapido']);
+    }else{
+      this.validarhosting = false;
+      let el = document.getElementById("hostingsindominios");
+      if(el){el.scrollIntoView({ behavior: 'smooth' });}
+      console.log("hay hosting sin dominios");
+    }
 
+
+  }
+
+  validardominios():number{
+
+    let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
+    let cont = 0;
+
+    if(carrito.length>=1){
+
+      carrito.forEach((element) => {
+
+        if(!element.dominio){
+          cont++;
+        }
+
+      });
+
+    }
+
+    return cont;
 
   }
 

@@ -12,10 +12,18 @@
     *ngIf="statusCarrito !== 0; else carrovacio">
 
     <div class="col-md-8">
-      
+
+
       <div class="card card-border px-md-5 mt-4 mt-md-3 pb-3">
 
-        <div class="row">
+        <div class="row" id="hostingsindominios">
+          <div class="col-12 mt-3 mt-md-3" *ngIf="!validarhosting">
+              <h6
+                class="px-3 float-start text-danger"
+              >
+                Algunos productos no tienen un dominio asignado
+              </h6>
+          </div>
           <div class="col-12 mt-3 mt-md-3">
             <h6
               class="px-3 float-start text-danger"

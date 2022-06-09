@@ -6,6 +6,7 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 })
 export class ValidatorService {
  public nombrePattern : string = '([a-zA-Z]+) ([a-zA-Z]+)';
+ public nombreTienda:string = '([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+)';
  //public nombreUsuarioPattern : string = '([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+) ([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+)';
  public nombreUsuarioPattern : string = '([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+)';
  public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";

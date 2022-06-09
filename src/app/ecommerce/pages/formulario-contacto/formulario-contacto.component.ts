@@ -167,7 +167,15 @@ export class FormularioContactoComponent implements OnInit {
 
   validarcaracteres(event: any){
     this.contador = 8 - event.target.value.length;
-    //this.errorCodigo = false;
+    let tele = this.form.value.telefono;
+
+    let ExpRegSoloNumeros="^[0-9]+$";
+    
+    //Evaluación de Cadena Valida de Solo Números 
+    if(tele.match(ExpRegSoloNumeros)==null){
+      this.data.telefono = this.form.value.telefono;
+      this.form.patchValue({telefono:''})
+    }
   }
 
 }

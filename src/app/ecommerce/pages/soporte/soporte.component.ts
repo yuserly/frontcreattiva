@@ -115,6 +115,7 @@ export class SoporteComponent implements OnInit {
           this.PreguntasFrecuentes = respuesta;
           this.totalpf = this.PreguntasFrecuentes.length;
           this.maxSize = 5;
+          console.log(this.PreguntasFrecuentes);
         }, 100);
 
     });

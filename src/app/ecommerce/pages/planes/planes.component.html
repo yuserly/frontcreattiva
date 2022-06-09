@@ -105,7 +105,7 @@
       <ng-template carouselSlide *ngFor="let item of productos; let i = index" style="width:250px">
 
           <div
-            class="card h-100"
+            class="card mx-2 plan-border h-100"
             style="/*border-right: 1px solid rgba(0, 0, 0, 0.125)*/"
             [ngClass]="{ 'card-border': resultadobusqueda}"
           >
@@ -116,7 +116,7 @@
                     Plan {{ item.subcategoria.categoria.nombre }}
                   </h4>
 
-                  <h4 class="card-title">{{ item.nombre }}</h4>
+                  <h5 class="card-title">{{ item.nombre }}</h5>
                 </div>
 
                 <div class="col-12 px-5">
@@ -159,13 +159,32 @@
                 </div>
 
                 <div class="col-12 d-flex justify-content-center">
+                  
+                  
                   <button
+                    *ngIf="item.subcategoria_id==6; else otrosplanes"
                     type="button"
-                    (click)="contratar(item)"
                     class="btn p-1 mt-4 btncontratar"
+                    (click)="contratarjumpseller(item)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#InfoEcommerce" 
                   >
                     {{'contratar' | translate}}
                   </button>
+
+                  <ng-template #otrosplanes>
+
+                    <button
+                      type="button"
+                      (click)="contratar(item)"
+                      class="btn p-1 mt-4 btncontratar"
+                    >
+                      {{'contratar' | translate}}
+                    </button>
+
+                  </ng-template>
+
+                  
                 </div>
               </div>
 
@@ -181,5 +200,425 @@
 
     </owl-carousel-o>
 
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="InfoEcommerce"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="InfoEcommerceLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <div class="modal-header" style="border-bottom: 0px; padding-bottom: 0px">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row resultados">
+
+          <div class="col-md-12">
+
+            <h3 class="azul-crt">
+              COMIENZA TU PRUEBA GRATIS HOY
+            </h3>
+            <h6 class="text-center">No requiere tarjeta de crédito.</h6>
+            <br>
+            
+            <form class="pt-3 pb-5 px-3" id="formulario_ecommerce" [formGroup]="form"  >
+
+              <div *ngIf="paso1_eco">
+
+                <div class="form-group mb-4">
+
+                  <h3 class="azul-crt text-center">
+                    ¿Que período desea contratar?
+                  </h3>
+
+                  <ng-container *ngFor="let periodo of periodos_ecommerce">
+
+                    <div class="form-check form-check-inline pl-3">
+                    
+                      <input class="form-check-input"
+                             type="radio" 
+                             name="periodo_select" 
+                             formControlName="periodo_select" 
+                             [value]="periodo.id_periodo"
+                      >
+                      
+                      <label class="form-check-label" for="inputTipoContrato1">
+  
+                        <b style="font-size: 17px;" *ngIf="periodo.id_periodo==1; else otrosperiodos">1 Mes</b>
+  
+                        <ng-template #otrosperiodos>
+
+                          <b style="font-size: 17px;">{{periodo.periodo}}</b>
+
+                        </ng-template>
+
+                      </label>
+  
+                    </div>
+
+                  </ng-container>
+
+                  <div
+                    style="width: 100%;margin-top: 0.25rem;font-size: .875em;color: #dc3545;"
+                    *ngIf="validarperiodos"
+                  >
+                    {{ mensajeerrorperiodo }}
+                  </div>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                    <label class="input">
+
+                        <input 
+                            class="input__field" 
+                            [ngClass]="{
+                              'is-invalid': validarcampo('email') || validar.email
+                            }"
+                            type="email" 
+                            placeholder=" " 
+                            id="email" 
+                            formControlName="email" 
+                            required/>
+
+                        <span class="input__label">Tu correo</span>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('email') || validar.email"
+                        >
+                          {{ mensajeerroremail }}
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                    <label class="input">
+
+                        <input 
+                            class="input__field" 
+                            [ngClass]="{
+                              'is-invalid': validarcampo('nombretienda') || validar.nombretienda
+                            }"
+                            type="text" 
+                            placeholder=" " 
+                            id="nombretienda"
+                            formControlName="nombretienda"
+                            required/>
+
+                        <span class="input__label">Nombre de tu tienda</span>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('nombretienda') || validar.nombretienda"
+                        >
+                          {{ mensajeerrornombretienda }}
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                        <div class="input-group">
+                    
+                            <div class="input-group-prepend d-flex">
+
+                                <div class="input-group-text input__field_tele d-flex align-items-center">
+                                +569
+                                </div>
+                            
+                            </div>
+                    
+
+                            <input 
+                                class="form-control input__field_telefono" 
+                                [ngClass]="{
+                                  'is-invalid': validarcampo('telefono') || validar.telefono
+                                }"
+                                type="text" 
+                                placeholder="Móvil" 
+                                id="telefono" 
+                                formControlName="telefono"
+                                (keyup)="validarcaracteres($event)"
+                                [maxlength]="8"
+                                required  />
+
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('telefono') || validar.telefono"
+                            >
+                              {{ mensajeerrortelefono }}
+                            </div>
+
+                        </div>
+
+                        <small *ngIf="contador>0"><b>Debe ingresar {{contador}} caracteres</b></small>
+
+
+                </div>
+
+              </div>
+
+              <div *ngIf="paso2_eco">
+
+                <div class="form-group mb-4">
+
+                    <label class="input">
+
+                        <input 
+                            class="input__field" 
+                            [ngClass]="{
+                              'is-invalid': validarcampo('nombre') || validar.nombre
+                            }"
+                            type="text" 
+                            placeholder=" " 
+                            id="nombre" 
+                            formControlName="nombre"
+                            required/>
+
+                        <span class="input__label">Ingresa tu nombre</span>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('nombre') || validar.nombre"
+                        >
+                          {{ mensajeerrornombre }}
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                  <h3 class="azul-crt text-center">
+                    ¿COMO DESEA CONTRATAR?
+                  </h3>
+
+                  <div class="form-check form-check-inline pl-3">
+                    
+                    <input class="form-check-input"
+                           type="radio" 
+                           name="tipocontrato" 
+                           formControlName="tipocontrato" 
+                           id="inputTipoContrato1" 
+                           value="1"
+                    >
+                    
+                    <label class="form-check-label" for="inputTipoContrato1">
+
+                      <b style="font-size: 17px;">Persona</b>
+
+                    </label>
+
+                  </div>
+
+                  <div class="form-check form-check-inline pl-3">
+                    
+                    <input class="form-check-input" 
+                           type="radio" 
+                           name="tipocontrato" 
+                           formControlName="tipocontrato" 
+                           id="inputTipoContrato2" 
+                           value="2"
+                      >
+                    
+                    <label class="form-check-label" for="inputTipoContrato2">
+
+                      <b style="font-size: 17px;">Empresa</b>
+
+                    </label>
+
+                  </div>
+                  <div
+                    style="width: 100%;margin-top: 0.25rem;font-size: .875em;color: #dc3545;"
+                    *ngIf="validarcampo('tipocontrato') || validar.tipocontrato"
+                  >
+                    {{ mensajeerrortipocontrato }}
+                  </div>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                    <label class="input">
+
+                        <input 
+                            class="input__field" 
+                            [ngClass]="{
+                              'is-invalid': validarcampo('rut') || validar.rut
+                            }"
+                            type="text" 
+                            placeholder=" " 
+                            id="rut" 
+                            formControlName="rut"
+                            required/>
+
+                        <span class="input__label">Ingresa tu RUT/RUT Empresa</span>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('rut') || validar.rut"
+                        >
+                          {{ mensajeerrorrut }}
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                    <label class="input">
+
+                        <input 
+                            class="input__field" 
+                            [ngClass]="{
+                              'is-invalid': validarcampo('giro') || validar.giro
+                            }"
+                            type="text" 
+                            placeholder=" " 
+                            id="giro"
+                            formControlName="giro"
+                            required/>
+
+                        <span class="input__label">Ingresa tu Giro</span>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('giro') || validar.giro"
+                        >
+                          {{ mensajeerrorgiro }}
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <div class="form-group mb-4">
+
+                  <label class="input">
+
+                      <input 
+                          class="input__field" 
+                          [ngClass]="{
+                            'is-invalid': validarcampo('direccion') || validar.direccion
+                          }"
+                          type="text" 
+                          placeholder=" " 
+                          id="direccion"
+                          formControlName="direccion"
+                          required/>
+
+                      <span class="input__label">Ingresa tu Dirección</span>
+                      <div
+                          class="invalid-feedback"
+                          *ngIf="validarcampo('direccion') || validar.direccion"
+                      >
+                          {{ mensajeerrordireccion }}
+                      </div>
+
+                  </label>
+
+                </div>
+
+              </div>
+
+              <div *ngIf="paso3_eco">
+
+                <h4 class="azul-crt text-center">
+                  Tu tienda está siendo preparada por nuestro equipo de Soporte, en unos minutos te contactaremos.
+                </h4>
+
+                <h6 class="text-center">Muchas Gracias.</h6>
+
+              </div>
+
+              <div class="row mt-3">
+
+                  <div class="col-12 text-center">
+
+                      <button  
+                        *ngIf="paso1_eco; else frase2"
+                        class="btn btn-submit float-right" 
+                        (click)="insertarEcommerce('pantalla1')" 
+                        type="button" 
+                        style="border-radius: 5px;color:#FFF; 
+                               background-color:#005AD2; 
+                               width: 140px;
+                               height: 45px;
+                               font-size: 18px;" 
+                      >
+                      ¡EMPECEMOS!
+                      </button>
+
+                      <ng-template #frase2>
+
+                        <button  
+                         *ngIf="paso2_eco; else frase3"
+                          class="btn btn-submit float-right" 
+                          (click)="insertarEcommerce('pantalla2')" 
+                          type="button" 
+                          style="border-radius: 5px;color:#FFF; 
+                                background-color:#005AD2; 
+                                width: 140px;
+                                height: 45px;
+                                font-size: 18px;" 
+                        >
+                          CONTINUAR
+                        </button>
+
+                      </ng-template>
+
+                      <ng-template #frase3>
+
+                        <button  
+                          *ngIf="paso3_eco"
+                          class="btn btn-submit float-right" 
+                          (click)="insertarEcommerce('pantalla3')" 
+                          data-bs-dismiss="modal"
+                          type="button" 
+                          style="border-radius: 5px;color:#FFF; 
+                                background-color:#005AD2; 
+                                width: 140px;
+                                height: 45px;
+                                font-size: 18px;" 
+                        >
+                          FINALIZAR
+                        </button>
+
+                      </ng-template>
+                      
+                      
+                  </div>
+
+              </div>
+
+          </form>
+            
+            
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
   </div>
 </div>

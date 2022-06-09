@@ -129,7 +129,7 @@ export class HostingComponent implements OnInit {
 
     this.itemsCarrito();
 
-    window.scroll(0,0);
+    //window.scroll(0,0);
 
 
   }

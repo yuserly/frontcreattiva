@@ -657,6 +657,9 @@ box-shadow: rgb(0 0 0 / 2%) 0px 0px 0px 0px, rgb(27 31 35 / 15%) 0px 1px 0px 0px
 }
 
 @media only screen and (max-width: 600px) {
+  .InfoEcommerce{
+    margin-top: 70px;
+  }
   .carousel-inner{
     margin-top: 60px;
     max-height: 288px!important;
@@ -1179,6 +1182,13 @@ color: #FFF;
   display: flex;
   align-items: center;*/
   cursor:pointer
+}
+.plan-border{
+  border-radius: 0px;
+    /*border-right: 1px solid #ccc;*/
+    background-color: transparent!important;
+    padding-top: 20px;
+    box-shadow: -9px 1px 10px -6px rgb(0 0 0 / 27%);
 }
 
 

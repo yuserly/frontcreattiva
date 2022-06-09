@@ -14,7 +14,7 @@ export class CaracteristicasComponent implements OnInit {
 
   //owl
   owl_subcategorias: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

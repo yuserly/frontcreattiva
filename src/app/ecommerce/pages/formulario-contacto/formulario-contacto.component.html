@@ -17,8 +17,7 @@
 
                 <h3 class="azul-crt text-center">Llámanos a nuestra mesa central</h3>
                 <div class="d-flex align-items-center justify-content-center mb-2">
-                    <i style="font-size:40px;" class="fas fa-phone-alt"></i>
-                    <b class="h4">+56 999999999</b>
+                    <img src="../../../../assets/img/tele-central.webp" style="width: 250px;">
                 </div>
                 <div class="d-flex align-items-center justify-content-center">
                     <img alt="" src="../../../../assets/img/chile.png" width="40px" style="border-radius: 20px;" />
@@ -29,20 +28,12 @@
 
             <div class="row mt-4">
 
-                <h3 class="azul-crt text-center">Escribenos por e-mail</h3>
-                <div class="d-flex align-items-center justify-content-center mb-1">
-                    <i style="font-size:25px;" class="far fa-envelope"></i>
-                    <b class="h5 mx-2">soporte@creattiva.cl</b>
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-1">
-                    <i style="font-size:25px;" class="far fa-envelope"></i>
-                    <b class="h5 mx-2">ventas@creattiva.cl</b>
-                </div>
-                <div class="d-flex align-items-center justify-content-center mb-1">
-                    <i style="font-size:25px;" class="far fa-envelope"></i>
-                    <b class="h5 mx-2">facturacion@creattiva.cl</b>
-                </div>
+                <div class="col-md-12">
 
+                  <h3 class="azul-crt text-center">Escribenos por e-mail</h3>
+                  <img alt="" src="../../../../assets/img/emails.png" class="rounded mx-auto d-block" style="border-radius: 20px;width:50%" />
+
+                </div>
 
             </div>
                 
@@ -127,7 +118,7 @@
 
                                 <input 
                                     class="form-control input__field_telefono" 
-                                    type="number" 
+                                    type="text" 
                                     placeholder="Móvil" 
                                     id="telefono" 
                                     [ngClass]="{
@@ -135,7 +126,7 @@
                                       }"
                                     formControlName="telefono" 
                                     (keyup)="validarcaracteres($event)"
-                                    maxlength="8"
+                                    [maxlength]="8"
                                     required  />
 
                             </div>

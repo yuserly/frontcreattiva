@@ -1,0 +1,1912 @@
+<app-nav></app-nav>
+
+<div class="container" style="min-height: calc(100vh - 70px - 90px)">
+
+    <div class="container-min">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1 class="azul-crt">Política de calidad</h1>
+                <hr class="hr_title" />
+            </div>
+        </div>
+        
+        <div class="row d-flex justify-content-center">
+        
+            <div class="col-md-12 mt-2">
+                    
+          
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                    <div class="accordion-item" 
+                         *ngIf="mostrar=='promocion-cyber-week' || mostrar=='terminos-y-condiciones'"
+                    >
+
+                        <h2 class="accordion-header" id="flush-headingOne">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='promocion-cyber-week';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/promocion-cyber-week')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse1" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse1"
+                            >
+                                Promoción Cyber Week
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                    (click)="mostrartc('/terminos-y-condiciones/promocion-cyber-week')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                                    Promoción Cyber Week
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+
+                        <div id="flush-collapse1" 
+                            class="accordion-collapse collapse" 
+                            [ngClass]="{'show': mostrar=='promocion-cyber-week'}"
+                            aria-labelledby="flush-heading1" 
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+
+                                        <div>
+                                        
+                                            <br><br>
+
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Promoción Cyber Week<br></span>
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+
+                                            <br><br>
+                                
+                                            <span style="font-size:22px; color:#333333; padding:15px;">- Solo contrataciones nuevas</span><br>
+                                            <span style="font-size:22px; color:#333333; padding:15px;">- Sin abonos de servicio</span><br>
+                                            <span style="font-size:22px; color:#333333; padding:15px;">- Solo por el periodo contratado</span><br>
+                                
+                                            <br><br>
+
+                                            <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='promocion-hosting-ssd' || mostrar=='terminos-y-condiciones'">
+                      <h2 class="accordion-header" id="flush-heading2">
+
+                        <button 
+                                class="accordion-button collapsed" 
+                                *ngIf="mostrar=='promocion-hosting-ssd';else general" 
+                                (click)="mostrartc('/terminos-y-condiciones/promocion-hosting-ssd')" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#flush-collapse2" 
+                                aria-expanded="true" 
+                                aria-controls="flush-collapse2"
+                        >
+                            Promoción para planes de Hosting SSD
+                        </button>
+
+                        <ng-template #general>
+
+                            <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/promocion-hosting-ssd')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                                Promoción para planes de Hosting SSD
+                            </button>
+
+                        </ng-template>
+
+                      </h2>
+                      <div id="flush-collapse2" [ngClass]="{'show': mostrar=='promocion-hosting-ssd'}" class="accordion-collapse collapse" aria-labelledby="flush-heading2" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+
+                            <div class="row">
+
+                                <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+
+                                    <div>
+                                    
+                                        <br><br>
+                                        
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Promoción para planes de hosting SSD<br></span>
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                    
+                                        <br>
+
+                                        <p>La contratación anual de cualquiera de  nuestros planes de hosting SSD (disponibles en <a href="www.creattiva.cl/hosting/hosting-SSD/">www.creattiva.cl/hosting/hosting-SSD/</a>), incluye un descuento de un 40% para el primer periodo de contratación.<br><br>
+                                        Este cupón, que solamente será válido durante 12 meses, va dirigido especialmente para contrataciones nuevas. Si ya tienes contratado este tipo de servicios con Creattiva y quieres obtener este descuento, puedes abonar una parte de tu pago para adquirir alguno de nuestros planes de hosting SSD.<br><br>
+                                        Nuevamente, este procedimiento solo será válido para contrataciones anuales. Si tienes alguna duda o inquietud, puedes llamar a nuestro equipo de facturación al +562 2244 2488.</p>
+                                    
+                                        <br>
+                                        <br>
+                                    
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+                                
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='promocion-hosting-windows' || mostrar=='terminos-y-condiciones'">
+                      <h2 class="accordion-header" id="flush-heading3">
+
+                        <button 
+                                class="accordion-button collapsed" 
+                                *ngIf="mostrar=='promocion-hosting-windows';else general" 
+                                (click)="mostrartc('/terminos-y-condiciones/promocion-hosting-windows')" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#flush-collapse3" 
+                                aria-expanded="true" 
+                                aria-controls="flush-collapse3"
+                        >
+                            Promoción para planes Hosting Windows
+                        </button>
+
+                        <ng-template #general>
+
+                            <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/promocion-hosting-windows')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                                Promoción para planes Hosting Windows
+                            </button>
+
+                        </ng-template>
+
+                      </h2>
+                      <div id="flush-collapse3" [ngClass]="{'show': mostrar=='promocion-hosting-windows'}" class="accordion-collapse collapse" aria-labelledby="flush-heading3" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+
+                            <div class="row">
+
+                                <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+
+                                    <div>
+
+                                        <br><br>
+
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Promoción para planes de Hosting Windows<br></span>
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                    
+                                        <br>
+                                        
+                                        <p>La contratación anual de cualquiera de  nuestros planes de hosting SSD (disponibles en <a href="https://www.creattiva.cl/hosting/hosting-windows/">www.creattiva.cl/hosting/hosting-windows/</a>), incluye un descuento de un 50% para el primer periodo de contratación.<br><br>
+                                        Este cupón, que solamente será válido durante 12 meses, va dirigido especialmente para contrataciones nuevas. Si ya tienes contratado este tipo de servicios con Creattiva y quieres obtener este descuento, puedes abonar una parte de tu pago para adquirir alguno de nuestros planes de Hosting Windows.<br><br>
+                                        Nuevamente, este procedimiento solo será válido para contrataciones anuales. Si tienes alguna duda o inquietud, puedes llamar a nuestro equipo de facturación al +562 2244 2488.</p>
+                                    
+                                        <br><br>
+
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='promocion-dominio-gratis' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading4">
+
+                          <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='promocion-dominio-gratis';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/promocion-dominio-gratis')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse4" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse4"
+                            >
+                                Promocion "dominio gratis con su servicio de hosting"
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                    (click)="mostrartc('/terminos-y-condiciones/promocion-dominio-gratis')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                                    Promocion "dominio gratis con su servicio de hosting"
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        <div id="flush-collapse4" [ngClass]="{'show': mostrar=='promocion-dominio-gratis'}" class="accordion-collapse collapse" aria-labelledby="flush-heading4" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+
+                            <div class="row">
+                                
+                                <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+                           
+                                    <div>
+                           
+                                        <br><br>
+                        
+                                        <span style="font-size:22px; color:#333333; padding:15px;"> Condiciones de Promocion "dominio gratis con su servicio de hosting"<br></span>
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                        
+                                        <br>
+                        
+                                        <p>
+                                        - La promoción es valida solo para dominios .cl o .com<br>
+                                        
+                                        - La promoción no permite comprar un hosting, restando el valor del registro del dominio.<br>
+                                        
+                                        - El dominio debe estar disponible al momento de su contratacion<br>
+                                        
+                                        - La promoción es valida hasta el 23 de Septiembre.<br>
+                                        
+                                        - La promoción es valida solo por el primer año del registro del dominio, la renovación y pago para el segundo año es responsabilidad del cliente.<br>
+                                        
+                                        - No hay reembolso del dinero, si el cliente desiste de la compra del hosting en los primeros 10 dias, solo se reembolsara la diferencia del hosting.<br>
+                                        
+                                        - No hay reembolso del dinero si el cliente se equivoca en el nombre del dominio.<br>
+                                        
+                                        - El costo maximo por el nombre de dominio es de 15 USD por el dominio .com .<br>
+                                        
+                                        - El dominio a contratar no debe encontrarse en subasta o similar que complique la contratacion del dominio por parte de Creattiva.<br>
+                                        </p>	
+
+                                        <br>
+                                        <br>
+
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+
+                                    </div>
+                            
+                            
+                                </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='dominios' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading5">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='dominios';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/dominios')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse5" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse5"
+                            >
+                            Dominios .COM
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/dominios')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
+                                    Dominios .COM
+                                </button>
+
+                            </ng-template>
+
+
+                        </h2>
+                        <div id="flush-collapse5" [ngClass]="{'show': mostrar=='dominios'}" class="accordion-collapse collapse" aria-labelledby="flush-heading5" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+
+                            <div class="row">
+                               
+                           
+                                <div class="col-md-12">
+                                    <span style="font-size:22px; color:#333333; padding:15px;"> Condiciones de Servicio Dominios .COM<br></span>
+                                    <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                    
+                                      <p>
+                                        Entre Creattiva Datacenter Spa, con  domicilio para estos efectos 
+                                        en Premio Nobel #2931, Macul, Santiago, Chile, en  adelante Creattiva
+                                         Datacenter y el Cliente, que se individualizará al llenar el  
+                                         formulario electrónico de solicitud de servicio Web Hosting, se 
+                                         ha convenido el  siguiente contrato de prestación de servicios:</p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;" >
+                                            <strong>CONTRATACIÓN</strong>
+                                        </span>
+                                    
+                                        <p>El Cliente se obliga a respetar  íntegramente las condiciones de 
+                                          este contrato y a no vulnerar en caso alguno  las prohibiciones 
+                                          que más adelante se detallan. En caso de desacato, por la  
+                                          aceptación de este instrumento se autoriza a Creattiva Datacenter
+                                           a poner  término inmediato al servicio, y se libera de la obligación
+                                                de mantener  respaldos de los datos proporcionados por el Cliente.<br>
+                                            El Cliente se obliga a dar un trato  digno al personal de Creattiva 
+                                            Datacenter, excluyendo el lenguaje abusivo,  amenazas u ofensas, 
+                                            por medios verbales, escritos o por medios  tecnológicos, como redes 
+                                            sociales. <br>
+                                            El Cliente conviene en contratar la  inscripción de un dominio 
+                                            .COM por un año en caso de que este se encuentre  disponible al 
+                                            momento de hacer la transacción.
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                            <strong>RESPONSABILIDADES</strong>
+                                        </span>
+                                    
+                                        <p>Creattiva Datacenter  no se hace responsable ante eventos como robos
+                                             a nuestras instalaciones, cortes  de suministro eléctrico provocados
+                                              por compañías eléctricas, cualquier fenómeno  de la naturaleza que 
+                                              impida dar un servicio óptimo o completo, incendios en  nuestras 
+                                              dependencias ajenos a nuestra responsabilidad y cortes de enlaces  
+                                              nacionales o internacionales proporcionados por empresas proveedoras 
+                                              de  Internet.
+                                        </p>
+                                    
+                                        <p>No serán responsabilidad de Creattiva Datacenter,  las condiciones registradas
+                                             en el o los organismos reguladores como Dominio  Existe, Dominio en Publicación
+                                                        y Dominio con cualquier otro tipo de  restricción. En caso que el dominio solicitado
+                                                        sea rechazado por el organismo  regulador, el Cliente deberá señalar el nuevo 
+                                                        dominio que pretende registrar.<br>
+                                                    Asimismo, Creattiva Datacenter no se  responsabiliza por el registro de 
+                                                    un dominio por parte de un Cliente, cuyo  nombre haga alusión a una marca 
+                                                    registrada o similar, tampoco del uso que el  cliente haga de su nombre de 
+                                                    dominio.<br>
+                                                    Es responsabilidad del Cliente definir y establecer de los  niveles de 
+                                                    protección y resguardo de los datos mediante el uso de claves y de  perfiles de 
+                                                    seguridad de acceso, a lo cual el personal de Creattiva Datacenter  no tiene acceso.<br>
+                                                    El Cliente se asegurará de no dejar carpetas, directorios  y/o archivos con permisos
+                                                    777 de acceso total en su cuenta de hosting, asignar  permisos 777 a cualquier carpeta,
+                                                    directorio y/o archivo permitirá la  intromisión en el servidor de posibles atacantes
+                                                    con fines de interrupción de  servicios y/o destrucción de contenidos.<br>
+                                                    El usuario se asegurará de mantener actualizados todos sus  scripts instalados en su
+                                                    cuenta de hosting con la versión más reciente del  mismo, para evitar vulnerabilidades
+                                                    y/o intrusiones en el servidor.<br>
+                                                    El Cliente es el responsable de mantener una copia de  seguridad de todo el contenido
+                                                    que suba o genere en internet, para lo cual  Creattiva Datacenter pone a su disposición
+                                                    la alternativa para bajar  automáticamente backups (respaldos de información) diarios
+                                                    a su computador  desde su Panel de Control, denominado Cpanel, exceptuando los 
+                                                    planes ASP  (Active Server Pages) en los cuales el Cliente debe bajar sus backups
+                                                        mediante  protocolo FTP o consola de base de datos, según sea el caso.<br>
+                                                    Creattiva Datacenter acepta y  reconoce el carácter absolutamente confidencial que tiene
+                                                    toda la información  del Cliente que pueda llegar a su conocimiento o a que puede tener
+                                                    acceso, en  el desempeño de sus servicios, quedando estrictamente prohibido su uso o  
+                                                    divulgación.<br>
+                                                    Creattiva Datacenter, no se hará  responsable por el contenido o la información que el 
+                                                    Cliente suba o haga  residir en el sitio. No obstante, Creattiva Datacenter podrá poner 
+                                                    término  anticipado del contrato o suspender en forma inmediata el servicio, en cualquier
+                                                    momento que, a su juicio, la información puesta en su servidor por el Cliente,  atente 
+                                                    contra la Ley vigente en Chile, la moral o las buenas costumbres, o  afecte a terceras 
+                                                    personas.<br>
+                                            Para estos  efectos, se entiende por contenido prohibido material pornográfico, contenidos 
+                                            Gamer como sitios de juegos, foros, juegos en línea y todo lo que abarca la  temática, sin 
+                                            excepciones. No está permitido el alojamiento de contenido  multimedia sin derechos de autor,
+                                            contenido pirata como descarga de películas,  videos, software, audio y video. No se permite
+                                                el uso de los servidores para  realizar Streaming de Audio o Video. Queda terminantemente 
+                                                prohibido alojar  contenido de cualquier índole que atente o vulnere nuestra legislación. <br>
+                                                    Creattiva Datacenter queda en plena  libertad de entregar información a las instituciones
+                                                    que velan por el  cumplimiento de Ley, y entregará todos los datos del Cliente en caso 
+                                                    de que  este vulnere esta cláusula. 
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>COMPROMISOS</strong></span>
+                                      
+                                        <p>Los dominios .COM quedan a nombre de Creattiva Datacenter en  representación 
+                                            del Cliente, quien puede solicitar la transferencia de su  dominio .COM 
+                                            cuando lo estime conveniente, teniendo en cuenta que debe hacerlo  con 
+                                            al menos 60 días de anticipación a su vencimiento. Ya que de otra forma 
+                                            no  se puede transferir el dominio sin antes pagar un año adicional. El Cliente
+                                              puede solicitar en cualquier momento el cambio de información de contacto de 
+                                              su  dominio .COM enviando un mail a facturacion@creattiva.cl indicando la nueva
+                                                información de contacto. 
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>FACTURACIÓN</strong></span>
+                                    
+                                        <p>
+                                                El Cliente se obliga a pagar de  forma anticipada la tarifa correspondiente al periodo. Creattiva Datacenter  facturará al cliente, previa presentación de comprobante que acredite el pago,  al correo electrónico <a href="mailto:facturacion@creattiva.cl">facturacion@creattiva.cl</a>.<br>
+                                            El Cliente también podrá notificar cualquier pago que haga  mediante el Formulario de Notificación creado en nuestro sitio web para tal  efecto<br>
+                                            El Cliente debe informar a  Creattiva Internet sobre cualquier cambio en sus datos de contacto o facturación.  Creattiva Internet no se hará responsable en caso que los avisos de vencimiento  o comunicaciones sean enviados a direcciones de correo electrónico fuera de  uso.<br>
+                                            Las condiciones comerciales del  servicio podrán ser modificadas por Creattiva Datacenter, previa notificación  al Cliente con una anticipación de al menos 30 días a la vigencia de las nuevas  condiciones. Para tal efecto se utilizará, el correo electrónico del Cliente. El  Cliente, en caso de no aceptar las nuevas condiciones comerciales, podrá poner término  al servicio, comunicando su intención en tal sentido a Creattiva Datacenter,  antes de la entrada en vigencia de las nuevas condiciones, sin costo alguno  para él. De lo contrario se entenderá que las nuevas condiciones fueron  aceptadas por el Cliente.<br>
+                                            El servicio tendrá una duración  definida, y cualquiera de las partes podrá ponerle término manifestando su  voluntad en tal sentido, a través de nuestra sucursal virtual, en la opción  Solicitud Para la renovación del servicio, el Cliente recibirá recordatorios  del vencimiento de su servicio, donde se indica el monto a cancelar e  instrucciones para pago. Los recordatorios serán emitidos con al menos 10 días  antes de su fecha de vencimiento. Se repite a 7 y 3 días del vencimiento y es  enviado, además, un último aviso el mismo día del vencimiento.<br>
+                                            Los dominios que no se renuevan disponen de 15 días corridos  para ser recuperados después de la fecha de vencimiento. Si el cliente no ha  notificado su renovación antes de los 10 días siguientes a su vencimiento, el  dominio .COM queda en un estado de “redención” por otros 5 días en el cual solo  se puede recuperar, si y solo si, se paga la multa indicada por el proveedor de  inscripción de dominio. En caso de no pagarse pasado este período, la entidad  registradora podrá subastar el dominio para posteriormente liberarlo. Además,  podrá mantener el nombre de dominio antes de liberarlo para su registro general.<br>
+                                            La suspensión de un dominio por no pago no depende de  Creattiva Datacenter, si no de la entidad final donde se contrata el domino  .COM. La pérdida de un dominio por no hacer la notificación de pago, no es  responsabilidad de Creattiva Datacenter.<br>
+                                            Es sumamente importante que renueve su dominio a tiempo,  antes de que entre en el período de redención, porque si esto ocurre, todos los  archivos de ese dominio se borraran automáticamente del DNS, y los correos  electrónicos y páginas web dejaran de funcionar.<br>
+                                            Si el Cliente mantiene un Cupón  de Pago pendiente por más de 15 días, se autoriza a Creattiva Datacenter para  eliminar el servicio.<br>
+                                            Creattiva Internet no realizará  devoluciones de dinero a aquellos Clientes que deseen poner término a dicho  contrato antes del término del periodo cancelado. <br>
+                                            En caso de retracto, el Cliente  podrá solicitar la anulación y reembolso del monto pagado en un plazo máximo de  5 desde su compra, según políticas de la entidad registradora. Después de este  plazo, el Cliente da por aceptado el servicio contratado y no podrá solicitar  devoluciones ni reembolsos.<br>
+                                            No habrá derecho a devolución ni  reembolso en caso de infracción a cualquiera de las prohibiciones establecidas  en este documento.<br>
+                                            Cualquier controversia que se  produzca entre los contratantes respecto de la aplicación, interpretación,  duración, validez o ejecución de este contrato o cualquier otro motivo, será  sometida a arbitraje, conforme al Reglamento Procesal de Arbitraje del Centro  de Arbitraje y Mediación de Santiago vigente al momento de solicitarlo.
+                                        </p>
+                                      
+                                    <br><br>
+                                    
+                                    <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+                                </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='streaming-radio' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading6">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='streaming-radio';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/streaming-radio')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse6" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse6"
+                            >
+                            Streaming Radio
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/streaming-radio')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse6" aria-expanded="false" aria-controls="flush-collapse6">
+                                Streaming Radio
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        <div id="flush-collapse6" [ngClass]="{'show': mostrar=='streaming-radio'}" class="accordion-collapse collapse" aria-labelledby="flush-heading6" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+
+                                        <div>
+
+                                            <br><br>
+                                    
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Términos y condiciones
+                                            del servicio de radio streaming.
+                                            <br></span>
+
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+
+                                            <p>
+                                                La utilización de nuestros servicios de radio streaming, requiere de la aprobación, y posterior cumplimiento, de los siguientes términos y condiciones.
+                                            </p>
+                                        
+                                            <span style="color:#333333; font-size:22px; padding-left: 25px; font-weight:bold;" ><strong>Responsabilidad del cliente</strong></span>
+                                    
+                                            <br>
+                                    
+                                            <p>
+                                                Una vez contratado el servicio de radio streaming de Creattiva, tanto su utilización como el contenido emitido a través de este mismo, será responsabilidad del cliente.
+                                    
+                                                <br><br>
+
+                                                Aunque nuestra compañía fomenta el uso adecuado del servicio, ante un conflicto con cualquier tipo de norma, Creattiva —de manera opcional y dependiendo del caso— intentará cooperar con el cliente para resolver el conflicto y encontrar una solución expedita.
+                                                
+                                                <br><br>
+                                    
+                                                El uso del servicio de Creattiva no puede ser utilizado para realizar actividades ilegales o acciones ilícitas. Ante un crimen o delito civil, la compañía se reserva el derecho a cooperar con las autoridades pertinentes y/o terceros afectados. Igualmente, esta acción será evaluada por la compañía, y dependerá de la gravedad de la infracción cometida.
+                                    
+                                                <br><br>
+                                    
+                                                En caso de infringir los términos y condiciones del servicio de manera reiterada o si la compañía considera que el cliente comete una falta grave, Creattiva puede cancelar —unilateralmente— el servicio cuando estime conveniente y dar por terminada la relación comercial entre ambas partes.
+                                    
+                                                <br><br>
+                                    
+                                                Creattiva intentará evitar este escenario notificándole al cliente la infracción cometida y proponiendo una solución para que sus servicios sigan operando con normalidad.
+                                            </p>
+                                
+                                            <br>
+                                
+                                            <span style="color:#333333; font-size:22px; padding-left: 25px;"><strong>Contenido prohibido</strong></span>
+                                            
+                                            <br>
+                                    
+                                            <p>Nuestros servicios no podrán ser utilizados para promocionar, compartir, almacenar ni exhibir el siguiente contenido.
+                                    
+                                                <br><br>
+                                    
+                                                <u>Contenido ilícito:</u>
+                                    
+                                                <br><br>
+                                    
+                                                Material prohibido o limitado por una ley o regulación de cualquier tipo. Esto comprende la infracción a la propiedad intelectual, derechos de autor, uso incorrecto de las marcas registradas, faltas a la privacidad, difamación, calumnias, entre otras faltas sancionadas por la ley o cualquier tipo de organización.
+                                                
+                                                <br><br>
+                                    
+                                                A modo de ejemplo, si el cliente quiere transmitir música nacional vía streaming, primero tendrá que contar con la autorización de la Sociedad Chilena del Derecho de Autor (SCD). Si quieres saber más sobre este punto, <a href="https://www2.scd.cl/content/uploads/2017/12/TARIFAS-GENERALES-entre-el-01-de-mayo-y-el-31-de-agosto-2020.pdf" target="_blank">haz clic aquí</a> para ver las tarifas correspondientes al servicio de streaming de la SCD.
+                                                
+                                                <br><br>
+                                    
+                                                Por otra parte, si el cliente se encuentra en el extranjero, deberá verificar la reglamentación vigente sobre derechos de autor en su país y obtener una autorización por parte de la organización a cargo. Una vez resuelto este conflicto, el cliente podrá transmitir sin problemas. 
+                                                
+                                                <br><br>
+                                                
+                                                <u>Contenido inadecuado:</u>
+                                    
+                                                <br><br>
+                                    
+                                                El contenido altamente violento u ofensivo, que se enmarque dentro de los delitos de odio penalizados por la legislación nacional o internacional.
+                                    
+                                                <br><br>
+                                    
+                                                Todo el material clasificado para adultos con un contenido sexual explícito, lascivo, obsceno o que represente un insulto para la ciudadanía. 
+                                                
+                                                <br><br>
+                                    
+                                                Promoción o distribución de virus, troyanos, gusanos, bots, y cualquier archivo que represente una actividad maliciosa para los usuarios de Internet. 
+                                    
+                                                <br><br>
+                                    
+                                                Por último, se prohibirá todo el material que pueda afectar el funcionamiento normal del servicio, produciéndose una acción abusiva por parte del cliente.
+                                    
+                                                <br><br>
+                                    
+                                                La clasificación de una “acción abusiva”, será definida únicamente por Creattiva. Dependiendo de la gravedad de la falta, Creattiva notificará al cliente esta problemática para que detenga dicha acción, y pueda operar con normalidad sin ningún tipo de sanción.
+                                            </p>
+                                
+                                            <br>
+                                    
+                                            <span style="color:#333333; font-size:22px; padding-left: 25px;"><strong>Utilización del servicio y soporte técnico</strong></span>
+                                    
+                                            <br>
+                                    
+                                            <p>
+                                                Al contratar los servicios de radio streaming de Creattiva, el cliente acepta que la utilización de servicio requiere de conocimientos básicos en computación e Internet.
+                                                <br><br>
+                                                Creattiva no será responsable de enseñarle al cliente como utilizar la plataforma. Y aunque nuestro equipo de soporte técnico tendrá una buena disposición ante las preguntas del cliente, la compañía no tiene la obligación de entregar información específica sobre la plataforma del servicio.
+                                                <br><br>
+                                                La comunicación con soporte técnico, de parte de cliente con Creattiva, corresponderá cuando este presente un problema relacionado con el servicio que entrega la compañía.
+                                            </p>
+                                        
+                                            <br>
+                                    
+                                            <span style="color:#333333; font-size:22px; padding-left: 25px;"><strong>Suspensión del servicio</strong></span>
+                                    
+                                            <br>
+                                
+                                            <p>
+                                                
+                                                El incumplimiento de nuestros términos y condiciones será un motivo suficiente para suspender o cancelar los servicios de radio streaming. Sin embargo, Creattiva —una vez evaluada la gravedad del caso—intentará evitar este procedimiento de la siguiente manera:
+                                    
+                                                <br><br>
+                                    
+                                                En primera instancia, al cometer una infracción, nuestro equipo se contactará con el cliente para comunicarle el incumplimiento que está cometiendo y darle un tiempo prudente para efectuar el cambio. Aunque Creattiva será el encargado de decidir el plazo correspondiente a “un tiempo prudente”, la compañía también considerará el tiempo que el cliente estime necesario para realizar dichos cambios.
+                                    
+                                                <br><br>
+                                                
+                                                En caso de infracciones frecuentes o una incapacidad para cumplir con las políticas de Creattiva, la compañía puede cancelar el servicio de forma autónoma y dar por terminada la relación comercial entre las partes. Antes de realizar dicha acción, Creattiva le concederá al cliente un tiempo prudente para resguardar la información almacenada en nuestro sistema. Nuevamente, aunque Creattiva será el encargado de decidir el plazo correspondiente a “un tiempo prudente”, la compañía considerará el tiempo que el cliente estime necesario para resguardar su información.
+                                    
+                                                <br><br>
+                                                
+                                                También se le suspenderá el servicio a todos los clientes que, cualquiera sea la manera, representen una amenaza para el funcionamiento normal de los servicios de Creattiva o afecten de alguna forma la seguridad de la compañía. Si la acción cometida afecta el funcionamiento o seguridad de otros clientes, nuestra compañía velará por la protección de estos y clasificará como “urgente” esta acción.
+                                    
+                                                <br><br>
+                                                
+                                                Los meses anteriores a la cancelación o suspensión del servicio, no serán reembolsados, ya que el servicio fue entregado con normalidad. Tampoco será reembolsado el periodo en el que se detectó el incumplimiento o infracción con las políticas expuestas en este documento.
+                                    
+                                                <br><br>
+                                    
+                                                <u>Suspensión del servicio por parte del cliente:</u>
+                                            
+                                                <br><br>
+                                    
+                                                En caso de que el cliente quiera cancelar el servicio entregado por Creattiva, primero deberá verificar que sus pagos estén al día y no haya ninguna deuda a su haber.
+                                    
+                                                <br><br>
+                                    
+                                                De no tener ningún cargo pendiente o tras regularizar su situación, el cliente deberá comunicarse con nuestro equipo de facturación para efectuar el término de la relación comercial.
+                                    
+                                            </p>
+                                
+                                            <br>
+                                    
+                                            <span style="color:#333333; font-size:22px; padding-left: 25px;"><strong>Compromisos y obligaciones</strong></span>
+                                    
+                                            <br>
+                                    
+                                            <p>
+                                                El contenido emitido o publicado por el cliente, no será responsabilidad de Creattiva. Ante un reclamo, multa, acción judicial o sanción de cualquier tipo, la responsabilidad será única y exclusivamente del cliente. Aún así, en caso de que el cliente requiera de ayuda por parte de Creattiva, la compañía evaluará esta situación, y colaborará con el cliente si así lo estima conveniente.
+                                    
+                                                <br><br>
+                                    
+                                                Creattiva no será responsable de la supervisión del contenido emitido ni tampoco está obligada a controlar, dirigir o censurar la publicación de este. 
+                                    
+                                                <br><br>
+                                    
+                                                Si Creattiva considera que no se han respetado los términos y condiciones, y el cliente no se muestra dispuesto a realizar cambios ni aceptar las soluciones propuestas por la compañía, Creativa tendrá el derecho de suspender o eliminar el contenido publicado por el cliente.
+                                                                
+                                                <br><br>
+                                    
+                                                Si la compañía estima que la falta o infracción del cliente es grave, esto se podrá realizar sin notificación previa, y de manera independiente. 
+                                    
+                                                <br><br>
+                                    
+                                                Por último, cualquier acción o procedimiento judicial por incumplimiento de contrato o alguna falta de la compañía con sus responsabilidades empresariales, no excederá el monto real que el cliente pagó por adquirir los servicios de Creattiva ni tampoco considerará gastos externos no relacionados con la empresa.
+                                    
+                                            </p>
+                                
+                                            <br>
+                                
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Al aprobar los términos y condiciones de Creattiva, el cliente admite
+                                    
+                                                <br>
+                                            
+                                            </span>
+                                
+                                            <span style="font-size:22px; color:#333333; padding:15px;">haber leído y aceptado todo el contenido expuesto en este documento.</span>
+                                
+                                            <br><br>
+                                
+                                            <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>	 
+                        
+                                        </div>
+                                
+                                    </div>
+                                
+                                </div>
+
+                          </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='hosting-compartido' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading7">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='hosting-compartido';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/hosting-compartido')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse7" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse7"
+                            >
+                            Hosting Compartido
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/hosting-compartido')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse7" aria-expanded="false" aria-controls="flush-collapse7">
+                                Hosting Compartido
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        <div id="flush-collapse7" [ngClass]="{'show': mostrar=='hosting-compartido'}" class="accordion-collapse collapse" aria-labelledby="flush-heading7" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                
+                                    <span style="font-size:22px; color:#333333; padding:15px;"> Condiciones de Servicio Web Hosting <br></span>
+                                
+                                    <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                    
+                                        <p>Entre Creattiva Datacenter Spa, con  domicilio para estos efectos en Premio Nobel #2931,
+                                            Macul, Santiago, Chile, en  adelante Creattiva Datacenter y el Cliente, que se individualizará 
+                                            al llenar el  formulario electrónico de solicitud de servicio Web Hosting, se ha convenido el
+                                            siguiente contrato de prestación de servicios:
+                                        </p>
+                                
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>CONTRATACIÓN</strong></span>
+                                
+                                        <p>
+                                            El Cliente se obliga a respetar  íntegramente las condiciones de este contrato y a no vulnerar
+                                            en caso alguno  las prohibiciones que más adelante se detallan. En caso de desacato, por la  
+                                            aceptación de este instrumento se autoriza a Creattiva Datacenter a poner  término inmediato 
+                                            al servicio, y se libera de la obligación de mantener  respaldos de los datos proporcionados 
+                                            por el Cliente.<br>
+                                
+                                            El Cliente se obliga a dar un trato  digno al personal de Creattiva Datacenter, excluyendo el 
+                                            lenguaje abusivo,  amenazas u ofensas, por medios verbales, escritos o por medios  tecnológicos, 
+                                            como redes sociales. <br>
+                                
+                                            El Cliente conviene en contratar el  servicio de Web Hosting bajo el plan que seleccione según 
+                                            lo publicado en el  sitio web de Creattiva Datacenter. Este servicio le permitirá contar con un  
+                                            sitio web en los servidores de Creattiva Datacenter, que podrá ser visitado por  los usuarios de 
+                                            la red Internet.
+                                        </p>
+                                
+                                      
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>RESPONSABILIDADES</strong></span>
+                                      
+                                        <p>
+                                            Creattiva Datacenter  no se hace responsable ante eventos como robos a nuestras instalaciones, 
+                                            cortes  de suministro eléctrico provocados por compañías eléctricas, cualquier fenómeno  de la
+                                             naturaleza que impida dar un servicio óptimo o completo, incendios en  nuestras dependencias 
+                                             ajenos a nuestra responsabilidad y cortes de enlaces  nacionales o internacionales proporcionados
+                                              por empresas proveedoras de  Internet. 
+                                        </p>
+                                      
+                                        <p>
+                                            No serán  responsabilidad de Creattiva Datacenter, las condiciones registradas en el o  los 
+                                            organismos reguladores como Dominio Existe, Dominio en Publicación y  Dominio con cualquier
+                                             otro tipo de restricción. En caso que el dominio  solicitado sea rechazado por el organismo
+                                              regulador, el Cliente deberá señalar  el nuevo dominio que pretende registrar.
+                                        </p>
+                                      
+                                        <p>
+                                            Asimismo,  Creattiva Datacenter no se responsabiliza por el registro de un dominio por 
+                                            parte de un Cliente, cuyo nombre haga alusión a una marca registrada o similar,  tampoco
+                                             del uso que el cliente haga de su nombre de dominio.
+                                        </p>
+                                
+                                        <p>
+                                            Creattiva Datacenter  no se hace responsable ante la demora del Cliente en el cambio 
+                                            de DNS para la  activación del servicio de parte de Creattiva Datacenter.<br>
+                                            Creattiva Datacenter no responde ante  sitios web desactualizados, con formularios 
+                                            de contacto no operativos o con  problemas de programación, debido a actualizaciones
+                                             de PHP, versiones de librerías  o similares.<br>
+                                        
+                                             Creattiva Datacenter no se hace  responsable por el Hackeo de sitios web, causados por no 
+                                             mantener actualizados  parches de seguridad, mal uso de permisos en carpetas, mal uso de 
+                                             software de  libre distribución como son OSCommerce, Joomla, Wordpress, PHPNuke, etc<br>
+                                        
+                                             En el caso de que Creattiva Datacenter  cambie un dominio con Hosting compartido a otro servidor,
+                                              no se  responsabilizará por pérdida de correos electrónicos cuando la administración  de DNS 
+                                              sea por parte del cliente o de otro proveedor de servicios de Internet.<br>
+                                        
+                                              Del mismo modo, Creattiva Datacenter  no se hace responsable por pérdida del sitio Web debido 
+                                              a fallas en los discos  duros de Hosting compartido, ya que es responsabilidad del Cliente 
+                                              mantener un  respaldo de su sitio web y copia de seguridad de toda la información que  
+                                              mantenga nuestros servidores.
+                                              <br>
+                                        
+                                              Creattiva Datacenter acepta y  reconoce el carácter absolutamente confidencial que tiene toda
+                                              la información  del Cliente que pueda llegar a su conocimiento o a que puede tener acceso, en
+                                              el desempeño de sus servicios, quedando estrictamente prohibido su uso o  divulgación.
+                                             <br>
+                                
+                                            Creattiva Datacenter, no se hará  responsable por el contenido o la información que el Cliente
+                                             suba o haga  residir en el sitio. No obstante, Creattiva Datacenter podrá poner término  
+                                             anticipado del contrato o suspender en forma inmediata el servicio, en  cualquier momento 
+                                             que, a su juicio, la información puesta en su servidor por el  Cliente, atente contra la 
+                                             Ley vigente en Chile, la moral o las buenas  costumbres, o afecte a terceras personas.<br>
+                                
+                                 
+                                             Para estos  efectos, se entiende por contenido prohibido material pornográfico, contenidos
+                                               Gamer como sitios de juegos, foros, juegos en línea y todo lo que abarca la  temática, 
+                                               sin excepciones. No está permitido el alojamiento de contenido  multimedia sin derechos 
+                                               de autor, contenido pirata como descarga de películas,  videos, software, audio y video. 
+                                               No se permite el uso de los servidores para  realizar Streaming de Audio o Video. Queda 
+                                               terminantemente prohibido alojar  contenido de cualquier índole que atente o vulnere nuestra
+                                                legislación.
+                                        </p>
+                                
+                                      
+                                        <p>
+                                            En este caso,  se faculta a Creattiva Datacenter a suspender o eliminar el servicio, 
+                                            sin aviso  previo, sin la obligación de mantener almacenados los datos proporcionados 
+                                            por  el Cliente y sin generar ningún tipo de indemnización en favor del Cliente. El  
+                                            restablecimiento del servicio queda a criterio y decisión de Creattiva Datacenter.
+                                        </p>
+                                
+                                      
+                                        <p>
+                                            Además,  Creattiva Datacenter queda en plena libertad de entregar información a las  
+                                            instituciones que velan por el cumplimiento de Ley, y entregará todos los datos  
+                                            del Cliente en caso de que este vulnere esta cláusula. 
+                                        </p>
+                                
+                                      
+                                        <br>
+                                
+                                      
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                            <strong>Responsabilidad del contenido alojado en www.creattiva.cl</strong>
+                                        </span>
+                                
+                                        <p>
+                                            Te recordamos que es obligación y responsabilidad de cada CLIENTE el tomar
+                                             las medidas necesarias para resguardar y/o respaldar adecuadamente la 
+                                             información de su sitio web; para esto se pueden descargar periódicamente
+                                              respaldos o hacerlo de la forma que el CLIENTE estime conveniente.
+                                        </p>
+                                
+                                       <p>
+                                           CREATTIVA.CL presta servicios de alojamiento web, más no se responsabiliza
+                                            por la pérdida de información del sitio, bases de datos, cuentas de correos,
+                                             etc. alojada en sus Servidores, causada por problemas técnicos atribuibles 
+                                             a sistemas de comunicación y transmisión de datos, hackeos o manipulación 
+                                             externa de la información que mantenga el servicio de hosting contratado.
+                                        </p>
+                                
+                                       <p>
+                                           Para todos los efectos legales, se deja expresa constancia que el servicio 
+                                           facilitado por CREATTIVA.CL no es un servicio de resguardo o respaldo de 
+                                           contenidos, por lo que no le cabe responsabilidad alguna ante cualquier evento
+                                            de pérdida parcial o total de dicha información.
+                                        </p>
+                                
+                                       <br>
+                                
+                                      <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>COMPROMISOS</strong></span>
+                                      
+                                      <p>El Cliente  se compromete a no saturar el servidor con ningún tipo de programa que 
+                                          atente  con el rendimiento de la máquina, sobre todo el envío masivo de correo 
+                                          electrónico no deseado (Spam) y envío de correos electrónicos  ocasionados por 
+                                          Virus en su PC. En este caso, Creattiva Datacenter estará  facultada para suspender 
+                                          el servicio y velar por el rendimiento de los  Servidores. 
+                                        </p>
+                                      
+                                        <p>Creattiva Datacenter no realizará  respaldos diarios (Backup) a los 
+                                            clientes que se encuentren utilizando más de  15 GB en servidores de 
+                                            Hosting compartido, teniendo el Cliente que realizar  dicho respaldo 
+                                            de la información.<br>
+                                        
+                                            Creattiva Datacenter se compromete,  ante cualquier evento distinto a 
+                                            los detallados anteriormente, a proporcionar  un servicio óptimo y 
+                                            estable, así como en un plazo de 72 horas, dar solución a  los contratiempos
+                                             o problemas que sean de nuestra responsabilidad.
+                                        </p>
+                                      
+                                        <p>Como parte de nuestras políticas de seguridad y para garantizar el 
+                                            óptimo funcionamiento del servicio de hosting compartido, Creattiva 
+                                            se reserva el derecho de migrar o cambiar de servidor al cliente 
+                                            cuando estime conveniente.<br>
+                                          
+                                            Esta acción no requerirá de una notificación previa y, en ningún caso,
+                                             representará una disminución de la calidad o rendimiento de nuestros 
+                                             servicios.<br>
+                                          
+                                             Creattiva también podrá realizar este procedimiento con los clientes
+                                              que tienen contratado servicios de VPS. Sin embargo, por temas de 
+                                              factibilidad, nuestro equipo de soporte técnico si notificará a 
+                                              aquellos clientes la migración hacia otro servidor.
+                                        </p>
+                                
+                                      
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>FACTURACIÓN</strong></span>
+                                
+                                      
+                                        <p>
+                                            El Cliente  se obliga a pagar de forma anticipada la tarifa correspondiente
+                                                        al periodo.  Creattiva Datacenter facturará al cliente, previa presentación
+                                                        de comprobante  que acredite el pago, al correo electrónico 
+                                                        <a href="mailto:facturacion@creattiva.cl">facturacion@creattiva.cl</a>.<br>
+                                                    El Cliente también  podrá notificar cualquier pago que haga mediante el 
+                                                    Formulario de Notificación  creado en nuestro sitio web para tal efecto<br>
+                                                    El  Cliente debe informar a Creattiva Datacenter sobre cualquier cambio en 
+                                                    sus  datos de contacto o facturación. Creattiva Datacenter no se hará responsable 
+                                                    en  caso de que los avisos de vencimiento o comunicaciones sean enviados a  
+                                                    direcciones de correo electrónico fuera de uso.<br>
+                                            Las condiciones comerciales del servicio podrán ser modificadas  por Creattiva Datacenter,
+                                            previa notificación al Cliente con una anticipación  de al menos 30 días a la vigencia de
+                                            las nuevas condiciones. Para tal efecto se  utilizará, el correo electrónico del Cliente.
+                                                El Cliente, en caso de no aceptar  las nuevas condiciones comerciales, podrá poner término
+                                                al servicio, comunicando  su intención en tal sentido a Creattiva Datacenter, antes de 
+                                                la entrada en  vigencia de las nuevas condiciones, sin costo alguno para él. De lo 
+                                                contrario  se entenderá que las nuevas condiciones fueron aceptadas por el Cliente.
+                                        </p>
+                                
+                                        <p>
+                                            El  servicio tendrá una duración definida, y cualquiera de las partes podrá ponerle
+                                              término manifestando su voluntad en tal sentido, a través de nuestra sucursal  
+                                              virtual, en la opción Solicitud de Cierre. Esto debe ser solicitado  antes de 
+                                              la emisión de la próxima factura o Cupón de Pago. De lo contrario,  el servicio
+                                               se entenderá renovado automáticamente.<br>
+                                        
+                                               Para la  renovación del servicio, el Cliente recibirá recordatorios del 
+                                               vencimiento de  su servicio, donde se indica el monto a cancelar e instrucciones
+                                                para pago. Los  recordatorios serán emitidos con al menos 10 días antes de 
+                                                su fecha de  vencimiento. Se repite a 7 y 3 días del vencimiento y es enviado,
+                                                 además, un  último aviso el mismo día del vencimiento.
+                                        </p>
+                                      
+                                        <p>
+                                                En caso de mora o retardo en el pago,  Creattiva Datacenter suspenderá el
+                                                servicio en cuestión. La reposición se hará  una vez que se paguen todos
+                                                los cargos pendientes y adeudados por el cliente. <br>
+                                            
+                                                Si el Cliente mantiene un Cupón  de Pago pendiente por más de 30 días,
+                                                se autoriza a Creattiva Datacenter para  eliminar el servicio y los 
+                                                datos almacenados.<br>
+                                
+                                            
+                                                Si el servicio cuenta con un periodo  de facturación anual, y el Cliente 
+                                                desea efectuar el término del servicio  después de su fecha de renovación
+                                                    encontrándose la cuenta de Hosting  suspendida, el Cliente deberá realizar
+                                                    el pago de la renovación de servicio de  Hosting en forma anual, o efectuar
+                                                    el pago por el respaldo de la información  contenida en el servidor, 
+                                                    servicio que tiene el costo de 1UF + IVA para  servicios de Hosting.<br>
+                                            
+                                                Creattiva Datacenter no realizará  devoluciones de dinero a aquellos Clientes, 
+                                                que hubieren cancelado en forma  anticipada periodos superiores a un mes, y 
+                                                que deseen ponerle término a dicho  contrato antes del término del periodo cancelado. <br>
+                                            Tampoco se realizará devolución  de dinero a Clientes que soliciten cambio a un 
+                                            plan más bajo antes de finalizar  periodo contratado, excepto que el cliente haya
+                                            presentado 72 horas sin  servicio y que sea exclusivamente responsabilidad de 
+                                            Creattiva Datacenter.<br>
+                                            En caso de retracto o desistimiento  del servicio, el Cliente podrá solicitar 
+                                            la anulación y reembolso del monto  pagado en un plazo máximo de 10 de su compra.
+                                            Según el artículo 3°bis de la Ley  N°19.496 de Protección de los Consumidores. 
+                                            Después de este plazo, el Cliente  da por aceptado el servicio contratado y no 
+                                            podrá solicitar devoluciones ni  reembolsos.<br>
+                                            No habrá derecho a devolución ni  reembolso en caso de infracción a cualquiera 
+                                            de las prohibiciones establecidas  en este documento. O en caso de problemas, fallas
+                                            o deficiencias de  programación imputables al Cliente. Instalaciones de Software o 
+                                            complementos  considerados inseguros para el sistema, bloqueos de IP por Firewall.<br>
+                                            Cualquier dificultad o controversia  que se produzca entre los contratantes respecto
+                                            de la aplicación,  interpretación, duración, validez o ejecución de este contrato o
+                                            cualquier otro  motivo, será sometida a arbitraje, conforme al Reglamento Procesal
+                                            de Arbitraje  del Centro de Arbitraje y Mediación de Santiago, vigente al momento de  solicitarlo.
+                                        </p>
+                                    
+                                        <br><br>
+                                        
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+                                </div>
+                            </div>
+
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='servidores-vps' || mostrar=='terminos-y-condiciones'">
+
+                        <h2 class="accordion-header" id="flush-heading8">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='servidores-vps';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/servidores-vps')" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse8" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse8"
+                            >
+                            Servidores VPS
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/servidores-vps')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse8" aria-expanded="false" aria-controls="flush-collapse8">
+                                Servidores VPS
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+
+                        <div id="flush-collapse8" [ngClass]="{'show': mostrar=='servidores-vps'}" class="accordion-collapse collapse" aria-labelledby="flush-heading8" data-bs-parent="#accordionFlushExample">
+                          
+                            <div class="accordion-body">
+
+                                <div class="row">
+                                    
+                                    <div class="col-md-12"  style="padding-left:10px; padding-right:10px;">
+                                        
+                                        <div style="padding-left:2rem; padding-right:2rem;" >
+                            
+                                            <br>
+                                
+                                            <span style="font-size:22px; color:#333333; padding:15px;"> 
+                                                Condiciones de Servicio Servidor VPS<br>
+                                            </span>
+
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                
+                                            <p>
+                                            Entre Creattiva Datacenter Spa, con  domicilio en Premio Nobel #2931, 
+                                            Macul, Santiago, Chile, en adelante Creattiva Datacenter  y el 
+                                            Cliente, que se individualizará al llenar el formulario electrónico
+                                            de solicitud de servicio Servidor Privado Virtual, en adelante Servidor VPS,
+                                            se  ha convenido el siguiente contrato de prestación de servicios:
+                                            </p>
+
+                                            <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                                <strong>CONTRATACIÓN</strong>
+                                            </span>
+                                
+                                            <p>
+                                                El Cliente se obliga a respetar  las condiciones de este contrato 
+                                                y a no vulnerar en las prohibiciones que más  adelante se detallan.
+                                                En caso de desacato, por la aceptación de este  instrumento se 
+                                                autoriza a Creattiva Datacenter a poner término inmediato al  
+                                                contrato, y se libera de la obligación de mantener respaldos 
+                                                de los datos  proporcionados por el Cliente.<br>
+                                    
+                                                El Cliente debe dar un trato  digno al personal de Creattiva Datacenter,
+                                                excluyendo el lenguaje abusivo,  amenazas u ofensas, por medios verbales,
+                                                escritos o por  medios tecnológicos, como redes sociales. 
+                                            
+                                            </p>
+
+                                
+                                            <p>
+                                                El Cliente conviene en contratar  el servicio de Servidor VPS 
+                                                para Hosting y Mail Hosting, bajo el plan que  seleccione 
+                                                según lo publicado en el sitio web de Creattiva Datacenter.
+                                            </p>
+
+                                            <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                                <strong>RESPONSABILIDADES</strong>
+                                            </span>
+
+                                            <p>
+                                                Creattiva Datacenter no se hace  responsable ante eventos como robos
+                                            a nuestras instalaciones, cortes de  suministro eléctrico provocados 
+                                            por compañías eléctricas, cualquier fenómeno de  la naturaleza que 
+                                            impida dar un servicio óptimo o completo, incendios en  nuestras 
+                                            dependencias ajenos a nuestra responsabilidad y cortes de enlaces  
+                                            nacionales o internacionales proporcionados por empresas proveedoras 
+                                            de  Internet.<br>
+                                    
+                                            No serán responsabilidad de  Creattiva Datacenter daños o perjuicios 
+                                            que pueda experimentar el Cliente o  terceros como consecuencia 
+                                            directa o indirecta del uso y funcionamiento de su  infraestructura 
+                                            tecnológica o sus programas, o por cualquier otra causa  relacionada 
+                                            con el servicio que presta. <br>
+                            
+                                            Creattiva  Datacenter acepta y reconoce el carácter absolutamente confidencial 
+                                            que tiene  toda la información del Cliente que pueda llegar a su 
+                                            conocimiento o a que  puede tener acceso, en el desempeño de sus 
+                                            servicios, quedando estrictamente  prohibido su uso o divulgación.
+                                            </p>
+                                
+                                            <p>Creattiva Datacenter no será  responsable por el contenido 
+                                                o la información que el Cliente suba o haga  residir en 
+                                                los Servidores VPS. No obstante, Creattiva Datacenter 
+                                                podrá poner  término anticipado del contrato o suspender
+                                                en forma inmediata el servicio, en  cualquier momento que, 
+                                                a su juicio, la información puesta en su servidor por el  
+                                                Cliente, atente contra la Ley vigente en Chile, la moral o 
+                                                las buenas  costumbres, o afecte a terceras personas o al 
+                                                óptimo desempeño del mismo  servidor.<br>
+                                    
+                                                Para estos efectos, se entiende por  contenido prohibido material 
+                                                pornográfico, contenidos Gamer como sitios de  juegos, foros, 
+                                                juegos en línea y todo lo que abarca la temática, sin  excepciones. 
+                                                No está permitido el alojamiento de contenido multimedia sin  
+                                                derechos de autor, contenido pirata como descarga de películas, 
+                                                videos,  software, audio y video. No se permite el uso de los 
+                                                servidores para realizar  Streaming de Audio o Video. Queda 
+                                                terminantemente prohibido alojar contenido de  cualquier índole 
+                                                que atente o vulnere nuestra legislación.<br>
+                                    
+                                                En este caso, se faculta a Creattiva Datacenter  a suspender o 
+                                                eliminar el servicio, sin aviso previo, sin la obligación de  
+                                                mantener almacenados los datos proporcionados por el Cliente y 
+                                                sin generar  ningún tipo de indemnización en favor del Cliente. 
+                                                El restablecimiento del  servicio queda a criterio y decisión de 
+                                                Creattiva Datacenter.<br>
+                                    
+                                                Además, Creattiva Datacenter  queda en plena libertad de entregar 
+                                                información a las instituciones que velan  por el cumplimiento de 
+                                                Ley, y entregará todos los datos del Cliente en caso de  que vulnere esta cláusula. 
+                                            </p>
+                            
+                                            <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                                <strong>COMPROMISOS</strong>
+                                            </span>
+                                
+                                            <p>
+                                                El Cliente se compromete a no  saturar el servidor con ningún 
+                                            tipo de programa que atente con el rendimiento  de la máquina, 
+                                            sobre todo el envío masivo de correo de correo electrónico no  
+                                            deseado (SPAM) desde el Servidor VPS contratado. El envío de 
+                                            correos es  ilimitado siempre y cuando éstos sean correos reales 
+                                            de comunicación o  Newsletter del Cliente. El máximo recomendable 
+                                            para el envío correos por hora  es de 2000, con un tope máximo 
+                                            diario de 24.000 correos y un máximo total  mensual de 500.000 correos. 
+                                            <br><br>
+
+                                            <strong>Detalle de acciones a realizar en la  eventualidad hacer envío de SPAM.</strong>
+                                            </p>
+                                
+                                            <table class="bordered responsive-table" width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#000000">
+                                    
+                                                <tr>
+                                    
+                                                    <td width="589" colspan="2" valign="top"><br>
+                                        
+                                                        <strong>Servidores VPS sin Administración</strong> 
+                                                    
+                                                    </td>
+                                    
+                                                </tr>
+
+                                                <tr>
+                                                
+                                                    <td width="255" valign="top"><p>1er envío de SPAM </p></td>
+                                                
+                                                    <td width="334" valign="top"><p>Se notifica al cliente que dispone de 24 horas para solucionar    problema.</p></td>
+                                                
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>2do envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende el Servidor VPS durante 30 minutos.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>3er envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende el Servidor VPS durante 1 hora.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>4to envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende el Servidor VPS durante 4 hora.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>5er envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende el Servidor VPS durante 24 horas.</p></td>
+                                                </tr>
+                                            </table>
+                                
+                                            <p>&nbsp;</p>
+                            
+                                            <table class="bordered responsive-table" width="100%" border="1" cellpadding="1" cellspacing="0" bordercolor="#000000">
+                                                <tr>
+                                                <td width="589" colspan="2" valign="top"><p align="center"><strong>Servidores VPS con Administración</strong></p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>1er envío de SPAM </p></td>
+                                                <td width="334" valign="top"><p>Se realiza cambio de claves de CPanel y se suspende la Casilla que    realizo el envío, hasta que Soporte detecte y solucione el problema. Se    notifica al cliente.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>2do envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende la Casilla que realizó el envío, durante 24 horas.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>3er envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se toma como medida adicional, la suspensión del dominio por 1 horas.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>4to envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se toma como medida adicional, la suspensión del dominio por 4 horas.</p></td>
+                                                </tr>
+                                                <tr>
+                                                <td width="255" valign="top"><p>5er envío de SPAM</p></td>
+                                                <td width="334" valign="top"><p>Se suspende el Servidor VPS durante 24 horas, para evitar el bloqueo    del rango completo de direcciones IP en listas negras.</p></td>
+                                                </tr>
+                                            </table>
+                                
+                                            <p>
+                                                Al sexto envío de SPAM, Creattiva Datacenter podrá poner  término anticipado 
+                                                del contrato o suspender en forma indefinida el servicio sin  derecho a reembolso.<br>
+                                    
+                                                Los servidores son herramientas  para el procesamiento de datos que por su 
+                                                naturaleza están sujetos a fallas, ya  sea en su funcionamiento, discos, 
+                                                programas o aplicaciones. Por esta razón, el  Cliente deberá tomar las 
+                                                medidas preventivas y preocuparse de disponer de  respaldos necesarios 
+                                                para la ejecución de sus procesos. <br>
+                                    
+                                                El Cliente deberá contratar el  servicio de respaldo VPS de manera independiente 
+                                                al Servidor VPS, si necesita  respaldos diarios o mensuales de la información. 
+                                                El respaldo semanal es de uso  interno y para emergencias y no está incluido en 
+                                                el valor del servicio de  Servidor VPS.<br>
+                                    
+                                                El Cliente se obliga a mantener  debidamente configuradas, optimizadas y sobre 
+                                                todo actualizadas sus  aplicaciones y/o cualquier software que utilice, 
+                                                evitando atentar con el  rendimiento de la máquina, la seguridad de los 
+                                                servidores y de la red de  Creattiva Datacenter. Está obligado a mantener 
+                                                libre de virus su red  computacional y cualquier archivo alojado en los 
+                                                servidores que puedan generar  SPAM o cualquier intento de distribución de 
+                                                Software malicioso Malware.<br>
+                                    
+                                                Para servidores VPS sin  administración, todo trabajo que deba realizarse 
+                                                con motivo de las causas  señaladas, por ejemplo, limpiar la dirección IP 
+                                                de Listas Negras por envío de  SPAM, cliente deberá contratar en forma 
+                                                obligatoria el servicio de  Administración por evento.<br>
+                                    
+                                                Creattiva Datacenter se obliga a  prestar un servicio con un 99.9% de Up-time 
+                                                sobre el total del periodo  contratado. Ante cualquier evento distinto a los 
+                                                detallados en los párrafos  anteriores, se deberá proporcionar un servicio 
+                                                óptimo y estable, y en el menor  tiempo posible en un plazo de 72 horas, dar 
+                                                solución a los contratiempos que  sean de nuestra responsabilidad. <br>
+                                    
+                                                Creattiva Datacenter se  compromete a prestar soporte vía ticket en plataforma 
+                                                web las 24 horas del día  por sistema de orden de llegada y prioridades. 
+                                                El soporte vía telefónica se  prestará solamente en los horarios de atención 
+                                                publicados en el sitio web. Los  casos complejos de soporte deben ser 
+                                                realizados netamente vía ticket, debido a  que ciertas solicitudes son de 
+                                                difícil resolución vía telefónica y requieren de  mayor estudio y/o investigación.
+                                            </p>
+
+                                            <span style="color:#333333; font-size:16px; padding-left: 25px;">
+                                                <strong>FACTURACIÓN</strong>
+                                            </span>
+                                
+                                            <p>El Cliente se obliga a pagar de  forma anticipada la tarifa 
+                                                correspondiente al periodo. Creattiva Datacenter  facturará 
+                                                al cliente, previa presentación de comprobante que acredite 
+                                                el pago,  al correo electrónico 
+                                                <a href="mailto:facturacion@creattiva.cl">facturacion@creattiva.cl</a>.<br>
+                                    
+                                                El Cliente también podrá notificar  cualquier pago que haga mediante el 
+                                                Formulario de Notificación creado en  nuestro sitio web para tal efecto<br>
+                                    
+                                                El  Cliente debe informar a Creattiva Datacenter sobre cualquier cambio 
+                                                en sus  datos de contacto o facturación. Creattiva Datacenter no se hará
+                                                responsable en  caso de que los avisos de vencimiento o comunicaciones 
+                                                sean enviados a  direcciones de correo electrónico fuera de uso.
+                                            </p>
+                                
+                                            <p>
+                                                Las condiciones comerciales del  servicio podrán ser modificadas 
+                                                por Creattiva Datacenter, previa notificación  al Cliente con 
+                                                una anticipación de al menos 30 días a la vigencia de las nuevas  
+                                                condiciones. Para tal efecto se utilizará, el correo electrónico 
+                                                del Cliente. El  Cliente, en caso de no aceptar las nuevas 
+                                                condiciones comerciales, podrá poner término  al servicio, 
+                                                comunicando su intención en tal sentido a Creattiva Datacenter,  
+                                                antes de la entrada en vigencia de las nuevas condiciones, sin 
+                                                costo alguno  para él. De lo contrario se entenderá que las nuevas 
+                                                condiciones fueron  aceptadas por el Cliente.<br>
+                                    
+                                                El servicio tendrá una duración  definida y el Cliente podrá ponerle término 
+                                                manifestando su voluntad en tal  sentido, a través de nuestra sucursal virtual, 
+                                                en la opción Solicitud de  Cierre. Esto debe ser solicitado antes de la emisión 
+                                                de  la próxima factura o Cupón de Pago. De lo contrario, el servicio se 
+                                                entenderá  renovado automáticamente.
+                                            </p>
+                                
+                                            <p>
+                                                Para la renovación del servicio,  el Cliente recibirá recordatorios
+                                                del vencimiento de su servicio, donde se  indica el monto a 
+                                                cancelar e instrucciones para pago. Los recordatorios serán  
+                                                emitidos con al menos 10 días antes de su fecha de vencimiento. 
+                                                Se repite a 7 y  3 días del vencimiento y es enviado, además, 
+                                                un último aviso el mismo día del  vencimiento.<br>
+                                    
+                                                En caso de mora o retraso en el  pago, Creattiva Datacenter suspenderá 
+                                                el servicio en cuestión. La reposición se  hará una vez que se paguen 
+                                                todos los cargos pendientes y adeudados por el  cliente. <br>
+                            
+                                                Si el  Cliente mantiene un Cupón de Pago pendiente por más de 30 días, se 
+                                                autoriza a  Creattiva Datacenter para eliminar el servicio y los datos 
+                                                almacenados.
+                                            </p>
+                                
+                                            <p>
+                                                Si el servicio cuenta con un  periodo de facturación anual, y el 
+                                                Cliente desea efectuar el término del  servicio después de su 
+                                                fecha de renovación encontrándose el Servidor VPS  suspendido, 
+                                                el Cliente deberá realizar el pago de la renovación del Servidor  
+                                                VPS en forma anual, o efectuar el pago por el respaldo de la información  
+                                                contenida en el servidor, servicio que tiene el costo de 3UF + IVA para  
+                                                servicios de Servidor VPS.<br>
+                                    
+                                                Creattiva  Datacenter no realizará devoluciones de dinero a aquellos 
+                                                Clientes, que  hubieren cancelado en forma anticipada periodos 
+                                                superiores a un mes, y que  deseen ponerle término a dicho contrato 
+                                                antes del término del periodo  cancelado. 
+                                            </p>
+                                
+                                            <p>Tampoco  se realizará devolución de dinero a Clientes que soliciten 
+                                                cambio a un plan más  bajo antes de finalizar periodo contratado, 
+                                                excepto que el cliente haya  presentado 72 horas sin servicio y 
+                                                que sea exclusivamente responsabilidad de  Creattiva Datacenter.
+                                            </p>
+                                
+                                            <p>En caso de retracto o  desistimiento del servicio, el Cliente podrá 
+                                                solicitar la anulación y reembolso  del monto pagado en un plazo 
+                                                máximo de 10 desde su compra. Según el artículo  3°bis de la Ley 
+                                                N°19.496 de Protección de los Consumidores. Después de este  plazo, 
+                                                el Cliente da por aceptado el servicio contratado y no podrá solicitar  
+                                                devoluciones ni reembolsos.<br>
+                                    
+                                                No habrá derecho a devolución ni  reembolso en caso de infracción a 
+                                                cualquiera de las prohibiciones establecidas  en este documento. O 
+                                                en caso de problemas, fallas o deficiencias de programación imputables  
+                                                al Cliente. Instalaciones de Software o complementos considerados 
+                                                inseguros  para el sistema, bloqueos de IP por Firewall.<br>
+                                    
+                                                Cualquier controversia que se  produzca entre los contratantes respecto 
+                                                de la aplicación, interpretación,  duración, validez o ejecución de este 
+                                                contrato o cualquier otro motivo, será  sometida a arbitraje, conforme 
+                                                al Reglamento Procesal de Arbitraje del Centro  de Arbitraje y Mediación 
+                                                de Santiago vigente al momento de solicitarlo.
+                                            </p>
+                                
+                                            <br><br>
+                                    
+                                            <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>	
+                            
+                                        </div>
+                            
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='housing' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading9">
+
+                          <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='housing';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/housing')"
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse9" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse9"
+                            >
+                            Housing
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/housing')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse9" aria-expanded="false" aria-controls="flush-collapse9">
+                                Housing
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        <div id="flush-collapse9" [ngClass]="{'show': mostrar=='housing'}" class="accordion-collapse collapse" aria-labelledby="flush-heading9" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12"  style="padding-left:10px; padding-right:10px;"><div style="padding-left:2rem; padding-right:2rem;">
+                                    
+                                        <span style="font-size:22px; color:#333333; padding:15px;"> Condiciones de Servicio Housing<br></span>
+                            
+                                        <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                    
+                                        <p>Entre Creattiva Datacenter Spa, con  domicilio para estos efectos en Premio Nobel #2931, 
+                                        Macul, Santiago, Chile, en  adelante Creattiva Datacenter y el Cliente, que se 
+                                        individualizará al llenar el  formulario electrónico de solicitud de servicio 
+                                        Housing, se ha convenido el  siguiente contrato de prestación de servicios:
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>CONTRATACIÓN</strong></span>
+                                    
+                                        <p>El Cliente se obliga a respetar  íntegramente las condiciones de este contrato y a 
+                                            no vulnerar en caso alguno  las prohibiciones que más adelante se detallan. En 
+                                            caso de desacato, por la  aceptación de este instrumento se autoriza a Creattiva 
+                                            Datacenter a poner  término inmediato al servicio, y se libera de la obligación 
+                                            de mantener  respaldos de los datos proporcionados por el Cliente.<br>
+                                        
+                                            El Cliente se obliga a dar un trato  digno al personal de Creattiva Datacenter, 
+                                            excluyendo el lenguaje abusivo,  amenazas u ofensas, por medios verbales, escritos
+                                            o por medios  tecnológicos, como redes sociales. <br>
+                                        
+                                            El Cliente conviene en contratar el servicio Housing bajo el  plan que seleccione 
+                                            según lo publicado en el sitio web de Creattiva Datacenter. <br>
+                                        
+                                            Este  servicio es una modalidad de alojamiento web destinado principalmente a 
+                                            grandes  empresas y a empresas de servicios web. Consiste básicamente en vender o  
+                                            alquilar un espacio físico de un Datacenter para que el cliente coloque ahí su  
+                                            propio servidor. Creattiva Datacenter entregará la corriente eléctrica y la  
+                                            conexión a Internet 1000 MB Nacional y 50 MB Internacional, pero el servidor lo  
+                                            elige completamente el cliente, incluso el hardware.<br>
+                        
+                                            <br>
+                                        
+                                            El término &quot;housing&quot; se utiliza en los países hispanohablantes y  otros como Francia. Sin embargo en países de habla inglesa utilizan colocation,  colocation centre o también Co-Location<br>
+                        
+                                            <br>
+
+                                            <strong>RESPONSABILIDADES</strong><br>
+                        
+                                            Creattiva Datacenter  no se hace responsable ante eventos como robos a 
+                                            nuestras instalaciones, cortes  de suministro eléctrico provocados por 
+                                            compañías eléctricas, cualquier fenómeno  de la naturaleza que impida dar 
+                                            un servicio óptimo o completo, incendios en  nuestras dependencias ajenos 
+                                            a nuestra responsabilidad y cortes de enlaces  nacionales o internacionales 
+                                            proporcionados por empresas proveedoras de  Internet. 
+                                        </p>
+                                    
+                                        <p>
+                                            Creattiva Datacenter acepta y  reconoce el carácter absolutamente confidencial 
+                                            que tiene toda la información  del Cliente que pueda llegar a su conocimiento 
+                                            o a que puede tener acceso, en  el desempeño de sus servicios, quedando 
+                                            estrictamente prohibido su uso o  divulgación.<br>
+                                        
+                                            Creattiva Datacenter, no se hará  responsable por el contenido o la 
+                                            información que el Cliente aloje en nuestro  Datacenter. No obstante, 
+                                            Creattiva Datacenter podrá poner término anticipado  del contrato o 
+                                            suspender en forma inmediata el servicio, en cualquier momento  que, a su 
+                                            juicio, la información puesta en su servidor por el Cliente, atente  
+                                            contra la Ley vigente en Chile, la moral o las buenas costumbres, o 
+                                            afecte a  terceras personas.<br>
+                        
+                                            Para estos  efectos, se entiende por contenido prohibido material pornográfico, 
+                                            contenidos  Gamer como sitios de juegos, foros, juegos en línea y todo 
+                                            lo que abarca la  temática, sin excepciones. No está permitido el alojamiento 
+                                            de contenido  multimedia sin derechos de autor, contenido pirata como descarga
+                                            de películas,  videos, software, audio y video. Queda terminantemente prohibido 
+                                            alojar  contenido de cualquier índole que atente o vulnere nuestra legislación.
+                                        </p>
+                                    
+                                        <p>
+                                            En este caso, se faculta a Creattiva Datacenter  a suspender o eliminar 
+                                            el servicio, sin aviso previo.<br>
+                                        
+                                            Además, Creattiva Datacenter queda en  plena libertad de entregar información
+                                            a las instituciones que velan por el  cumplimiento de Ley, y entregará todos 
+                                            los datos del Cliente en caso de que  este vulnere esta cláusula. 
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>COMPROMISOS</strong></span>
+                                    
+                                        <p>
+                                            Creattiva Datacenter se compromete,  ante cualquier evento distinto a 
+                                            los detallados anteriormente, a proporcionar  un servicio óptimo y 
+                                            estable, así como en un plazo de 72 horas, dar solución a  los 
+                                            contratiempos o problemas que sean de nuestra responsabilidad.
+                                        </p>
+                                    
+                                        <span style="color:#333333; font-size:16px; padding-left: 25px;"><strong>FACTURACIÓN</strong></span>
+                                    
+                                        <p>El Cliente se obliga a pagar de forma  anticipada la tarifa correspondiente 
+                                            al periodo. Creattiva Datacenter facturará  al cliente, previa presentación 
+                                            de comprobante que acredite el pago, al correo  electrónico 
+                                            <a href="mailto:facturacion@creattiva.cl">facturacion@creattiva.cl</a>.<br>
+                                        
+                                            El Cliente también podrá notificar cualquier pago que haga  mediante el 
+                                            Formulario de Notificación creado en nuestro sitio web para tal  efecto<br>
+                                        
+                                            El Cliente debe informar a  Creattiva Datacenter sobre cualquier cambio 
+                                            en sus datos de contacto o facturación.  Creattiva Datacenter no se hará 
+                                            responsable en caso de que los avisos de  vencimiento o comunicaciones 
+                                            sean enviados a direcciones de correo electrónico  fuera de uso.<br>
+                                        
+                                            Las condiciones comerciales del  servicio podrán ser modificadas por 
+                                            Creattiva Datacenter, previa notificación  al Cliente con una 
+                                            anticipación de al menos 30 días a la vigencia de las nuevas  
+                                            condiciones. Para tal efecto se utilizará, el correo electrónico del 
+                                            Cliente. El  Cliente, en caso de no aceptar las nuevas condiciones 
+                                            comerciales, podrá poner término  al servicio, comunicando su intención 
+                                            en tal sentido a Creattiva Datacenter,  antes de la entrada en vigencia 
+                                            de las nuevas condiciones, sin costo alguno  para él. De lo contrario se 
+                                            entenderá que las nuevas condiciones fueron aceptadas  por el Cliente.<br>
+                        
+                                            El  servicio tendrá una duración definida, y cualquiera de las partes podrá 
+                                            ponerle  término manifestando su voluntad en tal sentido, a través de 
+                                            nuestra sucursal  virtual, en la opción Solicitud de Cierre. Esto debe 
+                                            ser solicitado antes  de la emisión de la próxima factura o Cupón de Pago. 
+                                            De lo contrario, el  servicio se entenderá renovado automáticamente.<br>
+                        
+                                            Para la  renovación del servicio, el Cliente recibirá recordatorios del vencimiento de  su 
+                                            servicio, donde se indica el monto a cancelar e instrucciones para pago. Los  
+                                            recordatorios serán emitidos con al menos 10 días antes de su fecha de  
+                                            vencimiento. Se repite a 7 y 3 días del vencimiento y es enviado, además, un  
+                                            último aviso el mismo día del vencimiento.
+                                        </p>
+                                    
+                                        <p>En caso de mora o retardo en el pago,  Creattiva Datacenter suspenderá 
+                                            el servicio en cuestión. La reposición se hará  una vez que se paguen 
+                                            todos los cargos pendientes y adeudados por el cliente. <br>
+                                        
+                                            Creattiva Datacenter no entregará  máquinas ni tampoco su información 
+                                            sino se completa el pago total de la deuda,  ya sea sitio web, bases 
+                                            de datos, correos o cualquier aplicación e información  alojada en el 
+                                            servidor.<br>
+                                        
+                                            Si el Cliente mantiene un Cupón  de Pago pendiente por más de 30 días, 
+                                            se autoriza a Creattiva Datacenter para  suspender el servicio.<br>
+                                        
+                                            Creattiva Datacenter no realizará  devoluciones de dinero a aquellos Clientes, 
+                                            que hubieren cancelado en forma  anticipada periodos superiores a un mes, y 
+                                            que deseen ponerle término a dicho  contrato antes del término del periodo cancelado. <br>
+                                        
+                                            Tampoco se realizará devolución  de dinero a Clientes que soliciten cambio a un plan 
+                                            más bajo antes de finalizar  periodo contratado, excepto que el cliente haya presentado
+                                            72 horas sin  servicio y que sea exclusivamente responsabilidad de Creattiva Datacenter.<br>
+                                        
+                                            En caso de retracto o desistimiento  del servicio, el Cliente podrá solicitar 
+                                            la anulación y reembolso del monto  pagado en un plazo máximo de 10 de su compra. 
+                                            Según el artículo 3°bis de la Ley  N°19.496 de Protección de los Consumidores. 
+                                            Después de este plazo, el Cliente  da por aceptado el servicio contratado y no 
+                                            podrá solicitar devoluciones ni  reembolsos.<br>
+                                        
+                                            No habrá derecho a devolución ni  reembolso en caso de infracción a cualquiera de 
+                                            las prohibiciones establecidas  en este documento. O en caso de problemas, fallas 
+                                            o deficiencias de  programación imputables al Cliente. Instalaciones de Software 
+                                            o complementos  considerados inseguros para el sistema, bloqueos de IP por Firewall.<br>
+                                        
+                                            Cualquier dificultad o controversia  que se produzca entre los contratantes 
+                                            respecto de la aplicación,  interpretación, duración, validez o ejecución de 
+                                            este contrato o cualquier otro  motivo, será sometida a arbitraje, conforme 
+                                            al Reglamento Procesal de Arbitraje  del Centro de Arbitraje y Mediación de 
+                                            Santiago, vigente al momento de  solicitarlo.
+                                        </p>
+
+                                        <br><br>
+                                    
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>
+                                    
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='cpanel' || mostrar=='terminos-y-condiciones'">
+                        
+                        <h2 class="accordion-header" id="flush-heading10">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='cpanel';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/cpanel')"
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse10" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse10"
+                            >
+                            cPanel
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/cpanel')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse10" aria-expanded="false" aria-controls="flush-collapse10">
+                                cPanel
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        
+                        <div id="flush-collapse10" [ngClass]="{'show': mostrar=='cpanel'}" class="accordion-collapse collapse" aria-labelledby="flush-heading10" data-bs-parent="#accordionFlushExample">
+                          
+                            <div class="accordion-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12"  style="padding-left:10px; padding-right:10px;">
+                                        
+                                        <div style="padding-left:2rem; padding-right:2rem;">
+                                    
+                                            <span style="font-size:22px; color:#333333; padding:15px;"> Condiciones de Servicio cPanel<br></span>
+                                            <span style="font-size:22px; color:#333333; padding:15px;">Creattiva Datacenter SPA</span>
+                                        
+                                            <p>
+                                                A partir del 1 de agosto de 2019, Creattiva hará vigente, en todos sus servicios y productos, la
+                                                reestructuración de planes y tarifas de cPanel. Creattiva seguirá los estándares otorgados por
+                                                cPanel para seleccionar el nuevo nivel de licencia fija que se ajustará al uso de cada cliente, al
+                                                momento de la conversión. 
+                                            
+                                                <br/>
+                                            
+                                                Los valores antiguos se modificarán en base a la siguiente tabla: 
+                                            
+                                                <br/><br/>
+                                            
+                                                * Todos los planes fijos que superen las 250 cuentas se escalarán en incrementos de 50 cuentas,
+                                                    agregando USD $10 / mes en costo de licencia incremental por bloque de 50 cuentas.
+                                                    Precios en USD. 
+                                            </p>
+                                        
+                                            <table class="Table" style="border-collapse:collapse; border:solid black 1.0pt">
+                                            <tbody>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p><b>Nombre de plan cPanel</b>
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p><b>Plataforma</b>
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p><b>L&iacute;mite de cuentas</b>
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p><b>Total</b>
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Admin
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Solo en Cloud
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 1 a 5 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 25 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Pro
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Solo en Cloud
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 6 a 30 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 35 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 100
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 31 a 100 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 50 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 125
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 101 a 125 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 55 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 150
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 126 a&nbsp; 150 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 60 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 175
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 151 a 175 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 65 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 200
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 176 a 200 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 70 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier&nbsp;225
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 201 a 225 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 75 USD
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>cPanel&nbsp;<sup>&reg;</sup>&nbsp;Premier 250
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>Cloud y metal
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>De 226 a&nbsp; 250 cuentas
+                                                    </p>
+                                                </td>
+                                                <td style="border:solid black 1.0pt; background:white; padding:0cm 5.0pt 0cm 5.0pt; height:32.25pt" valign="center">
+                                                    <p>$ 80 USD
+                                                    </p>
+                                                    <p>&nbsp;
+                                                    </p>
+                                                </td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                    
+                                            <br><br>
+                                    
+                                            <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>	
+                                        
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="accordion-item" *ngIf="mostrar=='devoluciones-reembolsos' || mostrar=='terminos-y-condiciones'">
+                        <h2 class="accordion-header" id="flush-heading11">
+
+                            <button 
+                                    class="accordion-button collapsed" 
+                                    *ngIf="mostrar=='devoluciones-reembolsos';else general" 
+                                    (click)="mostrartc('/terminos-y-condiciones/devoluciones-reembolsos')"
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#flush-collapse11" 
+                                    aria-expanded="true" 
+                                    aria-controls="flush-collapse11"
+                            >
+                            DEVOLUCIONES Y REEMBOLSOS
+                            </button>
+
+                            <ng-template #general>
+
+                                <button class="accordion-button collapsed" 
+                                (click)="mostrartc('/terminos-y-condiciones/devoluciones-reembolsos')" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse11" aria-expanded="false" aria-controls="flush-collapse11">
+                                DEVOLUCIONES Y REEMBOLSOS
+                                </button>
+
+                            </ng-template>
+
+                        </h2>
+                        <div id="flush-collapse11" [ngClass]="{'show': mostrar=='devoluciones-reembolsos'}" class="accordion-collapse collapse" aria-labelledby="flush-heading11" data-bs-parent="#accordionFlushExample">
+                          
+                            <div class="accordion-body">
+
+                                <div class="row">
+                                
+                                    <div class="col-md-12" style="padding-left:10px; padding-right:10px;">
+
+                                        <span style="font-size:22px; color:#333333; padding:15px;"> DEVOLUCIONES Y REEMBOLSOS</span><br>
+                      
+                                        <p>En caso de retracto o desistimiento del servicio, el Cliente podrá solicitar la 
+                                            anulación y reembolso del monto pagado en un plazo máximo de 10 días de su 
+                                            compra. Según el artículo 3°bis de la Ley N°19.496 de Protección de los 
+                                            Consumidores de Chile. Después de este plazo, el Cliente da por aceptado el 
+                                            servicio contratado y no podrá solicitar devoluciones ni reembolsos.
+                                        </p>
+                    
+                                        <p>
+                                            Las devoluciones de pago con tarjeta de crédito serán realizadas por medio 
+                                            directamente por Transbank en un plazo de 90 días desde la fecha de solicitud.
+                                        </p>
+
+                                        <p>Las devoluciones de pago via transferencia serán realizadas por medio en un 
+                                            plazo de 30 días desde la fecha de solicitud. 
+                                        </p>
+                        
+                                        <p>Las devoluciones de pago con tarjeta de debito serán	realizadas 
+                                            por medio de transferencia electrónica en un plazo de 30 
+                                            días hábiles desde la fecha de solicitud con un recargo operacional del 2%.
+                                        </p>
+                        
+                                        <p>Creattiva Datacenter Spa no realizará devoluciones de dinero a 
+                                            aquellos Clientes, que hubieren pagado un periodo, y que 
+                                            deseen ponerle término a dicho contrato antes del término 
+                                            del periodo cancelado. Se aplicará reembolso en caso de que 
+                                            dentro de 72 horas no se solucione el requerimiento ingresado 
+                                            vía ticket y que sea exclusiva responsabilidad de Creattiva 
+                                            Datacenter Spa. No habrá derecho a devolución ni reembolso 
+                                            en caso de infracción a cualquiera de las prohibiciones 
+                                            establecidas en este documento. O en caso de problemas, fallas o deficiencias de programación
+                                            imputables al Cliente. Instalaciones de Software o complementos considerados inseguros para el
+                                            sistema, bloqueos de IP por Firewall.
+                                        </p>
+                    
+                                        <p>Creattiva Datacenter Spa no realizará devolución de dinero por 
+                                            la compra de Licencias de WHM/Cpanel, solicitud de direcciones 
+                                            IP adicionales, copias de seguridad o Backup. 
+                                        </p>
+                    
+                                        <br>
+                                        <br>
+
+                                        <a routerLink="/terminos-y-condiciones" style="margin:15px;font-size:22px;">Volver</a>	
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+        
+            </div>
+        
+        </div>
+    </div>
+
+</div>
+
+
+<br /><br /><br /><br /><br />
+
+<app-footer></app-footer>
+
+

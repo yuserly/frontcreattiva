@@ -45,6 +45,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CarouselComponent } from './pages/carousel/carousel.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { PoliticasCalidadComponent } from './pages/politicas-calidad/politicas-calidad.component';
+import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
     //PaginationPipe,
     //PaginadorComponent,
     PreguntasFrecuentesComponent,
-    CarouselComponent
+    CarouselComponent,
+    PoliticasCalidadComponent,
+    TerminosCondicionesComponent
   ],
   imports: [
     CommonModule,

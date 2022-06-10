@@ -330,6 +330,10 @@ export class CategoriasService {
     return this.http.post(`${this.urlBase}/registrarconsulta`, data);
   }
 
+  registrarnewsletter(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/registrarnewsletter`, data);
+  }
+
   registrarecommerce(data: any): Observable<any> {
     return this.http.post(`${this.urlBase}/solicitudjumpseller`, data);
   }

@@ -16,7 +16,8 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-
+import { ValidatorService } from '../../../shared/validator/validator.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -100,6 +101,10 @@ btnSearch:string = 'fas fa-search';
   logueado: boolean = false;
   lang:string = '';
 
+  data = {
+    email:''
+  }
+
   @ViewChild('subfoco') subfoco!: ElementRef;
   @ViewChild('subfocoplanes') subfocoplanes!: ElementRef;
 
@@ -110,11 +115,16 @@ btnSearch:string = 'fas fa-search';
     ]
   });
 
+  form2:FormGroup = this.fb.group({
+    email: ['', [Validators.required,Validators.pattern(this.validacion.emailPattern)]]
+  });
+
   constructor(
     private categoriasServices: CategoriasService,
     public DominiosService: DominiosService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private validacion: ValidatorService,
   ) {
     let token = localStorage.getItem('token')!;
       let empresaselect = localStorage.getItem('empresaselect')!;
@@ -315,6 +325,61 @@ btnSearch:string = 'fas fa-search';
     this.ocultarmenu(false);
     this.subfocoplanes.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
     //this.statusmenu.emit(false);
+
+  }
+
+  insertNews(){
+
+    if(this.form2.get('email')?.invalid){
+
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: 'Ingrese una dirección de correo válida.',
+        showConfirmButton: false,
+        timer: 2500,
+        width: '350px',
+        customClass: {
+            popup: 'alerta'
+          }
+      })
+
+    }else{
+
+      let email = this.form2.value.email;
+
+      this.data.email = email;
+
+      this.categoriasServices.registrarnewsletter(this.data).subscribe((respuesta) => {
+        console.log(respuesta);
+
+        if(respuesta==1){
+
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Su correo ha sido registrado en nuestro sistema',
+              showConfirmButton: false,
+              timer: 2500,
+              width: '350px',
+              customClass: {
+                  popup: 'alerta'
+                }
+            })
+
+            this.data = {
+              email:''
+            }
+            this.form2.reset(this.data);
+
+          }
+        })
+
+    }
+
+    return;
+    
+    
 
   }
 

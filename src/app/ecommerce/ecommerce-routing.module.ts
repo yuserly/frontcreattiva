@@ -18,6 +18,8 @@ import { FormularioContactoComponent } from './pages/formulario-contacto/formula
 import { ConfiguracionProductoComponent } from './pages/configuracion-producto/configuracion-producto.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
+import { PoliticasCalidadComponent } from "./pages/politicas-calidad/politicas-calidad.component";
+import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
 
 const routes: Routes = [
   {
@@ -107,6 +109,18 @@ const routes: Routes = [
         path:'configura-tu-producto/:slug',
         component:ConfiguracionProductoComponent
       },
+      {
+        path: 'politicas-de-calidad',
+        component:PoliticasCalidadComponent
+      },
+      {
+        path: 'terminos-y-condiciones',
+        component:TerminosCondicionesComponent
+      },
+      {
+        path: 'terminos-y-condiciones/:slug',
+        component:TerminosCondicionesComponent
+      }
 
     ]
   }

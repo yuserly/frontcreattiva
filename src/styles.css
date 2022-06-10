@@ -2,6 +2,7 @@
   font-family: amazon;
   src: url('./assets/fonts/AmazonEmber_Rg.ttf');
 }
+
 .carousel-inner{
   max-height: 333px;
   min-height: 333px;
@@ -177,6 +178,7 @@ padding-left: 0px;
 ul.options_footer li{
 list-style: none;
 padding-left: 0px;
+line-height: 1.8;
 }
 .row-footer{
 border-bottom: 0.3px solid #FFF;
@@ -1189,6 +1191,10 @@ color: #FFF;
     background-color: transparent!important;
     padding-top: 20px;
     box-shadow: -9px 1px 10px -6px rgb(0 0 0 / 27%);
+}
+.footer-home ul li a{
+  text-decoration: none;
+  color: #FFF;
 }
 
 

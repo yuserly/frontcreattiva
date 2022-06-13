@@ -20,7 +20,8 @@ import { SoporteComponent } from './pages/soporte/soporte.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { PoliticasCalidadComponent } from "./pages/politicas-calidad/politicas-calidad.component";
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
-
+import { FormasPagoComponent } from './pages/formas-pago/formas-pago.component';
+import { PostulacionComponent } from './pages/postulacion/postulacion.component';
 const routes: Routes = [
   {
     path:'',
@@ -120,6 +121,14 @@ const routes: Routes = [
       {
         path: 'terminos-y-condiciones/:slug',
         component:TerminosCondicionesComponent
+      },
+      {
+        path: 'formas-de-pago',
+        component:FormasPagoComponent
+      },
+      {
+        path: 'postulacion',
+        component:PostulacionComponent
       }
 
     ]

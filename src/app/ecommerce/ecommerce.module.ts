@@ -47,6 +47,8 @@ import { CarouselComponent } from './pages/carousel/carousel.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { PoliticasCalidadComponent } from './pages/politicas-calidad/politicas-calidad.component';
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
+import { FormasPagoComponent } from './pages/formas-pago/formas-pago.component';
+import { PostulacionComponent } from './pages/postulacion/postulacion.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { TerminosCondicionesComponent } from './pages/terminos-condiciones/termi
     PreguntasFrecuentesComponent,
     CarouselComponent,
     PoliticasCalidadComponent,
-    TerminosCondicionesComponent
+    TerminosCondicionesComponent,
+    FormasPagoComponent,
+    PostulacionComponent
   ],
   imports: [
     CommonModule,

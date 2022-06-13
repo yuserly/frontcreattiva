@@ -43,6 +43,8 @@ export class LoginSucursalComponent implements OnInit {
   cargando:boolean = false;
   emailenviado:boolean = false;
   errormail:boolean = false;
+  accesoinvalido:boolean = false;
+  contador:number = 8;
 
 
   constructor(private fb: FormBuilder,
@@ -76,12 +78,13 @@ export class LoginSucursalComponent implements OnInit {
     };
 
     this.categoriasService.login(data).subscribe((resp) => {
-      console.log(resp);
+      //console.log(resp.data);
 
-      if (resp.data) {
+      if (resp.data!='') {
 
         if (resp.data.token) {
 
+          this.accesoinvalido = false;
 
           if (resp.data.empresas.lenght > 1) {
             localStorage.setItem('token', resp.data.token);
@@ -109,13 +112,23 @@ export class LoginSucursalComponent implements OnInit {
             this.router.navigate(['/sucursal']);
           }
         } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Contraseña incorrecta',
-            showConfirmButton: false,
-            timer: 1500
-          })
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Contraseña incorrecta',
+          //   showConfirmButton: false,
+          //   timer: 1500
+          // })
+          this.accesoinvalido = true;
         }
+      }else{
+        // console.log("sin respuesta");
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Contraseña incorrecta',
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+        this.accesoinvalido = true;
       }
     });
   }
@@ -154,6 +167,10 @@ export class LoginSucursalComponent implements OnInit {
 
   validarcampo(campo: string) {
     return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
+  }
+
+  validarcaracteres(event: any){
+    this.contador = 8 - event.target.value.length;
   }
 
 }

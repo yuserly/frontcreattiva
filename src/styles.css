@@ -1196,5 +1196,11 @@ color: #FFF;
   text-decoration: none;
   color: #FFF;
 }
-
+.terminosycondiciones .accordion-item{
+  box-shadow: -9px 7px 13px -2px rgb(0 0 0 / 27%);
+  margin-bottom: 5px;
+}
+.container-adaptar{
+ min-height: calc(100vh - 70px - 90px);
+}
 

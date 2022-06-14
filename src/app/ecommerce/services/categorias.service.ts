@@ -334,6 +334,10 @@ export class CategoriasService {
     return this.http.post(`${this.urlBase}/registrarpostulacion`, data);
   }
 
+  registrarpdfpostulacion(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/registrarpdfpostulacion`, data);
+  }
+
   registrarnewsletter(data: any): Observable<any> {
     return this.http.post(`${this.urlBase}/registrarnewsletter`, data);
   }

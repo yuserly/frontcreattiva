@@ -21,16 +21,18 @@ export class PostulacionComponent implements OnInit {
     nombre: '',
     telefono:'',
     email:'',
-    cargo:'',
-    cv:['']
+    cargo:''
   }
+
+  FilePDF?:FormData;
+
+  errorPDF:boolean = false;
 
   form: FormGroup = this.fb.group({
     nombre: ['', [Validators.required,Validators.pattern(this.validacion.nombreUsuarioPattern)]],
     email: ['', [Validators.required,Validators.pattern(this.validacion.emailPattern)]],
     telefono: ['', [Validators.required,Validators.pattern(this.validacion.telefonoPattern)]],
-    cargo: ['', Validators.required],
-    cv: ['Seleccione cargo', Validators.required],
+    cargo: ['', Validators.required]
   });
 
   btnCargando:boolean = false;
@@ -94,6 +96,12 @@ export class PostulacionComponent implements OnInit {
   }
 
   enviar(){
+
+    if(!this.FilePDF){
+      this.errorPDF = true;
+      return;
+    }
+
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return;
@@ -105,10 +113,13 @@ export class PostulacionComponent implements OnInit {
     this.data.email = this.form.value.email;
     this.data.telefono = this.form.value.telefono;
     this.data.cargo = this.form.value.cargo;
-    this.data.cv = this.form.value.cv;
+    let FilePdf = new FormData();
+    if(this.FilePDF){
+      FilePdf = this.FilePDF;
+    }
 
     this.categoriasServices.registrarpostulacion(this.data).subscribe((respuesta) => {
-      
+
       if(respuesta==1){
 
         this.btnCargando = false;
@@ -118,16 +129,43 @@ export class PostulacionComponent implements OnInit {
           nombre: '',
           telefono:'',
           email:'',
-          cargo:'',
-          cv:['']
+          cargo:''
         }
         this.form.reset(this.data);
+
+        //guardar pdf
+        this.categoriasServices.registrarpdfpostulacion(FilePdf).subscribe((respuesta) => {
+
+          console.log(respuesta);
+
+        })
+
 
       }
 
       
     });
 
+  }
+
+  adjuntarpdf(event:any):any{
+    const cvadjunto = event.target.files[0];
+    const formFile = new FormData();
+    formFile.append('pdf',cvadjunto);
+    this.FilePDF = formFile;
+
+    // this.categoriasServices.registrarpostulacion(this.FilePDF).subscribe((respuesta) => {
+      
+    //   console.log("Datos del form");
+    //   console.log(respuesta);
+
+      
+    // });
+
+    //console.log(this.data.cv);
+
+    
+    //console.log(event.target.files);
   }
 
   validarcampo(campo: string) {

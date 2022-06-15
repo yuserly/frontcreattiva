@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   categorias:Categorias[] = [];
   nombreempresa:string = '';
   nombre:string = '';
+  hidenSubmenu:boolean = false;
 
   constructor(private categoriasServices:CategoriasService,
     private router: Router) {
@@ -33,6 +34,40 @@ export class MainComponent implements OnInit {
     this.categoriasServices.getCategorias().subscribe(resp => {
       this.categorias = resp;
     })
+  }
+
+  cerrarsesion(){
+
+    let datos = JSON.parse(localStorage.getItem('usuario')!);
+    console.log(datos.email);
+
+    let data = {
+      email: datos.email
+    };
+
+    this.categoriasServices.logout(data).subscribe((resp) => {
+      console.log(resp.data);
+
+      if(resp.data){
+        this.router.navigate(['/login-sucursal']);
+      }
+
+    })
+  }
+
+  ToggleSubmenu(url:string){
+
+    console.log(url);
+
+    if(this.hidenSubmenu==false){
+      this.hidenSubmenu = true;
+    }else{
+      this.hidenSubmenu = false;
+    }
+
+    this.router.navigate([url]);
+
+
   }
 
 }

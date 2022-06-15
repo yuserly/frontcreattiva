@@ -108,6 +108,10 @@ export class CategoriasService {
     return this.http.post(`${this.urlBase}/login`, data);
   }
 
+  logout(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}/logout`, data);
+  }
+
   // empresa
 
   crearempresa(data: any): Observable<any> {

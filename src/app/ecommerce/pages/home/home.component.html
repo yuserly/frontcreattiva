@@ -318,8 +318,14 @@
   <div class="container">
     <ul class="d-flex flex-row-reverse bd-highlight mb-0">
       <li class="p-2 bd-highlight d-flex align-items-center">
-        <a [routerLink]="logueado ? '/sucursal': '/login-sucursal' ">
-          <img src="../../../../assets/img/icon-user.webp" width="20px;" />
+        <a class="d-flex align-items-center" [routerLink]="logueado ? '/sucursal': '/login-sucursal' ">
+          <img class="pe-2" src="../../../../assets/img/icon-user.webp" width="25px;" />
+          <span *ngIf="nombreUsuario !== ''; else login">
+            {{nombreUsuario}}
+          </span>
+          <ng-template #login>
+            Iniciar sesión
+          </ng-template>
         </a>
       </li>
 

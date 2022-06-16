@@ -6,36 +6,122 @@
       <div class="col-md-2 px-0 d-none d-md-block d-lg-block">
 
         <div
-          class="flex-shrink-0 p-3 sidebar"
-          style="width: 100%; /*height: 100%;min-height:100vh;*/background-color: #022092;"
+          class="flex-shrink-0 pb-3 pt-3 px-0 sidebar"
+          style="width: 100%;height: 100%;min-height:100vh;background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%);"
         >
 
           <a
             routerLink="/"
-            class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
+            class="px-3 d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none"
           >
             <img alt="" class="img-fluid" src="../../../../assets/img/logoWeb.webp" width="100%" />
 
           </a>
 
-          <ul class="list-unstyled ps-0">
-            <li class="mb-1" *ngFor="let item of categorias">
+          <ul class="list-unstyled">
+
+            <li class="border-bottom pb-2 ps-2">
+              
               <button
                 class="btn btn-toggle align-items-center rounded collapsed"
                 data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#'+item.slug"
+                data-bs-target="#cerrarsesion"
                 aria-expanded="false"
               >
-                <span style="margin-left: 6px;">{{item.nombre}}</span>
+                <span style="margin-left: 6px;">
+                  <i class="far fa-user mx-2" style="font-size:18px"></i> 
+                  {{nombreempresa}}
+                </span>
+              
               </button>
-              <div class="collapse" [id]="item.slug">
+
+              <div class="collapse" id="cerrarsesion">
+
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li *ngFor="let item2 of item.subcategoria"><a class="link-dark rounded" [routerLink]="['/sucursal/servicios', item2.slug]">{{item2.nombre}}</a></li>
+
+                  <li ><a class="link-dark rounded" style="cursor:pointer;" (click)="cerrarsesion()">Cerrar sesión</a></li>
+
                 </ul>
+
               </div>
+
             </li>
 
-            <li class="border-top my-3"></li>
+            <li class="border-bottom pb-2 pt-2  ps-2">
+              
+              <button
+                class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#crearproductos"
+                aria-expanded="false"
+              >
+                <span style="margin-left: 6px;">
+                  Crear Servicio
+                </span>
+              
+              </button>
+
+              <div class="collapse" id="crearproductos">
+
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+                  <li class="mb-1" *ngFor="let item of categorias">
+                    <button
+                      class="btn btn-toggle align-items-center rounded collapsed"
+                      data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#'+item.slug"
+                      aria-expanded="false"
+                    >
+                      <span style="margin-left: 6px;">{{item.nombre}}</span>
+                    </button>
+                    <div class="collapse" [id]="item.slug">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li *ngFor="let item2 of item.subcategoria"><a class="link-dark rounded" [routerLink]="['/sucursal/servicios', item2.slug]">{{item2.nombre}}</a></li>
+                      </ul>
+                    </div>
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </li>
+
+            <li class="border-bottom pb-2 pt-2  ps-2">
+              
+              <button
+                class="btn btn-toggle align-items-center rounded collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#facturacion"
+                aria-expanded="false"
+              >
+                <span style="margin-left: 6px;">
+                  Mis Facturas
+                </span>
+              
+              </button>
+
+              <div class="collapse" id="facturacion">
+
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+                  <li class="mb-1">
+
+                    <a class="link-dark rounded" routerLink="/sucursal/facturas/pendientes">
+                      Facturas pendientes
+                    </a>
+
+                  </li>
+
+
+
+                </ul>
+
+              </div>
+
+            </li>
+
+            <!-- <li class="border-top my-3"></li> -->
 
           </ul>
         </div>
@@ -43,51 +129,112 @@
 
       <div class="col-12 col-sm-12 d-md-none d-lg-none navbar-movil">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #022092;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(to right, rgb(11, 11, 139) 0%, rgb(14, 119, 229) 100%)!important;">
           <div class="container-fluid">
 
             <a
               routerLink="/"
-              class="navbar-brand"
+              class="navbar-brand logo-sv-movil"
             >
-              <img alt="" class="img-fluid" src="../../../../assets/img/logoWeb.webp" width="200px" />
+              <img alt="" class="img-fluid w-100" src="../../../../assets/img/logoWeb.webp" />
 
             </a>
 
-            <button class="navbar-toggler" [ngClass]="hidenSubmenu ? '' : 'collapsed'" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+            <button class="navbar-toggler" (click)="ToggleMenu()" [ngClass]="hidenSubmenu==false ? 'collapsed' : ''"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="hidenSubmenu==true ? 'show' : ''">
+            <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="hidenSubmenu==false ? '' : 'show'" >
               <ul class="navbar-nav">
 
-                <li class="nav-item" *ngFor="let item of categorias">
+                <li class="pb-2">
 
                   <button
                     class="btn btn-toggle align-items-center rounded collapsed"
                     data-bs-toggle="collapse"
-                    [attr.data-bs-target]="'#'+item.slug"
+                    data-bs-target="#crearproductosmovil"
                     aria-expanded="false"
                   >
-                    <span style="margin-left: 6px;">{{item.nombre}}</span>
+                    <span style="margin-left: 6px;">
+                      Crear Servicio
+                    </span>
+                  
                   </button>
 
-                  <div class="collapse" [id]="item.slug">
+                  <div class="collapse" id="crearproductosmovil">
 
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
-                      <li class="nav-item-subcategoria" *ngFor="let item2 of item.subcategoria">
-                        <a class="link-dark rounded" 
-                        (click)="ToggleSubmenu('/sucursal/servicios/'+item2.slug)"
-                          
+                      <li class="nav-item dropdown" *ngFor="let item of categorias">
+
+                        <button
+                          class="btn btn-toggle align-items-center rounded collapsed"
+                          data-bs-toggle="collapse"
+                          [attr.data-bs-target]="'#'+item.slug"
+                          aria-expanded="false"
                         >
-                          {{item2.nombre}}
-                        </a>
+                          <span style="margin-left: 6px;">{{item.nombre}}</span>
+                        </button>
+      
+                        <div class="collapse" [id]="item.slug">
+      
+                          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+      
+                            <li class="nav-item-subcategoria" *ngFor="let item2 of item.subcategoria">
+                              <a class="link-dark rounded" style="cursor:pointer;"
+                              (click)="ToggleSubmenu('/sucursal/servicios/'+item2.slug)"
+                                
+                              >
+                                {{item2.nombre}}
+                              </a>
+                            </li>
+                          
+                          </ul>
+      
+                        </div>
                       </li>
-                    
+
                     </ul>
 
                   </div>
+
+                </li>
+
+                <li class="pb-2 pt-2">
+              
+                  <button
+                    class="btn btn-toggle align-items-center rounded collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#facturacionmovil"
+                    aria-expanded="false"
+                  >
+                    <span style="margin-left: 6px;">
+                      Mis Facturas
+                    </span>
+                  
+                  </button>
+    
+                  <div class="collapse" id="facturacionmovil">
+    
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+    
+                      <li class="mb-1">
+    
+                        <a class="link-dark rounded"
+                        style="cursor:pointer;"
+                        (click)="ToggleSubmenu('/sucursal/facturas/pendientes')"
+                         >
+                          Facturas pendientes
+                        </a>
+    
+                      </li>
+    
+    
+    
+                    </ul>
+    
+                  </div>
+    
                 </li>
                 
               </ul>
@@ -106,72 +253,78 @@
                 style="background-color: #ffffff"
               >
                 <div class="container p-0">
-                  <a class="navbar-brand" href="/" style="visibility: hidden">
-                    <img
-                      alt=""
-                      class="img-fluid"
-                      src="../../../../assets/img/logoWeb.webp"
-                      width="100%"
-                    />
-                  </a>
 
-                  <div
-                    class="collapse navbar-collapse d-flex justify-content-between"
-                    id="navbarSupportedContent"
-                  >
-                    <div
-                      class="d-flex justify-content-center"
-                      style="
-                        width: 70%;
-                        max-width: 550px;
-                        border: 0.3px solid #cccccc;
-                        border-radius: 10px;
-                      "
-                    >
-                      <div class="input-group" style="width: 98%">
-                        <input
-                          class="form-control"
-                          type="search"
-                          placeholder="¿Qué Buscas?"
-                          aria-label="¿Qué Buscas?"
-                          style="
-                            border: unset;
-                            border-top-right-radius: 0px;
-                            border-bottom-right-radius: 0px;
-                          "
-                        />
+                  <div class="row w-100" >
+                    <div class="col-12 col-sm-12 d-flex justify-content-end">
 
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="btn-search">
-                            <i
-                              class="fas fa-search"
-                              style="
-                                font-size: 1.5rem;
-                                color: #000;
-                                cursor: pointer;
-                              "
-                            ></i>
-                          </span>
+                        <div class="btn-group d-md-none d-lg-none d-sm-block">
+                          <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color:rgb(14, 119, 229);" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            
+                            <i class="far fa-user mx-2" style="font-size: 22px"></i> 
+
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                            <li><button class="dropdown-item" (click)="cerrarsesion()" type="button">Cerrar sesión</button></li>
+                          </ul>
                         </div>
-                      </div>
+
                     </div>
 
-                    <div class="d-flex align-items-center me-5">
-
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color:#022092;" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                          
-                          {{nombreempresa}}
-                          <i class="far fa-user mx-2" style="font-size: 22px"></i> 
-
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                          <li><button class="dropdown-item" (click)="cerrarsesion()" type="button">Cerrar sesión</button></li>
-                        </ul>
+                    <div class="col-md-12 mt-3">
+                      <div
+                        class="collapse navbar-collapse d-flex justify-content-center"
+                        id="navbarSupportedContent"
+                      >
+                        <div
+                          class="d-flex justify-content-center search-button"
+                        >
+                          <div class="input-group" style="width: 98%">
+                            <input
+                              class="form-control"
+                              type="search"
+                              placeholder="¿Qué Buscas?"
+                              aria-label="¿Qué Buscas?"
+                              style="
+                                border: unset;
+                                border-top-right-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                              "
+                            />
+                      
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="btn-search">
+                                <i
+                                  class="fas fa-search"
+                                  style="
+                                    font-size: 1.5rem;
+                                    color: #000;
+                                    cursor: pointer;
+                                  "
+                                ></i>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <!-- <div class="d-flex align-items-center me-5 d-none d-md-block d-lg-block">
+                      
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" style="background-color:rgb(14, 119, 229);" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                              
+                              {{nombreempresa}}
+                              <i class="far fa-user mx-2" style="font-size: 22px"></i> 
+                      
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                              <li><button class="dropdown-item" (click)="cerrarsesion()" type="button">Cerrar sesión</button></li>
+                            </ul>
+                          </div>
+                      
+                        </div> -->
                       </div>
-
                     </div>
                   </div>
+
                 </div>
               </nav>
 

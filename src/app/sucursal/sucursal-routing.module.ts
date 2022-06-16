@@ -13,6 +13,10 @@ const routes: Routes = [
         component: ServicioPendientePagoComponent
       },
       {
+        path:'facturas/pendientes',
+        component: ServicioPendientePagoComponent
+      },
+      {
         path:'servicios/:slug',
         component: ServiciosComponent
       },

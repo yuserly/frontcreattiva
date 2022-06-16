@@ -20,6 +20,7 @@ export class ServiciosComponent implements OnInit {
 
   servicios: Servicios[] = [];
   productos:Productos[] = [];
+  subcategoriaTitle:string = '';
 
   ngOnInit(): void {
     let idempresa = localStorage.getItem('empresaselect')!;
@@ -30,6 +31,15 @@ export class ServiciosComponent implements OnInit {
       .subscribe((resp) => {
         this.servicios = resp;
       });
+
+      this.routeparams.params
+      .pipe(
+        switchMap(({ slug }) => this.sucursal.getsubcategoriaslug( slug))
+      )
+      .subscribe((resp) => {
+        this.subcategoriaTitle = resp.nombre;
+      });
+
   }
 
   buscarproductos(){

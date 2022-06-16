@@ -100,6 +100,7 @@ btnSearch:string = 'fas fa-search';
   productosbuscados: Productos[] = [];
   logueado: boolean = false;
   lang:string = '';
+  nombreUsuario:string = '';
 
   data = {
     email:''
@@ -135,6 +136,18 @@ btnSearch:string = 'fas fa-search';
   }
 
   ngOnInit(): void {
+
+    let datosLogin = JSON.parse(localStorage.getItem('usuario')!);
+    console.log(datosLogin);
+    if(datosLogin){
+      if(datosLogin.razonsocial){
+        this.nombreUsuario = datosLogin.razonsocial;
+      }else{
+        this.nombreUsuario = datosLogin.nombre;
+      }
+      
+    }
+
 
     this.lang = localStorage.getItem('lang') || 'es';
 

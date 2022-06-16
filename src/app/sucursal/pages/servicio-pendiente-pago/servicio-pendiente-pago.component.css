@@ -1,0 +1,8 @@
+.facturas-card{
+    border: 1.3px solid #999999;
+    width: 100%;
+    padding: 10px;
+    color:#999999;
+    cursor: pointer;
+    transition: all 0.3s;
+}

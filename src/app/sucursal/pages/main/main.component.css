@@ -91,3 +91,29 @@
   text-decoration: none;
   color: #FFF!important;
 }
+.btn-toggle-nav a{
+  text-decoration: none;
+  color: #FFF!important;
+}
+
+.search-button{
+  width: 70%;
+  max-width: 550px;
+  border: 0.3px solid #cccccc;
+  border-radius: 10px;
+}
+
+.logo-sv-movil{
+  width: 40%;
+  max-width: 200px;
+  min-width: 120px;
+}
+
+button:focus{outline:none !important;}
+button:active{outline:none !important;}
+
+@media only screen and (max-width: 700px) {
+  .search-button{
+    width: 100%;
+  }
+}

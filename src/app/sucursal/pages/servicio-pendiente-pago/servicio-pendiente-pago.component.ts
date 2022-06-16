@@ -28,6 +28,7 @@ export class ServicioPendientePagoComponent implements OnInit {
 
     if (idempresa) {
       this.sucursal.facturapendientepago(idempresa).subscribe((resp) => {
+        console.log("Pendientes de pago");
         console.log(resp);
         this.servicios = resp;
       });

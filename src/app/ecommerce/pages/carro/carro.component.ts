@@ -220,10 +220,24 @@ export class CarroComponent implements OnInit {
     let carrito: Carrito[] =  JSON.parse(localStorage.getItem('carrito')!);
     let cont = 0;
 
+    console.log(carrito);
+
     if(carrito.length>=1){
 
       carrito.forEach((element) => {
 
+
+        if(element.producto.subcategoria_id==1 ||
+          element.producto.subcategoria_id==2 ||
+          element.producto.subcategoria_id==3 ||
+          element.producto.subcategoria_id==4 ||
+          element.producto.subcategoria_id==5 ||
+          element.producto.subcategoria_id==7 ||
+          element.producto.subcategoria_id==8 ||
+          element.producto.subcategoria_id==9 ||
+          element.producto.subcategoria_id==12 ||
+          element.producto.subcategoria_id==20 ||
+          element.producto.subcategoria_id==22)
         if(!element.dominio){
           cont++;
         }

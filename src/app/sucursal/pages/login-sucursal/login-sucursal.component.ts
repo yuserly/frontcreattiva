@@ -78,7 +78,6 @@ export class LoginSucursalComponent implements OnInit {
     };
 
     this.categoriasService.login(data).subscribe((resp) => {
-      //console.log(resp.data);
 
       if (resp.data!='') {
 

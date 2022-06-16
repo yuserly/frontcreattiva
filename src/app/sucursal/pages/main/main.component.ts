@@ -34,6 +34,7 @@ export class MainComponent implements OnInit {
     this.categoriasServices.getCategorias().subscribe(resp => {
       this.categorias = resp;
     })
+    this.hidenSubmenu = false;
   }
 
   cerrarsesion(){
@@ -49,10 +50,23 @@ export class MainComponent implements OnInit {
       console.log(resp.data);
 
       if(resp.data){
+        localStorage.removeItem('usuario');
+        localStorage.removeItem('token');
         this.router.navigate(['/login-sucursal']);
       }
 
     })
+  }
+
+  ToggleMenu(){
+
+    if(this.hidenSubmenu==false){
+      this.hidenSubmenu = true;
+    }else{
+      this.hidenSubmenu = false;
+    }
+
+
   }
 
   ToggleSubmenu(url:string){

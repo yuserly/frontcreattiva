@@ -138,7 +138,7 @@ font-size: 1.5rem;
 width: 60%;
 }
 .btn-crearproducto{
-background-color: #022092;
+  background-color: rgb(14, 119, 229)!important;
 color:#FFF;
 font-weight:bold;
 font-size: 1rem;

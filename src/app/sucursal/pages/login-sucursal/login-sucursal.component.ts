@@ -45,7 +45,7 @@ export class LoginSucursalComponent implements OnInit {
   errormail:boolean = false;
   accesoinvalido:boolean = false;
   contador:number = 8;
-
+  btnCargando:boolean = false;
 
   constructor(private fb: FormBuilder,
     private validacion: ValidatorService,
@@ -71,6 +71,8 @@ export class LoginSucursalComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
+    this.btnCargando = true;
 
     let data = {
       email: this.form.value.email,
@@ -117,6 +119,7 @@ export class LoginSucursalComponent implements OnInit {
           //   showConfirmButton: false,
           //   timer: 1500
           // })
+          this.btnCargando = false;
           this.accesoinvalido = true;
         }
       }else{
@@ -127,6 +130,7 @@ export class LoginSucursalComponent implements OnInit {
         //   showConfirmButton: false,
         //   timer: 1500
         // })
+        this.btnCargando = false;
         this.accesoinvalido = true;
       }
     });

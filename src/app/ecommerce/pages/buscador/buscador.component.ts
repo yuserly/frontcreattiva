@@ -23,12 +23,15 @@ export class BuscadorComponent implements OnInit {
       [Validators.required],
     ]
   });
+  lang:string = '';
   @Output() productosbusc: EventEmitter<Productos[]> = new EventEmitter();
   constructor(private categoriasServices: CategoriasService,
     private router: Router,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.lang = localStorage.getItem('lang') || 'es';
 
     //limpiar variable de busqueda
     if (localStorage.getItem('resultados_busqueda')) {
@@ -76,6 +79,12 @@ export class BuscadorComponent implements OnInit {
       
     });
 
+  }
+
+  changeLang(data:any){
+    localStorage.setItem('lang', data.value );
+
+    window.location.reload();
   }
 
 }

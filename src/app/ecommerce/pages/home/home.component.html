@@ -213,7 +213,7 @@
 			<ul>
 				<li *ngFor="let categoria of categorias; let i=index">
 
-					<a class="item-categoria"
+					<a class="item-categoria d-flex justify-content-between align-items-center"
             [ngClass]="{'item-active':categoria.active}"
             routerLinkActive="item-active"
             (click)="buscarsubcategoria(categoria.id_categoria)"
@@ -233,7 +233,7 @@
 
         <li>
 
-					<a class="item-categoria" routerLink="/contacto">Contactenos
+					<a class="item-categoria d-flex justify-content-between align-items-center" routerLink="/contacto">Contactenos
 
             <i class="fas fa-chevron-right float-end"></i>
 
@@ -243,7 +243,24 @@
 
         <li>
 
-					<a class="item-categoria"  href="https://www.creattiva.cl/blog-hosting/">Blog
+					<a class="item-categoria d-flex justify-content-between align-items-center"  href="https://www.creattiva.cl/blog-hosting/">Blog
+
+            <i class="fas fa-chevron-right float-end"></i>
+
+          </a>
+
+				</li>
+
+        <li>
+
+					<a class="item-categoria d-flex justify-content-between align-items-center" [routerLink]="logueado ? '/sucursal': '/login-sucursal' ">
+            
+            <span *ngIf="nombreUsuario !== ''; else login">
+              {{nombreUsuario}}
+            </span>
+            <ng-template #login>
+              Iniciar sesión
+            </ng-template>
 
             <i class="fas fa-chevron-right float-end"></i>
 
@@ -363,6 +380,25 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light d-none d-lg-block d-md-block">
+  
+  
+  <div>
+
+    <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+        <h3></h3>
+      </div>
+    </ng-template>
+  
+    <ngx-loading
+      [show]="loadingCategorias"
+      [config]="{ backdropBorderRadius: '3px' }"
+      [template]="customLoadingTemplate"
+    ></ngx-loading>
+  
+  </div>
+  
+  
   <div class="container">
 
     <button
@@ -414,7 +450,6 @@
 <br><br>
 
 <div class="container" #subfoco>
-
 
     <app-caracteristicas  [subcategorias]="subcategorias" (getproducto)="obtenerproductos($event)" ></app-caracteristicas>
 

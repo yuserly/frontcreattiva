@@ -80,6 +80,8 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
+loadingCategorias = false;
+
 //menú movil
 margintop:number = 0;
 
@@ -137,6 +139,8 @@ btnSearch:string = 'fas fa-search';
 
   ngOnInit(): void {
 
+    this.loadingCategorias = true;
+
     let datosLogin = JSON.parse(localStorage.getItem('usuario')!);
     console.log(datosLogin);
     if(datosLogin){
@@ -162,10 +166,11 @@ btnSearch:string = 'fas fa-search';
         return p;
       });
 
-      this.categorias = categorias;
+        this.categorias = categorias;
+        this.loadingCategorias = false;
     });
 
-    this.buscarsubcategoria(1);
+      this.buscarsubcategoria(1);
 
     //limpiar variable de busqueda
     if (localStorage.getItem('resultados_busqueda')) {

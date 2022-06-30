@@ -1,7 +1,10 @@
+import { BrowserModule } from "@angular/platform-browser";
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from "ngx-loading";
 
 import { EcommerceRoutingModule } from './ecommerce-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -49,6 +52,7 @@ import { PoliticasCalidadComponent } from './pages/politicas-calidad/politicas-c
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
 import { FormasPagoComponent } from './pages/formas-pago/formas-pago.component';
 import { PostulacionComponent } from './pages/postulacion/postulacion.component';
+
 
 @NgModule({
   declarations: [
@@ -100,7 +104,15 @@ import { PostulacionComponent } from './pages/postulacion/postulacion.component'
     GooglePlaceModule,
     CarouselModule,
     NgxPaginationModule,
-    TranslateModule
+    TranslateModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: "rgba(0,0,0,0.1)",
+      backdropBorderRadius: "4px",
+      primaryColour: "#ffffff",
+      secondaryColour: "#ffffff",
+      tertiaryColour: "#ffffff",
+    })
   ],
   exports:[
     CaracteristicasComponent,

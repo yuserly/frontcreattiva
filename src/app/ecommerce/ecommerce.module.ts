@@ -53,7 +53,6 @@ import { TerminosCondicionesComponent } from './pages/terminos-condiciones/termi
 import { FormasPagoComponent } from './pages/formas-pago/formas-pago.component';
 import { PostulacionComponent } from './pages/postulacion/postulacion.component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,

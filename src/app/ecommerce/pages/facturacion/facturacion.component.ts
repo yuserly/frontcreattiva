@@ -37,6 +37,8 @@ export class FacturacionComponent implements OnInit {
   creandocompra:boolean = false;
   tieneregoneclick :boolean = false;
   nrotarjeta:string = '';
+  contador:number = 8;
+  contador2:number = 8;
 
   // informacion necesaria para ir a pagos
 
@@ -724,4 +726,35 @@ export class FacturacionComponent implements OnInit {
     }
 
   }
+
+  validarcaracteres(event: any, opc:number){
+    
+    let ExpRegSoloNumeros="^[0-9]+$";
+
+    if(opc==1){
+
+      this.contador = 8 - event.target.value.length;
+      let tele = this.form.value.telefono;
+      
+      //Evaluación de Cadena Valida de Solo Números 
+      if(tele.match(ExpRegSoloNumeros)==null){
+        this.seleccion.telefono = this.form.value.telefono;
+        this.form.patchValue({telefono:''})
+      }
+
+    }else if(opc==2){
+
+      this.contador2 = 8 - event.target.value.length;
+      let tele = this.form.value.telefonoempresa;
+      
+      //Evaluación de Cadena Valida de Solo Números 
+      if(tele.match(ExpRegSoloNumeros)==null){
+        this.seleccion.telefonoempresa = this.form.value.telefonoempresa;
+        this.form.patchValue({telefonoempresa:''})
+      }
+
+    }
+
+  }
+
 }

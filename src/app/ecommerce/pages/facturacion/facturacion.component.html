@@ -48,18 +48,23 @@
                 data-bs-parent="#accordionFlushExample"
               >
                 <div class="accordion-body px-0">
+
                   <form class="mt-4">
+
                     <div class="row g-3">
+
                       <div class="col-md-12">
+
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control input__field"
                           [ngClass]="{ 'is-invalid': validarcampo('email') }"
                           [readonly]="datoscompradorsave"
-                          id="inputEmail4"
-                          placeholder="email"
+                          id="email"
+                          placeholder="Ingresa tu email"
                           formControlName="email"
                         />
+
                         <div
                           class="invalid-feedback"
                           *ngIf="validarcampo('email')"
@@ -68,10 +73,17 @@
                         </div>
                       </div>
                       <div class="col-12 col-sm-12 col-md-6">
+
                         <div class="form-group">
+
                           <div class="input-group">
+
                             <div class="input-group-prepend d-flex">
-                              <div class="input-group-text">+569</div>
+
+                                <div class="input-group-text input__field_tele d-flex align-items-center">
+                                +569
+                                </div>
+                            
                             </div>
 
                             <input
@@ -79,10 +91,12 @@
                               [ngClass]="{
                                 'is-invalid': validarcampo('telefono')
                               }"
-                              type="number"
+                              type="text"
                               [readonly]="datoscompradorsave"
                               placeholder="Móvil"
                               id="telefono"
+                              [maxlength]="8"
+                              (keyup)="validarcaracteres($event,1)"
                               required
                               formControlName="telefono"
                             />
@@ -100,10 +114,10 @@
                       <div class="col-12 col-sm-12 col-md-6">
                         <select
                           id="inputState"
-                          class="form-select"
+                          class="form-select input__field"
                           formControlName="pais"
                         >
-                          <option selected>Pais</option>
+                          <option selected>Seleccione su Pais</option>
                           <option
                             *ngFor="let pais of paises; let i = index"
                             [value]="pais"
@@ -210,9 +224,9 @@
                     <div class="col-md-5" *ngIf="tienerut">
                       <input
                         type="text"
-                        class="form-control"
+                        class="input__field form-control"
                         [ngClass]="{ 'is-invalid': validarcampo('rut') }"
-                        id="inputEmail4"
+                        id="rut"
                         [readonly]="datosfacturacion"
                         [placeholder]="
                           form.value.isempresa ? 'RUT Empresa' : 'RUT'
@@ -228,11 +242,11 @@
                     <div class="col-md-7" *ngIf="empresadatos">
                       <input
                         type="text"
-                        class="form-control"
+                        class="input__field form-control"
                         [ngClass]="{
                           'is-invalid': validarcampo('razonsocial')
                         }"
-                        id="inputPassword4"
+                        id="razonsocial"
                         [readonly]="datosfacturacion"
                         placeholder="Razón Social"
                         formControlName="razonsocial"
@@ -247,11 +261,11 @@
                     <div class="col-12" *ngIf="empresadatos">
                       <input
                         type="text"
-                        class="form-control"
+                        class="input__field form-control"
                         [ngClass]="{
                           'is-invalid': validarcampo('giro')
                         }"
-                        id="inputAddress"
+                        id="giro"
                         [readonly]="datosfacturacion"
                         placeholder="Giro"
                         formControlName="giro"
@@ -265,18 +279,21 @@
                     </div>
                     <div class="col-md-6">
                       <div class="input-group">
-                        <div class="input-group-prepend d-flex">
-                          <div class="input-group-text">+569</div>
+                        <div class="input-group-prepend d-flex ">
+                          <div class="input-group-text input__field_tele d-flex align-items-center">+569</div>
                         </div>
 
                         <input
-                          type="number"
-                          class="form-control"
+                          type="text"
+                          class="form-control input__field_telefono"
                           [ngClass]="{
                             'is-invalid': validarcampo('telefonoempresa')
                           }"
-                          id="inputEmail4"
+                          id="telefonoempresa"
                           [readonly]="datosfacturacion"
+                          [maxlength]="8"
+                          (keyup)="validarcaracteres($event,2)"
+                          required
                           [placeholder]="
                             form.value.isempresa
                               ? 'Tel. Empresa'
@@ -296,11 +313,11 @@
                     <div class="col-md-6">
                       <input
                         type="email"
-                        class="form-control"
+                        class="input__field form-control"
                         [ngClass]="{
                           'is-invalid': validarcampo('emailempresa')
                         }"
-                        id="inputPassword4"
+                        id="emailempresa"
                         [readonly]="datosfacturacion"
                         [placeholder]="
                           form.value.isempresa

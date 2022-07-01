@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
+    "@angular/cli": "^12.2.17",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -21,6 +22,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "angular-owl-carousel": "^1.0.0",
+    "input-mask-angular": "^2.0.1",
     "moment": "^2.29.1",
     "ngx-google-places-autocomplete": "^2.0.5",
     "ngx-loading": "^13.0.1",
@@ -33,8 +35,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.0",
-    "@angular/cli": "~12.2.0",
+    "@angular-devkit/build-angular": "^12.2.8",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",

@@ -122,10 +122,12 @@ export class DominioComponent implements OnInit {
       return;
     }
 
-    const dominio = this.form2.value.dominio;
-    const extension = this.form2.value.extension;
+    var dominio = this.form2.value.dominio;
+    var extension = this.form2.value.extension;
 
     this.dominioguardado = dominio+'.'+extension;
+
+    console.log("Dominio guardado: "+this.dominioguardado);
 
     let index = JSON.parse(localStorage.getItem('index')!);
 
@@ -430,6 +432,84 @@ export class DominioComponent implements OnInit {
         .subscribe((resp) => {
           console.log(resp);
         });
+
+  }
+
+  limpiardominio1(event: any){
+
+    var dominio = this.form.value.dominio;
+
+    var search1 = dominio.search("http");
+
+    if(!search1){
+
+        var result1 = dominio.split('//');
+
+        dominio = result1[1];
+
+    }
+
+    var search2 = dominio.search("www.");
+
+    if(!search2){
+
+        var result2 = dominio.split('www.');
+
+        dominio = result2[1];
+    }
+
+    var search3 = dominio.search(".");
+
+    if(!search3){
+
+      var result3 = dominio.split('.');
+
+      dominio = result3[0];
+
+    }
+
+    var dominiolimpio = dominio.trim();
+
+    this.form.patchValue({dominio:dominiolimpio})
+
+  }
+
+  limpiardominio2(event: any){
+
+    var dominio = this.form2.value.dominio;
+
+    var search1 = dominio.search("http");
+
+    if(!search1){
+
+        var result1 = dominio.split('//');
+
+        dominio = result1[1];
+
+    }
+
+    var search2 = dominio.search("www.");
+
+    if(!search2){
+
+        var result2 = dominio.split('www.');
+
+        dominio = result2[1];
+    }
+
+    var search3 = dominio.search(".");
+
+    if(!search3){
+
+      var result3 = dominio.split('.');
+
+      dominio = result3[0];
+
+    }
+
+    var dominiolimpio = dominio.trim();
+
+    this.form2.patchValue({dominio:dominiolimpio})
 
   }
 

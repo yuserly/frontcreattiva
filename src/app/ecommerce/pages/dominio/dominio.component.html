@@ -54,9 +54,10 @@
                   class="input__field_dominio"
                   type="text"
                   placeholder=" "
-                  id="dominio"
+                  id="dominio1"
                   formControlName="dominio"
                   (change)="limpiarinput()"
+                  (keyup)="limpiardominio1($event)"
                 />
               </div>
             </div>
@@ -207,9 +208,10 @@
                   class="input__field_dominio"
                   type="text"
                   placeholder=" "
-                  id="dominio"
+                  id="dominio2"
                   formControlName="dominio"
                   (change)="limpiarinput()"
+                  (keyup)="limpiardominio2($event)"
                 />
               </div>
             </div>

@@ -39,6 +39,7 @@ export class FacturacionComponent implements OnInit {
   nrotarjeta:string = '';
   contador:number = 8;
   contador2:number = 8;
+  btnCargando:boolean = false;
 
   // informacion necesaria para ir a pagos
 
@@ -67,7 +68,7 @@ export class FacturacionComponent implements OnInit {
         Validators.pattern(this.validacion.telefonoPattern),
       ],
     ],
-    pais: ['', [Validators.required]],
+    pais: ['Chile', [Validators.required]],
     rut: ['', [Validators.required, this.validacion.validarRut]],
     razonsocial: [''],
     giro: [''],
@@ -325,10 +326,17 @@ export class FacturacionComponent implements OnInit {
         this.seleccion.telefonoempresa = resp.data.telefono_empresa;
         this.seleccion.emailempresa = resp.data.email_empresa;
 
-        if(resp.data.user.tbktarjeta){
-          this.seleccion.mediopago = 4;
-          this.nrotarjeta = resp.data.user.tbktarjeta;
-          this.tieneregoneclick = true;
+
+        if(resp.data.user){
+
+          if(resp.data.user.tbktarjeta){
+            this.seleccion.mediopago = 4;
+            this.nrotarjeta = resp.data.user.tbktarjeta;
+            this.tieneregoneclick = true;
+          }else{
+            this.seleccion.mediopago = 1;
+          }
+
         }else{
           this.seleccion.mediopago = 1;
         }
@@ -410,6 +418,8 @@ export class FacturacionComponent implements OnInit {
   }
 
   guardarcomprador() {
+    this.btnCargando = true;
+
     if (
       !this.form.get('email')?.errors &&
       !this.form.get('telefono')?.errors &&
@@ -425,9 +435,11 @@ export class FacturacionComponent implements OnInit {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
 
         this.datoscompradorsave = true;
+            this.btnCargando = false;
       });
     }else{
-      this.form.markAllAsTouched()
+      this.form.markAllAsTouched();
+      this.btnCargando = false;
     }
   }
 
@@ -469,6 +481,9 @@ export class FacturacionComponent implements OnInit {
   }
 
   guardarfacturacion() {
+
+    this.btnCargando = true;
+
     if (this.form.value.razonsocial != '') {
       this.nombrefacturacion = this.form.value.razonsocial;
     } else {
@@ -490,10 +505,12 @@ export class FacturacionComponent implements OnInit {
             (resp) => {
 
               this.datosfacturacion = true;
+              this.btnCargando = false;
             }
           );
         } else {
-          this.form.markAllAsTouched()
+          this.form.markAllAsTouched();
+          this.btnCargando = false;
         }
 
 
@@ -510,10 +527,12 @@ export class FacturacionComponent implements OnInit {
             (resp) => {
 
               this.datosfacturacion = true;
+              this.btnCargando = false;
             }
           );
         } else {
-          this.form.markAllAsTouched()
+          this.form.markAllAsTouched();
+          this.btnCargando = false;
         }
 
       }
@@ -547,10 +566,12 @@ export class FacturacionComponent implements OnInit {
             (resp) => {
 
               this.datosfacturacion = true;
+              this.btnCargando = false;
             }
           );
         } else {
           // this.form.markAllAsTouched()
+          this.btnCargando = false;
         }
 
       }

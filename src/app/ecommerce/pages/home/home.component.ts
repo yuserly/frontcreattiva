@@ -142,7 +142,7 @@ btnSearch:string = 'fas fa-search';
     this.loadingCategorias = true;
 
     let datosLogin = JSON.parse(localStorage.getItem('usuario')!);
-    console.log(datosLogin);
+    // console.log(datosLogin);
     if(datosLogin){
       if(datosLogin.razonsocial){
         this.nombreUsuario = datosLogin.razonsocial;

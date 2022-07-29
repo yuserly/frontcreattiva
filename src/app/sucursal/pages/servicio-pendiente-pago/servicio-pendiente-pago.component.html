@@ -25,30 +25,30 @@
             </thead>
             <tbody>
 
-              <ng-template *ngIf="servicios.length>0; else sinservicios">
-
-                <tr *ngFor="let item of servicios">
-                  <th scope="row">{{ item.codigo }}</th>
+              <ng-template  [ngIf]="servicios.length>0" [ngIfElse]="sinservicios">
+                
+                <tr *ngFor="let items of servicios">
+                  <td scope="row">{{ items.codigo }}</td>
                   <td>
                     {{
-                      item.neto | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
+                      items.neto | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
                     }}
                   </td>
                   <td>
-                    {{ item.iva | currency: "USD":"symbol-narrow":"4.0-0":"es-CL" }}
+                    {{ items.iva | currency: "USD":"symbol-narrow":"4.0-0":"es-CL" }}
                   </td>
                   <td>
                     {{
-                      item.total_peso
+                      items.total_peso
                         | currency: "USD":"symbol-narrow":"4.0-0":"es-CL"
                     }}
                   </td>
-                  <td>{{ item.created_at | date: "dd/MM/YYYY" }}</td>
+                  <td>{{ items.created_at | date: "dd/MM/YYYY" }}</td>
                   <td>
                     <div class="d-flex">
                       <button
                         class="btn btn-success"
-                        (click)="verdetalles(item.detallesventa)"
+                        (click)="verdetalles(items.detallesventa)"
                         data-bs-toggle="modal"
                         data-bs-target="#modaldetalles"
                       >
@@ -63,7 +63,7 @@
                         title="Pagar con Webpay"
                         data-bs-toggle="modal"
                         data-bs-target="#modalpago"
-                        (click)="pagar(item.id_venta, 1, item.total_peso)"
+                        (click)="pagar(items.id_venta, 1, items.total_peso)"
                       >
                         <img
                           src="../../../../assets/img/icon-webpay.png"
@@ -75,7 +75,7 @@
                         title="Pagar con Paypal"
                         data-bs-toggle="modal"
                         data-bs-target="#modalpago"
-                        (click)="pagar(item.id_venta, 2, item.total_peso)"
+                        (click)="pagar(items.id_venta, 2, items.total_peso)"
                       >
                         <img src="../../../../assets/img/paypal.png" width="30px" />
                       </button>
@@ -101,7 +101,7 @@
 
         <div class="row d-md-none d-lg-none">
 
-          <ng-template *ngIf="servicios.length>0; else sinserviciosm">
+          <ng-template  [ngIf]="servicios.length>0" [ngIfElse]="sinserviciosm">
 
             <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-center" *ngFor="let item of servicios">
 

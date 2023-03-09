@@ -713,12 +713,12 @@ export class FacturacionComponent implements OnInit {
     if(this.metodopago == 4 || this.metodopago == '4'){
 
       // window.location.href  = "http://backendcreattiva.cp/pago/oneclick/"+this.token;
-      window.location.href  = "https://api.t2.creattivadatacenter.com/pago/oneclick/"+this.token;
+      window.location.href  = "https://app.t2.creattivadatacenter.com/pago/oneclick/"+this.token;
     }
 
     if(this.metodopago == 1 || this.metodopago == '1'){
       // window.location.href  = "http://backendcreattiva.cp/pago/webpayplus/"+this.token;
-      window.location.href  = "https://api.t2.creattivadatacenter.com/pago/webpayplus/"+this.token;
+      window.location.href  = "https://app.t2.creattivadatacenter.com/pago/webpayplus/"+this.token;
 
 
     }

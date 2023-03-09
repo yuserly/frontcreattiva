@@ -76,6 +76,42 @@ export class CompraDominiosComponent implements OnInit {
 
   }
 
+  onKeyUp() { // appending the updated value to the variable
+    console.log(this.form.value.dominio);
+    let dominio = this.form.value.dominio;
+
+    let search1 = dominio.search("http");
+
+    if(!search1){
+
+        let result1 = dominio.split('//');
+
+        dominio = result1[1];
+
+    }
+
+    var search2 = dominio.search("www.");
+
+    if(!search2){
+
+        let result2 = dominio.split('www.');
+
+        dominio = result2[1];
+    }
+
+    let result3 = dominio.split('.');
+
+    dominio = result3[0];
+
+    var dominiolimpio = dominio.trim();
+
+    console.log("Dominio final: "+dominiolimpio.toLowerCase());
+
+    // this.form.value.dominio = dominiolimpio.toLowerCase();
+    this.form.controls.dominio.setValue(dominiolimpio.toLowerCase());
+
+  }
+
   totalcarro(carrito:TotalCarro){
 
     this.totalcarroarray = carrito;

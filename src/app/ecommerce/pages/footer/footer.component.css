@@ -13,3 +13,19 @@
     }
  }
  */
+ .clasefooter{
+
+    background-color: black;
+
+    bottom: 0px;
+
+    left: 0px;
+
+    width: 100%;
+
+    color: #FFF;
+
+
+    position: absolute;
+
+}

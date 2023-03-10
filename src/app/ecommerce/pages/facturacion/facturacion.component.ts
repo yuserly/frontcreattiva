@@ -33,13 +33,14 @@ export class FacturacionComponent implements OnInit {
   existedireccion:boolean = false;
   mostrarBtnComprarMovil:boolean = true;
   aplicarCupon:number = 1;
-  tienerut:boolean = false;
+  tienerut:boolean = true;
   creandocompra:boolean = false;
   tieneregoneclick :boolean = false;
   nrotarjeta:string = '';
   contador:number = 8;
   contador2:number = 8;
   btnCargando:boolean = false;
+  camposdireccionmodal:boolean = false;
 
   // informacion necesaria para ir a pagos
 
@@ -85,6 +86,7 @@ export class FacturacionComponent implements OnInit {
     ],
     isempresa: [true, Validators.required],
     direccion: ['', [Validators.required]],
+    numerodireccion: ['', [Validators.required]],
     region: ['', [Validators.required, this.validacion.validarRegionComuna]],
     comuna: ['', [Validators.required, this.validacion.validarRegionComuna]],
     mediopago: [1, [Validators.required]],
@@ -102,6 +104,7 @@ export class FacturacionComponent implements OnInit {
     emailempresa: '',
     isempresa: true,
     direccion: '',
+    numerodireccion: '',
     region: '',
     comuna: '',
     mediopago: 1,
@@ -184,6 +187,18 @@ export class FacturacionComponent implements OnInit {
       return 'La dirección es requerida';
     } else if (error?.pattern) {
       return 'Debe ingresar una direccion valida';
+    }
+
+    return '';
+  }
+
+  get mensajeerrornumerodireccion(): string {
+    const error = this.form.get('numerodireccion')?.errors;
+
+    if (error?.required) {
+      return 'El número es requerido';
+    } else if (error?.pattern) {
+      return 'Debe ingresar un número válido';
     }
 
     return '';
@@ -345,6 +360,12 @@ export class FacturacionComponent implements OnInit {
           this.nombrefacturacion = resp.data.razonsocial;
         }
 
+        if(resp.data.pais=='Chile'){
+          this.tienerut = true;
+        }else{
+          this.tienerut = false;
+        }
+
         if (resp.data.tipo == 1) {
           this.seleccion.isempresa = true;
           this.empresadatos = true;
@@ -356,6 +377,7 @@ export class FacturacionComponent implements OnInit {
         this.seleccion.direccion = resp.data.direccion;
         this.seleccion.region = resp.data.region;
         this.seleccion.comuna = resp.data.comuna;
+        this.seleccion.numerodireccion = resp.data.numerodireccion;
 
         if (resp.data.nombre && resp.data.email && resp.data.telefono) {
           this.datoscompradorsave = true;
@@ -378,6 +400,7 @@ export class FacturacionComponent implements OnInit {
             resp.data.email_empresa
           ) {
             this.datosfacturacion = true;
+            this.nombrefacturacion = resp.data.rut;
           }
         }
 
@@ -482,8 +505,6 @@ export class FacturacionComponent implements OnInit {
 
   guardarfacturacion() {
 
-    this.btnCargando = true;
-
     if (this.form.value.razonsocial != '') {
       this.nombrefacturacion = this.form.value.razonsocial;
     } else {
@@ -501,6 +522,9 @@ export class FacturacionComponent implements OnInit {
           !this.form.get('telefonoempresa')?.errors &&
           !this.form.get('emailempresa')?.errors
         ) {
+
+          this.btnCargando = true;
+
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
 
@@ -522,6 +546,8 @@ export class FacturacionComponent implements OnInit {
           !this.form.get('telefonoempresa')?.errors &&
           !this.form.get('emailempresa')?.errors
         ) {
+
+          this.btnCargando = true;
 
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
@@ -546,10 +572,12 @@ export class FacturacionComponent implements OnInit {
           !this.form.get('telefonoempresa')?.errors &&
           !this.form.get('emailempresa')?.errors
         ) {
+          this.btnCargando = true;
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
 
               this.datosfacturacion = true;
+              this.btnCargando = false;
             }
           );
         } else {
@@ -562,6 +590,7 @@ export class FacturacionComponent implements OnInit {
           !this.form.get('telefonoempresa')?.errors &&
           !this.form.get('emailempresa')?.errors
         ) {
+          this.btnCargando = true;
           this.CategoriasService.crearempresa(this.form.value).subscribe(
             (resp) => {
 
@@ -579,10 +608,12 @@ export class FacturacionComponent implements OnInit {
     }
   }
   guardardireccion() {
+
     if (
       !this.form.get('direccion')?.errors &&
       !this.form.get('region')?.errors &&
-      !this.form.get('comuna')?.errors
+      !this.form.get('comuna')?.errors &&
+      !this.form.get('numerodireccion')?.errors
     ) {
       this.CategoriasService.crearempresa(this.form.value).subscribe((resp) => {
 
@@ -590,7 +621,12 @@ export class FacturacionComponent implements OnInit {
 
         this.datosdireccion = true;
         this.existedireccion = true;
+        this.camposdireccionmodal = false;
       });
+    }else{
+
+      this.camposdireccionmodal = true;
+
     }
 
     console.log(this.form);
@@ -611,6 +647,7 @@ export class FacturacionComponent implements OnInit {
   mostrardatosempresa(){
     this.empresadatos = this.form.value.isempresa;
   }
+
 
   finalizarcompra() {
 
@@ -662,15 +699,20 @@ export class FacturacionComponent implements OnInit {
       }
     } else {
 
-      this.creandocompra = true;
-
       if (!this.form.invalid) {
+
+        console.log("El formulario es valido");
+
+        this.creandocompra = true;
+
         let data = {
           datos: this.form.value,
           carro: JSON.parse(localStorage.getItem('carrito')!),
         };
 
         this.CategoriasService.generarordencompra(data).subscribe((resp) => {
+
+          console.log(resp);
 
           if(resp){
 
@@ -692,7 +734,7 @@ export class FacturacionComponent implements OnInit {
 
             this.token = resp.token;
 
-            // this.ejecutarformpago();
+            this.ejecutarformpago();
 
 
           }
@@ -700,6 +742,10 @@ export class FacturacionComponent implements OnInit {
           // localStorage.setItem('infopago', JSON.stringify(resp));
           // this.router.navigate(['/formulario-pago']);
         });
+
+      }else{
+
+        console.log("Formulario invalido");
 
       }
     }
@@ -732,9 +778,14 @@ export class FacturacionComponent implements OnInit {
     //setting address from API to local variable
     //  this.form.value.direccion=address.formatted_address
 
+    console.log("Resultado de la dirección: ");
+
     console.log(address);
 
     this.form.get('direccion')!.setValue(`${address.address_components[1].long_name} ${address.address_components[0].long_name}`);
+    if(address.address_components[0].types=='street_number'){
+      this.form.get('numerodireccion')!.setValue(address.address_components[0].long_name);
+    }
     this.form.get('region')!.setValue(address.address_components[5].long_name)
     this.form.get('comuna')!.setValue(address.address_components[3].long_name)
   }
@@ -742,8 +793,29 @@ export class FacturacionComponent implements OnInit {
   ValidarBtnComprarMovil(act:boolean){
 
     if(act){
-      this.finalizarcompra();
-      console.log("Se ejecuto");
+
+      if(!this.form.invalid){
+
+        this.finalizarcompra();
+        console.log("Se ejecuto");
+
+      }else{
+
+        console.log("Formulario invalido");
+        Swal.fire({
+          position: 'center',
+          title: '* Debes completar todos los campos en el formulario',
+          showConfirmButton: false,
+          showCancelButton: false,
+          width: '350px',
+          customClass: {
+              popup: 'alerta'
+            },
+          timer: 2500
+        })
+
+      }
+
     }
 
   }

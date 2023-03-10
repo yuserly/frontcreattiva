@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginPasswordComponent implements OnInit {
   nombre: string = '';
+  errorPassword:boolean = false;
 
   btn_codrapido:boolean = false;
 
@@ -50,7 +51,6 @@ export class LoginPasswordComponent implements OnInit {
     };
 
     this.categoriasService.login(data).subscribe((resp) => {
-      console.log(resp);
 
       if (resp.data) {
         if (resp.data.token) {
@@ -65,14 +65,24 @@ export class LoginPasswordComponent implements OnInit {
             );
             this.router.navigate(['/facturacion']);
           }
+          this.errorPassword = false;
         } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Contraseña incorrecta',
-            showConfirmButton: false,
-            timer: 1500
-          })
+          this.errorPassword = true;
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Contraseña incorrecta',
+          //   showConfirmButton: false,
+          //   timer: 1500
+          // })
         }
+      }else{
+        this.errorPassword = true;
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Contraseña incorrecta',
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
       }
     });
   }

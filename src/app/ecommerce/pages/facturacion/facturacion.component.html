@@ -19,8 +19,9 @@
                 class="accordion-header d-flex justify-content-between"
                 id="flush-headingOne"
               >
+
                 <button
-                  class="btn-acordeon accordion-button pt-0 pb-0"
+                  class="btn-acordeon accordion-button pt-0 pb-0 collapsed"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#flush-collapseOne"
@@ -155,7 +156,8 @@
                 </div>
               </div>
             </div>
-            <div class="accordion-item mt-2" *ngIf="datoscompradorsave">
+            <!-- <div class="accordion-item mt-2" *ngIf="datoscompradorsave"> -->
+            <div class="accordion-item mt-2">
               <div class="row mt-3">
                 <div class="col-md-6 col-12 col-sm-12 align-middle">
                   <p><b>2.- Datos facturación:</b></p>
@@ -197,7 +199,7 @@
                 id="flush-headingTwo"
               >
                 <button
-                  class="btn-acordeon accordion-button pt-0 pb-0"
+                  class="btn-acordeon accordion-button pt-0 pb-0 collapsed"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#flush-collapseTwo"
@@ -369,17 +371,19 @@
                 </div>
               </div>
             </div>
-            <div class="accordion-item mt-2" *ngIf="datosfacturacion">
+            <!-- <div class="accordion-item mt-2" *ngIf="datosfacturacion"> -->
+            <div class="accordion-item mt-2">
               <div class="row mt-3">
                 <p><b>3.- Dirección:</b></p>
 
                 <h2
                   class="accordion-header d-flex justify-content-between"
                   id="flush-headingThree"
-                  *ngIf="existedireccion"
+                  *ngIf="existedireccion; else botondireccion"
                 >
+
                   <button
-                    class="btn-acordeon accordion-button pt-0 pb-0"
+                    class="btn-acordeon accordion-button pt-0 pb-0 collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseThree"
@@ -397,6 +401,7 @@
                   >
                     Modificar <i class="far fa-edit"></i>
                   </button>
+
                 </h2>
                 <div
                   id="flush-collapseThree"
@@ -409,10 +414,9 @@
                     <div class="row g-3">
                       <div
                         class="col-md-12"
-                        *ngIf="existedireccion; else botondireccion"
                       >
-                        <form class="row g-3">
-                          <div class="col-12">
+                        <form class="row g-3" *ngIf="existedireccion">
+                          <div class="col-9">
                             <input
                               type="text"
                               class="form-control"
@@ -430,6 +434,24 @@
                               *ngIf="validarcampo('direccion')"
                             >
                               {{ mensajeerrordireccion }}
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <input
+                              type="number"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': validarcampo('numerodireccion')
+                              }"
+                              placeholder="Número"
+                              formControlName="numerodireccion"
+                              
+                            />
+                            <div
+                              class="invalid-feedback"
+                              *ngIf="validarcampo('numerodireccion')"
+                            >
+                              {{ mensajeerrornumerodireccion }}
                             </div>
                           </div>
                           <div class="col-6">
@@ -490,35 +512,34 @@
                     </div>
                   </div>
 
-                   <!-- boton direccion -->
-
-                   <ng-template #botondireccion>
-                    <div class="col-md-12 mt-4 text-center">
-                      <button
-                        type="button"
-                        class="btn"
-                        style="
-                          background-color: #005ad2;
-                          color: #f2f3f5;
-                          font-weight: bold;
-                          width: 60%;
-                        "
-                        data-bs-toggle="modal"
-                        data-bs-target="#modaldirecciones"
-                      >
-                        Agregar nueva dirección
-                      </button>
-                    </div>
-                  </ng-template>
-
-
-
                 </div>
+
+                <!-- boton direccion -->
+                <ng-template #botondireccion>
+                <div class="col-md-12 mt-4 text-center">
+                  <button
+                    type="button"
+                    class="btn"
+                    style="
+                      background-color: #005ad2;
+                      color: #f2f3f5;
+                      font-weight: bold;
+                      width: 60%;
+                    "
+                    data-bs-toggle="modal"
+                    data-bs-target="#modaldirecciones"
+                  >
+                    Agregar nueva dirección
+                  </button>
+                </div>
+                </ng-template>
+
               </div>
             </div>
           </div>
 
-          <div class="mt-2 mediospago" *ngIf="datosdireccion">
+          <!-- <div class="mt-2 mediospago" *ngIf="datosdireccion"> -->
+            <div class="mt-2 mediospago">
             <p><b>4.- Medio de pago:</b></p>
 
             <!--
@@ -797,6 +818,7 @@
         [totalcarroarray]="totalcarroarray"
         [mostrarBtnComprarMovil]="mostrarBtnComprarMovil"
         [aplicarCupon]="aplicarCupon"
+        [formvalido]="form.invalid"
       ></app-detalle-pedido>
 
       <div class="row mt-4">
@@ -892,7 +914,7 @@
             <div class="row">
               <div class="col-md-12">
                 <form class="row g-3">
-                  <div class="col-12">
+                  <div class="col-9">
                     <input
                       type="text"
                       class="form-control"
@@ -911,6 +933,28 @@
                       {{ mensajeerrordireccion }}
                     </div>
                   </div>
+
+                  <div class="col-3">
+
+                    <input
+                      type="number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': validarcampo('numerodireccion')
+                      }"
+                      placeholder="Número"
+                      formControlName="numerodireccion"
+                      
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="validarcampo('numerodireccion')"
+                    >
+                      {{ mensajeerrornumerodireccion }}
+                    </div>
+
+                  </div>
+                
                   <div class="col-6">
                     <input
                       type="text"
@@ -942,6 +986,14 @@
                       La comuna es requerida
                     </div>
                   </div>
+
+                  <div
+                  *ngIf="camposdireccionmodal"
+                    style="color: #dc3545;"
+                  >
+                    * Todos los campos son requeridos
+                  </div>
+
                 </form>
               </div>
             </div>

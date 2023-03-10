@@ -27,6 +27,7 @@ export class DetallePedidoComponent implements OnInit {
 
    @Input() totalcarroarray!:TotalCarro;
    @Input() aplicarCupon!:number;
+   @Input() formvalido!:boolean;
    @Input() mostrarBtnFinalizarMovil!:boolean;
    @Input() mostrarBtnComprarMovil!:boolean;
    @Input() mostrarBtnContinuarMovil!:boolean;
@@ -185,7 +186,7 @@ export class DetallePedidoComponent implements OnInit {
 
   finalizarcomprar(){
 
-    this.eventoMovilComprar.emit(true);
+      this.eventoMovilComprar.emit(true);
 
   }
 
